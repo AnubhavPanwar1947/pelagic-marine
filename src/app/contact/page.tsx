@@ -2,14 +2,38 @@
 
 import { FormEvent, useState } from "react";
 import { PageHero } from "@/components/ui/PageHero";
+import { submitEnquiry } from "@/lib/api";
 import { company } from "@/lib/site-data";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const result = await submitEnquiry({
+      name: String(formData.get("name") ?? ""),
+      company: String(formData.get("company") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      surveyType: String(formData.get("service") ?? ""),
+      message: String(formData.get("message") ?? ""),
+    });
+
+    setLoading(false);
+
+    if (result.success) {
+      form.reset();
+      setSubmitted(true);
+    } else {
+      setError(result.error ?? "Something went wrong. Please try again.");
+    }
   }
 
   return (
@@ -75,16 +99,25 @@ export default function ContactPage() {
             Send an enquiry
           </h2>
           <p className="mt-2 text-sm text-slate-600">
-            We will connect this form to email or database in the next phase.
+            Submissions are saved securely. Our team will respond as soon as possible.
           </p>
 
           {submitted ? (
             <div className="mt-8 rounded-2xl bg-pelagic-sand px-6 py-8 text-pelagic-ink">
               <p className="font-semibold">Thank you for your enquiry.</p>
               <p className="mt-2 text-sm leading-7 text-slate-600">
-                Your message has been recorded locally for now. Our team will
-                respond once the backend is connected.
+                Your message has been saved. A Pelagic Marine consultant will contact you shortly.
               </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSubmitted(false);
+                  setError(null);
+                }}
+                className="mt-6 text-sm font-semibold text-pelagic-steel underline-offset-4 hover:underline"
+              >
+                Send another enquiry
+              </button>
             </div>
           ) : (
             <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -156,11 +189,19 @@ export default function ContactPage() {
                   placeholder="Tell us about your vessel, project, or legal matter..."
                 />
               </div>
+
+              {error && (
+                <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-red-100">
+                  {error}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="w-full rounded-full bg-pelagic-gold px-6 py-4 text-sm font-semibold text-white shadow-md transition hover:bg-pelagic-gold-light"
+                disabled={loading}
+                className="w-full rounded-full bg-pelagic-gold px-6 py-4 text-sm font-semibold text-white shadow-md transition hover:bg-pelagic-gold-light disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Submit enquiry
+                {loading ? "Submitting..." : "Submit enquiry"}
               </button>
             </form>
           )}
