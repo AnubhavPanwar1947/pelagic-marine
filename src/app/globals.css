@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+/* Pelagic — vanilla sky, warm sunset, soft water tones */
+:root {
+  --background: #fdfbf7;
+  --foreground: #1a1614;
+  --pelagic-ink: #1a1614;
+  --pelagic-deep: #2c2420;
+  --pelagic-charcoal: #3d3530;
+  --pelagic-steel: #5c534c;
+  --pelagic-slate: #7a716a;
+  --pelagic-cream: #fdfbf7;
+  --pelagic-sand: #f3ece2;
+  --pelagic-warm: #e8dfd2;
+  --pelagic-gold: #c9941a;
+  --pelagic-gold-light: #e0b04a;
+  --pelagic-accent: #0f766e;
+  --pelagic-sky: #e8f2fa;
+  --pelagic-sunset: #f5e6d3;
+  --pelagic-water: #a8d4e6;
+
+  --pelagic-navy: #2c2420;
+  --pelagic-blue: #3d3530;
+  --pelagic-light: #5c534c;
+  --pelagic-mist: #f3ece2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-pelagic-ink: var(--pelagic-ink);
+  --color-pelagic-deep: var(--pelagic-deep);
+  --color-pelagic-charcoal: var(--pelagic-charcoal);
+  --color-pelagic-steel: var(--pelagic-steel);
+  --color-pelagic-slate: var(--pelagic-slate);
+  --color-pelagic-cream: var(--pelagic-cream);
+  --color-pelagic-sand: var(--pelagic-sand);
+  --color-pelagic-warm: var(--pelagic-warm);
+  --color-pelagic-gold: var(--pelagic-gold);
+  --color-pelagic-gold-light: var(--pelagic-gold-light);
+  --color-pelagic-accent: var(--pelagic-accent);
+  --color-pelagic-sky: var(--pelagic-sky);
+  --color-pelagic-sunset: var(--pelagic-sunset);
+  --color-pelagic-water: var(--pelagic-water);
+  --color-pelagic-navy: var(--pelagic-navy);
+  --color-pelagic-blue: var(--pelagic-blue);
+  --color-pelagic-light: var(--pelagic-light);
+  --color-pelagic-mist: var(--pelagic-mist);
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-playfair);
+}
+
+body {
+  background-color: var(--pelagic-cream);
+  background-image:
+    radial-gradient(rgba(168, 212, 230, 0.22) 1px, transparent 1px),
+    linear-gradient(rgba(201, 148, 26, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 148, 26, 0.045) 1px, transparent 1px),
+    linear-gradient(
+      180deg,
+      rgba(232, 242, 250, 0.35) 0%,
+      transparent 35%,
+      rgba(245, 230, 211, 0.2) 100%
+    );
+  background-size:
+    28px 28px,
+    52px 52px,
+    52px 52px,
+    100% 100%;
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .logo-armor-shine::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+.font-display {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+}
+
+.bg-maritime-grid {
+  background-image:
+    radial-gradient(rgba(168, 212, 230, 0.18) 1px, transparent 1px),
+    linear-gradient(rgba(201, 148, 26, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 148, 26, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px, 52px 52px, 52px 52px;
+}
+
+.bg-sky-gradient {
+  background: linear-gradient(
+    180deg,
+    var(--pelagic-sky) 0%,
+    var(--pelagic-cream) 45%,
+    var(--pelagic-sunset) 100%
+  );
+}
+
+.card-premium {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(26, 22, 20, 0.12);
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes splash-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-splash-scale {
+  animation: splash-scale 0.6s ease forwards;
+}
+
+@keyframes splash-bar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-splash-bar {
+  animation: splash-bar 2.8s ease-in-out forwards;
+}
+
+@keyframes wave-shimmer {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-wave-shimmer {
+  animation: wave-shimmer 4s ease-in-out infinite;
+}
+
+.cta-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 22, 20, 0.88) 0%,
+    rgba(44, 36, 32, 0.78) 50%,
+    rgba(26, 22, 20, 0.85) 100%
+  );
+}
+
+.logo-armor {
+  background: linear-gradient(
+    145deg,
+    #e0b04a 0%,
+    #fff8e7 35%,
+    #c9941a 55%,
+    #f5e6c8 75%,
+    #b8860b 100%
+  );
+}
+
+.logo-armor-shine::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.85) 50%,
+    transparent 58%
+  );
+  animation: armor-shine 3.5s ease-in-out infinite;
+}
+
+@keyframes armor-shine {
+  0%,
+  100% {
+    transform: translateX(-80%) rotate(20deg);
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(80%) rotate(20deg);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+  }
+}
