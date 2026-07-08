@@ -4,16 +4,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { company, processSteps } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "How We Are",
   description:
-    "Learn about Pelagic Marine Solutions — founded in 2021 by mariners and engineers to deliver marine, surveying, and legal consultancy.",
+    "How Pelagic Marine works — founded in 2021 by mariners and engineers to deliver marine, surveying, and legal consultancy.",
 };
 
 export default function AboutPage() {
   return (
     <div>
       <PageHero
-        eyebrow="About us"
+        eyebrow="How we are"
         title="Your partner in innovation and technology"
         description={`${company.legalName} was formed in ${company.founded} by entrepreneurs from the shipping and engineering fraternity to act as a one-stop shop for shipping industry solutions.`}
       />

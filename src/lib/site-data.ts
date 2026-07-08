@@ -1,3 +1,17 @@
+export type OfficeRegion = "India" | "UAE";
+
+export type Office = {
+  label: string;
+  address: string;
+  region: OfficeRegion;
+  phone: string;
+  /** Building-focused query for Google Maps search links */
+  mapQuery: string;
+  /** Verified pin coordinates for embedded maps */
+  coordinates: { lat: number; lng: number };
+  hq?: boolean;
+};
+
 export const company = {
   name: "Pelagic Marine Solutions",
   legalName: "Pelagic Marine Consultants and Surveyors",
@@ -18,22 +32,35 @@ export const company = {
     {
       label: "India — Mumbai",
       address: "18th Floor, Cyber One, Sector 30, Vashi, Navi Mumbai 400703",
+      region: "India",
+      phone: "+91 7895039068",
+      mapQuery: "Cyber One, Sector 30, Vashi, Navi Mumbai",
+      coordinates: { lat: 19.07598, lng: 72.99876 },
     },
     {
       label: "India — Dehradun (HQ)",
       address: "3/11 D, 2nd Floor Gyan Tower, Garhi Cantonment, Dehradun 248001",
+      region: "India",
+      phone: "+91 7895039068",
+      mapQuery: "Gyan Tower, Garhi Cantonment, Dehradun",
+      coordinates: { lat: 30.32528, lng: 78.04417 },
+      hq: true,
     },
     {
       label: "UAE — Dubai",
       address: "Office No. 104, Almas Business Center, Aghaadir Building, Al Raffa, Dubai",
+      region: "UAE",
+      phone: "+971-503-941-049",
+      mapQuery: "Almas Business Center, Al Raffa, Dubai",
+      coordinates: { lat: 25.25443, lng: 55.28639 },
     },
-  ],
+  ] satisfies Office[],
   founded: 2021,
   linkedin: "https://www.linkedin.com/company/pelagic-marine-solutions/",
 };
 
 export const navLinks = [
-  { href: "/about", label: "About" },
+  { href: "/about", label: "How We Are" },
   { href: "/services", label: "Services" },
   { href: "/sectors", label: "Sectors" },
   { href: "/projects", label: "Projects" },
@@ -326,7 +353,7 @@ export const testimonials = [
 
 /** Main app bar — order aligned with Global Maritime & peer consultancies */
 export const navMenu: NavMenuItem[] = [
-  { type: "link", href: "/about", label: "About" },
+  { type: "link", href: "/about", label: "How We Are" },
   {
     type: "dropdown",
     label: "Services",

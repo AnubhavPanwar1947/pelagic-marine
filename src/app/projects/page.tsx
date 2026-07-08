@@ -30,6 +30,7 @@ export default function ProjectsPage() {
                     src={siteImages.cases[i] ?? siteImages.cases[0]}
                     alt={project.title}
                     fill
+                    brandOverlay
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 33vw"
                   />

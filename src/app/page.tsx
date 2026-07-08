@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { SiteImage } from "@/components/ui/SiteImage";
+import { getGoogleMapsSearchUrl } from "@/lib/maps";
 import {
   caseStudies,
   company,
@@ -166,6 +167,7 @@ export default function HomePage() {
                       src={siteImages.cases[i] ?? siteImages.cases[0]}
                       alt={project.title}
                       fill
+                      brandOverlay
                       className="object-cover"
                       sizes="33vw"
                     />
@@ -334,6 +336,20 @@ export default function HomePage() {
               align="center"
             />
           </Reveal>
+          <Reveal delay={80}>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-7 text-pelagic-slate">
+              Pelagic Marine operates across India and the UAE. View office addresses below or open
+              the interactive map on our contact page.
+            </p>
+            <div className="mt-6 flex justify-center">
+              <Link
+                href="/contact#locations-map"
+                className="inline-flex rounded-full bg-pelagic-charcoal px-6 py-3 text-sm font-semibold text-white transition hover:bg-pelagic-ink"
+              >
+                View interactive map
+              </Link>
+            </div>
+          </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {company.offices.map((office, i) => (
               <Reveal key={office.label} delay={i * 60}>
@@ -342,6 +358,14 @@ export default function HomePage() {
                   <p className="mt-2 text-sm leading-relaxed text-pelagic-slate">
                     {office.address}
                   </p>
+                  <a
+                    href={getGoogleMapsSearchUrl(office)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex text-sm font-semibold text-pelagic-gold hover:underline"
+                  >
+                    View on map →
+                  </a>
                 </div>
               </Reveal>
             ))}
@@ -355,6 +379,7 @@ export default function HomePage() {
           src={siteImages.cta}
           alt=""
           fill
+          brandOverlay
           className="object-cover"
           aria-hidden
           sizes="100vw"

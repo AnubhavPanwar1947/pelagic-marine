@@ -37,7 +37,7 @@ export function buildSearchIndex(): SearchResult[] {
 
   const extra: SearchResult[] = [
     {
-      title: "About Pelagic Marine",
+      title: "How We Are — Pelagic Marine",
       href: "/about",
       category: "Page",
       excerpt: "Company story, leadership, and approach.",

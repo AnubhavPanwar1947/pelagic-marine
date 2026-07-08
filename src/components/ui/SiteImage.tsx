@@ -10,6 +10,8 @@ type SiteImageProps = {
   priority?: boolean;
   className?: string;
   sizes?: string;
+  /** Navy/gold wash so ship photos match the Pelagic brand palette */
+  brandOverlay?: boolean;
 };
 
 export function SiteImage({
@@ -19,6 +21,7 @@ export function SiteImage({
   priority,
   className = "",
   sizes,
+  brandOverlay = false,
 }: SiteImageProps) {
   const [failed, setFailed] = useState(false);
 
@@ -32,14 +35,22 @@ export function SiteImage({
   }
 
   return (
-    <Image
-      src={src}
-      alt={alt}
-      fill={fill}
-      priority={priority}
-      sizes={sizes}
-      className={className}
-      onError={() => setFailed(true)}
-    />
+    <div className={`relative ${fill ? "absolute inset-0" : ""}`}>
+      <Image
+        src={src}
+        alt={alt}
+        fill={fill}
+        priority={priority}
+        sizes={sizes}
+        className={className}
+        onError={() => setFailed(true)}
+      />
+      {brandOverlay && (
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-pelagic-charcoal/35 via-pelagic-steel/10 to-pelagic-gold/25 mix-blend-multiply"
+          aria-hidden
+        />
+      )}
+    </div>
   );
 }
