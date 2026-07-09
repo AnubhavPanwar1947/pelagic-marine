@@ -56,13 +56,20 @@ async function insertEnquiryRow(row: Record<string, unknown>) {
 
   if (!response.ok) {
     let detail = `HTTP ${response.status}`;
+    let code: string | undefined;
     try {
-      const body = (await response.json()) as { message?: string; code?: string };
+      const body = (await response.json()) as {
+        message?: string;
+        code?: string;
+        hint?: string;
+      };
       detail = body.message || body.code || detail;
+      code = body.code;
+      if (body.hint) detail = `${detail} (${body.hint})`;
     } catch {
       // ignore parse errors
     }
-    return { ok: false as const, error: detail };
+    return { ok: false as const, error: detail, code, httpStatus: response.status };
   }
 
   return { ok: true as const };
@@ -91,10 +98,23 @@ export const supabaseProvider: BackendProviderInterface = {
 
     if (!result.ok) {
       console.error("[enquiry] supabase insert failed:", result.error, {
+        code: "code" in result ? result.code : undefined,
+        httpStatus: "httpStatus" in result ? result.httpStatus : undefined,
         serviceKeyType: diagnostics.serviceKeyType,
         projectHost: diagnostics.projectHost,
       });
-      return { success: false, error: friendlyError(result.error) };
+      return {
+        success: false,
+        error: friendlyError(result.error),
+        // Safe diagnostics for debugging production inserts (no secrets).
+        debug: {
+          code: "code" in result ? result.code : undefined,
+          httpStatus: "httpStatus" in result ? result.httpStatus : undefined,
+          detail: result.error,
+          serviceKeyType: diagnostics.serviceKeyType,
+          projectHost: diagnostics.projectHost,
+        },
+      };
     }
 
     return {

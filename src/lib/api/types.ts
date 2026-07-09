@@ -22,6 +22,14 @@ export interface ApiResult<T> {
   success: boolean;
   data?: T;
   error?: string;
+  /** Safe production diagnostics — never includes secrets */
+  debug?: {
+    code?: string;
+    httpStatus?: number;
+    detail?: string;
+    serviceKeyType?: string | null;
+    projectHost?: string | null;
+  };
 }
 
 export interface BackendProviderInterface {
