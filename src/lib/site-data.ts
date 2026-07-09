@@ -60,7 +60,7 @@ export const company = {
 };
 
 export const navLinks = [
-  { href: "/about", label: "How We Are" },
+  { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/sectors", label: "Sectors" },
   { href: "/projects", label: "Projects" },
@@ -353,7 +353,7 @@ export const testimonials = [
 
 /** Main app bar — order aligned with Global Maritime & peer consultancies */
 export const navMenu: NavMenuItem[] = [
-  { type: "link", href: "/about", label: "How We Are" },
+  { type: "link", href: "/about", label: "About" },
   {
     type: "dropdown",
     label: "Services",

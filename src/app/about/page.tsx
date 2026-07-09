@@ -4,16 +4,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { company, processSteps } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "How We Are",
+  title: "About",
   description:
-    "How Pelagic Marine works — founded in 2021 by mariners and engineers to deliver marine, surveying, and legal consultancy.",
+    "Who we are — Pelagic Marine was founded in 2021 by mariners and engineers to deliver marine, surveying, and legal consultancy.",
 };
 
 export default function AboutPage() {
   return (
     <div>
       <PageHero
-        eyebrow="How we are"
+        eyebrow="Who we are"
         title="Your partner in innovation and technology"
         description={`${company.legalName} was formed in ${company.founded} by entrepreneurs from the shipping and engineering fraternity to act as a one-stop shop for shipping industry solutions.`}
       />
@@ -21,7 +21,7 @@ export default function AboutPage() {
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
           <div>
-            <SectionHeading eyebrow="Who we are" title="Expertise forged at sea and ashore" />
+            <SectionHeading eyebrow="Our expertise" title="Expertise forged at sea and ashore" />
             <p className="mt-6 leading-8 text-slate-600">
               Pelagic marine consultants and surveyors bring together experienced
               Master Mariners, marine engineers, naval architects, and maritime
