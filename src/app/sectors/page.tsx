@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
+import { SiteImage } from "@/components/ui/SiteImage";
 import { sectorDetails } from "@/lib/site-data";
+import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Sectors",
@@ -17,6 +19,7 @@ export default function SectorsPage() {
         eyebrow="Sectors"
         title="Cross-sector marine expertise"
         description="The same technical excellence applied across shipping, offshore energy, renewables, and port infrastructure."
+        imageSrc={siteImages.pageHeroes.sectors}
       />
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-6 md:grid-cols-2">
@@ -24,8 +27,19 @@ export default function SectorsPage() {
               <Reveal key={sector.slug} delay={i * 80}>
                 <article
                   id={sector.slug}
-                  className="card-premium scroll-mt-28 rounded-3xl border border-pelagic-sand bg-white p-8 shadow-sm"
+                  className="card-premium scroll-mt-28 overflow-hidden rounded-3xl border border-pelagic-sand bg-white shadow-sm"
                 >
+                <div className="relative aspect-[16/9]">
+                  <SiteImage
+                    src={siteImages.sectors[sector.slug as keyof typeof siteImages.sectors]}
+                    alt={sector.title}
+                    fill
+                    brandOverlay
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="p-8">
                 <h2 className="font-display text-xl font-semibold text-pelagic-ink">
                   {sector.title}
                 </h2>
@@ -38,6 +52,7 @@ export default function SectorsPage() {
                 >
                   View related services →
                 </Link>
+                </div>
               </article>
             </Reveal>
           ))}

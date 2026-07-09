@@ -19,6 +19,7 @@ export default function ProjectsPage() {
         eyebrow="Projects"
         title="Track record across oceans and ports"
         description="Selected assignments in surveying, LNG operations, engineering, and fleet support."
+        imageSrc={siteImages.pageHeroes.projects}
       />
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-3">

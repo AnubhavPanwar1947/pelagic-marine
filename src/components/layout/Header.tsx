@@ -30,6 +30,14 @@ function isActive(pathname: string, href: string) {
   return pathname === href || (href !== "/" && pathname.startsWith(href));
 }
 
+function navLinkClass(active: boolean) {
+  return `relative px-2.5 py-2 text-sm font-medium transition-colors after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:rounded-full after:bg-pelagic-gold after:transition-transform after:duration-200 lg:px-3 ${
+    active
+      ? "text-pelagic-ink after:scale-x-100"
+      : "text-pelagic-steel after:scale-x-0 hover:text-pelagic-ink hover:after:scale-x-100"
+  }`;
+}
+
 function DesktopNavItem({
   item,
   pathname,
@@ -73,14 +81,7 @@ function DesktopNavItem({
 
   if (item.type === "link") {
     return (
-      <Link
-        href={item.href}
-        className={`rounded-lg px-2.5 py-2 text-sm font-medium transition-colors lg:px-3 ${
-          active
-            ? "bg-pelagic-sand text-pelagic-ink"
-            : "text-pelagic-steel hover:bg-pelagic-cream hover:text-pelagic-ink"
-        }`}
-      >
+      <Link href={item.href} className={navLinkClass(active)}>
         {item.label}
       </Link>
     );
@@ -98,11 +99,7 @@ function DesktopNavItem({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-1 rounded-lg px-2.5 py-2 text-sm font-medium transition-colors lg:px-3 ${
-          open || active
-            ? "bg-pelagic-sand text-pelagic-ink"
-            : "text-pelagic-steel hover:bg-pelagic-cream hover:text-pelagic-ink"
-        }`}
+        className={`flex items-center gap-1 ${navLinkClass(open || active)}`}
         aria-expanded={open}
         aria-haspopup="true"
       >
@@ -231,10 +228,14 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-pelagic-gold/20 bg-white/98 shadow-md shadow-stone-900/5 backdrop-blur-lg"
-          : "border-b border-pelagic-sand/80 bg-white/95 backdrop-blur-md"
+          ? "border-b border-pelagic-gold/30 bg-white/98 shadow-md shadow-teal-900/5 backdrop-blur-lg"
+          : "border-b border-teal-200/50 bg-gradient-to-r from-teal-50/90 via-white to-amber-50/70 backdrop-blur-md"
       }`}
     >
+      <div
+        className="h-1 bg-gradient-to-r from-pelagic-accent via-pelagic-gold to-teal-600"
+        aria-hidden
+      />
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:px-6 lg:gap-3 lg:px-8">
         <BrandLogo variant="header" />
 
@@ -262,7 +263,7 @@ export function Header() {
 
           <Link
             href="/contact"
-            className="hidden rounded-full border border-pelagic-warm bg-pelagic-cream px-4 py-2.5 text-sm font-semibold text-pelagic-charcoal transition hover:border-pelagic-gold hover:text-pelagic-gold md:inline-flex"
+            className={`hidden md:inline-flex ${navLinkClass(isActive(pathname, "/contact"))}`}
           >
             Contact
           </Link>

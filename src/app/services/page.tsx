@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { serviceCategories } from "@/lib/site-data";
+import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -17,6 +18,7 @@ export default function ServicesPage() {
         eyebrow="Services"
         title="Comprehensive marine and engineering consultancy"
         description="Expert-led services for ship owners, managers, charterers, insurers, and energy operators — available 24/7 from India and Dubai."
+        imageSrc={siteImages.pageHeroes.services}
       />
 
       <section className="mx-auto max-w-7xl space-y-10 px-4 py-24 sm:px-6 lg:px-8">

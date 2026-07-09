@@ -10,6 +10,11 @@ export type Office = {
   /** Verified pin coordinates for embedded maps */
   coordinates: { lat: number; lng: number };
   hq?: boolean;
+  /** Short line for contact office cards */
+  tagline?: string;
+  hours?: string;
+  /** Shown as chips on office cards */
+  services?: string[];
 };
 
 export const company = {
@@ -36,6 +41,9 @@ export const company = {
       phone: "+91 7895039068",
       mapQuery: "Cyber One, Sector 30, Vashi, Navi Mumbai",
       coordinates: { lat: 19.07598, lng: 72.99876 },
+      tagline: "Western India hub — surveys, warranty & fleet support",
+      hours: "Mon–Sat · 9:00–18:00 IST",
+      services: ["Surveys", "Warranty", "Fleet support"],
     },
     {
       label: "India — Dehradun (HQ)",
@@ -45,6 +53,9 @@ export const company = {
       mapQuery: "Gyan Tower, Garhi Cantonment, Dehradun",
       coordinates: { lat: 30.32528, lng: 78.04417 },
       hq: true,
+      tagline: "Headquarters — engineering, LNG & legal consultancy",
+      hours: "Mon–Sat · 9:00–18:00 IST",
+      services: ["Engineering", "LNG", "Legal"],
     },
     {
       label: "UAE — Dubai",
@@ -53,10 +64,200 @@ export const company = {
       phone: "+971-503-941-049",
       mapQuery: "Almas Business Center, Al Raffa, Dubai",
       coordinates: { lat: 25.25443, lng: 55.28639 },
+      tagline: "Middle East operations — offshore & shipping advisory",
+      hours: "Sun–Thu · 9:00–18:00 GST",
+      services: ["Offshore", "Shipping", "Advisory"],
     },
   ] satisfies Office[],
   founded: 2021,
   linkedin: "https://www.linkedin.com/company/pelagic-marine-solutions/",
+  /** Add URL when live — Instagram icon appears automatically in contact & footer */
+  // instagram: "https://www.instagram.com/yourprofile/",
+  /** WhatsApp — India line without + or spaces */
+  whatsapp: "917895039068",
+};
+
+export const contactPage = {
+  hero: {
+    eyebrow: "Contact",
+    headline: "Get in touch with our marine experts",
+    subline:
+      "Surveying, engineering, LNG support, and maritime legal — one qualified team across India and the UAE. Tell us your vessel, port, or project scope and we will route you to the right consultant.",
+    fitStatement:
+      "Strong fit: pre-purchase surveys, warranty attendance, LNG bunkering supervision, remote compass adjustment, casualty response, and fleet technical advisory.",
+    imageSrc: "/images/contact-hero.jpg",
+    imageAlt: "Cargo vessel underway at sea — marine surveying and consultancy",
+    imageCredit: "Unsplash",
+    stats: [
+      { value: "2021", label: "Established" },
+      { value: "3", label: "Global offices" },
+      { value: "24/7", label: "Casualty line" },
+      { value: "6+", label: "Expert disciplines" },
+    ],
+    credentials: [
+      "Master mariners & surveyors",
+      "Naval architects & engineers",
+      "India · UAE mobilisation",
+    ],
+  },
+  emergency: {
+    label: "24/7 urgent line",
+    detail: "Casualty, PSC detention, or time-critical survey mobilisation",
+  },
+  intentPaths: [
+    {
+      id: "project",
+      title: "Project enquiry",
+      description:
+        "New survey, engineering review, LNG compatibility, or fleet support. We assign the right expert in India or Dubai.",
+      cta: "Submit enquiry",
+      target: "enquiry-form",
+      icon: "project",
+    },
+    {
+      id: "technical",
+      title: "Technical advisory",
+      description:
+        "Rules interpretation, compliance questions, or post-survey follow-up. Email our consultants with vessel and scope details.",
+      cta: "Email experts",
+      href: `mailto:${company.emails.info}?subject=Technical%20advisory%20enquiry`,
+      icon: "technical",
+    },
+    {
+      id: "urgent",
+      title: "Urgent attendance",
+      description:
+        "Vessel alongside, port state control, or emergency mobilisation. Call our 24/7 line — have IMO number, port, and nature of urgency ready.",
+      cta: "Call 24/7",
+      href: `tel:${company.phones.india.replace(/\s/g, "")}`,
+      icon: "urgent",
+    },
+    {
+      id: "careers",
+      title: "Careers & partnerships",
+      description:
+        "Join our surveyor and engineering network, or discuss agency and partnership opportunities.",
+      cta: "Email careers",
+      href: `mailto:${company.emails.career}`,
+      icon: "careers",
+    },
+  ],
+  expectations: [
+    "A consultant reviews your enquiry within one business day",
+    "Urgent cases are prioritised on our 24/7 line",
+    "You receive clear next steps — proposal, mobilisation, or site attendance",
+  ],
+  sla: {
+    standard: "Standard enquiries: response within 1 business day",
+    urgent: "Casualty / vessel alongside: immediate routing to 24/7 line",
+    avgLabel: "Typical first response",
+    avgValue: "Under 4 hours",
+  },
+  accreditations: [
+    { label: "ISO 9001", detail: "Quality management" },
+    { label: "Master Mariners", detail: "MICS leadership" },
+    { label: "24/7 network", detail: "India · UAE · global" },
+    { label: "6 disciplines", detail: "Survey to legal" },
+  ],
+  quickIntake: [
+    {
+      id: "lng",
+      label: "LNG bunkering",
+      service: "LNG & Alternative Fuels",
+      urgency: "priority",
+      messageHint: "LNG bunkering compatibility / supervision scope:",
+    },
+    {
+      id: "casualty",
+      label: "Casualty survey",
+      service: "Inspection, Audits & Surveying",
+      urgency: "urgent",
+      messageHint: "Casualty / damage survey — vessel, port, nature of incident:",
+    },
+    {
+      id: "compass",
+      label: "Remote compass",
+      service: "Inspection, Audits & Surveying",
+      urgency: "standard",
+      messageHint: "Remote magnetic compass adjustment — fleet size and vessel names:",
+    },
+    {
+      id: "warranty",
+      label: "Warranty survey",
+      service: "Inspection, Audits & Surveying",
+      urgency: "priority",
+      messageHint: "Marine warranty survey — project location and scope:",
+    },
+  ],
+  faq: [
+    {
+      question: "How fast can you mobilise to Mumbai or Dubai?",
+      answer:
+        "Standard enquiries receive a consultant review within one business day. Priority and casualty cases are routed immediately on our 24/7 line — we regularly mobilise surveyors to Indian ports and UAE anchorages within hours when scope and access are confirmed.",
+    },
+    {
+      question: "Do you attend casualties outside office hours?",
+      answer:
+        "Yes. Our 24/7 casualty and time-critical survey line is staffed around the clock. Call the India or UAE number with vessel name, IMO, port or anchorage, and nature of urgency.",
+    },
+    {
+      question: "What should I include in a survey request?",
+      answer:
+        "Vessel name and IMO (if applicable), port or location, cargo or operation involved, desired survey type, target attendance date, and any P&I or class society reference. The more operational detail you provide, the faster we assign the right expert.",
+    },
+    {
+      question: "Can you support remote attendance?",
+      answer:
+        "Yes — including remote magnetic compass deviation adjustment for fleets worldwide. We will confirm whether remote or onboard attendance is appropriate for your scope.",
+    },
+    {
+      question: "Which office handles my enquiry?",
+      answer:
+        "Mumbai covers western India mobilisation; Dehradun (HQ) leads engineering, LNG, and legal work; Dubai supports Middle East shipping and offshore advisory. We route every enquiry to the nearest qualified team automatically.",
+    },
+    {
+      question: "How do I reach you for an urgent matter?",
+      answer:
+        "Use the 24/7 phone line shown at the top of this page — do not rely on email alone for casualties or vessels alongside. For non-urgent projects, submit the enquiry form or email info@pelagic-marine.com.",
+    },
+  ],
+  networkHub: {
+    eyebrow: "Global Network Hub",
+    title: "Find your nearest expert",
+    description:
+      "Search by city, filter by region, and open directions — your gateway to Pelagic offices across India and the UAE.",
+  },
+  responseSteps: [
+    {
+      step: "01",
+      title: "We acknowledge",
+      text: "Your enquiry is logged securely. A consultant reviews scope and urgency within hours.",
+    },
+    {
+      step: "02",
+      title: "Right expert assigned",
+      text: "Surveying, engineering, LNG, or legal — we route you to the nearest qualified team in India or the UAE.",
+    },
+    {
+      step: "03",
+      title: "Clear next steps",
+      text: "Proposal, mobilisation plan, or site attendance — with transparent timelines and deliverables.",
+    },
+  ],
+  reasons: [
+    {
+      title: "One team, two regions",
+      text: "India and UAE offices under one brand — no hand-offs between disconnected contractors.",
+    },
+    {
+      title: "Mariners who mobilise",
+      text: "Master mariners, naval architects, and engineers who understand operations, not just reports.",
+    },
+    {
+      title: "Around the clock",
+      text: "Urgent casualty, warranty, or port attendance — our network is built for time-critical marine work.",
+    },
+  ],
 };
 
 export const navLinks = [

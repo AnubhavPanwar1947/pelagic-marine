@@ -18,14 +18,21 @@ export const supabaseProvider: BackendProviderInterface = {
       };
     }
 
-    const { error } = await supabase.from("enquiries").insert({
-      name: input.name,
-      company: input.company || null,
-      email: input.email,
-      survey_type: input.surveyType,
-      message: input.message,
-      status: "pending",
-    });
+    const { data, error } = await supabase
+      .from("enquiries")
+      .insert({
+        name: input.name.trim(),
+        company: input.company?.trim() || null,
+        email: input.email.trim(),
+        phone: input.phone?.trim() || null,
+        vessel_name: input.vessel?.trim() || null,
+        port: input.port?.trim() || null,
+        survey_type: input.surveyType,
+        message: input.message.trim(),
+        status: "pending",
+      })
+      .select("id, created_at")
+      .single();
 
     if (error) {
       const message = error.message.toLowerCase();
@@ -47,14 +54,14 @@ export const supabaseProvider: BackendProviderInterface = {
     return {
       success: true,
       data: {
-        id: "",
+        id: data.id,
         name: input.name,
         company: input.company,
         email: input.email,
         surveyType: input.surveyType,
         message: input.message,
         status: "pending",
-        createdAt: new Date().toISOString(),
+        createdAt: data.created_at ?? new Date().toISOString(),
       },
     };
   },

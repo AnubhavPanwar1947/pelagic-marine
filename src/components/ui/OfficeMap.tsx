@@ -26,7 +26,7 @@ export function OfficeMap({ office, className = "", tall = false, dark = false }
           src={embedUrl}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          className="absolute inset-0 h-full w-full border-0"
+          className="office-map-frame absolute inset-0 h-full w-full border-0 grayscale-[0.15] contrast-[1.02]"
           allowFullScreen
         />
       </div>

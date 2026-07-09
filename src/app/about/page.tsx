@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { OfficeNetworkPanel } from "@/components/contact/OfficeNetworkPanel";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SiteImage } from "@/components/ui/SiteImage";
 import { company, processSteps } from "@/lib/site-data";
+import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "About",
@@ -16,6 +19,7 @@ export default function AboutPage() {
         eyebrow="Who we are"
         title="Your partner in innovation and technology"
         description={`${company.legalName} was formed in ${company.founded} by entrepreneurs from the shipping and engineering fraternity to act as a one-stop shop for shipping industry solutions.`}
+        imageSrc={siteImages.pageHeroes.about}
       />
 
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
@@ -35,7 +39,17 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-pelagic-mist bg-gradient-to-br from-white to-pelagic-mist/40 p-10 shadow-sm">
+          <div className="space-y-6">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-pelagic-mist shadow-sm">
+              <SiteImage
+                src={siteImages.expertise}
+                alt="Container port and maritime operations"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <div className="rounded-3xl border border-pelagic-mist bg-gradient-to-br from-white to-pelagic-mist/40 p-10 shadow-sm">
             <h3 className="font-display text-2xl font-semibold text-pelagic-ink">
               Our vision
             </h3>
@@ -57,6 +71,7 @@ export default function AboutPage() {
                   {sector}
                 </span>
               ))}
+            </div>
             </div>
           </div>
         </div>
@@ -95,6 +110,16 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-pelagic-mist bg-slate-50 py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <OfficeNetworkPanel
+            offices={company.offices}
+            title="Where we operate"
+            description="Pelagic Marine is built for India and the UAE — with offices in Mumbai, Dehradun (HQ), and Dubai for rapid survey and consultancy mobilisation."
+          />
         </div>
       </section>
 

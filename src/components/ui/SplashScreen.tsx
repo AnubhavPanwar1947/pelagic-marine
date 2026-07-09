@@ -1,16 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 
 const SPLASH_KEY = "pelagic-splash-seen";
 const DURATION_MS = 3000;
 
 export function SplashScreen() {
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
+    if (pathname !== "/") return;
     if (sessionStorage.getItem(SPLASH_KEY)) return;
 
     setVisible(true);
@@ -28,7 +31,7 @@ export function SplashScreen() {
       clearTimeout(hideTimer);
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [pathname]);
 
   if (!visible) return null;
 

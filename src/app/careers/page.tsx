@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
+import { SiteImage } from "@/components/ui/SiteImage";
 import { careers, company } from "@/lib/site-data";
+import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -17,8 +19,19 @@ export default function CareersPage() {
         eyebrow="Careers"
         title={careers.headline}
         description={careers.summary}
+        imageSrc={siteImages.pageHeroes.careers}
       />
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative mb-12 aspect-[21/7] overflow-hidden rounded-3xl border border-pelagic-sand shadow-sm">
+          <SiteImage
+            src={siteImages.team}
+            alt="Maritime professionals at work"
+            fill
+            brandOverlay
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
         <div className="grid gap-12 lg:grid-cols-2">
           <Reveal>
             <h2 className="font-display text-2xl font-semibold text-pelagic-ink">

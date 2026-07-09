@@ -1,12 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { OfficeMap } from "@/components/ui/OfficeMap";
 import { getGoogleMapsSearchUrl } from "@/lib/maps";
+import { getOfficeLocalTime } from "@/lib/office-time";
 import type { Office, OfficeRegion } from "@/lib/site-data";
 import { company } from "@/lib/site-data";
 
 type RegionFilter = "All" | OfficeRegion;
+type ViewMode = "split" | "map" | "list";
 
 type OfficeLocatorProps = {
   offices: Office[];
@@ -17,6 +19,8 @@ type OfficeLocatorProps = {
 export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: OfficeLocatorProps) {
   const [region, setRegion] = useState<RegionFilter>("All");
   const [query, setQuery] = useState("");
+  const [viewMode, setViewMode] = useState<ViewMode>("split");
+  const [localTime, setLocalTime] = useState("");
 
   const filtered = useMemo(() => {
     return offices
@@ -35,25 +39,65 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
 
   const activeOffice = offices[selectedIndex];
 
+  useEffect(() => {
+    function tick() {
+      setLocalTime(getOfficeLocalTime(activeOffice));
+    }
+    tick();
+    const id = window.setInterval(tick, 60_000);
+    return () => window.clearInterval(id);
+  }, [activeOffice]);
+
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter by region">
-        {(["All", "India", "UAE"] as const).map((tab) => (
-          <button
-            key={tab}
-            type="button"
-            role="tab"
-            aria-selected={region === tab}
-            onClick={() => setRegion(tab)}
-            className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
-              region === tab
-                ? "bg-pelagic-gold text-white shadow-[0_4px_14px_rgba(201,148,26,0.25)]"
-                : "border border-pelagic-mist bg-white/80 text-pelagic-steel hover:border-pelagic-gold/60 hover:bg-white"
-            }`}
-          >
-            {tab === "All" ? "Global" : tab}
-          </button>
-        ))}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter by region">
+          {(["All", "India", "UAE"] as const).map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              role="tab"
+              aria-selected={region === tab}
+              onClick={() => setRegion(tab)}
+              className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
+                region === tab
+                  ? "bg-pelagic-gold text-white shadow-[0_4px_14px_rgba(201,148,26,0.25)]"
+                  : "border border-pelagic-mist bg-white/80 text-pelagic-steel hover:border-pelagic-gold/60 hover:bg-white"
+              }`}
+            >
+              {tab === "All" ? "Global" : tab}
+            </button>
+          ))}
+        </div>
+
+        <div
+          className="inline-flex rounded-full border border-pelagic-mist bg-white/90 p-1 shadow-sm"
+          role="tablist"
+          aria-label="Map or list view"
+        >
+          {(
+            [
+              { id: "split" as const, label: "Split" },
+              { id: "map" as const, label: "Map" },
+              { id: "list" as const, label: "List" },
+            ] as const
+          ).map((mode) => (
+            <button
+              key={mode.id}
+              type="button"
+              role="tab"
+              aria-selected={viewMode === mode.id}
+              onClick={() => setViewMode(mode.id)}
+              className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
+                viewMode === mode.id
+                  ? "bg-pelagic-charcoal text-white"
+                  : "text-pelagic-steel hover:text-pelagic-charcoal"
+              }`}
+            >
+              {mode.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div>
@@ -70,73 +114,109 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
         />
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
-        <div className="space-y-4 lg:col-span-2">
-          {filtered.length === 0 ? (
-            <p className="text-sm text-pelagic-slate">No offices match. Try another region or search.</p>
-          ) : (
-            filtered.map(({ office, index }) => {
-              const isSelected = index === selectedIndex;
-              return (
-                <button
-                  key={office.label}
-                  type="button"
-                  onClick={() => onSelectOffice(index)}
-                  className={`w-full rounded-2xl border p-5 text-left transition ${
-                    isSelected
-                      ? "border-pelagic-gold/70 bg-white shadow-[0_8px_24px_rgba(201,148,26,0.12)] ring-2 ring-pelagic-gold/20"
-                      : "border-pelagic-mist/80 bg-white/70 hover:border-pelagic-gold/40 hover:bg-white hover:shadow-sm"
-                  }`}
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pelagic-gold/90 text-sm font-bold text-white shadow-sm">
-                      {index + 1}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h3 className="font-semibold text-pelagic-charcoal">{office.label}</h3>
-                        {office.hq && (
-                          <span className="rounded-full bg-pelagic-gold/15 px-2 py-0.5 text-xs font-bold uppercase text-pelagic-gold">
-                            HQ
-                          </span>
-                        )}
-                      </div>
-                      <p className="mt-2 text-sm leading-6 text-pelagic-slate">{office.address}</p>
-                      <p className="mt-2 text-sm text-pelagic-steel">
-                        <a
-                          href={`tel:${office.phone.replace(/\s/g, "")}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="hover:text-pelagic-gold hover:underline"
-                        >
-                          {office.phone}
-                        </a>
-                      </p>
-                      <span
-                        className="mt-2 inline-flex text-sm font-semibold text-pelagic-accent"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(getGoogleMapsSearchUrl(office), "_blank", "noopener,noreferrer");
-                        }}
-                        role="link"
-                      >
-                        Open in Google Maps →
+      <div
+        className={`grid gap-8 ${
+          viewMode === "split" ? "lg:grid-cols-5 lg:gap-10" : "grid-cols-1"
+        }`}
+      >
+        {(viewMode === "split" || viewMode === "list") && (
+          <div className={`space-y-4 ${viewMode === "split" ? "lg:col-span-2" : ""}`}>
+            {filtered.length === 0 ? (
+              <p className="text-sm text-pelagic-slate">
+                No offices match. Try another region or search.
+              </p>
+            ) : (
+              filtered.map(({ office, index }) => {
+                const isSelected = index === selectedIndex;
+                return (
+                  <button
+                    key={office.label}
+                    type="button"
+                    onClick={() => onSelectOffice(index)}
+                    className={`w-full rounded-2xl border p-5 text-left transition ${
+                      isSelected
+                        ? "border-pelagic-gold/70 bg-white shadow-[0_8px_24px_rgba(201,148,26,0.12)] ring-2 ring-pelagic-gold/20"
+                        : "border-pelagic-mist/80 bg-white/70 hover:border-pelagic-gold/40 hover:bg-white hover:shadow-sm"
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pelagic-gold/90 text-sm font-bold text-white shadow-sm">
+                        {index + 1}
                       </span>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h3 className="font-semibold text-pelagic-charcoal">{office.label}</h3>
+                          {office.hq && (
+                            <span className="rounded-full bg-pelagic-gold/15 px-2 py-0.5 text-xs font-bold uppercase text-pelagic-gold">
+                              HQ
+                            </span>
+                          )}
+                        </div>
+                        {office.tagline && (
+                          <p className="mt-1 text-xs font-medium text-pelagic-accent">
+                            {office.tagline}
+                          </p>
+                        )}
+                        <p className="mt-2 text-sm leading-6 text-pelagic-slate">{office.address}</p>
+                        {office.hours && (
+                          <p className="mt-1 text-xs text-pelagic-slate">{office.hours}</p>
+                        )}
+                        <p className="mt-2 text-sm text-pelagic-steel">
+                          <a
+                            href={`tel:${office.phone.replace(/\s/g, "")}`}
+                            onClick={(e) => e.stopPropagation()}
+                            className="hover:text-pelagic-gold hover:underline"
+                          >
+                            {office.phone}
+                          </a>
+                        </p>
+                        <span
+                          className="mt-2 inline-flex text-sm font-semibold text-pelagic-accent"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            window.open(
+                              getGoogleMapsSearchUrl(office),
+                              "_blank",
+                              "noopener,noreferrer"
+                            );
+                          }}
+                          role="link"
+                        >
+                          Open in Google Maps →
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </button>
-              );
-            })
-          )}
-        </div>
+                  </button>
+                );
+              })
+            )}
+          </div>
+        )}
 
-        <div className="lg:col-span-3">
-          <OfficeMap key={activeOffice.label} office={activeOffice} tall />
-        </div>
+        {(viewMode === "split" || viewMode === "map") && (
+          <div className={viewMode === "split" ? "lg:col-span-3" : ""}>
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-pelagic-sand bg-white/80 px-4 py-2.5 text-sm">
+              <p className="font-semibold text-pelagic-ink">{activeOffice.label}</p>
+              <p className="text-pelagic-steel">
+                Local time: <span className="font-semibold text-pelagic-gold">{localTime}</span>
+              </p>
+            </div>
+            <OfficeMap key={activeOffice.label} office={activeOffice} tall />
+            <a
+              href={getGoogleMapsSearchUrl(activeOffice)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex text-sm font-bold text-pelagic-accent hover:text-pelagic-gold hover:underline"
+            >
+              Open in Google Maps →
+            </a>
+          </div>
+        )}
       </div>
 
       <p className="text-center text-sm text-pelagic-slate">
-        {company.legalName} · {offices.length} offices across India and the UAE · Response typically
-        within one business day
+        {company.legalName} · Global Network Hub · {offices.length} offices across India
+        and the UAE
       </p>
     </div>
   );

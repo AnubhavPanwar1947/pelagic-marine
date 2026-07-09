@@ -8,6 +8,11 @@ export function getGoogleMapsEmbedUrl(office: OfficeMapTarget): string {
   return `https://maps.google.com/maps?q=${lat},${lng}&z=16&output=embed`;
 }
 
+/** Regional overview — India + UAE corridor (used on homepage / about) */
+export function getGoogleMapsRegionalEmbedUrl(): string {
+  return "https://maps.google.com/maps?q=22.0,72.5&z=5&output=embed";
+}
+
 /** Opens Google Maps app/site — uses building name for best search results */
 export function getGoogleMapsSearchUrl(office: OfficeMapTarget): string {
   const query = encodeURIComponent(office.mapQuery || office.address);

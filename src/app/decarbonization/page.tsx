@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
+import { SiteImage } from "@/components/ui/SiteImage";
 import { decarbonization } from "@/lib/site-data";
+import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Decarbonization",
@@ -17,10 +19,22 @@ export default function DecarbonizationPage() {
         eyebrow="Decarbonization"
         title={decarbonization.headline}
         description={decarbonization.summary}
+        imageSrc={siteImages.pageHeroes.decarbonization}
       />
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="rounded-3xl border border-pelagic-sand bg-gradient-to-br from-pelagic-sky/50 to-pelagic-sunset/30 p-10 lg:p-14">
+          <div className="overflow-hidden rounded-3xl border border-pelagic-sand bg-white shadow-sm">
+            <div className="relative aspect-[21/9] sm:aspect-[3/1]">
+              <SiteImage
+                src={siteImages.decarbonization}
+                alt="Offshore wind and clean energy"
+                fill
+                brandOverlay
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+            <div className="bg-gradient-to-br from-pelagic-sky/50 to-pelagic-sunset/30 p-10 lg:p-14">
             <h2 className="font-display text-2xl font-semibold text-pelagic-ink">
               How we support the energy transition
             </h2>
@@ -41,6 +55,7 @@ export default function DecarbonizationPage() {
             >
               Talk to our LNG & clean fuels team
             </Link>
+            </div>
           </div>
         </Reveal>
       </section>

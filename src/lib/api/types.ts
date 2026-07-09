@@ -2,8 +2,14 @@ export interface EnquiryInput {
   name: string;
   company: string;
   email: string;
+  phone?: string;
+  vessel?: string;
+  port?: string;
   surveyType: string;
+  urgency?: string;
   message: string;
+  /** Honeypot — must stay empty */
+  website?: string;
 }
 
 export interface EnquiryRecord extends EnquiryInput {

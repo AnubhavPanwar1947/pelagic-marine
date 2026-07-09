@@ -1,11 +1,11 @@
 import Link from "next/link";
+import { OfficeNetworkPanel } from "@/components/contact/OfficeNetworkPanel";
 import { Button } from "@/components/ui/Button";
 import { HeroMedia } from "@/components/ui/HeroMedia";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { SiteImage } from "@/components/ui/SiteImage";
-import { getGoogleMapsSearchUrl } from "@/lib/maps";
 import {
   caseStudies,
   company,
@@ -33,7 +33,8 @@ export default function HomePage() {
     <>
       {/* 1. Hero — video or image, sunset sky feel */}
       <section className="relative overflow-hidden bg-sky-gradient">
-        <div className="mx-auto grid max-w-7xl lg:grid-cols-2 lg:min-h-[85vh]">
+        <div className="hero-shimmer pointer-events-none absolute inset-0 opacity-50" aria-hidden />
+        <div className="relative mx-auto grid max-w-7xl lg:grid-cols-2 lg:min-h-[85vh]">
           <div className="relative z-10 flex flex-col justify-center px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <div className="animate-fade-up">
               <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-pelagic-gold shadow-sm">
@@ -131,11 +132,23 @@ export default function HomePage() {
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {sectorDetails.map((sector, i) => (
               <Reveal key={sector.slug} delay={i * 60}>
-                <article className="card-premium rounded-2xl border border-pelagic-sand bg-pelagic-sky/20 p-6">
+                <article className="card-premium overflow-hidden rounded-2xl border border-pelagic-sand bg-white shadow-sm">
+                  <div className="relative aspect-[16/10]">
+                    <SiteImage
+                      src={siteImages.sectors[sector.slug as keyof typeof siteImages.sectors]}
+                      alt={sector.title}
+                      fill
+                      brandOverlay
+                      className="object-cover"
+                      sizes="25vw"
+                    />
+                  </div>
+                  <div className="bg-pelagic-sky/20 p-6">
                   <h3 className="font-semibold text-pelagic-ink">{sector.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-pelagic-slate">
                     {sector.summary}
                   </p>
+                  </div>
                 </article>
               </Reveal>
             ))}
@@ -197,7 +210,18 @@ export default function HomePage() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="overflow-hidden rounded-3xl border border-pelagic-sand bg-gradient-to-br from-pelagic-sky/60 via-white to-pelagic-sunset/40 p-10 lg:p-14">
+            <div className="overflow-hidden rounded-3xl border border-pelagic-sand bg-white shadow-sm">
+              <div className="relative aspect-[21/8]">
+                <SiteImage
+                  src={siteImages.decarbonization}
+                  alt="Offshore wind and clean maritime energy"
+                  fill
+                  brandOverlay
+                  className="object-cover"
+                  sizes="100vw"
+                />
+              </div>
+              <div className="bg-gradient-to-br from-pelagic-sky/60 via-white to-pelagic-sunset/40 p-10 lg:p-14">
               <p className="text-base font-bold uppercase tracking-[0.22em] text-pelagic-accent sm:text-lg">
                 Decarbonization
               </p>
@@ -219,6 +243,7 @@ export default function HomePage() {
               >
                 Clean fuels & LNG advisory
               </Link>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -247,6 +272,16 @@ export default function HomePage() {
               </div>
             </Reveal>
             <Reveal delay={100}>
+              <div className="space-y-4">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-pelagic-sand shadow-sm">
+                  <SiteImage
+                    src={siteImages.expertise}
+                    alt="Maritime surveying and port operations"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
               <div className="grid grid-cols-2 gap-4">
                 {stats.map((stat) => (
                   <div
@@ -259,6 +294,7 @@ export default function HomePage() {
                     <p className="mt-1 text-xs leading-snug text-pelagic-slate">{stat.label}</p>
                   </div>
                 ))}
+              </div>
               </div>
             </Reveal>
           </div>
@@ -304,7 +340,18 @@ export default function HomePage() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {newsItems.map((item, i) => (
               <Reveal key={item.slug} delay={i * 60}>
-                <article className="card-premium h-full rounded-2xl border border-pelagic-sand bg-white p-6">
+                <article className="card-premium overflow-hidden rounded-2xl border border-pelagic-sand bg-white shadow-sm">
+                  <div className="relative aspect-[16/10]">
+                    <SiteImage
+                      src={siteImages.news[i] ?? siteImages.news[0]}
+                      alt={item.title}
+                      fill
+                      brandOverlay
+                      className="object-cover"
+                      sizes="33vw"
+                    />
+                  </div>
+                  <div className="p-6">
                   <p className="text-xs font-bold uppercase tracking-wider text-pelagic-gold">
                     {item.category} · {formatNewsDate(item.date)}
                   </p>
@@ -314,6 +361,7 @@ export default function HomePage() {
                   <p className="mt-2 text-sm leading-relaxed text-pelagic-slate">
                     {item.excerpt}
                   </p>
+                  </div>
                 </article>
               </Reveal>
             ))}
@@ -326,50 +374,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10. Global reach */}
-      <section className="py-20">
+      {/* 10. Global reach + live map */}
+      <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <SectionHeading
-              eyebrow="Global reach"
+            <OfficeNetworkPanel
+              offices={company.offices}
+              variant="full"
               title="Mumbai · Dehradun · Dubai"
-              align="center"
+              description="Live maps across our India and UAE network — click an office for directions or use the full locator on our contact page."
             />
           </Reveal>
-          <Reveal delay={80}>
-            <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-7 text-pelagic-slate">
-              Pelagic Marine operates across India and the UAE. View office addresses below or open
-              the interactive map on our contact page.
-            </p>
-            <div className="mt-6 flex justify-center">
-              <Link
-                href="/contact#locations-map"
-                className="inline-flex rounded-full bg-pelagic-charcoal px-6 py-3 text-sm font-semibold text-white transition hover:bg-pelagic-ink"
-              >
-                View interactive map
-              </Link>
-            </div>
-          </Reveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {company.offices.map((office, i) => (
-              <Reveal key={office.label} delay={i * 60}>
-                <div className="card-premium rounded-2xl border border-pelagic-sand bg-white p-6">
-                  <h3 className="font-semibold text-pelagic-gold">{office.label}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-pelagic-slate">
-                    {office.address}
-                  </p>
-                  <a
-                    href={getGoogleMapsSearchUrl(office)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-flex text-sm font-semibold text-pelagic-gold hover:underline"
-                  >
-                    View on map →
-                  </a>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 

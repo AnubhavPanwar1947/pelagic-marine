@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { SocialBrandIcon } from "@/components/ui/SocialBrandIcon";
 import { company, navLinks } from "@/lib/site-data";
+import { socialLinks } from "@/lib/social-links";
 
 export function Footer() {
   return (
-    <footer className="border-t border-pelagic-sand bg-pelagic-charcoal text-stone-300">
+    <footer className="relative z-30 isolate border-t border-pelagic-sand bg-pelagic-charcoal text-stone-300">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-5">
           <p className="font-display text-lg font-semibold text-white">
@@ -42,15 +44,23 @@ export function Footer() {
             </li>
             <li>{company.phones.india}</li>
             <li>{company.phones.uae}</li>
-            <li>
-              <a
-                href={company.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
-                LinkedIn
-              </a>
+            <li className="pt-2">
+              <div className="flex flex-wrap gap-3">
+                {socialLinks
+                  .filter((link) => link.brand !== "email")
+                  .map((link) => (
+                    <a
+                      key={link.brand}
+                      href={link.href}
+                      target={link.external ? "_blank" : undefined}
+                      rel={link.external ? "noopener noreferrer" : undefined}
+                      className="inline-flex items-center gap-1.5 hover:text-white"
+                    >
+                      <SocialBrandIcon brand={link.brand} size={16} />
+                      {link.label}
+                    </a>
+                  ))}
+              </div>
             </li>
           </ul>
         </div>

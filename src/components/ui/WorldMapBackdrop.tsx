@@ -1,64 +1,39 @@
 "use client";
 
-import Image from "next/image";
 import type { Office } from "@/lib/site-data";
-
-function latLngToPercent(lat: number, lng: number) {
-  return {
-    left: `${((lng + 180) / 360) * 100}%`,
-    top: `${((90 - lat) / 180) * 100}%`,
-  };
-};
 
 type WorldMapBackdropProps = {
   offices: Office[];
   onSelectOffice?: (index: number) => void;
 };
 
+/** Full-hero vibrant gradient — Pelagic sky, teal, water, gold. */
 export function WorldMapBackdrop({ offices, onSelectOffice }: WorldMapBackdropProps) {
-  return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 bg-contact-hero" />
+  void offices;
+  void onSelectOffice;
 
-      <Image
-        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=80"
-        alt=""
-        fill
-        priority
-        className="object-cover opacity-[0.09] saturate-[0.6] mix-blend-multiply"
-        sizes="100vw"
+  return (
+    <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden>
+      <div className="contact-hero-gradient absolute inset-0" />
+
+      {/* Soft light pools — depth across entire hero */}
+      <div className="absolute -left-20 top-0 h-[70%] w-[55%] rounded-full bg-sky-200/50 blur-3xl" />
+      <div className="absolute right-0 top-[10%] h-[60%] w-[50%] rounded-full bg-teal-300/35 blur-3xl" />
+      <div className="absolute bottom-0 left-[30%] h-[45%] w-[45%] rounded-full bg-amber-200/40 blur-3xl" />
+      <div className="absolute bottom-[10%] right-[20%] h-40 w-40 rounded-full bg-cyan-300/30 blur-2xl" />
+
+      {/* Subtle maritime grid */}
+      <div
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(15,118,110,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(15,118,110,0.4) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
       />
 
-      <div className="contact-hero-glow pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-pelagic-gold-light/35 blur-3xl" />
-      <div className="contact-hero-glow pointer-events-none absolute -bottom-20 right-0 h-80 w-80 rounded-full bg-pelagic-water/40 blur-3xl" />
-
-      <div className="absolute inset-0 bg-gradient-to-r from-pelagic-cream/70 via-transparent to-pelagic-sky/25 lg:from-pelagic-cream/50" />
-
-      {offices.map((office, index) => {
-        const pos = latLngToPercent(office.coordinates.lat, office.coordinates.lng);
-        const label = office.label.split("—").pop()?.trim() ?? office.label;
-
-        return (
-          <button
-            key={office.label}
-            type="button"
-            style={{ left: pos.left, top: pos.top }}
-            onClick={() => onSelectOffice?.(index)}
-            className="group absolute z-10 -translate-x-1/2 -translate-y-1/2"
-            title={office.label}
-          >
-            <span className="relative flex h-10 w-10 items-center justify-center">
-              <span className="absolute inset-0 rounded-full bg-pelagic-gold/25 opacity-70 group-hover:animate-ping" />
-              <span className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-pelagic-gold text-sm font-bold text-white shadow-[0_4px_16px_rgba(201,148,26,0.35)] transition group-hover:scale-110">
-                {index + 1}
-              </span>
-            </span>
-            <span className="pointer-events-none absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg border border-pelagic-mist bg-white/95 px-2.5 py-1 text-xs font-semibold text-pelagic-charcoal opacity-0 shadow-md transition group-hover:opacity-100">
-              {label}
-            </span>
-          </button>
-        );
-      })}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pelagic-gold/50 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-pelagic-accent/30 to-transparent" />
     </div>
   );
 }

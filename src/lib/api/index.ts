@@ -1,16 +1,21 @@
-import { BACKEND_PROVIDER } from "./config";
-import { mockProvider } from "./providers/mock";
-import { supabaseProvider } from "./providers/supabase";
 import type { ApiResult, EnquiryInput, EnquiryRecord } from "./types";
 
-function getProvider() {
-  return BACKEND_PROVIDER === "supabase" ? supabaseProvider : mockProvider;
-}
+export type EnquiryRecordWithReference = EnquiryRecord & { reference?: string };
 
 export async function submitEnquiry(
   input: EnquiryInput
-): Promise<ApiResult<EnquiryRecord>> {
-  return getProvider().submitEnquiry(input);
-}
+): Promise<ApiResult<EnquiryRecordWithReference>> {
+  const response = await fetch("/api/enquiry", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(input),
+  });
 
-export type { ApiResult, EnquiryInput, EnquiryRecord };
+  const result = (await response.json()) as ApiResult<EnquiryRecordWithReference>;
+
+  if (!response.ok && result.success === false) {
+    return result;
+  }
+
+  return result;
+}

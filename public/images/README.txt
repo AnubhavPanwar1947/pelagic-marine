@@ -6,8 +6,7 @@ Put your image files in THIS folder:
 
 Use these EXACT file names (JPG or PNG both work):
 
-  hero.jpg       — Main hero (right side of home page). Wide, bright, energetic.
-                   Suggested: ship at sea, sunrise, clear sky. Size: 1920×1080 or larger.
+  hero.jpg       — Mellow aerial ocean (teal sea + sand). Replace with boss photo when ready.
 
   expertise.jpg  — Services section (left side). Suggested: container port, cargo ship.
                    Size: 1200×1500 (portrait) or similar.
@@ -19,11 +18,18 @@ Use these EXACT file names (JPG or PNG both work):
                    Suggested: ocean sunset, port aerial, vessel at dock — slightly dramatic.
                    Size: 1920×1080.
 
-  case-1.jpg     — First project card
-  case-2.jpg     — Second project card
-  case-3.jpg     — Third project card
-                   Suggested: real project photos if you have them; otherwise ship/offshore shots.
-                   Size: 800×500 each.
+  case-1.jpg     — First project card (LNG / vessel)
+  case-2.jpg     — Second project card (shipping / fleet)
+  case-3.jpg     — Third project card (shipyard / engineering)
+                   Size: 1200×750 each. Until added, site uses optimized Unsplash URLs.
+
+  hero-about.jpg, hero-services.jpg, etc. — optional local page hero banners.
+  sector-*.jpg, news-*.jpg — optional; remote URLs used until you add local files.
+
+HOW IMAGES WORK NOW:
+  • src/lib/site-images.ts lists every image path or Unsplash URL.
+  • Next.js auto-optimizes images (WebP, correct size) — like Mango’s CDN.
+  • To use YOUR photo: save as the filename above and refresh — no code change.
 
 WHERE TO DOWNLOAD FREE PHOTOS (commercial use OK):
   • https://unsplash.com  — search: "cargo ship", "container port", "marine engineer"
