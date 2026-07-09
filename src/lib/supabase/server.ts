@@ -1,48 +1,8 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
-
-let serverClient: SupabaseClient | null = null;
-let serverClientKey: string | null = null;
-
-function isLegacyJwtKey(key: string) {
-  return key.startsWith("eyJ");
-}
-
 /**
- * Server-only Supabase client.
- * Prefers the service/secret key so contact inserts persist reliably.
- * Falls back to the anon/publishable key when the secret is not configured.
+ * Server-side Supabase diagnostics helpers.
+ * Enquiry inserts use PostgREST directly (see providers/supabase.ts)
+ * so new sb_secret_ keys work without JWT Authorization headers.
  */
-export function getSupabaseServerClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const serviceRole = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
-  const key = serviceRole || anonKey;
-
-  if (!url || !key) {
-    return null;
-  }
-
-  if (!serverClient || serverClientKey !== key) {
-    // New sb_secret_ / sb_publishable_ keys are not JWTs. Do not put them in
-    // Authorization: Bearer — only apikey. Legacy eyJ... keys keep Bearer.
-    const globalHeaders = isLegacyJwtKey(key)
-      ? { Authorization: `Bearer ${key}` }
-      : {};
-
-    serverClient = createClient(url, key, {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false,
-      },
-      global: {
-        headers: globalHeaders,
-      },
-    });
-    serverClientKey = key;
-  }
-
-  return serverClient;
-}
 
 export function getSupabaseProjectHost() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
