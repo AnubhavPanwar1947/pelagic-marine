@@ -6,6 +6,19 @@ import type {
   EnquiryRecord,
 } from "../types";
 
+function friendlyError(message: string) {
+  const lower = message.toLowerCase();
+  if (
+    lower.includes("permission") ||
+    lower.includes("row-level security") ||
+    lower.includes("jwt") ||
+    lower.includes("invalid api key")
+  ) {
+    return "We could not save your enquiry right now. Please email info@pelagic-marine.com and we will respond shortly.";
+  }
+  return message || "Something went wrong. Please try again.";
+}
+
 export const supabaseProvider: BackendProviderInterface = {
   async submitEnquiry(input: EnquiryInput): Promise<ApiResult<EnquiryRecord>> {
     const supabase = getSupabaseServerClient();
@@ -35,8 +48,11 @@ export const supabaseProvider: BackendProviderInterface = {
       status: "pending",
     };
 
-    // Service role can SELECT after INSERT (confirms the row). Anon is insert-only.
-    if (diagnostics.hasServiceRole) {
+    // New secret keys (sb_secret_...) are not JWTs — insert only, no SELECT.
+    // Legacy service_role JWTs can confirm with SELECT.
+    const canConfirmSelect = diagnostics.serviceKeyType === "legacy_service_role";
+
+    if (canConfirmSelect) {
       const { data, error } = await supabase
         .from("enquiries")
         .insert(row)
@@ -44,15 +60,8 @@ export const supabaseProvider: BackendProviderInterface = {
         .single();
 
       if (error) {
-        console.error("[enquiry] supabase insert failed:", error.message, error.code);
-        return {
-          success: false,
-          error:
-            error.message.toLowerCase().includes("permission") ||
-            error.message.toLowerCase().includes("row-level security")
-              ? "We could not save your enquiry right now. Please email info@pelagic-marine.com and we will respond shortly."
-              : error.message || "Something went wrong. Please try again.",
-        };
+        console.error("[enquiry] supabase insert+select failed:", error.message, error.code);
+        return { success: false, error: friendlyError(error.message) };
       }
 
       if (!data?.id) {
@@ -81,15 +90,11 @@ export const supabaseProvider: BackendProviderInterface = {
     const { error } = await supabase.from("enquiries").insert(row);
 
     if (error) {
-      console.error("[enquiry] supabase insert failed:", error.message, error.code);
-      return {
-        success: false,
-        error:
-          error.message.toLowerCase().includes("permission") ||
-          error.message.toLowerCase().includes("row-level security")
-            ? "We could not save your enquiry right now. Please email info@pelagic-marine.com and we will respond shortly."
-            : error.message || "Something went wrong. Please try again.",
-      };
+      console.error("[enquiry] supabase insert failed:", error.message, error.code, {
+        serviceKeyType: diagnostics.serviceKeyType,
+        projectHost: diagnostics.projectHost,
+      });
+      return { success: false, error: friendlyError(error.message) };
     }
 
     return {

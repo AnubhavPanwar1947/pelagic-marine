@@ -9,6 +9,10 @@ export async function GET() {
   return NextResponse.json({
     ok: diagnostics.hasUrl && (diagnostics.hasServiceRole || diagnostics.hasAnonKey),
     provider: BACKEND_PROVIDER,
-    ...diagnostics,
+    hasUrl: diagnostics.hasUrl,
+    hasAnonKey: diagnostics.hasAnonKey,
+    hasServiceRole: diagnostics.hasServiceRole,
+    serviceKeyType: diagnostics.serviceKeyType,
+    projectHost: diagnostics.projectHost,
   });
 }
