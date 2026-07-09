@@ -31,7 +31,7 @@ function isActive(pathname: string, href: string) {
 }
 
 function navLinkClass(active: boolean) {
-  return `relative px-2.5 py-2 text-sm font-medium transition-colors after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:rounded-full after:bg-pelagic-gold after:transition-transform after:duration-200 lg:px-3 ${
+  return `relative px-2 py-2 text-xs font-medium transition-colors after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:rounded-full after:bg-pelagic-gold after:transition-transform after:duration-200 xl:px-2.5 xl:text-sm ${
     active
       ? "text-pelagic-ink after:scale-x-100"
       : "text-pelagic-steel after:scale-x-0 hover:text-pelagic-ink hover:after:scale-x-100"
@@ -214,9 +214,9 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 32);
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -226,20 +226,26 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-all duration-300 ease-out ${
         scrolled
-          ? "border-b border-pelagic-gold/30 bg-white/98 shadow-md shadow-teal-900/5 backdrop-blur-lg"
-          : "border-b border-teal-200/50 bg-gradient-to-r from-teal-50/90 via-white to-amber-50/70 backdrop-blur-md"
+          ? "border-b border-pelagic-mist bg-white shadow-[0_8px_30px_rgba(26,22,20,0.08)]"
+          : "border-b border-transparent bg-white/75 backdrop-blur-md"
       }`}
     >
       <div
-        className="h-1 bg-gradient-to-r from-pelagic-accent via-pelagic-gold to-teal-600"
+        className={`h-1 bg-gradient-to-r from-pelagic-accent via-pelagic-gold to-pelagic-gold-light transition-opacity duration-300 ${
+          scrolled ? "opacity-100" : "opacity-70"
+        }`}
         aria-hidden
       />
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 sm:px-6 lg:gap-3 lg:px-8">
-        <BrandLogo variant="header" />
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:gap-2 lg:px-8 transition-all duration-300 ${
+          scrolled ? "py-2" : "py-3.5"
+        }`}
+      >
+        <BrandLogo variant="header" compact={scrolled} />
 
-        <nav className="hidden items-center 2xl:flex">
+        <nav className="hidden items-center lg:flex lg:gap-0.5 xl:gap-1">
           {navMenu.map((item) => (
             <DesktopNavItem key={item.label} item={item} pathname={pathname} />
           ))}
@@ -263,21 +269,21 @@ export function Header() {
 
           <Link
             href="/contact"
-            className={`hidden md:inline-flex ${navLinkClass(isActive(pathname, "/contact"))}`}
+            className={`hidden lg:inline-flex ${navLinkClass(isActive(pathname, "/contact"))}`}
           >
             Contact
           </Link>
 
           <Link
             href="/login"
-            className="hidden rounded-full bg-pelagic-gold px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-pelagic-gold/25 transition hover:bg-pelagic-gold-light sm:inline-flex"
+            className="hidden rounded-full bg-pelagic-gold px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-pelagic-gold/25 transition hover:bg-pelagic-gold-light sm:inline-flex lg:px-3 lg:py-2 lg:text-xs xl:px-4 xl:py-2.5 xl:text-sm"
           >
             Client Login
           </Link>
 
           <button
             type="button"
-            className="rounded-lg border border-pelagic-warm bg-pelagic-cream px-3 py-2 text-sm font-medium text-pelagic-charcoal 2xl:hidden"
+            className="rounded-lg border border-pelagic-warm bg-pelagic-cream px-3 py-2 text-sm font-medium text-pelagic-charcoal lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label="Toggle menu"
@@ -288,7 +294,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-pelagic-sand bg-white px-4 py-4 2xl:hidden">
+        <div className="border-t border-pelagic-sand bg-white px-4 py-4 lg:hidden">
           <div className="mb-4 sm:hidden">
             <NavSearch />
           </div>

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { getGoogleMapsSearchUrl } from "@/lib/maps";
 import { getOfficeLocalTime } from "@/lib/office-time";
-import { company } from "@/lib/site-data";
 import type { Office } from "@/lib/site-data";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { siteImages } from "@/lib/site-images";
@@ -24,6 +23,22 @@ const officeStats = [
   "Western India mobilisation",
   "Global HQ · Engineering hub",
   "Middle East operations",
+] as const;
+
+/** Distinct top accent per office — Mumbai · Dehradun · Dubai */
+const officeTopAccent = [
+  {
+    bar: "bg-gradient-to-r from-cyan-600 via-teal-500 to-emerald-500",
+    overlay: "from-cyan-950/85 via-teal-900/45 to-transparent",
+  },
+  {
+    bar: "bg-gradient-to-r from-amber-600 via-pelagic-gold to-yellow-500",
+    overlay: "from-amber-950/80 via-yellow-900/40 to-transparent",
+  },
+  {
+    bar: "bg-gradient-to-r from-orange-500 via-amber-500 to-amber-300",
+    overlay: "from-orange-950/85 via-amber-900/45 to-transparent",
+  },
 ] as const;
 
 export function ContactOfficeCards({
@@ -52,6 +67,8 @@ export function ContactOfficeCards({
         const region = regionTheme[office.region];
         const imageSrc = siteImages.offices[index] ?? siteImages.contactHero;
 
+        const accent = officeTopAccent[index];
+
         return (
           <article
             key={office.label}
@@ -61,6 +78,7 @@ export function ContactOfficeCards({
                 : "border-pelagic-sand hover:border-pelagic-accent/30"
             }`}
           >
+            <div className={`h-2.5 w-full ${accent.bar}`} aria-hidden />
             <div className="relative h-40 overflow-hidden">
               <SiteImage
                 src={imageSrc}
@@ -70,7 +88,7 @@ export function ContactOfficeCards({
                 className="object-cover transition duration-500 group-hover:scale-105"
                 sizes="33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-pelagic-charcoal/85 via-pelagic-charcoal/35 to-transparent" />
+              <div className={`absolute inset-0 bg-gradient-to-t ${accent.overlay}`} />
               <div className="absolute inset-x-0 bottom-0 px-6 pb-5 pt-10 text-white">
                 <div className="flex items-start justify-between gap-3">
                   <div>
@@ -142,47 +160,37 @@ export function ContactOfficeCards({
                 </p>
               )}
 
-              <div className="mt-5 space-y-3 rounded-2xl border border-pelagic-sand bg-gradient-to-br from-pelagic-cream to-white p-4">
+              <div className="mt-5 grid grid-cols-2 gap-2">
                 <a
                   href={`tel:${office.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-2.5 text-sm font-bold text-pelagic-ink transition hover:text-pelagic-gold"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-pelagic-charcoal px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-pelagic-ink"
                 >
                   <PhoneIcon />
-                  {office.phone}
+                  Call office
                 </a>
-                <a
-                  href={`mailto:${company.emails.info}`}
-                  className="flex items-center gap-2.5 text-sm font-medium text-pelagic-accent transition hover:text-pelagic-gold"
-                >
-                  <MailIcon />
-                  {company.emails.info}
-                </a>
-              </div>
-
-              <div className="mt-5 grid grid-cols-2 gap-2">
                 <button
                   type="button"
                   onClick={() => {
                     onSelectOffice(index);
                     onViewMap();
                   }}
-                  className={`rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition ${
+                  className={`rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider transition ${
                     isSelected
                       ? "bg-pelagic-gold text-pelagic-charcoal shadow-md hover:bg-pelagic-gold-light"
-                      : "bg-pelagic-charcoal hover:bg-pelagic-ink"
+                      : "border-2 border-pelagic-sand text-pelagic-charcoal hover:border-pelagic-gold hover:text-pelagic-gold"
                   }`}
                 >
                   {isSelected ? "Selected · Map" : "View on map"}
                 </button>
-                <a
-                  href={getGoogleMapsSearchUrl(office)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center rounded-xl border-2 border-pelagic-sand px-4 py-3 text-xs font-bold uppercase tracking-wider text-pelagic-charcoal transition hover:border-pelagic-gold hover:text-pelagic-gold"
-                >
-                  Directions
-                </a>
               </div>
+              <a
+                href={getGoogleMapsSearchUrl(office)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 block text-center text-xs font-semibold text-pelagic-accent underline-offset-4 hover:text-pelagic-gold hover:underline"
+              >
+                Open directions
+              </a>
             </div>
 
             <button type="button" onClick={() => onSelectOffice(index)} className="sr-only">
@@ -204,17 +212,8 @@ export function ContactOfficeCards({
 
 function PhoneIcon() {
   return (
-    <svg className="h-4 w-4 shrink-0 text-pelagic-gold" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+    <svg className="h-3.5 w-3.5 shrink-0 text-pelagic-gold" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-    </svg>
-  );
-}
-
-function MailIcon() {
-  return (
-    <svg className="h-4 w-4 shrink-0 text-pelagic-accent" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
-      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
     </svg>
   );
 }

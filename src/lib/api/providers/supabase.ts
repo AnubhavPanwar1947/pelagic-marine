@@ -18,26 +18,28 @@ export const supabaseProvider: BackendProviderInterface = {
       };
     }
 
-    const { data, error } = await supabase
-      .from("enquiries")
-      .insert({
-        name: input.name.trim(),
-        company: input.company?.trim() || null,
-        email: input.email.trim(),
-        phone: input.phone?.trim() || null,
-        vessel_name: input.vessel?.trim() || null,
-        port: input.port?.trim() || null,
-        survey_type: input.surveyType,
-        message: input.message.trim(),
-        status: "pending",
-      })
-      .select("id, created_at")
-      .single();
+    // Pre-generate id so we don't need SELECT after INSERT (anon RLS is insert-only).
+    const id = crypto.randomUUID();
+    const createdAt = new Date().toISOString();
+
+    const { error } = await supabase.from("enquiries").insert({
+      id,
+      name: input.name.trim(),
+      company: input.company?.trim() || null,
+      email: input.email.trim(),
+      phone: input.phone?.trim() || null,
+      vessel_name: input.vessel?.trim() || null,
+      port: input.port?.trim() || null,
+      survey_type: input.surveyType,
+      message: input.message.trim(),
+      status: "pending",
+    });
 
     if (error) {
       const message = error.message.toLowerCase();
+      console.error("[enquiry] supabase insert failed:", error.message);
 
-      if (message.includes("permission denied")) {
+      if (message.includes("permission denied") || message.includes("row-level security")) {
         return {
           success: false,
           error:
@@ -54,14 +56,14 @@ export const supabaseProvider: BackendProviderInterface = {
     return {
       success: true,
       data: {
-        id: data.id,
+        id,
         name: input.name,
         company: input.company,
         email: input.email,
         surveyType: input.surveyType,
         message: input.message,
         status: "pending",
-        createdAt: data.created_at ?? new Date().toISOString(),
+        createdAt,
       },
     };
   },

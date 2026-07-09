@@ -2,7 +2,7 @@
 
 import { FormEvent, useRef, useState } from "react";
 import { submitEnquiry } from "@/lib/api";
-import { contactPage, serviceCategories } from "@/lib/site-data";
+import { company, contactPage, serviceCategories } from "@/lib/site-data";
 
 const fieldClass =
   "mt-1.5 w-full rounded-lg border border-pelagic-warm bg-white px-4 py-3 text-sm text-pelagic-charcoal outline-none transition focus:border-pelagic-gold focus:ring-2 focus:ring-pelagic-gold/15";
@@ -44,6 +44,7 @@ export function ContactEnquiryForm() {
     const formData = new FormData(form);
 
     const vessel = String(formData.get("vessel") ?? "").trim();
+    const imo = String(formData.get("imo") ?? "").trim();
     const port = String(formData.get("port") ?? "").trim();
     const phone = String(formData.get("phone") ?? "").trim();
     const urgencyValue = String(formData.get("urgency") ?? "standard");
@@ -53,8 +54,10 @@ export function ContactEnquiryForm() {
     const urgencyLabel =
       urgencyOptions.find((o) => o.value === urgencyValue)?.label ?? urgencyValue;
 
+    const vesselLine = [vessel, imo ? `IMO ${imo}` : null].filter(Boolean).join(" · ");
+
     const composedMessage = [
-      vessel ? `Vessel / project: ${vessel}` : null,
+      vesselLine ? `Vessel / project: ${vesselLine}` : null,
       port ? `Port / location: ${port}` : null,
       phone ? `Phone: ${phone}` : null,
       `Urgency: ${urgencyLabel}`,
@@ -69,7 +72,7 @@ export function ContactEnquiryForm() {
       company: String(formData.get("company") ?? ""),
       email: String(formData.get("email") ?? ""),
       phone,
-      vessel,
+      vessel: vesselLine || vessel,
       port,
       surveyType: String(formData.get("service") ?? ""),
       urgency: urgencyValue,
@@ -112,9 +115,23 @@ export function ContactEnquiryForm() {
               </p>
             )}
             <p className="mt-3 text-sm leading-7 text-pelagic-steel">
-              A Pelagic Marine consultant will review your scope and contact you with clear next steps.
-              For urgent attendance, call our 24/7 line.
+              We typically reply within 1 business day. For casualty or vessel-alongside attendance,
+              call our 24/7 line now — a consultant will route you immediately.
             </p>
+            <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <a
+                href={`tel:${company.phones.india.replace(/\s/g, "")}`}
+                className="inline-flex items-center justify-center rounded-lg bg-pelagic-gold px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-pelagic-gold-light"
+              >
+                Call India {company.phones.india}
+              </a>
+              <a
+                href={`tel:${company.phones.uae.replace(/\s/g, "")}`}
+                className="inline-flex items-center justify-center rounded-lg border border-pelagic-sand bg-white px-4 py-2.5 text-sm font-semibold text-pelagic-charcoal transition hover:border-pelagic-gold"
+              >
+                Call UAE {company.phones.uae}
+              </a>
+            </div>
             <button
               type="button"
               onClick={() => {
@@ -141,7 +158,10 @@ export function ContactEnquiryForm() {
             Request expert attendance
           </h2>
           <p className="mt-2 text-sm leading-6 text-pelagic-steel">
-            Include vessel, port, and scope so we can assign the right surveyor or engineer.
+            Vessel, port, and urgency first — we assign the right surveyor or engineer from there.
+          </p>
+          <p className="mt-2 text-xs font-medium text-pelagic-charcoal">
+            {contactPage.sla.standard} · Urgent cases: call the 24/7 line above
           </p>
 
           <div className="mt-5">
@@ -174,6 +194,90 @@ export function ContactEnquiryForm() {
               aria-hidden
             />
 
+            <div className="rounded-xl border border-pelagic-gold/20 bg-pelagic-cream/40 p-4">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-pelagic-gold">
+                Operational details
+              </p>
+              <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                <div className="sm:col-span-2">
+                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="vessel">
+                    Vessel / project
+                  </label>
+                  <input
+                    id="vessel"
+                    name="vessel"
+                    required
+                    className={fieldClass}
+                    placeholder="Vessel name or project reference"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="imo">
+                    IMO number
+                  </label>
+                  <input
+                    id="imo"
+                    name="imo"
+                    className={fieldClass}
+                    placeholder="e.g. 9123456"
+                    inputMode="numeric"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="port">
+                    Port / location
+                  </label>
+                  <input
+                    id="port"
+                    name="port"
+                    required
+                    className={fieldClass}
+                    placeholder="Port, anchorage, or yard"
+                  />
+                </div>
+              </div>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="service">
+                    Service required
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    className={fieldClass}
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
+                  >
+                    {serviceCategories.map((cat) => (
+                      <option key={cat.slug} value={cat.title}>
+                        {cat.title}
+                      </option>
+                    ))}
+                    <option>Other / not sure</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="urgency">
+                    Urgency
+                  </label>
+                  <select
+                    id="urgency"
+                    name="urgency"
+                    required
+                    className={fieldClass}
+                    value={urgency}
+                    onChange={(e) => setUrgency(e.target.value)}
+                  >
+                    {urgencyOptions.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="name">
@@ -194,95 +298,31 @@ export function ContactEnquiryForm() {
               </div>
             </div>
 
-            <div>
-              <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="email">
-                Work email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                className={fieldClass}
-                placeholder="name@company.com"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="phone">
-                Phone (optional)
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                className={fieldClass}
-                placeholder="+91 or +971 number"
-              />
-            </div>
-
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="vessel">
-                  Vessel / project
+                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="email">
+                  Work email
                 </label>
                 <input
-                  id="vessel"
-                  name="vessel"
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
                   className={fieldClass}
-                  placeholder="Name, IMO, or project ref"
+                  placeholder="name@company.com"
                 />
               </div>
               <div>
-                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="port">
-                  Port / location
+                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="phone">
+                  Phone
                 </label>
                 <input
-                  id="port"
-                  name="port"
+                  id="phone"
+                  name="phone"
+                  type="tel"
                   className={fieldClass}
-                  placeholder="Port, anchorage, or yard"
+                  placeholder="+91 or +971 number"
                 />
-              </div>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="service">
-                  Service required
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  className={fieldClass}
-                  value={service}
-                  onChange={(e) => setService(e.target.value)}
-                >
-                  {serviceCategories.map((cat) => (
-                    <option key={cat.slug} value={cat.title}>
-                      {cat.title}
-                    </option>
-                  ))}
-                  <option>Other / not sure</option>
-                </select>
-              </div>
-              <div>
-                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="urgency">
-                  Urgency
-                </label>
-                <select
-                  id="urgency"
-                  name="urgency"
-                  className={fieldClass}
-                  value={urgency}
-                  onChange={(e) => setUrgency(e.target.value)}
-                >
-                  {urgencyOptions.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
               </div>
             </div>
 

@@ -2,19 +2,31 @@ import Image from "next/image";
 import Link from "next/link";
 
 type BrandLogoProps = {
-  variant?: "header" | "footer";
+  variant?: "header" | "footer" | "promo";
   linked?: boolean;
+  compact?: boolean;
 };
 
-export function BrandLogo({ variant = "header", linked = true }: BrandLogoProps) {
+export function BrandLogo({
+  variant = "header",
+  linked = true,
+  compact = false,
+}: BrandLogoProps) {
   const isHeader = variant === "header";
-  const logoSize = isHeader ? 54 : 44;
-  const nameSize = isHeader
-    ? "text-lg sm:text-xl md:text-2xl"
-    : "text-lg font-semibold";
+  const isPromo = variant === "promo";
+  const logoSize = isPromo ? 80 : compact ? 46 : isHeader ? 54 : 44;
+  const nameSize = isPromo
+    ? "text-3xl sm:text-4xl tracking-[0.08em]"
+    : compact
+      ? "text-base sm:text-lg"
+      : isHeader
+        ? "text-lg sm:text-xl md:text-2xl"
+        : "text-lg font-semibold";
 
   const content = (
-    <div className="group flex items-center gap-3 sm:gap-3.5">
+    <div
+      className={`group flex items-center ${isPromo ? "gap-5" : "gap-3 sm:gap-3.5"}`}
+    >
       <div className="relative shrink-0 transition-transform duration-300 group-hover:scale-[1.03]">
         <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-pelagic-gold/50 via-pelagic-gold-light/30 to-pelagic-gold/50 blur-md opacity-80" />
         <div className="logo-armor relative rounded-full p-[3px] shadow-lg shadow-pelagic-gold/25">
@@ -34,11 +46,17 @@ export function BrandLogo({ variant = "header", linked = true }: BrandLogoProps)
 
       <div className="min-w-0 leading-none">
         <p
-          className={`font-display font-bold tracking-[0.06em] text-pelagic-ink ${nameSize}`}
+          className={`font-display font-bold text-pelagic-ink ${nameSize} ${isPromo ? "" : "tracking-[0.06em]"}`}
         >
           PELAGIC
         </p>
-        <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.28em] text-pelagic-gold sm:text-[10px]">
+        <p
+          className={`font-bold uppercase text-pelagic-gold ${
+            isPromo
+              ? "mt-2 text-xs tracking-[0.24em] sm:text-sm"
+              : "mt-1.5 text-[9px] tracking-[0.28em] sm:text-[10px]"
+          }`}
+        >
           Marine Consultants
         </p>
       </div>

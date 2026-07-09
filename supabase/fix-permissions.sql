@@ -11,3 +11,5 @@ create policy "Anyone can submit enquiry"
   for insert
   to anon, authenticated
   with check (true);
+
+-- Do NOT grant SELECT to anon — the app inserts without reading rows back.

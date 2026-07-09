@@ -80,7 +80,7 @@ export const company = {
 export const contactPage = {
   hero: {
     eyebrow: "Contact",
-    headline: "Get in touch with our marine experts",
+    headline: "Tell us the vessel — we'll assign the expert",
     subline:
       "Surveying, engineering, LNG support, and maritime legal — one qualified team across India and the UAE. Tell us your vessel, port, or project scope and we will route you to the right consultant.",
     fitStatement:
@@ -524,10 +524,9 @@ export const processSteps = [
 ];
 
 export const trustBadges = [
-  "ISO 9001 Quality Management",
-  "Master Mariners & MICS leadership",
-  "India · UAE · Global operations",
-  "24/7 emergency response",
+  "Master mariners & surveyors",
+  "India · UAE mobilisation",
+  "24/7 casualty line",
 ];
 
 /** Client testimonials — replace with real quotes when approved by boss */

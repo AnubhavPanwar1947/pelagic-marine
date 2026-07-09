@@ -1379,19 +1379,37 @@ html {
 
 .contact-hero-gradient {
   background:
-    radial-gradient(ellipse 90% 70% at 15% 15%, rgba(186, 230, 253, 0.95), transparent 55%),
-    radial-gradient(ellipse 80% 60% at 85% 25%, rgba(94, 234, 212, 0.45), transparent 50%),
-    radial-gradient(ellipse 70% 55% at 70% 85%, rgba(251, 191, 36, 0.28), transparent 52%),
-    radial-gradient(ellipse 60% 50% at 5% 75%, rgba(15, 118, 110, 0.22), transparent 48%),
+    radial-gradient(ellipse 90% 70% at 12% 12%, rgba(254, 243, 199, 0.95), transparent 52%),
+    radial-gradient(ellipse 85% 65% at 88% 22%, rgba(252, 211, 77, 0.45), transparent 50%),
+    radial-gradient(ellipse 75% 55% at 72% 88%, rgba(224, 176, 74, 0.32), transparent 52%),
+    radial-gradient(ellipse 65% 50% at 8% 78%, rgba(186, 230, 253, 0.35), transparent 48%),
     linear-gradient(
-      128deg,
-      #dbeafe 0%,
-      #a7f3d0 22%,
-      #e0f2fe 42%,
-      #ccfbf1 58%,
-      #fde68a 78%,
-      #fdfbf7 100%
+      135deg,
+      #fffbeb 0%,
+      #fef3c7 18%,
+      #fdfbf7 38%,
+      #fde68a 58%,
+      #fef9c3 78%,
+      #fff7ed 100%
     );
+}
+
+.contact-brand-showcase {
+  background:
+    radial-gradient(ellipse 90% 70% at 12% 12%, rgba(254, 243, 199, 0.95), transparent 52%),
+    radial-gradient(ellipse 85% 65% at 88% 22%, rgba(252, 211, 77, 0.4), transparent 50%),
+    radial-gradient(ellipse 75% 55% at 72% 88%, rgba(224, 176, 74, 0.28), transparent 52%),
+    linear-gradient(
+      145deg,
+      #fffbeb 0%,
+      #fef3c7 22%,
+      #ffffff 48%,
+      #fde68a 72%,
+      #fff7ed 100%
+    );
+  box-shadow:
+    0 24px 60px -24px rgba(201, 148, 26, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .contact-hero-gradient-shift {

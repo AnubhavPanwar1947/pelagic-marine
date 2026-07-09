@@ -26,25 +26,20 @@ export function ContactSocialLinks({ variant = "hero" }: ContactSocialLinksProps
   }
 
   return (
-    <div>
-      <p className="text-[10px] font-bold uppercase tracking-wider text-pelagic-steel">
-        Connect
-      </p>
-      <div className="mt-2.5 flex flex-wrap gap-2">
-        {socialLinks.map((link) => (
-          <a
-            key={link.brand}
-            href={link.href}
-            target={link.external ? "_blank" : undefined}
-            rel={link.external ? "noopener noreferrer" : undefined}
-            title={link.label}
-            className="group inline-flex items-center gap-2 rounded-full border border-pelagic-mist bg-white px-3 py-1.5 text-xs font-semibold text-pelagic-charcoal shadow-sm transition hover:border-pelagic-accent/40 hover:shadow-md"
-          >
-            <SocialBrandIcon brand={link.brand} size={16} />
-            {link.label}
-          </a>
-        ))}
-      </div>
+    <div className="flex items-center gap-2.5" aria-label="Social links">
+      {socialLinks.map((link) => (
+        <a
+          key={link.brand}
+          href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noopener noreferrer" : undefined}
+          title={link.label}
+          aria-label={link.label}
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-pelagic-gold/30 bg-white/90 text-pelagic-charcoal shadow-sm transition hover:border-pelagic-gold/55 hover:bg-white hover:text-pelagic-ink"
+        >
+          <SocialBrandIcon brand={link.brand} size={18} />
+        </a>
+      ))}
     </div>
   );
 }
