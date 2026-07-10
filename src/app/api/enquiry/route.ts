@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { mockProvider } from "@/lib/api/providers/mock";
 import { supabaseProvider } from "@/lib/api/providers/supabase";
 import { BACKEND_PROVIDER } from "@/lib/api/config";
+import { sendEnquiryEmails } from "@/lib/email/enquiry-emails";
 import type { EnquiryInput } from "@/lib/api/types";
 
 function formatReference(id: string) {
@@ -33,6 +34,7 @@ export async function POST(request: Request) {
         message: body.message,
         status: "pending",
         createdAt: new Date().toISOString(),
+        confirmationEmailSent: false,
       },
     });
   }
@@ -53,11 +55,23 @@ export async function POST(request: Request) {
     return NextResponse.json(result, { status: 500 });
   }
 
+  const reference = formatReference(result.data.id);
+  const emailResult = await sendEnquiryEmails({
+    reference,
+    input: body,
+    createdAt: result.data.createdAt,
+  });
+
+  if (emailResult.errors.length > 0) {
+    console.error("[enquiry] email errors:", emailResult.errors);
+  }
+
   return NextResponse.json({
     success: true,
     data: {
       ...result.data,
-      reference: formatReference(result.data.id),
+      reference,
+      confirmationEmailSent: emailResult.confirmationSent,
     },
   });
 }

@@ -16,6 +16,7 @@ const urgencyOptions = [
 export function ContactEnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
   const [reference, setReference] = useState<string | null>(null);
+  const [confirmationEmailSent, setConfirmationEmailSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [service, setService] = useState(serviceCategories[0]?.title ?? "");
@@ -89,6 +90,7 @@ export function ContactEnquiryForm() {
       setMessage("");
       setActiveIntake(null);
       setReference(result.data?.reference ?? null);
+      setConfirmationEmailSent(Boolean(result.data?.confirmationEmailSent));
       setSubmitted(true);
     } else {
       setError(result.error ?? "Something went wrong. Please try again.");
@@ -115,6 +117,9 @@ export function ContactEnquiryForm() {
               </p>
             )}
             <p className="mt-3 text-sm leading-7 text-pelagic-steel">
+              {confirmationEmailSent
+                ? "A confirmation has been sent to your email. "
+                : null}
               We typically reply within 1 business day. For casualty or vessel-alongside attendance,
               call our 24/7 line now — a consultant will route you immediately.
             </p>
@@ -137,6 +142,7 @@ export function ContactEnquiryForm() {
               onClick={() => {
                 setSubmitted(false);
                 setReference(null);
+                setConfirmationEmailSent(false);
                 setError(null);
               }}
               className="mt-6 text-sm font-semibold text-pelagic-accent underline-offset-4 hover:underline"
