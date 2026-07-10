@@ -159,6 +159,28 @@ export const contactPage = {
     { label: "24/7 network", detail: "India · UAE · global" },
     { label: "6 disciplines", detail: "Survey to legal" },
   ],
+  form: {
+    privacyNotice:
+      "Your enquiry is stored securely and used only to respond to your request. We do not sell or share your contact details.",
+    privacyConsent:
+      "I agree that Pelagic Marine may contact me about this enquiry and related marine consultancy services.",
+    offices: [
+      { value: "auto", label: "Route to nearest qualified office (recommended)" },
+      { value: "mumbai", label: "Mumbai — Western India mobilisation" },
+      { value: "dehradun", label: "Dehradun (HQ) — Engineering, LNG & legal" },
+      { value: "dubai", label: "Dubai — Middle East shipping & offshore" },
+    ],
+    subjects: [
+      "Pre-purchase / condition survey",
+      "Marine warranty survey",
+      "Casualty or damage survey",
+      "LNG bunkering / alternative fuels",
+      "Engineering or naval architecture review",
+      "Maritime legal advisory",
+      "Fleet technical support",
+      "Other / general enquiry",
+    ],
+  },
   quickIntake: [
     {
       id: "lng",

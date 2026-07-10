@@ -1,10 +1,27 @@
 import type { EnquiryInput } from "@/lib/api/types";
-import { company } from "@/lib/site-data";
+import { company, contactPage } from "@/lib/site-data";
 import {
   getEnquiryNotifyEmail,
   isEmailConfigured,
   sendResendEmail,
 } from "@/lib/email/resend";
+
+const BRAND = {
+  gold: "#c9941a",
+  teal: "#0f766e",
+  ink: "#1a1614",
+  steel: "#5c534c",
+  sand: "#e8dfd2",
+  cream: "#fdfbf7",
+};
+
+function getSiteUrl() {
+  return (
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    process.env.VERCEL_URL?.trim()?.replace(/^/, "https://") ||
+    "https://pelagic-marine.vercel.app"
+  );
+}
 
 function escapeHtml(value: string) {
   return value
@@ -24,75 +41,168 @@ function isUrgent(urgency?: string) {
   return urgency === "urgent" || urgency === "priority";
 }
 
+function getOfficeLabel(value?: string) {
+  if (!value) return "—";
+  return contactPage.form.offices.find((office) => office.value === value)?.label ?? value;
+}
+
+function buildSummaryRows(input: EnquiryInput, reference: string): [string, string][] {
+  return [
+    ["Reference", reference],
+    ["Subject", input.subject || "—"],
+    ["Service", input.surveyType],
+    ["Preferred office", getOfficeLabel(input.preferredOffice)],
+    ["Urgency", formatUrgencyLabel(input.urgency)],
+    ["Name", input.name],
+    ["Company", input.company || "—"],
+    ["Email", input.email],
+    ["Phone", input.phone || "—"],
+    ["Vessel / project", input.vessel || "—"],
+    ["Port / location", input.port || "—"],
+  ];
+}
+
+function buildSummaryTableHtml(rows: [string, string][]) {
+  return rows
+    .map(
+      ([label, value]) =>
+        `<tr>
+          <td style="padding:10px 14px;border-bottom:1px solid ${BRAND.sand};color:${BRAND.steel};font-size:13px;width:148px;vertical-align:top;"><strong>${escapeHtml(label)}</strong></td>
+          <td style="padding:10px 14px;border-bottom:1px solid ${BRAND.sand};color:${BRAND.ink};font-size:14px;line-height:1.5;">${escapeHtml(value)}</td>
+        </tr>`
+    )
+    .join("");
+}
+
+function buildEmailShell(params: {
+  eyebrow: string;
+  title: string;
+  bodyHtml: string;
+  footerNote?: string;
+}) {
+  const siteUrl = getSiteUrl();
+  return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:${BRAND.cream};font-family:Georgia,'Times New Roman',serif;">
+  <div style="max-width:600px;margin:0 auto;padding:24px 16px 40px;">
+    <div style="height:4px;border-radius:4px;background:linear-gradient(90deg,${BRAND.teal},${BRAND.gold});margin-bottom:24px;"></div>
+    <p style="margin:0 0 6px;font-size:11px;font-weight:bold;letter-spacing:0.18em;text-transform:uppercase;color:${BRAND.gold};">${escapeHtml(params.eyebrow)}</p>
+    <h1 style="margin:0 0 20px;font-size:22px;line-height:1.3;color:${BRAND.ink};">${escapeHtml(params.title)}</h1>
+    ${params.bodyHtml}
+    <div style="margin-top:28px;padding-top:20px;border-top:1px solid ${BRAND.sand};">
+      <p style="margin:0 0 6px;font-size:13px;color:${BRAND.ink};font-weight:bold;">${escapeHtml(company.legalName)}</p>
+      <p style="margin:0;font-size:12px;line-height:1.7;color:${BRAND.steel};">
+        <a href="mailto:${escapeHtml(company.emails.info)}" style="color:${BRAND.teal};text-decoration:none;">${escapeHtml(company.emails.info)}</a>
+        &nbsp;·&nbsp;
+        <a href="${escapeHtml(siteUrl)}/contact" style="color:${BRAND.teal};text-decoration:none;">Contact page</a>
+      </p>
+      ${params.footerNote ? `<p style="margin:10px 0 0;font-size:11px;color:${BRAND.steel};">${escapeHtml(params.footerNote)}</p>` : ""}
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+function buildNextStepsHtml() {
+  const items = contactPage.expectations
+    .map(
+      (step, index) =>
+        `<li style="margin:0 0 10px;font-size:14px;line-height:1.55;color:#3d3835;">${index + 1}. ${escapeHtml(step)}</li>`
+    )
+    .join("");
+
+  return `<div style="margin:20px 0 0;padding:16px 18px;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;">
+    <p style="margin:0 0 10px;font-size:11px;font-weight:bold;letter-spacing:0.12em;text-transform:uppercase;color:${BRAND.gold};">What happens next</p>
+    <ol style="margin:0;padding-left:18px;">${items}</ol>
+  </div>`;
+}
+
+function buildUrgentBannerHtml() {
+  return `<div style="margin:16px 0;padding:14px 16px;background:#fff7ed;border:1px solid #fcd34d;border-radius:8px;">
+    <p style="margin:0 0 8px;font-size:12px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#b45309;">Time-critical matter</p>
+    <p style="margin:0;font-size:14px;line-height:1.55;color:#3d3835;">For casualty or vessel-alongside attendance, call our 24/7 line now — do not wait for email alone.</p>
+    <p style="margin:10px 0 0;font-size:14px;line-height:1.8;color:${BRAND.ink};">
+      India: <strong>${escapeHtml(company.phones.india)}</strong><br />
+      UAE: <strong>${escapeHtml(company.phones.uae)}</strong>
+    </p>
+  </div>`;
+}
+
 function buildTeamEmailHtml(params: {
   reference: string;
   input: EnquiryInput;
   createdAt: string;
 }) {
   const { reference, input, createdAt } = params;
-  const rows = [
-    ["Reference", reference],
+  const urgent = isUrgent(input.urgency);
+  const rows: [string, string][] = [
     ["Received", new Date(createdAt).toLocaleString("en-GB", { timeZone: "UTC" }) + " UTC"],
-    ["Name", input.name],
-    ["Company", input.company || "—"],
-    ["Email", input.email],
-    ["Phone", input.phone || "—"],
-    ["Service", input.surveyType],
-    ["Urgency", formatUrgencyLabel(input.urgency)],
-    ["Vessel / project", input.vessel || "—"],
-    ["Port / location", input.port || "—"],
+    ...buildSummaryRows(input, reference),
   ];
 
-  const tableRows = rows
-    .map(
-      ([label, value]) =>
-        `<tr><td style="padding:8px 12px;border-bottom:1px solid #e8dfd2;color:#6b6560;font-size:13px;width:140px;vertical-align:top;"><strong>${escapeHtml(label)}</strong></td><td style="padding:8px 12px;border-bottom:1px solid #e8dfd2;color:#1a1614;font-size:14px;">${escapeHtml(value)}</td></tr>`
-    )
-    .join("");
-
   const messageHtml = escapeHtml(input.message).replace(/\n/g, "<br />");
+  const replyHref = `mailto:${encodeURIComponent(input.email)}?subject=${encodeURIComponent(`Re: ${reference} — ${input.surveyType}`)}`;
 
-  return `<!DOCTYPE html>
-<html>
-<body style="margin:0;padding:0;background:#fdfbf7;font-family:Georgia,'Times New Roman',serif;">
-  <div style="max-width:600px;margin:0 auto;padding:32px 24px;">
-    <p style="margin:0 0 8px;font-size:12px;font-weight:bold;letter-spacing:0.15em;text-transform:uppercase;color:#c9941a;">New website enquiry</p>
-    <h1 style="margin:0 0 24px;font-size:24px;color:#1a1614;">${escapeHtml(reference)}</h1>
-    <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e8dfd2;border-radius:8px;overflow:hidden;">${tableRows}</table>
-    <div style="margin-top:20px;padding:16px;background:#fff;border:1px solid #e8dfd2;border-radius:8px;">
-      <p style="margin:0 0 8px;font-size:12px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#c9941a;">Scope &amp; details</p>
-      <p style="margin:0;font-size:14px;line-height:1.6;color:#1a1614;">${messageHtml}</p>
+  const bodyHtml = `
+    ${urgent ? `<div style="margin:0 0 16px;padding:12px 16px;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;">
+      <p style="margin:0;font-size:13px;font-weight:bold;color:#b91c1c;">⚠ Priority enquiry — respond immediately</p>
+    </div>` : ""}
+    <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#3d3835;">A new website enquiry has been submitted. Review scope below and reply to the client.</p>
+    <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;overflow:hidden;">${buildSummaryTableHtml(rows)}</table>
+    <div style="margin-top:16px;padding:16px;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;">
+      <p style="margin:0 0 8px;font-size:11px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:${BRAND.gold};">Scope &amp; details</p>
+      <p style="margin:0;font-size:14px;line-height:1.6;color:${BRAND.ink};">${messageHtml}</p>
     </div>
-    <p style="margin:24px 0 0;font-size:13px;color:#6b6560;">Reply directly to <a href="mailto:${escapeHtml(input.email)}" style="color:#0f766e;">${escapeHtml(input.email)}</a> to respond.</p>
-  </div>
-</body>
-</html>`;
+    <div style="margin-top:20px;text-align:center;">
+      <a href="${replyHref}" style="display:inline-block;padding:12px 22px;background:${BRAND.teal};color:#fff;font-size:14px;font-weight:bold;text-decoration:none;border-radius:6px;">Reply to ${escapeHtml(input.name)}</a>
+    </div>
+    <p style="margin:16px 0 0;font-size:13px;color:${BRAND.steel};text-align:center;">Client email: <a href="mailto:${escapeHtml(input.email)}" style="color:${BRAND.teal};">${escapeHtml(input.email)}</a></p>`;
+
+  return buildEmailShell({
+    eyebrow: urgent ? "Urgent website enquiry" : "New website enquiry",
+    title: reference,
+    bodyHtml,
+  });
 }
 
 function buildConfirmationEmailHtml(params: {
   reference: string;
-  name: string;
+  input: EnquiryInput;
 }) {
-  const firstName = params.name.trim().split(/\s+/)[0] || "there";
+  const { reference, input } = params;
+  const firstName = input.name.trim().split(/\s+/)[0] || "there";
+  const urgent = isUrgent(input.urgency);
+  const rows = buildSummaryRows(input, reference);
 
-  return `<!DOCTYPE html>
-<html>
-<body style="margin:0;padding:0;background:#fdfbf7;font-family:Georgia,'Times New Roman',serif;">
-  <div style="max-width:600px;margin:0 auto;padding:32px 24px;">
-    <p style="margin:0 0 8px;font-size:12px;font-weight:bold;letter-spacing:0.15em;text-transform:uppercase;color:#c9941a;">Pelagic Marine Consultants</p>
-    <h1 style="margin:0 0 16px;font-size:24px;color:#1a1614;">Enquiry received</h1>
-    <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#3d3835;">Dear ${escapeHtml(firstName)},</p>
-    <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#3d3835;">Thank you for contacting Pelagic Marine. Your enquiry has been logged and a consultant will review your scope shortly.</p>
-    <p style="margin:0 0 24px;padding:12px 16px;background:#fff;border:1px solid #e8dfd2;border-radius:8px;font-size:14px;color:#1a1614;"><strong>Reference:</strong> ${escapeHtml(params.reference)}</p>
-    <p style="margin:0 0 12px;font-size:14px;line-height:1.6;color:#3d3835;">We typically respond within one business day. For casualty or vessel-alongside attendance, please call our 24/7 line:</p>
-    <p style="margin:0;font-size:14px;line-height:1.8;color:#1a1614;">
-      India: <strong>${escapeHtml(company.phones.india)}</strong><br />
-      UAE: <strong>${escapeHtml(company.phones.uae)}</strong>
+  const bodyHtml = `
+    <p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#3d3835;">Dear ${escapeHtml(firstName)},</p>
+    <p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#3d3835;">Thank you for contacting Pelagic Marine. We have received your enquiry and logged it under the reference below.</p>
+    <p style="margin:0 0 16px;padding:12px 16px;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;font-size:14px;color:${BRAND.ink};">
+      <strong>${escapeHtml(contactPage.sla.standard)}.</strong> ${escapeHtml(contactPage.sla.avgLabel)}: ${escapeHtml(contactPage.sla.avgValue)}.
     </p>
-    <p style="margin:24px 0 0;font-size:13px;color:#6b6560;">${escapeHtml(company.legalName)}</p>
-  </div>
-</body>
-</html>`;
+    <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;overflow:hidden;">
+      <tr>
+        <td colspan="2" style="padding:10px 14px;background:#f8faf9;font-size:11px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:${BRAND.gold};">Your enquiry summary</td>
+      </tr>
+      ${buildSummaryTableHtml(rows)}
+    </table>
+    ${buildNextStepsHtml()}
+    ${urgent ? buildUrgentBannerHtml() : `<div style="margin:20px 0 0;padding:14px 16px;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;">
+      <p style="margin:0 0 8px;font-size:12px;font-weight:bold;color:${BRAND.ink};">Need faster routing?</p>
+      <p style="margin:0;font-size:14px;line-height:1.7;color:#3d3835;">
+        India: <strong>${escapeHtml(company.phones.india)}</strong><br />
+        UAE: <strong>${escapeHtml(company.phones.uae)}</strong>
+      </p>
+    </div>`}
+    <p style="margin:20px 0 0;font-size:13px;line-height:1.6;color:${BRAND.steel};">Keep this email for your records. If your scope changes, reply with your reference <strong>${escapeHtml(reference)}</strong>.</p>`;
+
+  return buildEmailShell({
+    eyebrow: company.legalName,
+    title: `Enquiry received — ${reference}`,
+    bodyHtml,
+    footerNote: "This is an automated confirmation. A consultant will follow up personally.",
+  });
 }
 
 export type EnquiryEmailResult = {
@@ -129,17 +239,14 @@ export async function sendEnquiryEmails(params: {
 
   const teamText = [
     `New enquiry: ${reference}`,
+    `Received: ${new Date(createdAt).toLocaleString("en-GB", { timeZone: "UTC" })} UTC`,
     "",
-    `Name: ${input.name}`,
-    `Company: ${input.company || "—"}`,
-    `Email: ${input.email}`,
-    `Phone: ${input.phone || "—"}`,
-    `Service: ${input.surveyType}`,
-    `Urgency: ${formatUrgencyLabel(input.urgency)}`,
-    `Vessel: ${input.vessel || "—"}`,
-    `Port: ${input.port || "—"}`,
+    ...buildSummaryRows(input, reference).map(([label, value]) => `${label}: ${value}`),
     "",
+    "Scope & details:",
     input.message,
+    "",
+    `Reply to: ${input.email}`,
   ].join("\n");
 
   const teamResult = await sendResendEmail({
@@ -157,23 +264,39 @@ export async function sendEnquiryEmails(params: {
     console.error("[enquiry-email] team notification failed:", teamResult.error);
   }
 
+  const firstName = input.name.trim().split(/\s+/)[0] || "there";
   const confirmationText = [
-    `Dear ${input.name.trim().split(/\s+/)[0] || "there"},`,
+    `Dear ${firstName},`,
     "",
     "Thank you for contacting Pelagic Marine. Your enquiry has been received.",
     "",
     `Reference: ${reference}`,
+    `Subject: ${input.subject || "—"}`,
+    `Service: ${input.surveyType}`,
+    `Preferred office: ${getOfficeLabel(input.preferredOffice)}`,
+    `Urgency: ${formatUrgencyLabel(input.urgency)}`,
+    input.vessel ? `Vessel / project: ${input.vessel}` : null,
+    input.port ? `Port / location: ${input.port}` : null,
     "",
-    "We typically respond within one business day.",
-    `For urgent attendance call India ${company.phones.india} or UAE ${company.phones.uae}.`,
+    contactPage.sla.standard,
+    "",
+    "What happens next:",
+    ...contactPage.expectations.map((step, i) => `${i + 1}. ${step}`),
+    "",
+    urgent
+      ? `URGENT: Call India ${company.phones.india} or UAE ${company.phones.uae} now.`
+      : `India: ${company.phones.india} · UAE: ${company.phones.uae}`,
     "",
     company.legalName,
-  ].join("\n");
+    company.emails.info,
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
 
   const confirmationResult = await sendResendEmail({
     to: input.email,
-    subject: `Pelagic Marine — enquiry received (${reference})`,
-    html: buildConfirmationEmailHtml({ reference, name: input.name }),
+    subject: `Pelagic Marine — enquiry confirmed (${reference})`,
+    html: buildConfirmationEmailHtml({ reference, input }),
     text: confirmationText,
     replyTo: company.emails.info,
   });

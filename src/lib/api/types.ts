@@ -7,6 +7,8 @@ export interface EnquiryInput {
   port?: string;
   surveyType: string;
   urgency?: string;
+  subject?: string;
+  preferredOffice?: string;
   message: string;
   /** Honeypot — must stay empty */
   website?: string;
