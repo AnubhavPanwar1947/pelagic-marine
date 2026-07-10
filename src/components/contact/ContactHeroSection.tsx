@@ -57,7 +57,7 @@ export function ContactHeroSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
         <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
           {/* Form first on mobile for conversion */}
-          <div id="enquiry-form" className="scroll-mt-28 order-1 md:order-2 md:sticky md:top-28">
+          <div id="enquiry-form" className="scroll-mt-28 order-1 md:order-2">
             <ContactEnquiryForm />
           </div>
 

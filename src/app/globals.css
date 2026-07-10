@@ -1010,15 +1010,13 @@ html {
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-/* Contact page — animated gradients on cards only (backgrounds match homepage) */
+/* Contact page — static gradients on cards (animation removed for scroll performance) */
 .contact-gradient-animated {
-  background-size: 320% 320%;
-  animation: contact-gradient-shift 20s ease-in-out infinite alternate;
+  background-size: 100% 100%;
 }
 
 .contact-card-gradient-shell {
-  background-size: 320% 320%;
-  animation: contact-gradient-shift 20s ease-in-out infinite alternate;
+  background-size: 100% 100%;
 }
 
 .contact-card-gradient-shell--soft {
@@ -1075,8 +1073,7 @@ html {
 }
 
 .contact-office-card-header {
-  background-size: 320% 320%;
-  animation: contact-gradient-shift 20s ease-in-out infinite alternate;
+  background-size: 100% 100%;
 }
 
 .contact-office-card-header--0 {
@@ -1421,8 +1418,7 @@ html {
     rgba(201, 148, 26, 0.08) 70%,
     transparent 100%
   );
-  background-size: 200% 200%;
-  animation: contact-gradient-shift 14s ease-in-out infinite alternate;
+  background-size: 100% 100%;
 }
 
 @keyframes contact-gradient-shift {

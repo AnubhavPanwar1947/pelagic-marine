@@ -100,7 +100,7 @@ export function ContactEnquiryForm() {
   if (submitted) {
     return (
       <div className="contact-card-gradient-shell contact-card-gradient-shell--medium rounded-2xl p-[2px] shadow-xl">
-        <div className="contact-page-form overflow-hidden rounded-[14px] border border-white/55 bg-white/90 shadow-xl backdrop-blur-md">
+        <div className="contact-page-form overflow-hidden rounded-[14px] border border-white/55 bg-white shadow-xl">
           <div className="p-8 text-center sm:text-left">
             <div
               className="contact-form-success-check mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 sm:mx-0"
@@ -157,7 +157,7 @@ export function ContactEnquiryForm() {
 
   return (
     <div className="contact-card-gradient-shell contact-card-gradient-shell--medium rounded-2xl p-[2px] shadow-xl">
-      <div className="contact-page-form overflow-hidden rounded-[14px] border border-white/55 bg-white/90 shadow-xl backdrop-blur-md">
+      <div className="contact-page-form overflow-hidden rounded-[14px] border border-white/55 bg-white shadow-xl">
         <div className="p-6 sm:p-8">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-pelagic-accent">Project enquiry</p>
           <h2 className="font-display mt-2 text-2xl font-semibold text-pelagic-ink">

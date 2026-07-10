@@ -4,7 +4,7 @@ import { company } from "@/lib/site-data";
 
 export function ContactMobileBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-pelagic-gold/30 bg-pelagic-charcoal/95 px-4 py-3 shadow-[0_-8px_30px_rgba(0,0,0,0.2)] backdrop-blur-md lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-pelagic-gold/30 bg-pelagic-charcoal px-4 py-3 shadow-[0_-8px_30px_rgba(0,0,0,0.2)] lg:hidden">
       <div className="mx-auto flex max-w-lg items-center justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-300">24/7 line</p>
