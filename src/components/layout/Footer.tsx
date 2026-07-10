@@ -12,8 +12,8 @@ export function Footer() {
             {company.name}
           </p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-stone-400">
-            Marine surveying, naval architecture, engineering, and maritime legal
-            consultancy — serving clients worldwide since {company.founded}.
+            Naval architecture and marine engineering consultancy — stability, structures,
+            hydrodynamics and clean-fuel advisory, from Dubai to fleets worldwide.
           </p>
         </div>
 

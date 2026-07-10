@@ -7,26 +7,15 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { SiteImage } from "@/components/ui/SiteImage";
 import {
-  caseStudies,
   company,
   decarbonization,
   highlights,
-  newsItems,
-  sectorDetails,
   serviceCategories,
   stats,
   testimonials,
   trustBadges,
 } from "@/lib/site-data";
 import { siteImages } from "@/lib/site-images";
-
-function formatNewsDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-}
 
 export default function HomePage() {
   return (
@@ -39,7 +28,7 @@ export default function HomePage() {
             <div className="animate-fade-up">
               <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-pelagic-gold shadow-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-pelagic-accent animate-pulse" />
-                24/7 · India & Dubai
+                India & Dubai
               </span>
               <h1 className="font-display mt-6 text-4xl font-bold leading-[1.12] tracking-tight text-pelagic-ink sm:text-5xl lg:text-[3.25rem]">
                 {company.heroHeadline}
@@ -85,12 +74,12 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Services"
-              title="Integrated marine consultancy"
-              description="Surveying, naval architecture, engineering, LNG, legal, and operations — one expert team."
+              title="Four practices, one engineering standard"
+              description="From concept design and structural analysis to surveys, audits and clean-fuel advisory — delivered by naval architects and Master Mariners."
               align="center"
             />
           </Reveal>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {serviceCategories.map((service, i) => (
               <Reveal key={service.slug} delay={i * 50}>
                 <Link
@@ -118,95 +107,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Sectors */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Sectors"
-              title="Where we deliver"
-              description="Maritime, offshore, renewables, and ports — practical support across the project lifecycle."
-              align="center"
-            />
-          </Reveal>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {sectorDetails.map((sector, i) => (
-              <Reveal key={sector.slug} delay={i * 60}>
-                <article className="card-premium overflow-hidden rounded-2xl border border-pelagic-sand bg-white shadow-sm">
-                  <div className="relative aspect-[16/10]">
-                    <SiteImage
-                      src={siteImages.sectors[sector.slug as keyof typeof siteImages.sectors]}
-                      alt={sector.title}
-                      fill
-                      brandOverlay
-                      className="object-cover"
-                      sizes="25vw"
-                    />
-                  </div>
-                  <div className="bg-pelagic-sky/20 p-6">
-                  <h3 className="font-semibold text-pelagic-ink">{sector.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-pelagic-slate">
-                    {sector.summary}
-                  </p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal className="mt-6 text-center">
-            <Link href="/sectors" className="text-sm font-bold text-pelagic-gold hover:underline">
-              All sectors →
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 5. Projects */}
+      {/* 4. Capabilities */}
       <section className="bg-pelagic-sand py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeading
-              eyebrow="Projects"
-              title="Work we're proud of"
+              eyebrow="Capabilities"
+              title="The tools and methods behind the work"
+              description="Licensed analysis suites and proprietary tools — applied by engineers and Master Mariners who understand both the physics and the operation."
               align="center"
             />
           </Reveal>
-          <div className="mt-12 grid gap-8 lg:grid-cols-3">
-            {caseStudies.map((project, i) => (
-              <Reveal key={project.title} delay={i * 80}>
-                <article className="card-premium overflow-hidden rounded-3xl border border-pelagic-warm bg-white shadow-sm">
-                  <div className="relative aspect-[16/10]">
-                    <SiteImage
-                      src={siteImages.cases[i] ?? siteImages.cases[0]}
-                      alt={project.title}
-                      fill
-                      brandOverlay
-                      className="object-cover"
-                      sizes="33vw"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <p className="text-xs font-bold uppercase tracking-wider text-pelagic-gold">
-                      {project.location}
-                    </p>
-                    <h3 className="font-display mt-2 text-lg font-semibold text-pelagic-ink">
-                      {project.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-pelagic-slate">{project.description}</p>
-                  </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                title: "Analysis & simulation suites",
+                text: "ANSYS, NAPA, AutoHydro, Optimoor and SACS — applied with engineering judgement.",
+              },
+              {
+                title: "Mooring & compatibility",
+                text: "Static and dynamic mooring analysis and LNG ship-shore compatibility in Optimoor.",
+              },
+              {
+                title: "UMISTAB-X",
+                text: "Our class-approved loading and stability tool, conceived for bulk carriers.",
+              },
+            ].map((item, i) => (
+              <Reveal key={item.title} delay={i * 80}>
+                <article className="card-premium h-full rounded-3xl border border-pelagic-warm bg-white p-6 shadow-sm">
+                  <h3 className="font-display text-lg font-semibold text-pelagic-ink">{item.title}</h3>
+                  <p className="mt-2 text-sm text-pelagic-slate">{item.text}</p>
                 </article>
               </Reveal>
             ))}
           </div>
           <Reveal className="mt-8 text-center">
-            <Link href="/projects" className="text-sm font-bold text-pelagic-gold hover:underline">
-              View all projects →
+            <Link href="/capabilities" className="text-sm font-bold text-pelagic-gold hover:underline">
+              See capabilities →
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* 6. Decarbonization */}
+      {/* 5. Clean fuels (capabilities) */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
@@ -238,10 +181,10 @@ export default function HomePage() {
                 ))}
               </ul>
               <Link
-                href="/decarbonization"
+                href="/capabilities#clean-fuel"
                 className="mt-8 inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-sm font-bold text-white shadow-md hover:opacity-90"
               >
-                Clean fuels & LNG advisory
+                LNG bunkering & compatibility
               </Link>
               </div>
             </div>
@@ -282,7 +225,7 @@ export default function HomePage() {
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
@@ -331,44 +274,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. News */}
+      {/* 9. Team */}
       <section className="bg-pelagic-cream py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <SectionHeading eyebrow="News" title="Latest insights" align="center" />
+            <SectionHeading
+              eyebrow="Team"
+              title="Naval architects and Master Mariners"
+              description="A team that has designed structure and stood on deck — so the advice you receive is grounded in both the analysis and the operation."
+              align="center"
+            />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {newsItems.map((item, i) => (
-              <Reveal key={item.slug} delay={i * 60}>
-                <article className="card-premium overflow-hidden rounded-2xl border border-pelagic-sand bg-white shadow-sm">
-                  <div className="relative aspect-[16/10]">
-                    <SiteImage
-                      src={siteImages.news[i] ?? siteImages.news[0]}
-                      alt={item.title}
-                      fill
-                      brandOverlay
-                      className="object-cover"
-                      sizes="33vw"
-                    />
-                  </div>
-                  <div className="p-6">
-                  <p className="text-xs font-bold uppercase tracking-wider text-pelagic-gold">
-                    {item.category} · {formatNewsDate(item.date)}
-                  </p>
-                  <h3 className="font-display mt-3 text-lg font-semibold text-pelagic-ink">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-pelagic-slate">
-                    {item.excerpt}
-                  </p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal className="mt-8 text-center">
-            <Link href="/news" className="text-sm font-bold text-pelagic-gold hover:underline">
-              All news →
+          <Reveal className="mt-10 text-center">
+            <Link
+              href="/team"
+              className="inline-flex rounded-full bg-pelagic-charcoal px-8 py-3 text-sm font-bold text-white hover:bg-pelagic-ink"
+            >
+              Meet the team →
             </Link>
           </Reveal>
         </div>
@@ -377,14 +299,12 @@ export default function HomePage() {
       {/* 10. Global reach + live map */}
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <OfficeNetworkPanel
+          <OfficeNetworkPanel
               offices={company.offices}
               variant="full"
-              title="Mumbai · Dehradun · Dubai"
-              description="Live maps across our India and UAE network — click an office for directions or use the full locator on our contact page."
+              title="India · Dubai"
+              description="Tap India to see Mumbai and Dehradun, or select Dubai for UAE directions."
             />
-          </Reveal>
         </div>
       </section>
 
@@ -405,7 +325,7 @@ export default function HomePage() {
             Let&apos;s move your project forward
           </h2>
           <p className="mt-4 text-lg text-pelagic-sand">
-            Surveying, engineering, LNG, legal — one call away, 24/7.
+            Naval architecture, surveys, engineering and clean-fuel advisory — from India and Dubai.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Button href="/contact" variant="primary">

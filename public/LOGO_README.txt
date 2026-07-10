@@ -1,29 +1,23 @@
-HOW TO ADD OR REPLACE YOUR LOGO
-================================
+Pelagic Marine — Logo (Option A: custom vector)
 
-Your logo file goes here:
-  C:\Users\Admin\Projects\pelagic-marine\public\
+SOURCE OF TRUTH
+  logo-emblem.svg   Custom redraw from boss PNG — anchor, ribbon, waves
+  logo-source.png   Original low-res PNG from boss (reference only)
 
-OPTION A — SVG (best quality, sharp at any size)
-  1. Export your refined logo as logo.svg
-  2. Replace the existing file: public/logo.svg
-  3. Refresh the browser (Ctrl+Shift+R)
+WEB OUTPUTS (run: npm run prepare-logo)
+  logo.png          1024px PNG for email / OG / print
+  logo-256.png      Favicon-sized
+  logo-512.png      Medium
+  logo-1024.png     High-res export
 
-OPTION B — PNG (easier from Canva / Photoshop)
-  1. Export as PNG, square, at least 512×512 pixels
-  2. Save as: public/logo.png
-  3. Tell your developer to switch BrandLogo.tsx from logo.svg to logo.png
-     OR rename your PNG to logo.svg is NOT recommended — use PNG path update
+SITE USAGE
+  BrandLogo.tsx uses logo-emblem.svg (infinite sharpness in navbar, splash, contact)
 
-TIPS FOR A SHARP "ARMOUR" LOOK
-  - Use a square canvas with transparent background
-  - Keep important detail in the centre (logo sits in a circle in the navbar)
-  - Gold / navy colours match the site theme
-  - Avoid tiny text inside the logo — "PELAGIC" is already shown beside it
+TO UPDATE THE DESIGN
+  1. Edit public/logo-emblem.svg
+  2. npm run prepare-logo
+  3. Refresh the site
 
-AFTER REPLACING
-  1. Run: npm run dev
-  2. Open http://localhost:3000
-  3. Check navbar + splash screen
-
-No code change needed if you keep the filename logo.svg
+COLORS (from company logo)
+  Navy   #1A3577  #143C7D  #125A9C
+  Blue   #266AAE  #2C71B2  #4BADF2

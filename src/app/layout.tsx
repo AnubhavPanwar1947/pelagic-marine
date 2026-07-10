@@ -35,6 +35,10 @@ export default function RootLayout({
       lang="en"
       className={`${dmSans.variable} ${playfair.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://maps.google.com" />
+        <link rel="dns-prefetch" href="https://maps.google.com" />
+      </head>
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <SplashScreen />
         <Header />

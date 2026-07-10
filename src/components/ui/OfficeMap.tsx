@@ -1,3 +1,4 @@
+import { GoogleMapEmbed } from "@/components/ui/GoogleMapEmbed";
 import { getGoogleMapsEmbedUrl, getGoogleMapsSearchUrl } from "@/lib/maps";
 import type { Office } from "@/lib/site-data";
 
@@ -18,16 +19,14 @@ export function OfficeMap({ office, className = "", tall = false, dark = false }
         className={`relative overflow-hidden rounded-2xl shadow-lg ${
           dark
             ? "border border-pelagic-gold/35 bg-pelagic-charcoal/40 ring-1 ring-white/10"
-            : "border border-pelagic-mist bg-pelagic-sand shadow-sm"
-        } ${tall ? "aspect-[21/9] min-h-[280px] sm:min-h-[360px]" : "aspect-[4/3]"}`}
+            : "border border-pelagic-gold/20 bg-pelagic-cream/30 ring-1 ring-pelagic-gold/10 shadow-pelagic-accent/5"
+        } ${tall ? "aspect-[21/9] min-h-[260px] sm:min-h-[320px]" : "aspect-[4/3]"}`}
       >
-        <iframe
-          title={`Map — ${office.label}`}
+        <GoogleMapEmbed
           src={embedUrl}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="office-map-frame absolute inset-0 h-full w-full border-0 grayscale-[0.15] contrast-[1.02]"
-          allowFullScreen
+          title={`Map — ${office.label}`}
+          className="absolute inset-0 h-full w-full"
+          frameClassName="grayscale-[0.15] contrast-[1.02]"
         />
       </div>
       <p className={`mt-3 text-sm leading-6 ${dark ? "text-slate-300" : "text-slate-600"}`}>

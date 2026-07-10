@@ -38,7 +38,7 @@ export function BrandLogo({
               width={logoSize}
               height={logoSize}
               className="relative z-10 rounded-full contrast-[1.08] saturate-[1.05]"
-              priority
+              priority={isHeader || isPromo}
             />
           </div>
         </div>
@@ -68,6 +68,7 @@ export function BrandLogo({
       <Link
         href="/"
         className="inline-flex rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-gold"
+        aria-label="Pelagic Marine Consultants — home"
       >
         {content}
       </Link>

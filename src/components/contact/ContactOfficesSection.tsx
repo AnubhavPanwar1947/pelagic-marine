@@ -29,7 +29,7 @@ export function ContactOfficesSection({
           <SectionHeading
             eyebrow="Global footprint"
             title="Our offices"
-            description="Mumbai · Dehradun (HQ) · Dubai — direct lines, regional surveyors, and yard attendance."
+            description="Mumbai · Dehradun · Dubai — direct lines, regional surveyors, and yard attendance."
           />
         </Reveal>
 

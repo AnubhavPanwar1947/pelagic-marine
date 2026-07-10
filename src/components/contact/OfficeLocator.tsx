@@ -4,7 +4,14 @@ import { useEffect, useMemo, useState } from "react";
 import { OfficeMap } from "@/components/ui/OfficeMap";
 import { getGoogleMapsSearchUrl } from "@/lib/maps";
 import { getOfficeLocalTime } from "@/lib/office-time";
-import type { Office, OfficeRegion } from "@/lib/site-data";
+import {
+  getHubOffices,
+  getOfficeIndex,
+  mapHubs,
+  type MapHubId,
+  type Office,
+  type OfficeRegion,
+} from "@/lib/offices";
 import { company } from "@/lib/site-data";
 
 type RegionFilter = "All" | OfficeRegion;
@@ -20,7 +27,10 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
   const [region, setRegion] = useState<RegionFilter>("All");
   const [query, setQuery] = useState("");
   const [viewMode, setViewMode] = useState<ViewMode>("split");
+  const [expandedHub, setExpandedHub] = useState<MapHubId | null>(null);
   const [localTime, setLocalTime] = useState("");
+
+  const activeOffice = offices[selectedIndex];
 
   const filtered = useMemo(() => {
     return offices
@@ -37,7 +47,8 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
       });
   }, [offices, region, query]);
 
-  const activeOffice = offices[selectedIndex];
+  const showHubList =
+    region === "All" && !query.trim() && filtered.length === offices.length;
 
   useEffect(() => {
     function tick() {
@@ -47,6 +58,17 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
     const id = window.setInterval(tick, 60_000);
     return () => window.clearInterval(id);
   }, [activeOffice]);
+
+  function selectHub(hubId: MapHubId) {
+    if (hubId === "india") {
+      setExpandedHub("india");
+      const firstIndia = getHubOffices("india")[0];
+      onSelectOffice(getOfficeIndex(firstIndia.id));
+      return;
+    }
+    setExpandedHub(null);
+    onSelectOffice(getOfficeIndex("dubai"));
+  }
 
   return (
     <div className="space-y-8">
@@ -58,7 +80,10 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
               type="button"
               role="tab"
               aria-selected={region === tab}
-              onClick={() => setRegion(tab)}
+              onClick={() => {
+                setRegion(tab);
+                setExpandedHub(null);
+              }}
               className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
                 region === tab
                   ? "bg-pelagic-gold text-white shadow-[0_4px_14px_rgba(201,148,26,0.25)]"
@@ -108,7 +133,10 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
           id="office-locator-search"
           type="search"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            if (e.target.value.trim()) setExpandedHub(null);
+          }}
           placeholder="Search city, country, or address…"
           className="w-full rounded-2xl border border-pelagic-mist bg-white/90 px-5 py-4 text-sm text-pelagic-charcoal placeholder:text-pelagic-slate outline-none shadow-sm backdrop-blur-sm transition focus:border-pelagic-gold/70 focus:ring-2 focus:ring-pelagic-gold/15"
         />
@@ -121,74 +149,115 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
       >
         {(viewMode === "split" || viewMode === "list") && (
           <div className={`space-y-4 ${viewMode === "split" ? "lg:col-span-2" : ""}`}>
-            {filtered.length === 0 ? (
+            {showHubList && expandedHub !== "india" ? (
+              mapHubs.map((hub) => (
+                <button
+                  key={hub.id}
+                  type="button"
+                  onClick={() => selectHub(hub.id)}
+                  className="w-full rounded-2xl border border-pelagic-mist/80 bg-white/70 p-5 text-left transition hover:border-pelagic-gold/40 hover:bg-white hover:shadow-sm"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pelagic-gold/90 text-sm font-bold text-white shadow-sm">
+                      {hub.id === "india" ? "IN" : "AE"}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-semibold text-pelagic-charcoal">{hub.label}</h3>
+                        {hub.id === "india" && (
+                          <span className="rounded-full bg-pelagic-cream px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-pelagic-steel">
+                            2 offices
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-2 text-sm leading-6 text-pelagic-slate">
+                        {hub.id === "india" ? "Mumbai · Dehradun" : hub.region}
+                      </p>
+                      <span className="mt-2 inline-flex text-sm font-semibold text-pelagic-accent">
+                        {hub.id === "india" ? "View offices →" : "View on map →"}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              ))
+            ) : filtered.length === 0 ? (
               <p className="text-sm text-pelagic-slate">
                 No offices match. Try another region or search.
               </p>
             ) : (
-              filtered.map(({ office, index }) => {
-                const isSelected = index === selectedIndex;
-                return (
+              <>
+                {showHubList && expandedHub === "india" && (
                   <button
-                    key={office.label}
                     type="button"
-                    onClick={() => onSelectOffice(index)}
-                    className={`w-full rounded-2xl border p-5 text-left transition ${
-                      isSelected
-                        ? "border-pelagic-gold/70 bg-white shadow-[0_8px_24px_rgba(201,148,26,0.12)] ring-2 ring-pelagic-gold/20"
-                        : "border-pelagic-mist/80 bg-white/70 hover:border-pelagic-gold/40 hover:bg-white hover:shadow-sm"
-                    }`}
+                    onClick={() => setExpandedHub(null)}
+                    className="text-xs font-semibold uppercase tracking-wider text-pelagic-accent hover:text-pelagic-gold"
                   >
-                    <div className="flex items-start gap-3">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pelagic-gold/90 text-sm font-bold text-white shadow-sm">
-                        {index + 1}
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h3 className="font-semibold text-pelagic-charcoal">{office.label}</h3>
-                          {office.hq && (
-                            <span className="rounded-full bg-pelagic-gold/15 px-2 py-0.5 text-xs font-bold uppercase text-pelagic-gold">
-                              HQ
-                            </span>
-                          )}
-                        </div>
-                        {office.tagline && (
-                          <p className="mt-1 text-xs font-medium text-pelagic-accent">
-                            {office.tagline}
-                          </p>
-                        )}
-                        <p className="mt-2 text-sm leading-6 text-pelagic-slate">{office.address}</p>
-                        {office.hours && (
-                          <p className="mt-1 text-xs text-pelagic-slate">{office.hours}</p>
-                        )}
-                        <p className="mt-2 text-sm text-pelagic-steel">
-                          <a
-                            href={`tel:${office.phone.replace(/\s/g, "")}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="hover:text-pelagic-gold hover:underline"
-                          >
-                            {office.phone}
-                          </a>
-                        </p>
-                        <span
-                          className="mt-2 inline-flex text-sm font-semibold text-pelagic-accent"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(
-                              getGoogleMapsSearchUrl(office),
-                              "_blank",
-                              "noopener,noreferrer"
-                            );
-                          }}
-                          role="link"
-                        >
-                          Open in Google Maps →
-                        </span>
-                      </div>
-                    </div>
+                    ← Back to regions
                   </button>
-                );
-              })
+                )}
+                {(showHubList && expandedHub === "india"
+                  ? filtered.filter(({ office }) => office.hubId === "india")
+                  : filtered
+                ).map(({ office, index }) => {
+                  const isSelected = index === selectedIndex;
+                  return (
+                    <button
+                      key={office.id}
+                      type="button"
+                      onClick={() => onSelectOffice(index)}
+                      className={`w-full rounded-2xl border p-5 text-left transition ${
+                        isSelected
+                          ? "border-pelagic-gold/70 bg-white shadow-[0_8px_24px_rgba(201,148,26,0.12)] ring-2 ring-pelagic-gold/20"
+                          : "border-pelagic-mist/80 bg-white/70 hover:border-pelagic-gold/40 hover:bg-white hover:shadow-sm"
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pelagic-gold/90 text-sm font-bold text-white shadow-sm">
+                          {office.label[0]}
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="font-semibold text-pelagic-charcoal">{office.label}</h3>
+                            <span className="text-xs text-pelagic-steel">{office.region}</span>
+                          </div>
+                          {office.tagline && (
+                            <p className="mt-1 text-xs font-medium text-pelagic-accent">
+                              {office.tagline}
+                            </p>
+                          )}
+                          <p className="mt-2 text-sm leading-6 text-pelagic-slate">{office.address}</p>
+                          {office.hours && (
+                            <p className="mt-1 text-xs text-pelagic-slate">{office.hours}</p>
+                          )}
+                          <p className="mt-2 text-sm text-pelagic-steel">
+                            <a
+                              href={`tel:${office.phone.replace(/\s/g, "")}`}
+                              onClick={(e) => e.stopPropagation()}
+                              className="hover:text-pelagic-gold hover:underline"
+                            >
+                              {office.phone}
+                            </a>
+                          </p>
+                          <span
+                            className="mt-2 inline-flex text-sm font-semibold text-pelagic-accent"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(
+                                getGoogleMapsSearchUrl(office),
+                                "_blank",
+                                "noopener,noreferrer"
+                              );
+                            }}
+                            role="link"
+                          >
+                            Open in Google Maps →
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </>
             )}
           </div>
         )}
@@ -196,12 +265,16 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
         {(viewMode === "split" || viewMode === "map") && (
           <div className={viewMode === "split" ? "lg:col-span-3" : ""}>
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-pelagic-sand bg-white/80 px-4 py-2.5 text-sm">
-              <p className="font-semibold text-pelagic-ink">{activeOffice.label}</p>
+              <p className="font-semibold text-pelagic-ink">
+                {activeOffice.region === "India"
+                  ? `India — ${activeOffice.label}`
+                  : activeOffice.label}
+              </p>
               <p className="text-pelagic-steel">
                 Local time: <span className="font-semibold text-pelagic-gold">{localTime}</span>
               </p>
             </div>
-            <OfficeMap key={activeOffice.label} office={activeOffice} tall />
+            <OfficeMap key={activeOffice.id} office={activeOffice} tall />
             <a
               href={getGoogleMapsSearchUrl(activeOffice)}
               target="_blank"
@@ -215,8 +288,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
       </div>
 
       <p className="text-center text-sm text-pelagic-slate">
-        {company.legalName} · Global Network Hub · {offices.length} offices across India
-        and the UAE
+        {company.legalName} · Global Network Hub · India (Mumbai & Dehradun) · Dubai
       </p>
     </div>
   );

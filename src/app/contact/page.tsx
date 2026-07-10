@@ -2,7 +2,6 @@
 
 import { ContactFaqSection } from "@/components/contact/ContactFaqSection";
 import { ContactHeroSection } from "@/components/contact/ContactHeroSection";
-import { ContactMobileBar } from "@/components/contact/ContactMobileBar";
 import { ContactOfficesSection } from "@/components/contact/ContactOfficesSection";
 import { ContactPageTheme } from "@/components/contact/ContactPageTheme";
 import { company, trustBadges } from "@/lib/site-data";
@@ -34,9 +33,7 @@ export default function ContactPage() {
 
       <ContactFaqSection />
 
-      <ContactMobileBar />
-
-      <div className="h-16 lg:hidden" aria-hidden />
+      <div className="h-24 md:hidden" aria-hidden />
     </ContactPageTheme>
   );
 }

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Pelagic Marine Consultants">
+  <defs>
+    <linearGradient id="gold-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0b04a"/>
+      <stop offset="45%" stop-color="#c9941a"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#134e4a"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a8d4e6"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="248" fill="#fdfbf7"/>
+  <circle cx="256" cy="256" r="248" fill="none" stroke="url(#gold-ring)" stroke-width="14"/>
+  <circle cx="256" cy="256" r="228" fill="none" stroke="#e8dfd2" stroke-width="2"/>
+  <circle cx="256" cy="256" r="188" fill="url(#sea)"/>
+  <path
+    fill="url(#wave)"
+    opacity="0.95"
+    d="M96 318c32-18 64-18 96 0s64 18 96 0 64-18 96 0 64 18 96 0v94H96V318z"
+  />
+  <path
+    fill="#fef3c7"
+    opacity="0.35"
+    d="M96 338c28-10 56-10 84 0s56 10 84 0 56-10 84 0 56 10 84 0v74H96V338z"
+  />
+  <g fill="#fef3c7" stroke="#e0b04a" stroke-width="6" stroke-linejoin="round">
+    <path d="M256 108 L276 196 L368 196 L296 248 L322 336 L256 284 L190 336 L216 248 L144 196 L236 196 Z"/>
+  </g>
+  <circle cx="256" cy="228" r="22" fill="#1a1614"/>
+  <circle cx="256" cy="228" r="10" fill="#c9941a"/>
+  <path
+    fill="none"
+    stroke="#fef3c7"
+    stroke-width="10"
+    stroke-linecap="round"
+    d="M256 148 L256 188 M256 268 L256 308 M176 228 L216 228 M296 228 L336 228"
+  />
+</svg>

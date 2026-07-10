@@ -41,9 +41,9 @@ export const siteImages = {
   ],
   /** Office card headers — replace with boss-approved photos when ready */
   offices: [
-    "/images/port-test.jpg",
-    u("photo-1529107386315-5eafae266a63", 900, 500),
+    u("photo-1494412578317-4c933aa5369f", 900, 500),
     u("photo-1512453979798-5ea266f8880c", 900, 500),
+    u("photo-1518684079-3c830dcef090", 900, 500),
   ],
 } as const;
 

@@ -1,74 +1,45 @@
-export type OfficeRegion = "India" | "UAE";
+import { offices } from "./offices";
+import { getServiceItemHref } from "./service-slugs";
 
-export type Office = {
+export type {
+  MapHub,
+  MapHubId,
+  Office,
+  OfficeId,
+  OfficeRegion,
+} from "./offices";
+export {
+  getHubForOffice,
+  getHubOffices,
+  getOfficeById,
+  getOfficeIndex,
+  mapHubs,
+  offices,
+} from "./offices";
+
+export type ServiceItem = {
   label: string;
-  address: string;
-  region: OfficeRegion;
-  phone: string;
-  /** Building-focused query for Google Maps search links */
-  mapQuery: string;
-  /** Verified pin coordinates for embedded maps */
-  coordinates: { lat: number; lng: number };
-  hq?: boolean;
-  /** Short line for contact office cards */
-  tagline?: string;
-  hours?: string;
-  /** Shown as chips on office cards */
-  services?: string[];
+  slug: string;
+  teaser?: string;
 };
 
 export const company = {
   name: "Pelagic Marine Solutions",
-  legalName: "Pelagic Marine Consultants and Surveyors",
-  tagline: "Delivering marine and engineering consultancy round the clock.",
-  heroHeadline: "Expert marine consultancy. Any hour. Any ocean.",
+  legalName: "Pelagic Marine Solutions LLC",
+  tagline: "Delivering marine and engineering consultancy worldwide.",
+  heroHeadline: "Serving the shipping industry, round the clock.",
   heroSubline:
-    "Surveying, engineering, LNG support & maritime legal — one team across India and Dubai.",
+    "Naval architecture, stability, structures and clean-fuel advisory for owners, operators and charterers worldwide.",
   sectors: ["Maritime", "Offshore", "Oil & Gas", "Renewables"],
   phones: {
     india: "+91 7895039068",
-    uae: "+971-503-941-049",
+    uae: "+971 50 394 1049",
   },
   emails: {
     info: "info@pelagic-marine.com",
     career: "career@pelagic-marine.com",
   },
-  offices: [
-    {
-      label: "India — Mumbai",
-      address: "18th Floor, Cyber One, Sector 30, Vashi, Navi Mumbai 400703",
-      region: "India",
-      phone: "+91 7895039068",
-      mapQuery: "Cyber One, Sector 30, Vashi, Navi Mumbai",
-      coordinates: { lat: 19.07598, lng: 72.99876 },
-      tagline: "Western India hub — surveys, warranty & fleet support",
-      hours: "Mon–Sat · 9:00–18:00 IST",
-      services: ["Surveys", "Warranty", "Fleet support"],
-    },
-    {
-      label: "India — Dehradun (HQ)",
-      address: "3/11 D, 2nd Floor Gyan Tower, Garhi Cantonment, Dehradun 248001",
-      region: "India",
-      phone: "+91 7895039068",
-      mapQuery: "Gyan Tower, Garhi Cantonment, Dehradun",
-      coordinates: { lat: 30.32528, lng: 78.04417 },
-      hq: true,
-      tagline: "Headquarters — engineering, LNG & legal consultancy",
-      hours: "Mon–Sat · 9:00–18:00 IST",
-      services: ["Engineering", "LNG", "Legal"],
-    },
-    {
-      label: "UAE — Dubai",
-      address: "Office No. 104, Almas Business Center, Aghaadir Building, Al Raffa, Dubai",
-      region: "UAE",
-      phone: "+971-503-941-049",
-      mapQuery: "Almas Business Center, Al Raffa, Dubai",
-      coordinates: { lat: 25.25443, lng: 55.28639 },
-      tagline: "Middle East operations — offshore & shipping advisory",
-      hours: "Sun–Thu · 9:00–18:00 GST",
-      services: ["Offshore", "Shipping", "Advisory"],
-    },
-  ] satisfies Office[],
+  offices,
   founded: 2021,
   linkedin: "https://www.linkedin.com/company/pelagic-marine-solutions/",
   /** Add URL when live — Instagram icon appears automatically in contact & footer */
@@ -89,10 +60,9 @@ export const contactPage = {
     imageAlt: "Cargo vessel underway at sea — marine surveying and consultancy",
     imageCredit: "Unsplash",
     stats: [
-      { value: "2021", label: "Established" },
-      { value: "3", label: "Global offices" },
-      { value: "24/7", label: "Casualty line" },
-      { value: "6+", label: "Expert disciplines" },
+      { value: "500+", label: "Projects delivered" },
+      { value: "4", label: "Practices" },
+      { value: "3", label: "Offices" },
     ],
     credentials: [
       "Master mariners & surveyors",
@@ -101,7 +71,7 @@ export const contactPage = {
     ],
   },
   emergency: {
-    label: "24/7 urgent line",
+    label: "Urgent line",
     detail: "Casualty, PSC detention, or time-critical survey mobilisation",
   },
   intentPaths: [
@@ -127,36 +97,27 @@ export const contactPage = {
       id: "urgent",
       title: "Urgent attendance",
       description:
-        "Vessel alongside, port state control, or emergency mobilisation. Call our 24/7 line — have IMO number, port, and nature of urgency ready.",
-      cta: "Call 24/7",
+        "Vessel alongside, port state control, or emergency mobilisation. Call India or UAE — have IMO number, port, and nature of urgency ready.",
+      cta: "Call now",
       href: `tel:${company.phones.india.replace(/\s/g, "")}`,
       icon: "urgent",
-    },
-    {
-      id: "careers",
-      title: "Careers & partnerships",
-      description:
-        "Join our surveyor and engineering network, or discuss agency and partnership opportunities.",
-      cta: "Email careers",
-      href: `mailto:${company.emails.career}`,
-      icon: "careers",
     },
   ],
   expectations: [
     "A consultant reviews your enquiry within one business day",
-    "Urgent cases are prioritised on our 24/7 line",
+    "Urgent cases are prioritised for immediate consultant contact",
     "You receive clear next steps — proposal, mobilisation, or site attendance",
   ],
   sla: {
     standard: "Standard enquiries: response within 1 business day",
-    urgent: "Casualty / vessel alongside: immediate routing to 24/7 line",
+    urgent: "Time-critical matters: call India or UAE directly",
     avgLabel: "Typical first response",
     avgValue: "Under 4 hours",
   },
   accreditations: [
     { label: "ISO 9001", detail: "Quality management" },
     { label: "Master Mariners", detail: "MICS leadership" },
-    { label: "24/7 network", detail: "India · UAE · global" },
+    { label: "India · UAE", detail: "Regional mobilisation" },
     { label: "6 disciplines", detail: "Survey to legal" },
   ],
   form: {
@@ -166,8 +127,8 @@ export const contactPage = {
       "I agree that Pelagic Marine may contact me about this enquiry and related marine consultancy services.",
     offices: [
       { value: "auto", label: "Route to nearest qualified office (recommended)" },
-      { value: "mumbai", label: "Mumbai — Western India mobilisation" },
-      { value: "dehradun", label: "Dehradun (HQ) — Engineering, LNG & legal" },
+      { value: "mumbai", label: "Mumbai — Surveys & fleet support" },
+      { value: "dehradun", label: "Dehradun — Design & engineering" },
       { value: "dubai", label: "Dubai — Middle East shipping & offshore" },
     ],
     subjects: [
@@ -213,14 +174,14 @@ export const contactPage = {
   ],
   faq: [
     {
-      question: "How fast can you mobilise to Mumbai or Dubai?",
+      question: "How fast can you mobilise to India or Dubai?",
       answer:
-        "Standard enquiries receive a consultant review within one business day. Priority and casualty cases are routed immediately on our 24/7 line — we regularly mobilise surveyors to Indian ports and UAE anchorages within hours when scope and access are confirmed.",
+        "Standard enquiries receive a consultant review within one business day. Priority and casualty cases are escalated immediately — we regularly mobilise surveyors to Indian ports and UAE anchorages within hours when scope and access are confirmed.",
     },
     {
       question: "Do you attend casualties outside office hours?",
       answer:
-        "Yes. Our 24/7 casualty and time-critical survey line is staffed around the clock. Call the India or UAE number with vessel name, IMO, port or anchorage, and nature of urgency.",
+        "Yes. Call the India or UAE number with vessel name, IMO, port or anchorage, and nature of urgency. For time-critical matters, phone is faster than email.",
     },
     {
       question: "What should I include in a survey request?",
@@ -235,12 +196,12 @@ export const contactPage = {
     {
       question: "Which office handles my enquiry?",
       answer:
-        "Mumbai covers western India mobilisation; Dehradun (HQ) leads engineering, LNG, and legal work; Dubai supports Middle East shipping and offshore advisory. We route every enquiry to the nearest qualified team automatically.",
+        "India covers surveys, engineering, LNG, and legal work; Dubai supports Middle East shipping and offshore advisory. We route every enquiry to the nearest qualified team automatically.",
     },
     {
       question: "How do I reach you for an urgent matter?",
       answer:
-        "Use the 24/7 phone line shown at the top of this page — do not rely on email alone for casualties or vessels alongside. For non-urgent projects, submit the enquiry form or email info@pelagic-marine.com.",
+        "Call the India or UAE phone numbers on this page — do not rely on email alone for casualties or vessels alongside. For non-urgent projects, submit the enquiry form or email info@pelagic-marine.com.",
     },
   ],
   networkHub: {
@@ -276,7 +237,7 @@ export const contactPage = {
       text: "Master mariners, naval architects, and engineers who understand operations, not just reports.",
     },
     {
-      title: "Around the clock",
+      title: "Responsive support",
       text: "Urgent casualty, warranty, or port attendance — our network is built for time-critical marine work.",
     },
   ],
@@ -285,11 +246,11 @@ export const contactPage = {
 export const navLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/sectors", label: "Sectors" },
   { href: "/projects", label: "Projects" },
+  { href: "/team", label: "Team" },
   { href: "/decarbonization", label: "Decarbonization" },
   { href: "/news", label: "News" },
-  { href: "/careers", label: "Careers" },
+  { href: "/capabilities", label: "Capabilities" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -297,6 +258,7 @@ export type NavDropdownChild = {
   href: string;
   label: string;
   description?: string;
+  children?: { href: string; label: string }[];
 };
 
 export type NavMenuItem =
@@ -349,12 +311,12 @@ export const decarbonization = {
 
 export const newsItems = [
   {
-    title: "Pelagic expands 24/7 marine advisory across India and UAE",
+    title: "Pelagic expands marine advisory across India and UAE",
     category: "Company",
     date: "2026-06-15",
     excerpt:
-      "Our Master Mariners and engineers now provide round-the-clock surveying and technical support from Mumbai, Dehradun, and Dubai.",
-    slug: "24-7-advisory-expansion",
+      "Our Master Mariners and engineers provide surveying and technical support from India and Dubai.",
+    slug: "advisory-expansion-india-uae",
   },
   {
     title: "Remote magnetic compass adjustment — 100+ vessels served",
@@ -387,98 +349,73 @@ export const careers = {
 };
 
 export const stats = [
-  { value: "100+", label: "Remote compass adjustments" },
-  { value: "24/7", label: "Global advisory support" },
-  { value: "3", label: "Office locations" },
-  { value: "2021", label: "Founded by mariners & engineers" },
+  { value: "500+", label: "Projects delivered" },
+  { value: "150+", label: "Mooring arrangement modifications" },
+  { value: "300+", label: "Plans & manuals" },
+  { value: "120+", label: "Cargo & stability solutions" },
+  { value: "40+", label: "Vessels & assets served" },
 ];
 
 export const serviceCategories = [
   {
-    title: "Inspection, Audits & Surveying",
-    slug: "inspection-audits-surveying",
-    summary:
-      "Marine surveys, warranty surveys, damage and loss prevention, risk assessment, and chemical cargo handling.",
-    items: [
-      "Marine & condition surveys",
-      "Marine warranty surveys",
-      "Loss prevention & damage surveys",
-      "Flag state & internal audits",
-      "Pre-purchase inspection & valuation",
-      "Remote magnetic compass deviation",
-    ],
-  },
-  {
     title: "Naval Architecture & Design",
     slug: "naval-architecture-design",
     summary:
-      "Design, analysis, and engineering studies for vessels, berths, and offshore assets.",
+      "Hull form, structure and the analysis behind every design decision.",
     items: [
-      "FEED & engineering analysis",
-      "Global & local strength analysis",
-      "Finite element analysis",
-      "Mooring compatibility assessment",
-      "Ship plans & drawings",
-      "Stability solutions",
+      { label: "Design & Analysis", slug: "service-design", teaser: "Concept to detailed design." },
+      { label: "Engineering Analysis", slug: "service-enganalysis", teaser: "Load cases, response, verification." },
+      { label: "FEED — Front-End Engineering Design", slug: "service-feed", teaser: "De-risk before commitment." },
+      { label: "Global & Local Strength", slug: "service-strength", teaser: "Where structure governs." },
+      { label: "Finite Element Analysis (FEA)", slug: "service-fea", teaser: "Stress, buckling, fatigue, ultimate strength." },
+      { label: "Ship Plans & Drawings", slug: "service-shipplans", teaser: "Class- and statutory-standard drawings." },
     ],
   },
   {
     title: "Engineering",
     slug: "engineering",
     summary:
-      "Technical engineering for conversions, cargo operations, hydrodynamics, and project delivery.",
+      "The applied engineering that keeps assets designed, converted and operating safely.",
     items: [
-      "Conversion & upgradation",
-      "Manuals & procedures",
-      "Hydrodynamic calculations & CFD",
-      "Loadout & sea fastening",
-      "Heat transfer analysis",
-      "Project cargo planning",
+      { label: "Conversion & Upgradation", slug: "service-conversion", teaser: "Scope, class and yard-ready engineering." },
+      { label: "Manuals & Procedures", slug: "service-manuals", teaser: "Operational and technical documentation." },
+      { label: "Hydrodynamic Calculations", slug: "service-hydro", teaser: "Resistance, powering and seakeeping." },
+      { label: "Loadout & Sea Fastening", slug: "service-loadout", teaser: "Heavy-lift and transport engineering." },
+      { label: "Computational Fluid Dynamics (CFD)", slug: "service-cfd", teaser: "Flow, loads and performance modelling." },
+      { label: "Heat Transfer Analysis", slug: "service-heat", teaser: "Thermal behaviour in marine systems." },
+      { label: "Stability Calculation", slug: "service-stability", teaser: "Intact and damage stability solutions." },
     ],
   },
   {
-    title: "LNG & Alternative Fuels",
-    slug: "lng-alternative-fuels",
+    title: "Inspection, Audits & Surveying",
+    slug: "inspection-audits-surveying",
     summary:
-      "Specialist support for LNG bunkering, compatibility reviews, and the transition to clean fuels.",
+      "Surveys, audits and risk work carried out by people who have sailed.",
     items: [
-      "LNG bunkering compatibility review",
-      "On-site bunkering supervision",
-      "Joint operations meeting support",
-      "FuelEU & clean fuels advisory",
-      "Operational safety & compliance",
-      "Decarbonisation pathway support",
+      { label: "Marine Surveys", slug: "service-survey", teaser: "Condition, pre-purchase and valuation." },
+      { label: "Audits & Inspections", slug: "service-audits", teaser: "ISM, ISPS, MLC and operational audits." },
+      { label: "Marine Warranty Surveys", slug: "service-mws", teaser: "Loadout, tow and offshore operations." },
+      { label: "Loss Prevention & Damage Surveys", slug: "service-loss", teaser: "Casualty, P&I and claims support." },
+      { label: "Risk Assessment & Management", slug: "service-risk", teaser: "Operational and project risk frameworks." },
+      { label: "Chemical Cargo Handling", slug: "service-chem", teaser: "Tank cleaning, carriage and compliance." },
+      { label: "Magnetic Compass Remote Adjustment", slug: "service-compass", teaser: "Fleet-wide deviation adjustment." },
     ],
   },
   {
     title: "Legal Consultancy",
     slug: "legal-consultancy",
     summary:
-      "Maritime legal experts for contracts, disputes, insurance, and ship arrests.",
+      "Pre-legal, technical decision-support that makes the engineering picture defensible.",
     items: [
-      "Vessel sale & carriage contracts",
-      "Insurance & trade contracts",
-      "Pre-litigation disputes",
-      "Ship arrests & court representation",
-      "Document validation & translation",
-      "Loss prevention claims",
+      { label: "Legal Consultancy", slug: "service-legal", teaser: "Contracts, disputes and maritime law." },
     ],
   },
-  {
-    title: "Vessel Operations",
-    slug: "vessel-operations",
-    summary:
-      "Operational support for dry and wet cargo, mooring, and offshore marine projects.",
-    items: [
-      "Dry & wet cargo handling",
-      "Mooring & berthing analysis",
-      "SBM / FPSO assessments",
-      "Offshore operations support",
-      "Incident & feasibility studies",
-      "HSEQ & compliance preparation",
-    ],
-  },
-];
+] satisfies {
+  title: string;
+  slug: string;
+  summary: string;
+  items: ServiceItem[];
+}[];
 
 export const caseStudies = [
   {
@@ -541,14 +478,14 @@ export const processSteps = [
   {
     step: "04",
     title: "Ongoing support",
-    text: "24/7 availability from India and Dubai for follow-up, disputes, and operational guidance.",
+    text: "Continued support from India and Dubai for follow-up, disputes, and operational guidance.",
   },
 ];
 
 export const trustBadges = [
   "Master mariners & surveyors",
   "India · UAE mobilisation",
-  "24/7 casualty line",
+  "Expert-led consultancy",
 ];
 
 /** Client testimonials — replace with real quotes when approved by boss */
@@ -573,7 +510,7 @@ export const testimonials = [
   },
 ];
 
-/** Main app bar — order aligned with Global Maritime & peer consultancies */
+/** Main app bar */
 export const navMenu: NavMenuItem[] = [
   { type: "link", href: "/about", label: "About" },
   {
@@ -583,20 +520,14 @@ export const navMenu: NavMenuItem[] = [
     children: serviceCategories.map((s) => ({
       href: `/services#${s.slug}`,
       label: s.title,
-      description: s.summary,
-    })),
-  },
-  {
-    type: "dropdown",
-    label: "Sectors",
-    href: "/sectors",
-    children: sectorDetails.map((s) => ({
-      href: `/sectors#${s.slug}`,
-      label: s.title,
-      description: s.summary,
+      children: s.items.map((item) => ({
+        href: getServiceItemHref(item),
+        label: item.label,
+      })),
     })),
   },
   { type: "link", href: "/projects", label: "Projects" },
+  { type: "link", href: "/team", label: "Team" },
   {
     type: "dropdown",
     label: "Decarbonization",
@@ -608,17 +539,71 @@ export const navMenu: NavMenuItem[] = [
         description: decarbonization.summary,
       },
       {
-        href: "/services#lng-alternative-fuels",
-        label: "LNG & alternative fuels",
-        description: "Bunkering compatibility, supervision, and clean fuels advisory.",
-      },
-      {
-        href: `/sectors#renewables`,
-        label: "Renewables & offshore wind",
-        description: "Marine support for renewable and offshore energy projects.",
+        href: "/capabilities#clean-fuel",
+        label: "LNG bunkering & compatibility",
+        description: "Mooring, transfer compatibility, procedures and attendance.",
       },
     ],
   },
   { type: "link", href: "/news", label: "News" },
-  { type: "link", href: "/careers", label: "Careers" },
+];
+
+export const teamMembers = [
+  {
+    name: "Nishchay Maken",
+    role: "Founder & Director",
+    bio: "Nishchay founded Pelagic Marine to solve, through engineering and design, the problems most firms only survey. Across more than two decades, including over a decade at sea on tankers, he has specialised in project cargo workscopes and stability — the work that inspired UMISTAB-X. His wider expertise spans regulatory compliance, audits and inspections, loss prevention and incident investigation for leading P&I clubs.",
+  },
+  {
+    name: "Bhanu Prabhakar",
+    role: "Co-Founder & Head of Engineering and Design",
+    bio: "A Naval Architect with fifteen years across offshore structures and seagoing vessels, Bhanu leads Pelagic Marine's design and engineering practice. A graduate of IIT Kharagpur in Ocean Engineering and Naval Architecture, his core strengths lie in structural and finite-element analysis, intact and damage stability, hydrodynamics, mooring analysis and CFD.",
+  },
+  {
+    name: "Capt. Vipul Negi",
+    role: "General Manager",
+    bio: "A Master Mariner and an expert in chemical cargo handling, Capt. Negi brings more than two decades across the marine and petrochemical industries. He leads the firm's inspection and survey work — including CDI inspections, condition and pre-purchase surveys, and damage and P&I claim surveys — together with ISM, ISPS and MLC audits.",
+  },
+  {
+    name: "Capt. Abhinav Upadhyay",
+    role: "Senior Marine Consultant | Clean Fuels",
+    bio: "A Master Mariner with over twenty years in gas-carrier operations, Capt. Upadhyay is Pelagic Marine's specialist in clean and future fuels. He brings hands-on cargo experience across LNG, LPG, ethane, ethylene and ammonia, and advises on emerging fuels including methanol.",
+  },
+  {
+    name: "Capt. Harjit Singh Sidhu",
+    role: "Operations Manager",
+    bio: "Capt. Sidhu brings a container-shipping background and sea time with Maersk to his role managing Pelagic Marine's operations and day-to-day delivery. He advises on container-ship stability, cargo planning and load optimisation, and is a certified practitioner of remote magnetic compass adjustment.",
+  },
+];
+
+export const capabilitiesSections = [
+  {
+    id: "software",
+    eyebrow: "Software we use",
+    title: "Analysis & simulation suites",
+    summary:
+      "Our work is built on a licensed toolchain spanning structures, stability, hydrodynamics and mooring. The software matters — but the judgement to set up a model correctly, and to read its output critically, matters more.",
+    tags: ["ANSYS", "NAPA", "AutoHydro", "Optimoor", "SACS", "DAMHULL"],
+  },
+  {
+    id: "mooring",
+    eyebrow: "Mooring & compatibility",
+    title: "Static and dynamic mooring analysis",
+    summary:
+      "We model both static and dynamic mooring response in Optimoor — line and fender loads, environmental cases and limiting conditions — and carry out LNG ship-shore compatibility studies for terminal and ship-to-ship operations.",
+  },
+  {
+    id: "clean-fuel",
+    eyebrow: "Clean fuel",
+    title: "LNG bunkering & compatibility",
+    summary:
+      "We support LNG ship-to-ship and terminal operations — mooring and transfer compatibility, procedures and attendance — bringing hands-on gas-carrier experience to the safe delivery of clean fuel.",
+  },
+  {
+    id: "umistab",
+    eyebrow: "Proprietary",
+    title: "UMISTAB-X",
+    summary:
+      "UMISTAB-X is our own loading and stability tool, conceived for bulk carriers and developed out of years of hands-on stability and project-cargo work. It is a class-approved loadicator — giving crews a fast, reliable way to plan and check loading conditions against the applicable criteria.",
+  },
 ];

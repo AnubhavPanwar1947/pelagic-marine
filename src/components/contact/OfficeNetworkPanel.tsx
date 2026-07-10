@@ -1,18 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { OfficeMap } from "@/components/ui/OfficeMap";
+import { GoogleMapEmbed } from "@/components/ui/GoogleMapEmbed";
 import {
+  getGoogleMapsEmbedUrl,
   getGoogleMapsRegionalEmbedUrl,
   getGoogleMapsSearchUrl,
 } from "@/lib/maps";
-import type { Office } from "@/lib/site-data";
+import {
+  getHubOffices,
+  getOfficeIndex,
+  mapHubs,
+  offices,
+  type MapHubId,
+  type Office,
+} from "@/lib/offices";
 
 type ViewMode = "network" | "office";
 
 type OfficeNetworkPanelProps = {
-  offices: Office[];
+  offices?: Office[];
   variant?: "compact" | "full";
   title?: string;
   description?: string;
@@ -20,16 +29,55 @@ type OfficeNetworkPanelProps = {
 };
 
 export function OfficeNetworkPanel({
-  offices,
+  offices: officeList = offices,
   variant = "full",
   title = "Our global footprint",
   description = "India and the UAE — strategically placed for port attendance, surveys, and fleet support across the region.",
   showContactLink = true,
 }: OfficeNetworkPanelProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedOfficeIndex, setSelectedOfficeIndex] = useState(0);
   const [viewMode, setViewMode] = useState<ViewMode>("network");
+  const [expandedHub, setExpandedHub] = useState<MapHubId | null>(null);
 
-  const activeOffice = offices[selectedIndex];
+  const activeOffice = officeList[selectedOfficeIndex];
+
+  useEffect(() => {
+    for (const office of officeList) {
+      const link = document.createElement("link");
+      link.rel = "prefetch";
+      link.href = getGoogleMapsEmbedUrl(office);
+      link.as = "document";
+      document.head.appendChild(link);
+    }
+  }, [officeList]);
+
+  function selectHub(hubId: MapHubId) {
+    if (hubId === "india") {
+      setExpandedHub("india");
+      setViewMode("office");
+      const indiaOffices = getHubOffices("india");
+      const firstIndex = getOfficeIndex(indiaOffices[0].id);
+      setSelectedOfficeIndex(firstIndex);
+      return;
+    }
+
+    const dubaiIndex = getOfficeIndex("dubai");
+    setExpandedHub(null);
+    setSelectedOfficeIndex(dubaiIndex);
+    setViewMode("office");
+  }
+
+  function selectOffice(office: Office) {
+    setSelectedOfficeIndex(getOfficeIndex(office.id));
+    setViewMode("office");
+  }
+
+  function backToHubs() {
+    setExpandedHub(null);
+    setViewMode("network");
+  }
+
+  const indiaOffices = getHubOffices("india");
 
   return (
     <div
@@ -49,7 +97,10 @@ export function OfficeNetworkPanel({
         <div className="mt-6 inline-flex rounded-full border border-pelagic-mist bg-pelagic-cream/50 p-1">
           <button
             type="button"
-            onClick={() => setViewMode("network")}
+            onClick={() => {
+              setViewMode("network");
+              setExpandedHub(null);
+            }}
             className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
               viewMode === "network"
                 ? "bg-pelagic-charcoal text-white"
@@ -81,29 +132,50 @@ export function OfficeNetworkPanel({
               strokeDasharray="4 4"
               opacity="0.35"
             />
-            <ellipse cx="110" cy="115" rx="55" ry="70" fill="currentColor" opacity="0.08" />
-            <ellipse cx="250" cy="85" rx="28" ry="22" fill="currentColor" opacity="0.12" />
-            {offices.map((office, index) => {
-              const positions = [
-                { cx: 95, cy: 95 },
-                { cx: 125, cy: 130 },
-                { cx: 250, cy: 85 },
-              ];
-              const pos = positions[index] ?? positions[0];
-              const isActive = viewMode === "office" && index === selectedIndex;
-
-              return (
-                <g key={office.label}>
-                  <circle
-                    cx={pos.cx}
-                    cy={pos.cy}
-                    r={isActive ? 10 : 7}
-                    className={isActive ? "fill-pelagic-gold" : "fill-pelagic-accent"}
-                  />
-                  <circle cx={pos.cx} cy={pos.cy} r="3" fill="white" />
-                </g>
-              );
-            })}
+            <ellipse
+              cx="110"
+              cy="115"
+              rx="55"
+              ry="70"
+              fill="currentColor"
+              opacity={expandedHub === "india" || activeOffice?.hubId === "india" ? 0.16 : 0.08}
+              className="cursor-pointer"
+              onClick={() => selectHub("india")}
+            />
+            <ellipse
+              cx="250"
+              cy="85"
+              rx="28"
+              ry="22"
+              fill="currentColor"
+              opacity={activeOffice?.hubId === "uae" ? 0.2 : 0.12}
+              className="cursor-pointer"
+              onClick={() => selectHub("uae")}
+            />
+            <circle
+              cx="110"
+              cy="110"
+              r={expandedHub === "india" || activeOffice?.hubId === "india" ? 10 : 7}
+              className={
+                expandedHub === "india" || activeOffice?.hubId === "india"
+                  ? "fill-pelagic-gold cursor-pointer"
+                  : "fill-pelagic-accent cursor-pointer"
+              }
+              onClick={() => selectHub("india")}
+            />
+            <circle cx="110" cy="110" r="3" fill="white" className="pointer-events-none" />
+            <circle
+              cx="250"
+              cy="85"
+              r={activeOffice?.hubId === "uae" ? 10 : 7}
+              className={
+                activeOffice?.hubId === "uae"
+                  ? "fill-pelagic-gold cursor-pointer"
+                  : "fill-pelagic-accent cursor-pointer"
+              }
+              onClick={() => selectHub("uae")}
+            />
+            <circle cx="250" cy="85" r="3" fill="white" className="pointer-events-none" />
             <text x="95" y="175" fontSize="10" fill="currentColor" opacity="0.6">
               India
             </text>
@@ -114,46 +186,97 @@ export function OfficeNetworkPanel({
         </div>
 
         <ul className="mt-4 space-y-2">
-          {offices.map((office, index) => {
-            const city = office.label.split("—").pop()?.trim() ?? office.label;
-            const isActive = viewMode === "office" && index === selectedIndex;
-
-            return (
-              <li key={office.label}>
+          {expandedHub === "india" ? (
+            <>
+              <li>
                 <button
                   type="button"
-                  onClick={() => {
-                    setSelectedIndex(index);
-                    setViewMode("office");
-                  }}
-                  className={`flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left transition ${
-                    isActive
-                      ? "border-pelagic-accent bg-pelagic-accent/5"
-                      : "border-pelagic-mist hover:border-pelagic-accent/30"
-                  }`}
+                  onClick={backToHubs}
+                  className="mb-1 text-xs font-semibold uppercase tracking-wider text-pelagic-accent hover:text-pelagic-gold"
                 >
-                  <span
-                    className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${
-                      isActive ? "bg-pelagic-gold" : "bg-pelagic-accent"
-                    }`}
-                  >
-                    {index + 1}
-                  </span>
-                  <span className="min-w-0">
-                    <span className="flex flex-wrap items-center gap-2">
-                      <span className="font-semibold text-pelagic-ink">{city}</span>
-                      {office.hq && (
-                        <span className="rounded-full bg-pelagic-gold/15 px-2 py-0.5 text-[10px] font-bold uppercase text-pelagic-gold">
-                          HQ
-                        </span>
-                      )}
-                    </span>
-                    <span className="mt-0.5 block text-xs text-pelagic-steel">{office.region}</span>
-                  </span>
+                  ← Back to regions
                 </button>
               </li>
-            );
-          })}
+              <li>
+                <p className="mb-2 px-1 text-xs font-bold uppercase tracking-wider text-pelagic-steel">
+                  India offices
+                </p>
+              </li>
+              {indiaOffices.map((office) => {
+                const index = getOfficeIndex(office.id);
+                const isActive = viewMode === "office" && index === selectedOfficeIndex;
+
+                return (
+                  <li key={office.id}>
+                    <button
+                      type="button"
+                      onClick={() => selectOffice(office)}
+                      className={`flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left transition ${
+                        isActive
+                          ? "border-pelagic-accent bg-pelagic-accent/5"
+                          : "border-pelagic-mist hover:border-pelagic-accent/30"
+                      }`}
+                    >
+                      <span
+                        className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${
+                          isActive ? "bg-pelagic-gold" : "bg-pelagic-accent"
+                        }`}
+                      >
+                        {office.label[0]}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="font-semibold text-pelagic-ink">{office.label}</span>
+                        <span className="mt-0.5 block text-xs text-pelagic-steel">{office.address}</span>
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </>
+          ) : (
+            mapHubs.map((hub, index) => {
+              const isActive =
+                viewMode === "office" &&
+                activeOffice &&
+                activeOffice.hubId === hub.id &&
+                hub.id !== "india";
+
+              return (
+                <li key={hub.id}>
+                  <button
+                    type="button"
+                    onClick={() => selectHub(hub.id)}
+                    className={`flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left transition ${
+                      isActive
+                        ? "border-pelagic-accent bg-pelagic-accent/5"
+                        : "border-pelagic-mist hover:border-pelagic-accent/30"
+                    }`}
+                  >
+                    <span
+                      className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${
+                        isActive ? "bg-pelagic-gold" : "bg-pelagic-accent"
+                      }`}
+                    >
+                      {index + 1}
+                    </span>
+                    <span className="min-w-0">
+                      <span className="flex flex-wrap items-center gap-2">
+                        <span className="font-semibold text-pelagic-ink">{hub.label}</span>
+                        {hub.id === "india" && (
+                          <span className="rounded-full bg-pelagic-cream px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-pelagic-steel">
+                            2 offices
+                          </span>
+                        )}
+                      </span>
+                      <span className="mt-0.5 block text-xs text-pelagic-steel">
+                        {hub.id === "india" ? "Mumbai · Dehradun" : hub.region}
+                      </span>
+                    </span>
+                  </button>
+                </li>
+              );
+            })
+          )}
         </ul>
 
         {showContactLink && (
@@ -172,18 +295,15 @@ export function OfficeNetworkPanel({
             <p className="mb-3 text-xs font-bold uppercase tracking-wider text-pelagic-steel">
               India · UAE corridor
             </p>
-            <div className="relative aspect-[4/3] min-h-[260px] overflow-hidden rounded-2xl border border-pelagic-mist shadow-sm sm:min-h-[320px]">
-              <iframe
-                title="Pelagic Marine — India and UAE network"
+            <div className="relative aspect-[4/3] min-h-[260px] overflow-hidden rounded-2xl border border-pelagic-gold/20 bg-pelagic-cream/30 shadow-sm ring-1 ring-pelagic-gold/10 sm:min-h-[320px]">
+              <GoogleMapEmbed
                 src={getGoogleMapsRegionalEmbedUrl()}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="office-map-frame absolute inset-0 h-full w-full border-0"
-                allowFullScreen
+                title="Pelagic Marine — India and UAE network"
+                className="absolute inset-0 h-full w-full"
               />
             </div>
             <p className="mt-3 text-sm text-pelagic-steel">
-              Select an office on the left for a detailed street-level map and directions.
+              Tap India to see Mumbai and Dehradun, or select Dubai for UAE directions.
             </p>
           </div>
         ) : (
@@ -197,7 +317,7 @@ export function OfficeNetworkPanel({
             rel="noopener noreferrer"
             className="mt-4 inline-flex rounded-lg border border-pelagic-mist px-4 py-2 text-sm font-semibold text-pelagic-charcoal hover:border-pelagic-accent/50"
           >
-            Open {activeOffice.label.split("—").pop()?.trim()} in Google Maps
+            Open {activeOffice.label} in Google Maps
           </a>
         )}
       </div>

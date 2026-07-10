@@ -8,7 +8,7 @@ import { siteImages } from "@/lib/site-images";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Pelagic Marine Solutions offers marine surveying, naval architecture, engineering, LNG advisory, legal consultancy, and vessel operations support.",
+    "Naval architecture and design, marine engineering, inspection/audits/surveying, and legal consultancy from Pelagic Marine Solutions.",
 };
 
 export default function ServicesPage() {
@@ -16,8 +16,8 @@ export default function ServicesPage() {
     <div>
       <PageHero
         eyebrow="Services"
-        title="Comprehensive marine and engineering consultancy"
-        description="Expert-led services for ship owners, managers, charterers, insurers, and energy operators — available 24/7 from India and Dubai."
+        title="Four practices, one engineering standard"
+        description="Concept design, structural analysis, surveys, audits and clean-fuel advisory — the same engineering rigour, whichever practice you need."
         imageSrc={siteImages.pageHeroes.services}
       />
 
@@ -34,24 +34,25 @@ export default function ServicesPage() {
                   <ServiceIcon slug={service.slug} className="h-8 w-8" />
                 </div>
                 <p className="mt-6 text-sm font-bold uppercase tracking-[0.2em] text-pelagic-gold-light">
-                  Service {String(index + 1).padStart(2, "0")}
+                  {String(index + 1).padStart(2, "0")} / Practice
                 </p>
                 <h2 className="font-display mt-3 text-2xl font-semibold lg:text-3xl">
                   {service.title}
                 </h2>
-                <p className="mt-4 text-sm leading-7 text-slate-300">
-                  {service.summary}
-                </p>
+                <p className="mt-4 text-sm leading-7 text-slate-300">{service.summary}</p>
               </div>
               <div className="p-10 lg:col-span-8">
                 <ul className="grid gap-4 sm:grid-cols-2">
                   {service.items.map((item) => (
                     <li
-                      key={item}
-                      className="flex gap-3 rounded-2xl bg-pelagic-mist/50 px-5 py-4 text-sm text-slate-700"
+                      key={item.slug}
+                      id={item.slug}
+                      className="flex scroll-mt-32 flex-col gap-1 rounded-2xl bg-pelagic-mist/50 px-5 py-4 text-sm text-slate-700"
                     >
-                      <span className="mt-0.5 font-bold text-pelagic-gold">✓</span>
-                      <span>{item}</span>
+                      <span className="font-semibold text-pelagic-ink">{item.label}</span>
+                      {item.teaser && (
+                        <span className="text-xs text-pelagic-steel">{item.teaser}</span>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -67,8 +68,7 @@ export default function ServicesPage() {
             Need a tailored scope of work?
           </h2>
           <p className="mx-auto mt-5 text-lg text-slate-300">
-            Our consultants assemble the right team for surveying, design, LNG
-            operations, or legal support on your next project.
+            Tell us the vessel, structure or survey — we will assemble the right practice and expert.
           </p>
           <div className="mt-10">
             <Button href="/contact" variant="primary">

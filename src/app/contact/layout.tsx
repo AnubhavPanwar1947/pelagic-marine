@@ -4,7 +4,7 @@ import { ContactLocalBusinessSchema } from "@/components/contact/ContactLocalBus
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Pelagic Marine — offices in Mumbai, Dehradun (HQ), and Dubai. 24/7 marine surveying, engineering, and legal consultancy across India and the UAE.",
+    "Contact Pelagic Marine — offices in India and Dubai. Marine surveying, engineering, and legal consultancy across India and the UAE.",
 };
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {

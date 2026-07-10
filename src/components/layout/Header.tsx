@@ -5,9 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { NavSearch } from "@/components/layout/NavSearch";
-import { company, navMenu, type NavMenuItem } from "@/lib/site-data";
-
-const phoneHref = `tel:${company.phones.india.replace(/\s/g, "")}`;
+import { company, navMenu, type NavDropdownChild, type NavMenuItem } from "@/lib/site-data";
 
 function Chevron({ open }: { open?: boolean }) {
   return (
@@ -36,6 +34,70 @@ function navLinkClass(active: boolean) {
       ? "text-pelagic-ink after:scale-x-100"
       : "text-pelagic-steel after:scale-x-0 hover:text-pelagic-ink hover:after:scale-x-100"
   }`;
+}
+
+function DesktopServiceChild({
+  child,
+  onClose,
+}: {
+  child: NavDropdownChild;
+  onClose: () => void;
+}) {
+  const [subOpen, setSubOpen] = useState(false);
+  const hasChildren = Boolean(child.children?.length);
+
+  if (!hasChildren) {
+    return (
+      <Link
+        href={child.href}
+        onClick={onClose}
+        className="block rounded-xl px-3 py-3 transition hover:bg-pelagic-cream"
+      >
+        <span className="text-sm font-semibold text-pelagic-ink">{child.label}</span>
+        {child.description && (
+          <span className="mt-1 line-clamp-2 block text-xs leading-relaxed text-pelagic-slate">
+            {child.description}
+          </span>
+        )}
+      </Link>
+    );
+  }
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setSubOpen(true)}
+      onMouseLeave={() => setSubOpen(false)}
+    >
+      <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2.5 transition hover:bg-pelagic-cream">
+        <Link
+          href={child.href}
+          onClick={onClose}
+          className="text-sm font-semibold text-pelagic-ink"
+        >
+          {child.label}
+        </Link>
+        <Chevron open={subOpen} />
+      </div>
+      {subOpen && (
+        <div className="absolute top-0 left-full z-50 pl-2">
+          <ul className="w-72 space-y-0.5 rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5">
+            {child.children!.map((sub) => (
+              <li key={sub.href}>
+                <Link
+                  href={sub.href}
+                  onClick={onClose}
+                  className="block rounded-lg px-3 py-2 text-sm text-pelagic-steel transition hover:bg-pelagic-cream hover:text-pelagic-ink"
+                >
+                  {sub.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function DesktopNavItem({
@@ -115,7 +177,7 @@ function DesktopNavItem({
         >
           <div
             className={`rounded-2xl border border-pelagic-sand bg-white p-3 shadow-xl ring-1 ring-black/5 ${
-              wide ? "w-[min(90vw,36rem)]" : "w-80"
+              wide ? "w-[min(90vw,20rem)]" : "w-80"
             }`}
           >
             <Link
@@ -125,27 +187,71 @@ function DesktopNavItem({
             >
               View all {item.label} →
             </Link>
-            <ul className={wide ? "grid gap-1 sm:grid-cols-2" : "space-y-1"}>
+            <ul className="space-y-1">
               {item.children.map((child) => (
                 <li key={child.href + child.label}>
-                  <Link
-                    href={child.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-xl px-3 py-3 transition hover:bg-pelagic-cream"
-                  >
-                    <span className="text-sm font-semibold text-pelagic-ink">
-                      {child.label}
-                    </span>
-                    {child.description && (
-                      <span className="mt-1 line-clamp-2 block text-xs leading-relaxed text-pelagic-slate">
-                        {child.description}
-                      </span>
-                    )}
-                  </Link>
+                  <DesktopServiceChild child={child} onClose={() => setOpen(false)} />
                 </li>
               ))}
             </ul>
           </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MobileServiceChild({
+  child,
+  onNavigate,
+}: {
+  child: NavDropdownChild;
+  onNavigate: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const hasChildren = Boolean(child.children?.length);
+
+  if (!hasChildren) {
+    return (
+      <Link
+        href={child.href}
+        onClick={onNavigate}
+        className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-cream"
+      >
+        {child.label}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="rounded-lg border border-pelagic-sand/60">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex w-full items-center justify-between px-2 py-2 text-sm font-semibold text-pelagic-charcoal"
+      >
+        {child.label}
+        <Chevron open={open} />
+      </button>
+      {open && (
+        <div className="border-t border-pelagic-sand px-2 pb-2">
+          <Link
+            href={child.href}
+            onClick={onNavigate}
+            className="mt-2 block rounded-lg px-2 py-1.5 text-xs font-bold text-pelagic-gold"
+          >
+            All {child.label} →
+          </Link>
+          {child.children!.map((sub) => (
+            <Link
+              key={sub.href}
+              href={sub.href}
+              onClick={onNavigate}
+              className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-cream"
+            >
+              {sub.label}
+            </Link>
+          ))}
         </div>
       )}
     </div>
@@ -192,16 +298,11 @@ function MobileNavItem({
           >
             All {item.label} →
           </Link>
-          {item.children.map((child) => (
-            <Link
-              key={child.href + child.label}
-              href={child.href}
-              onClick={onNavigate}
-              className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-cream"
-            >
-              {child.label}
-            </Link>
-          ))}
+          <div className="space-y-1">
+            {item.children.map((child) => (
+              <MobileServiceChild key={child.href + child.label} child={child} onNavigate={onNavigate} />
+            ))}
+          </div>
         </div>
       )}
     </div>
@@ -256,29 +357,11 @@ export function Header() {
             <NavSearch />
           </div>
 
-          <a
-            href={phoneHref}
-            className="hidden items-center gap-1.5 rounded-full border border-pelagic-accent/30 bg-pelagic-sky/50 px-3 py-2 text-xs font-bold text-pelagic-accent transition hover:border-pelagic-accent hover:bg-pelagic-sky lg:inline-flex lg:px-4 lg:text-sm"
-          >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pelagic-accent opacity-60" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-pelagic-accent" />
-            </span>
-            24/7 Urgent
-          </a>
-
           <Link
             href="/contact"
-            className={`hidden lg:inline-flex ${navLinkClass(isActive(pathname, "/contact"))}`}
-          >
-            Contact
-          </Link>
-
-          <Link
-            href="/login"
             className="hidden rounded-full bg-pelagic-gold px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-pelagic-gold/25 transition hover:bg-pelagic-gold-light sm:inline-flex lg:px-3 lg:py-2 lg:text-xs xl:px-4 xl:py-2.5 xl:text-sm"
           >
-            Client Login
+            Contact
           </Link>
 
           <button
@@ -306,24 +389,11 @@ export function Header() {
                 onNavigate={() => setOpen(false)}
               />
             ))}
-            <a
-              href={phoneHref}
-              className="mt-2 flex items-center justify-center gap-2 rounded-full border border-pelagic-accent/40 bg-pelagic-sky/40 px-4 py-2.5 text-sm font-bold text-pelagic-accent"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-pelagic-accent" />
-              24/7 Urgent · {company.phones.india}
-            </a>
             <Link
               href="/contact"
-              className="mt-2 rounded-full border border-pelagic-warm py-2.5 text-center text-sm font-semibold text-pelagic-charcoal md:hidden"
+              className="mt-2 rounded-full bg-pelagic-gold py-2.5 text-center text-sm font-bold text-white"
             >
               Contact
-            </Link>
-            <Link
-              href="/login"
-              className="mt-2 rounded-full bg-pelagic-gold py-2.5 text-center text-sm font-bold text-white sm:hidden"
-            >
-              Client Login
             </Link>
           </nav>
         </div>

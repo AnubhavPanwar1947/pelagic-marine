@@ -121,7 +121,7 @@ function buildNextStepsHtml() {
 function buildUrgentBannerHtml() {
   return `<div style="margin:16px 0;padding:14px 16px;background:#fff7ed;border:1px solid #fcd34d;border-radius:8px;">
     <p style="margin:0 0 8px;font-size:12px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:#b45309;">Time-critical matter</p>
-    <p style="margin:0;font-size:14px;line-height:1.55;color:#3d3835;">For casualty or vessel-alongside attendance, call our 24/7 line now — do not wait for email alone.</p>
+    <p style="margin:0;font-size:14px;line-height:1.55;color:#3d3835;">For casualty or vessel-alongside attendance, call India or UAE directly — do not wait for email alone.</p>
     <p style="margin:10px 0 0;font-size:14px;line-height:1.8;color:${BRAND.ink};">
       India: <strong>${escapeHtml(company.phones.india)}</strong><br />
       UAE: <strong>${escapeHtml(company.phones.uae)}</strong>

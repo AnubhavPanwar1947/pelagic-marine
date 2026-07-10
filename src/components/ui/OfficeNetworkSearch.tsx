@@ -48,7 +48,7 @@ export function OfficeNetworkSearch({
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.length === 0 ? (
           <p className="text-sm text-slate-600 sm:col-span-2 lg:col-span-3">
-            No offices match your search. Try Mumbai, Dehradun, or Dubai.
+            No offices match your search. Try India or Dubai.
           </p>
         ) : (
           filtered.map(({ office, index }) => {
