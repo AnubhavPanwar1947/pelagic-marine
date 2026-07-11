@@ -105,6 +105,142 @@ html {
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
+/* Logo — Final.pdf emblem + full lockup + armor shine */
+.brand-logo-img {
+  filter: brightness(1.04) contrast(1.16) saturate(1.22)
+    drop-shadow(0 2px 12px rgba(38, 106, 174, 0.3));
+}
+
+.brand-logo-shine {
+  isolation: isolate;
+}
+
+/* Soft steel highlight — emblem (header) */
+.brand-logo-armor-rim {
+  background: radial-gradient(
+    ellipse 85% 70% at 50% 42%,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(200, 225, 255, 0.08) 35%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  mask-image: url("/logo.png?v=17");
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("/logo.png?v=17");
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.brand-logo-armor-glint {
+  background: linear-gradient(
+    108deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.12) 40%,
+    rgba(230, 242, 255, 0.75) 46%,
+    rgba(255, 255, 255, 0.98) 49.5%,
+    rgba(210, 230, 255, 0.85) 53%,
+    rgba(255, 255, 255, 0.15) 58%,
+    transparent 66%
+  );
+  mix-blend-mode: overlay;
+  animation: brand-logo-armor 4.5s ease-in-out infinite;
+  mask-image: url("/logo.png?v=17");
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("/logo.png?v=17");
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.brand-logo-shine-sweep {
+  background: linear-gradient(
+    115deg,
+    transparent 34%,
+    rgba(140, 190, 255, 0.2) 42%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(75, 159, 217, 0.35) 56%,
+    transparent 64%
+  );
+  mix-blend-mode: soft-light;
+  animation: brand-logo-shine 5.2s ease-in-out infinite;
+  mask-image: url("/logo.png?v=17");
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: url("/logo.png?v=17");
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+}
+
+/* Splash — full PDF lockup shine masks */
+.brand-logo-shell--full .brand-logo-armor-rim,
+.brand-logo-shell--full .brand-logo-armor-glint,
+.brand-logo-shell--full .brand-logo-shine-sweep {
+  mask-image: url("/logo-full.png?v=17");
+  -webkit-mask-image: url("/logo-full.png?v=17");
+}
+
+@keyframes brand-logo-armor {
+  0%,
+  100% {
+    transform: translateX(-110%) skewX(-14deg);
+    opacity: 0;
+  }
+  38% {
+    opacity: 0.55;
+  }
+  48% {
+    transform: translateX(0%) skewX(-14deg);
+    opacity: 1;
+  }
+  58% {
+    opacity: 0.55;
+  }
+  72% {
+    transform: translateX(110%) skewX(-14deg);
+    opacity: 0;
+  }
+}
+
+@keyframes brand-logo-shine {
+  0%,
+  100% {
+    transform: translateX(-95%) skewX(-10deg);
+    opacity: 0;
+  }
+  44% {
+    opacity: 0.7;
+  }
+  52% {
+    transform: translateX(0%) skewX(-10deg);
+    opacity: 0.9;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  74% {
+    transform: translateX(95%) skewX(-10deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo-armor-glint,
+  .brand-logo-shine-sweep {
+    animation: none;
+    opacity: 0;
+  }
+  .brand-logo-armor-rim {
+    opacity: 0.35;
+  }
+}
+
 /* Typography scale — single source of truth for hierarchy */
 .type-eyebrow {
   font-size: 0.75rem;

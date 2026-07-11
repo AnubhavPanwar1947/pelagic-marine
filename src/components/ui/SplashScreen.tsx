@@ -43,11 +43,8 @@ export function SplashScreen() {
       aria-hidden="true"
     >
       <div className="animate-splash-scale">
-        <BrandLogo variant="header" linked={false} />
+        <BrandLogo variant="promo" linked={false} shine />
       </div>
-      <p className="mt-6 text-sm font-medium tracking-[0.35em] text-pelagic-steel uppercase">
-        Marine Consultants
-      </p>
       <div className="mt-10 h-0.5 w-24 overflow-hidden rounded-full bg-pelagic-warm">
         <div className="h-full animate-splash-bar bg-pelagic-accent" />
       </div>

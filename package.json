@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "prepare-logo": "node scripts/prepare-logo.mjs"
+    "prepare-logo": "node scripts/prepare-logo.mjs",
+    "prepare-logo-pdf": "node scripts/prepare-logo-from-pdf.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.1",

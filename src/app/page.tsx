@@ -14,7 +14,6 @@ import {
   serviceCategories,
   stats,
   testimonials,
-  trustBadges,
 } from "@/lib/site-data";
 import { siteImages } from "@/lib/site-images";
 
@@ -55,18 +54,6 @@ export default function HomePage() {
           <div className="relative min-h-[300px] lg:min-h-full">
             <HeroMedia className="absolute inset-0" />
           </div>
-        </div>
-      </section>
-
-      {/* 2. Trust bar */}
-      <section className="border-y border-pelagic-sand bg-white py-5">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 text-sm font-medium text-pelagic-body sm:px-6 lg:px-8">
-          {trustBadges.map((badge) => (
-            <span key={badge} className="flex items-center gap-2">
-              <span className="text-pelagic-accent">✓</span>
-              {badge}
-            </span>
-          ))}
         </div>
       </section>
 
