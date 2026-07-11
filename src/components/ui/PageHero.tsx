@@ -25,21 +25,17 @@ export function PageHero({ eyebrow, title, description, imageSrc }: PageHeroProp
         </div>
       ) : (
         <>
-          <div className="absolute inset-0 bg-pelagic-sand" />
-          <div className="absolute inset-0 bg-maritime-grid opacity-70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-pelagic-sky/70 via-white to-pelagic-mist/50" />
+          <div className="absolute inset-0 bg-maritime-grid opacity-40" />
         </>
       )}
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-        <p className="text-base font-bold uppercase tracking-[0.22em] text-pelagic-gold sm:text-lg md:text-xl">
-          {eyebrow}
-        </p>
-        <h1 className="font-display mt-3 max-w-4xl text-3xl font-bold leading-tight text-pelagic-ink sm:text-4xl lg:text-5xl">
+        <p className="type-eyebrow">{eyebrow}</p>
+        <h1 className="type-display mt-4 max-w-4xl text-3xl leading-[1.08] text-pelagic-ink sm:text-4xl lg:text-5xl">
           {title}
         </h1>
         {description && (
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-pelagic-steel">
-            {description}
-          </p>
+          <p className="type-lead mt-5 max-w-2xl">{description}</p>
         )}
       </div>
     </section>

@@ -28,7 +28,7 @@ export function SiteImage({
   if (failed) {
     return (
       <div
-        className={`bg-gradient-to-br from-pelagic-sand via-pelagic-warm to-pelagic-gold/20 ${fill ? "absolute inset-0" : ""} ${className}`}
+        className={`bg-gradient-to-br from-pelagic-sand via-pelagic-warm to-pelagic-accent/20 ${fill ? "absolute inset-0" : ""} ${className}`}
         aria-hidden={alt === ""}
       />
     );
@@ -47,7 +47,7 @@ export function SiteImage({
       />
       {brandOverlay && (
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-pelagic-charcoal/35 via-pelagic-steel/10 to-pelagic-gold/25 mix-blend-multiply"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-pelagic-charcoal/35 via-pelagic-steel/10 to-pelagic-accent/25 mix-blend-multiply"
           aria-hidden
         />
       )}

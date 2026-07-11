@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
+import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { sectorDetails } from "@/lib/site-data";
@@ -21,13 +22,14 @@ export default function SectorsPage() {
         description="The same technical excellence applied across shipping, offshore energy, renewables, and port infrastructure."
         imageSrc={siteImages.pageHeroes.sectors}
       />
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <SectionMaritime className="py-20" gridOpacity={50}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-6 md:grid-cols-2">
             {sectorDetails.map((sector, i) => (
               <Reveal key={sector.slug} delay={i * 80}>
                 <article
                   id={sector.slug}
-                  className="card-premium scroll-mt-28 overflow-hidden rounded-3xl border border-pelagic-sand bg-white shadow-sm"
+                  className="card-premium card-maritime scroll-mt-28 overflow-hidden rounded-3xl border shadow-sm"
                 >
                 <div className="relative aspect-[16/9]">
                   <SiteImage
@@ -48,7 +50,7 @@ export default function SectorsPage() {
                 </p>
                 <Link
                   href="/services"
-                  className="mt-5 inline-flex text-sm font-bold text-pelagic-gold hover:underline"
+                  className="mt-5 inline-flex text-sm font-bold text-pelagic-accent hover:underline"
                 >
                   View related services →
                 </Link>
@@ -57,7 +59,8 @@ export default function SectorsPage() {
             </Reveal>
           ))}
         </div>
-      </section>
+        </div>
+      </SectionMaritime>
     </div>
   );
 }

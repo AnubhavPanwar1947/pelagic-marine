@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
+import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { teamMembers } from "@/lib/site-data";
 import { siteImages } from "@/lib/site-images";
 
@@ -20,26 +21,28 @@ export default function TeamPage() {
         imageSrc={siteImages.team}
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <SectionMaritime className="py-24" gridOpacity={50}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-2">
           {teamMembers.map((member) => (
             <article
               key={member.name}
-              className="rounded-3xl border border-pelagic-mist bg-white p-8 shadow-sm"
+              className="card-maritime rounded-3xl border p-8 shadow-sm"
             >
               <h2 className="font-display text-2xl font-semibold text-pelagic-ink">
                 {member.name}
               </h2>
-              <p className="mt-1 text-sm font-bold uppercase tracking-wider text-pelagic-gold">
+              <p className="mt-1 text-sm font-bold uppercase tracking-wider text-pelagic-accent">
                 {member.role}
               </p>
               <p className="mt-4 text-sm leading-7 text-pelagic-steel">{member.bio}</p>
             </article>
           ))}
         </div>
-      </section>
+        </div>
+      </SectionMaritime>
 
-      <section className="bg-pelagic-cream py-20">
+      <SectionMaritime variant="mist" className="py-20" gridOpacity={42}>
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl font-semibold text-pelagic-ink">
             Work with the people behind the work
@@ -53,7 +56,7 @@ export default function TeamPage() {
             </Button>
           </div>
         </div>
-      </section>
+      </SectionMaritime>
     </div>
   );
 }

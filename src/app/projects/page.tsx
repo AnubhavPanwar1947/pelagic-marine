@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
+import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { caseStudies } from "@/lib/site-data";
@@ -21,11 +22,12 @@ export default function ProjectsPage() {
         description="Selected assignments in surveying, LNG operations, engineering, and fleet support."
         imageSrc={siteImages.pageHeroes.projects}
       />
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <SectionMaritime className="py-20" gridOpacity={50}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-3">
           {caseStudies.map((project, i) => (
             <Reveal key={project.title} delay={i * 80}>
-              <article className="card-premium overflow-hidden rounded-3xl border border-pelagic-sand bg-white shadow-sm">
+              <article className="card-premium card-maritime overflow-hidden rounded-3xl border shadow-sm">
                 <div className="relative aspect-[16/10]">
                   <SiteImage
                     src={siteImages.cases[i] ?? siteImages.cases[0]}
@@ -37,7 +39,7 @@ export default function ProjectsPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <p className="text-xs font-bold uppercase tracking-wider text-pelagic-gold">
+                  <p className="text-xs font-bold uppercase tracking-wider text-pelagic-accent">
                     {project.location}
                   </p>
                   <h2 className="font-display mt-2 text-lg font-semibold text-pelagic-ink">
@@ -64,12 +66,13 @@ export default function ProjectsPage() {
         <Reveal className="mt-12 text-center">
           <Link
             href="/contact"
-            className="inline-flex rounded-full bg-pelagic-gold px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-gold-light"
+            className="inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-light"
           >
             Discuss your project
           </Link>
         </Reveal>
-      </section>
+        </div>
+      </SectionMaritime>
     </div>
   );
 }

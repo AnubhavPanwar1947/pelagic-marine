@@ -11,7 +11,7 @@ export function ContactFormTrustBar({ compact = false }: ContactFormTrustBarProp
         {contactPage.hero.stats.map((stat) => (
           <div
             key={`${stat.label}-${stat.value}`}
-            className="rounded-lg border border-pelagic-sand/80 bg-pelagic-cream/50 px-2 py-2 text-center"
+            className="card-maritime rounded-lg border px-2 py-2 text-center"
           >
             <p className="font-display text-base font-bold text-pelagic-ink">{stat.value}</p>
             <p className="text-xs font-semibold uppercase tracking-wide text-pelagic-steel">
@@ -29,10 +29,10 @@ export function ContactFormTrustBar({ compact = false }: ContactFormTrustBarProp
         {contactPage.hero.stats.map((stat) => (
           <div
             key={`${stat.label}-${stat.value}`}
-            className="rounded-xl border border-pelagic-sand/80 bg-pelagic-cream/50 px-3 py-2.5 text-center"
+            className="card-maritime rounded-xl border px-3 py-2.5 text-center"
           >
             <p className="font-display text-lg font-bold text-pelagic-ink">{stat.value}</p>
-            <p className="text-[10px] font-semibold uppercase tracking-wide text-pelagic-steel">
+            <p className="type-muted font-semibold uppercase tracking-wide text-pelagic-steel">
               {stat.label}
             </p>
           </div>
@@ -44,15 +44,15 @@ export function ContactFormTrustBar({ compact = false }: ContactFormTrustBarProp
           <span
             key={item.label}
             title={item.detail}
-            className="inline-flex items-center gap-1.5 rounded-full border border-pelagic-gold/25 bg-white px-3 py-1 text-[11px] font-semibold text-pelagic-charcoal"
+            className="card-maritime inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold text-pelagic-ink"
           >
-            <span className="text-pelagic-gold">✓</span>
+            <span className="text-pelagic-accent">✓</span>
             {item.label}
           </span>
         ))}
       </div>
 
-      <div className="rounded-xl border border-pelagic-accent/15 bg-pelagic-sky/30 px-4 py-3 text-sm text-pelagic-charcoal">
+      <div className="card-maritime rounded-xl border px-4 py-3 text-sm text-pelagic-body">
         <span className="font-semibold text-pelagic-accent">{contactPage.sla.avgLabel}:</span>{" "}
         {contactPage.sla.avgValue} · {contactPage.sla.standard}
       </div>

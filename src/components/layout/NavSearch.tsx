@@ -67,7 +67,7 @@ export function NavSearch() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-pelagic-warm bg-pelagic-cream text-pelagic-steel transition hover:border-pelagic-gold hover:text-pelagic-gold"
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-pelagic-warm bg-pelagic-cream text-pelagic-steel transition hover:border-pelagic-accent hover:text-pelagic-accent"
         aria-label="Search site"
         aria-expanded={open}
       >
@@ -104,7 +104,7 @@ export function NavSearch() {
                       onClick={() => setOpen(false)}
                       className="block rounded-lg px-2 py-2.5 transition hover:bg-pelagic-cream"
                     >
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-pelagic-gold">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-pelagic-accent">
                         {item.category}
                       </span>
                       <p className="text-sm font-medium text-pelagic-ink">{item.title}</p>

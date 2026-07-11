@@ -43,7 +43,7 @@ export default function CareersPage() {
                   key={perk}
                   className="flex gap-3 rounded-2xl border border-pelagic-sand bg-white p-4 text-sm text-pelagic-steel"
                 >
-                  <span className="text-pelagic-gold">✓</span>
+                  <span className="text-pelagic-accent">✓</span>
                   {perk}
                 </li>
               ))}
@@ -60,7 +60,7 @@ export default function CareersPage() {
               </p>
               <a
                 href={`mailto:${careers.applyEmail}?subject=Career%20application%20-%20Pelagic%20Marine`}
-                className="mt-6 inline-flex rounded-full bg-pelagic-gold px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-gold-light"
+                className="mt-6 inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-light"
               >
                 Email {careers.applyEmail}
               </a>

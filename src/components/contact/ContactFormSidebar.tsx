@@ -9,14 +9,14 @@ const intakeHints: Record<string, string> = {
 
 export function ContactFormIntro() {
   return (
-    <div className="mt-4 border-t border-pelagic-gold/15 pt-4">
+    <div className="mt-4 border-t border-pelagic-accent/15 pt-4">
       <p className="text-xs font-bold uppercase tracking-[0.18em] text-pelagic-accent">
         Project enquiry
       </p>
       <h2 className="font-display mt-1 text-lg font-semibold text-pelagic-ink">
         Request expert attendance
       </h2>
-      <p className="mt-1.5 text-xs leading-5 text-pelagic-steel">
+      <p className="mt-1.5 text-sm leading-relaxed text-pelagic-body">
         Vessel, port &amp; urgency first — routed to India or UAE.
       </p>
     </div>
@@ -34,7 +34,7 @@ export function ContactFormQuickIntake({
 }) {
   return (
     <div className={`mt-3 flex flex-col ${fill ? "min-h-0 flex-1" : ""}`}>
-      <p className="text-xs font-bold uppercase tracking-wider text-pelagic-steel">Quick intake</p>
+      <p className="text-xs font-bold uppercase tracking-wider text-pelagic-slate">Quick intake</p>
       <div
         className={`mt-2 grid grid-cols-2 gap-2 ${fill ? "min-h-0 flex-1 auto-rows-fr" : ""}`}
       >
@@ -51,24 +51,24 @@ export function ContactFormQuickIntake({
                 fill ? "p-3 sm:p-3.5" : "p-2.5"
               } ${
                 isActive
-                  ? "border-pelagic-gold bg-pelagic-gold/10 shadow-sm ring-1 ring-pelagic-gold/30"
-                  : "border-pelagic-mist bg-white hover:border-pelagic-gold/50 hover:bg-pelagic-cream/40 hover:shadow-sm"
+                  ? "border-pelagic-accent bg-pelagic-accent/10 shadow-sm ring-1 ring-pelagic-accent/30"
+                  : "card-maritime border-pelagic-mist hover:border-pelagic-accent/50 hover:shadow-sm"
               }`}
             >
               <span
                 className={`font-display font-semibold leading-snug text-pelagic-ink ${
-                  fill ? "text-sm sm:text-[15px]" : "text-[11px]"
+                  fill ? "text-sm sm:text-base" : "text-xs sm:text-sm"
                 }`}
               >
                 {item.label}
               </span>
               {fill && (
-                <span className="mt-2 line-clamp-2 text-xs leading-5 text-pelagic-steel">
+                <span className="mt-2 line-clamp-2 text-sm leading-snug text-pelagic-body">
                   {hint}
                 </span>
               )}
               <span
-                className={`mt-auto inline-flex pt-2 text-xs font-bold uppercase tracking-wide text-pelagic-gold ${
+                className={`mt-auto inline-flex pt-2 text-xs font-bold uppercase tracking-wide text-pelagic-accent ${
                   fill ? "" : "pt-1"
                 }`}
               >
@@ -89,9 +89,9 @@ export function ContactResponseSteps({ compact = false }: { compact?: boolean })
         {contactPage.responseSteps.map((step) => (
           <div
             key={step.step}
-            className="rounded-lg border border-pelagic-sand/80 bg-white/90 px-2.5 py-2"
+            className="card-maritime rounded-lg border px-2.5 py-2"
           >
-            <p className="text-xs font-bold text-pelagic-gold">{step.step}</p>
+            <p className="text-xs font-bold text-pelagic-accent">{step.step}</p>
             <p className="mt-0.5 text-xs font-semibold leading-snug text-pelagic-ink">{step.title}</p>
           </div>
         ))}
@@ -104,9 +104,9 @@ export function ContactResponseSteps({ compact = false }: { compact?: boolean })
       {contactPage.responseSteps.map((step) => (
         <div
           key={step.step}
-          className="rounded-xl border border-pelagic-sand/80 bg-white/90 p-3.5 sm:p-4"
+          className="card-maritime rounded-xl border p-3.5 sm:p-4"
         >
-          <p className="text-xs font-bold text-pelagic-gold">{step.step}</p>
+          <p className="text-xs font-bold text-pelagic-accent">{step.step}</p>
           <p className="mt-1 text-sm font-semibold text-pelagic-ink">{step.title}</p>
           <p className="mt-1 text-xs leading-5 text-pelagic-steel">{step.text}</p>
         </div>

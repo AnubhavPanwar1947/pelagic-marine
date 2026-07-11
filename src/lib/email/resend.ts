@@ -29,6 +29,20 @@ export function getEnquiryNotifyEmail() {
   );
 }
 
+/** True when Resend is in sandbox — can only deliver to the account owner email. */
+export function isResendSandboxFrom() {
+  const from = getFromAddress().toLowerCase();
+  return from.includes("@resend.dev") || from.includes("onboarding@");
+}
+
+export function normalizeRecipientEmail(email: string) {
+  return email.trim().toLowerCase();
+}
+
+export function isValidRecipientEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizeRecipientEmail(email));
+}
+
 export async function sendResendEmail(
   params: SendEmailParams
 ): Promise<SendEmailResult> {
@@ -38,6 +52,10 @@ export async function sendResendEmail(
     return { ok: false, skipped: true, error: "RESEND_API_KEY not configured" };
   }
 
+  const to = Array.isArray(params.to)
+    ? params.to.map(normalizeRecipientEmail)
+    : normalizeRecipientEmail(params.to);
+
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -46,7 +64,7 @@ export async function sendResendEmail(
     },
     body: JSON.stringify({
       from: getFromAddress(),
-      to: params.to,
+      to,
       subject: params.subject,
       html: params.html,
       text: params.text,

@@ -35,7 +35,7 @@ export function ContactSocialLinks({ variant = "hero" }: ContactSocialLinksProps
           rel={link.external ? "noopener noreferrer" : undefined}
           title={link.label}
           aria-label={link.label}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-pelagic-gold/30 bg-white/90 text-pelagic-charcoal shadow-sm transition hover:border-pelagic-gold/55 hover:bg-white hover:text-pelagic-ink"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-pelagic-accent/30 bg-white/90 text-pelagic-charcoal shadow-sm transition hover:border-pelagic-accent/55 hover:bg-white hover:text-pelagic-ink"
         >
           <SocialBrandIcon brand={link.brand} size={18} />
         </a>

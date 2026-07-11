@@ -16,9 +16,9 @@ export function ContactTrustPanel() {
   const { activeIntake, applyQuickIntake } = useContactEnquiry();
 
   return (
-    <ContactPanelShell innerClassName="bg-white/95">
+    <ContactPanelShell>
       <div className="flex h-full flex-col p-5 sm:p-6">
-        <div className="border-b border-pelagic-gold/20 pb-3">
+        <div className="border-b border-pelagic-accent/20 pb-3">
           <BrandLogo variant="header" linked={false} compact />
         </div>
 
@@ -35,8 +35,8 @@ export function ContactTrustPanel() {
           <div className="mt-auto flex flex-col justify-end gap-3 pt-4">
             <ContactAlternateChannels variant="promo" />
             <ContactResponseSteps compact />
-            <p className="text-xs leading-5 text-pelagic-steel">
-              <span className="font-semibold text-pelagic-charcoal">{contactPage.sla.standard}.</span>{" "}
+            <p className="text-sm leading-relaxed text-pelagic-body">
+              <span className="font-semibold text-pelagic-ink">{contactPage.sla.standard}.</span>{" "}
               {contactPage.sla.urgent}
             </p>
           </div>

@@ -3,6 +3,7 @@
 import { ContactOfficeCards } from "@/components/contact/ContactOfficeCards";
 import { OfficeLocator } from "@/components/contact/OfficeLocator";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { contactPage } from "@/lib/site-data";
 import type { Office } from "@/lib/site-data";
@@ -23,7 +24,7 @@ export function ContactOfficesSection({
   }
 
   return (
-    <section className="bg-maritime-grid py-20 lg:py-24">
+    <SectionMaritime variant="sky" className="py-20 lg:py-24" gridOpacity={55}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
@@ -53,11 +54,11 @@ export function ContactOfficesSection({
                   {contactPage.networkHub.description}
                 </p>
               </div>
-              <p className="text-xs font-bold uppercase tracking-wider text-pelagic-gold">
+              <p className="text-xs font-bold uppercase tracking-wider text-pelagic-accent">
                 Select a card to focus the map
               </p>
             </div>
-            <div className="card-premium contact-map-panel mt-6 overflow-hidden rounded-3xl border border-pelagic-sand/80 p-4 shadow-lg sm:p-6">
+            <div className="card-premium card-maritime contact-map-panel mt-6 overflow-hidden rounded-3xl border p-4 shadow-lg sm:p-6">
               <OfficeLocator
                 offices={offices}
                 selectedIndex={selectedIndex}
@@ -67,6 +68,6 @@ export function ContactOfficesSection({
           </Reveal>
         </div>
       </div>
-    </section>
+    </SectionMaritime>
   );
 }

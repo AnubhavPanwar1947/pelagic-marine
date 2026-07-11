@@ -86,8 +86,8 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
               }}
               className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
                 region === tab
-                  ? "bg-pelagic-gold text-white shadow-[0_4px_14px_rgba(201,148,26,0.25)]"
-                  : "border border-pelagic-mist bg-white/80 text-pelagic-steel hover:border-pelagic-gold/60 hover:bg-white"
+                  ? "bg-pelagic-accent text-white shadow-[0_4px_14px_rgba(38,106,174,0.25)]"
+                  : "border border-pelagic-mist bg-white/80 text-pelagic-steel hover:border-pelagic-accent/60 hover:bg-white"
               }`}
             >
               {tab === "All" ? "Global" : tab}
@@ -138,7 +138,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
             if (e.target.value.trim()) setExpandedHub(null);
           }}
           placeholder="Search city, country, or address…"
-          className="w-full rounded-2xl border border-pelagic-mist bg-white/90 px-5 py-4 text-sm text-pelagic-charcoal placeholder:text-pelagic-slate outline-none shadow-sm backdrop-blur-sm transition focus:border-pelagic-gold/70 focus:ring-2 focus:ring-pelagic-gold/15"
+          className="w-full rounded-2xl border border-pelagic-mist bg-white/90 px-5 py-4 text-sm text-pelagic-charcoal placeholder:text-pelagic-slate outline-none shadow-sm backdrop-blur-sm transition focus:border-pelagic-accent/70 focus:ring-2 focus:ring-pelagic-accent/15"
         />
       </div>
 
@@ -155,10 +155,10 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
                   key={hub.id}
                   type="button"
                   onClick={() => selectHub(hub.id)}
-                  className="w-full rounded-2xl border border-pelagic-mist/80 bg-white/70 p-5 text-left transition hover:border-pelagic-gold/40 hover:bg-white hover:shadow-sm"
+                  className="w-full rounded-2xl border border-pelagic-mist/80 bg-white/70 p-5 text-left transition hover:border-pelagic-accent/40 hover:bg-white hover:shadow-sm"
                 >
                   <div className="flex items-start gap-3">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pelagic-gold/90 text-sm font-bold text-white shadow-sm">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pelagic-accent/90 text-sm font-bold text-white shadow-sm">
                       {hub.id === "india" ? "IN" : "AE"}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -190,7 +190,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
                   <button
                     type="button"
                     onClick={() => setExpandedHub(null)}
-                    className="text-xs font-semibold uppercase tracking-wider text-pelagic-accent hover:text-pelagic-gold"
+                    className="text-xs font-semibold uppercase tracking-wider text-pelagic-accent hover:text-pelagic-accent"
                   >
                     ← Back to regions
                   </button>
@@ -207,12 +207,12 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
                       onClick={() => onSelectOffice(index)}
                       className={`w-full rounded-2xl border p-5 text-left transition ${
                         isSelected
-                          ? "border-pelagic-gold/70 bg-white shadow-[0_8px_24px_rgba(201,148,26,0.12)] ring-2 ring-pelagic-gold/20"
-                          : "border-pelagic-mist/80 bg-white/70 hover:border-pelagic-gold/40 hover:bg-white hover:shadow-sm"
+                          ? "border-pelagic-accent/70 bg-white shadow-[0_8px_24px_rgba(38,106,174,0.12)] ring-2 ring-pelagic-accent/20"
+                          : "border-pelagic-mist/80 bg-white/70 hover:border-pelagic-accent/40 hover:bg-white hover:shadow-sm"
                       }`}
                     >
                       <div className="flex items-start gap-3">
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pelagic-gold/90 text-sm font-bold text-white shadow-sm">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pelagic-accent/90 text-sm font-bold text-white shadow-sm">
                           {office.label[0]}
                         </span>
                         <div className="min-w-0 flex-1">
@@ -233,7 +233,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
                             <a
                               href={`tel:${office.phone.replace(/\s/g, "")}`}
                               onClick={(e) => e.stopPropagation()}
-                              className="hover:text-pelagic-gold hover:underline"
+                              className="hover:text-pelagic-accent hover:underline"
                             >
                               {office.phone}
                             </a>
@@ -271,7 +271,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
                   : activeOffice.label}
               </p>
               <p className="text-pelagic-steel">
-                Local time: <span className="font-semibold text-pelagic-gold">{localTime}</span>
+                Local time: <span className="font-semibold text-pelagic-accent">{localTime}</span>
               </p>
             </div>
             <OfficeMap key={activeOffice.id} office={activeOffice} tall />
@@ -279,7 +279,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
               href={getGoogleMapsSearchUrl(activeOffice)}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex text-sm font-bold text-pelagic-accent hover:text-pelagic-gold hover:underline"
+              className="mt-3 inline-flex text-sm font-bold text-pelagic-accent hover:text-pelagic-accent hover:underline"
             >
               Open in Google Maps →
             </a>

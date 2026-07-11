@@ -50,6 +50,7 @@ type ContactEnquiryContextValue = {
   reference: string | null;
   submissionSummary: SubmissionSummary | null;
   confirmationEmailSent: boolean;
+  confirmationEmailError: string | null;
   loading: boolean;
   error: string | null;
   handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
@@ -69,6 +70,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
   const [reference, setReference] = useState<string | null>(null);
   const [submissionSummary, setSubmissionSummary] = useState<SubmissionSummary | null>(null);
   const [confirmationEmailSent, setConfirmationEmailSent] = useState(false);
+  const [confirmationEmailError, setConfirmationEmailError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [service, setService] = useState(serviceCategories[0]?.title ?? "");
@@ -185,6 +187,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
         resetDraft();
         setReference(result.data?.reference ?? null);
         setConfirmationEmailSent(Boolean(result.data?.confirmationEmailSent));
+        setConfirmationEmailError(result.data?.confirmationEmailError ?? null);
         setSubmitted(true);
       } else {
         setError(result.error ?? "Something went wrong. Please try again.");
@@ -198,6 +201,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
     setReference(null);
     setSubmissionSummary(null);
     setConfirmationEmailSent(false);
+    setConfirmationEmailError(null);
     resetDraft();
   }, [resetDraft]);
 
@@ -222,6 +226,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       reference,
       submissionSummary,
       confirmationEmailSent,
+      confirmationEmailError,
       loading,
       error,
       handleSubmit,
@@ -242,6 +247,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       reference,
       submissionSummary,
       confirmationEmailSent,
+      confirmationEmailError,
       loading,
       error,
       handleSubmit,

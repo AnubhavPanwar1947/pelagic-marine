@@ -156,7 +156,7 @@ export const contactHeroShades: {
   },
 ];
 
-export const defaultContactHeroShade: ContactHeroShadeId = "teal-gold-mellow";
+export const defaultContactHeroShade: ContactHeroShadeId = "blue-midnight";
 
 const themedShadeIds = new Set<ContactHeroShadeId>(
   contactHeroShades.filter((s) => s.group === "blue" || s.group === "teal-gold").map((s) => s.id)
@@ -187,18 +187,18 @@ export function previewBodyClass(id: ContactHeroShadeId) {
     case "blue-midnight":
       return "bg-gradient-to-b from-slate-100 to-blue-50/80";
     case "teal-gold-dawn":
-      return "bg-gradient-to-br from-amber-50 via-teal-50/80 to-slate-50";
+      return "bg-gradient-to-br from-pelagic-sky via-pelagic-mist/80 to-white";
     case "teal-gold-harbour":
-      return "bg-gradient-to-br from-teal-50 via-slate-50 to-cyan-50/60";
+      return "bg-gradient-to-br from-pelagic-mist via-white to-pelagic-sky/60";
     case "teal-gold-sunset":
-      return "bg-gradient-to-br from-amber-50/90 via-orange-50/40 to-teal-50/50";
+      return "bg-gradient-to-br from-pelagic-sky/90 via-pelagic-mist/40 to-white";
     case "teal-gold-premium":
-      return "bg-gradient-to-br from-teal-50 via-amber-50/50 to-slate-50";
+      return "bg-gradient-to-br from-pelagic-mist via-pelagic-sky/50 to-white";
     case "teal-gold-mellow":
     case "teal-gold-soft":
-      return "bg-gradient-to-br from-pelagic-cream to-teal-50/30";
+      return "bg-gradient-to-br from-pelagic-cream to-pelagic-sky/30";
     case "sunset-warm":
-      return "bg-amber-50/80";
+      return "bg-pelagic-sky/80";
     case "deep-navy":
       return "bg-slate-100";
     default:

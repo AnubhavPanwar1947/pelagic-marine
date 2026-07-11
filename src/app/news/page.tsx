@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
+import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { newsItems } from "@/lib/site-data";
@@ -28,11 +29,12 @@ export default function NewsPage() {
         description="Company updates, project highlights, and industry insights."
         imageSrc={siteImages.pageHeroes.news}
       />
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <SectionMaritime variant="mist" className="py-20" gridOpacity={48}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="space-y-6">
           {newsItems.map((item, i) => (
             <Reveal key={item.slug} delay={i * 60}>
-              <article className="card-premium overflow-hidden rounded-3xl border border-pelagic-sand bg-white shadow-sm">
+              <article className="card-premium card-maritime overflow-hidden rounded-3xl border shadow-sm">
                 <div className="grid md:grid-cols-[280px_1fr]">
                   <div className="relative min-h-[180px] md:min-h-0">
                     <SiteImage
@@ -46,7 +48,7 @@ export default function NewsPage() {
                   </div>
                   <div className="p-8">
                 <div className="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider">
-                  <span className="text-pelagic-gold">{item.category}</span>
+                  <span className="text-pelagic-accent">{item.category}</span>
                   <span className="text-pelagic-slate">{formatDate(item.date)}</span>
                 </div>
                 <h2 className="font-display mt-3 text-xl font-semibold text-pelagic-ink">
@@ -63,12 +65,13 @@ export default function NewsPage() {
         </div>
         <Reveal className="mt-10 text-center text-sm text-pelagic-slate">
           More articles coming soon.{" "}
-          <Link href="/contact" className="font-semibold text-pelagic-gold hover:underline">
+          <Link href="/contact" className="font-semibold text-pelagic-accent hover:underline">
             Contact us
           </Link>{" "}
           for press enquiries.
         </Reveal>
-      </section>
+        </div>
+      </SectionMaritime>
     </div>
   );
 }

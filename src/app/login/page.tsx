@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SectionMaritime } from "@/components/ui/SectionMaritime";
 
 export const metadata: Metadata = {
   title: "Client Login",
@@ -8,8 +9,12 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-[75vh] items-center justify-center bg-pelagic-cream px-4 py-16">
-      <div className="w-full max-w-md rounded-3xl border border-pelagic-sand bg-white p-10 shadow-xl">
+    <SectionMaritime
+      as="div"
+      className="flex min-h-[75vh] items-center justify-center px-4 py-16"
+      gridOpacity={45}
+    >
+      <div className="card-maritime w-full max-w-md rounded-3xl border p-10 shadow-xl">
         <h1 className="font-display text-center text-2xl font-semibold text-pelagic-ink">
           Client Login
         </h1>
@@ -21,13 +26,13 @@ export default function LoginPage() {
           <input
             disabled
             placeholder="Work email"
-            className="w-full rounded-xl border border-pelagic-sand bg-pelagic-cream px-4 py-3 text-sm text-pelagic-slate"
+            className="w-full rounded-xl border border-pelagic-sand bg-white/90 px-4 py-3 text-sm text-pelagic-slate"
           />
           <input
             disabled
             type="password"
             placeholder="Password"
-            className="w-full rounded-xl border border-pelagic-sand bg-pelagic-cream px-4 py-3 text-sm text-pelagic-slate"
+            className="w-full rounded-xl border border-pelagic-sand bg-white/90 px-4 py-3 text-sm text-pelagic-slate"
           />
           <button
             type="button"
@@ -40,11 +45,11 @@ export default function LoginPage() {
 
         <Link
           href="/"
-          className="mt-6 block text-center text-sm font-semibold text-pelagic-gold"
+          className="mt-6 block text-center text-sm font-semibold text-pelagic-accent"
         >
           ← Back to home
         </Link>
       </div>
-    </div>
+    </SectionMaritime>
   );
 }

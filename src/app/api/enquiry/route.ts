@@ -72,6 +72,7 @@ export async function POST(request: Request) {
       ...result.data,
       reference,
       confirmationEmailSent: emailResult.confirmationSent,
+      confirmationEmailError: emailResult.confirmationError,
     },
   });
 }

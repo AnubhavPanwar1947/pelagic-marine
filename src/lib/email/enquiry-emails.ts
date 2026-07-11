@@ -3,16 +3,19 @@ import { company, contactPage } from "@/lib/site-data";
 import {
   getEnquiryNotifyEmail,
   isEmailConfigured,
+  isResendSandboxFrom,
+  isValidRecipientEmail,
   sendResendEmail,
 } from "@/lib/email/resend";
 
 const BRAND = {
-  gold: "#c9941a",
-  teal: "#0f766e",
-  ink: "#1a1614",
-  steel: "#5c534c",
-  sand: "#e8dfd2",
-  cream: "#fdfbf7",
+  accent: "#266aae",
+  navy: "#14306e",
+  blue: "#4b9fd9",
+  ink: "#14306e",
+  steel: "#4a5f7a",
+  sand: "#d4e5f5",
+  cream: "#ffffff",
 };
 
 function getSiteUrl() {
@@ -86,16 +89,16 @@ function buildEmailShell(params: {
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:${BRAND.cream};font-family:Georgia,'Times New Roman',serif;">
   <div style="max-width:600px;margin:0 auto;padding:24px 16px 40px;">
-    <div style="height:4px;border-radius:4px;background:linear-gradient(90deg,${BRAND.teal},${BRAND.gold});margin-bottom:24px;"></div>
-    <p style="margin:0 0 6px;font-size:11px;font-weight:bold;letter-spacing:0.18em;text-transform:uppercase;color:${BRAND.gold};">${escapeHtml(params.eyebrow)}</p>
+    <div style="height:4px;border-radius:4px;background:linear-gradient(90deg,${BRAND.navy},${BRAND.blue});margin-bottom:24px;"></div>
+    <p style="margin:0 0 6px;font-size:11px;font-weight:bold;letter-spacing:0.18em;text-transform:uppercase;color:${BRAND.accent};">${escapeHtml(params.eyebrow)}</p>
     <h1 style="margin:0 0 20px;font-size:22px;line-height:1.3;color:${BRAND.ink};">${escapeHtml(params.title)}</h1>
     ${params.bodyHtml}
     <div style="margin-top:28px;padding-top:20px;border-top:1px solid ${BRAND.sand};">
       <p style="margin:0 0 6px;font-size:13px;color:${BRAND.ink};font-weight:bold;">${escapeHtml(company.legalName)}</p>
       <p style="margin:0;font-size:12px;line-height:1.7;color:${BRAND.steel};">
-        <a href="mailto:${escapeHtml(company.emails.info)}" style="color:${BRAND.teal};text-decoration:none;">${escapeHtml(company.emails.info)}</a>
+        <a href="mailto:${escapeHtml(company.emails.info)}" style="color:${BRAND.blue};text-decoration:none;">${escapeHtml(company.emails.info)}</a>
         &nbsp;·&nbsp;
-        <a href="${escapeHtml(siteUrl)}/contact" style="color:${BRAND.teal};text-decoration:none;">Contact page</a>
+        <a href="${escapeHtml(siteUrl)}/contact" style="color:${BRAND.blue};text-decoration:none;">Contact page</a>
       </p>
       ${params.footerNote ? `<p style="margin:10px 0 0;font-size:11px;color:${BRAND.steel};">${escapeHtml(params.footerNote)}</p>` : ""}
     </div>
@@ -113,7 +116,7 @@ function buildNextStepsHtml() {
     .join("");
 
   return `<div style="margin:20px 0 0;padding:16px 18px;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;">
-    <p style="margin:0 0 10px;font-size:11px;font-weight:bold;letter-spacing:0.12em;text-transform:uppercase;color:${BRAND.gold};">What happens next</p>
+    <p style="margin:0 0 10px;font-size:11px;font-weight:bold;letter-spacing:0.12em;text-transform:uppercase;color:${BRAND.accent};">What happens next</p>
     <ol style="margin:0;padding-left:18px;">${items}</ol>
   </div>`;
 }
@@ -151,13 +154,13 @@ function buildTeamEmailHtml(params: {
     <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#3d3835;">A new website enquiry has been submitted. Review scope below and reply to the client.</p>
     <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;overflow:hidden;">${buildSummaryTableHtml(rows)}</table>
     <div style="margin-top:16px;padding:16px;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;">
-      <p style="margin:0 0 8px;font-size:11px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:${BRAND.gold};">Scope &amp; details</p>
+      <p style="margin:0 0 8px;font-size:11px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:${BRAND.accent};">Scope &amp; details</p>
       <p style="margin:0;font-size:14px;line-height:1.6;color:${BRAND.ink};">${messageHtml}</p>
     </div>
     <div style="margin-top:20px;text-align:center;">
-      <a href="${replyHref}" style="display:inline-block;padding:12px 22px;background:${BRAND.teal};color:#fff;font-size:14px;font-weight:bold;text-decoration:none;border-radius:6px;">Reply to ${escapeHtml(input.name)}</a>
+      <a href="${replyHref}" style="display:inline-block;padding:12px 22px;background:${BRAND.navy};color:#fff;font-size:14px;font-weight:bold;text-decoration:none;border-radius:6px;">Reply to ${escapeHtml(input.name)}</a>
     </div>
-    <p style="margin:16px 0 0;font-size:13px;color:${BRAND.steel};text-align:center;">Client email: <a href="mailto:${escapeHtml(input.email)}" style="color:${BRAND.teal};">${escapeHtml(input.email)}</a></p>`;
+    <p style="margin:16px 0 0;font-size:13px;color:${BRAND.steel};text-align:center;">Client email: <a href="mailto:${escapeHtml(input.email)}" style="color:${BRAND.blue};">${escapeHtml(input.email)}</a></p>`;
 
   return buildEmailShell({
     eyebrow: urgent ? "Urgent website enquiry" : "New website enquiry",
@@ -183,7 +186,7 @@ function buildConfirmationEmailHtml(params: {
     </p>
     <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid ${BRAND.sand};border-radius:8px;overflow:hidden;">
       <tr>
-        <td colspan="2" style="padding:10px 14px;background:#f8faf9;font-size:11px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:${BRAND.gold};">Your enquiry summary</td>
+        <td colspan="2" style="padding:10px 14px;background:#f8faf9;font-size:11px;font-weight:bold;letter-spacing:0.1em;text-transform:uppercase;color:${BRAND.accent};">Your enquiry summary</td>
       </tr>
       ${buildSummaryTableHtml(rows)}
     </table>
@@ -209,6 +212,7 @@ export type EnquiryEmailResult = {
   configured: boolean;
   teamSent: boolean;
   confirmationSent: boolean;
+  confirmationError?: string;
   errors: string[];
 };
 
@@ -230,6 +234,13 @@ export async function sendEnquiryEmails(params: {
   }
 
   const { reference, input, createdAt } = params;
+  const recipientEmail = input.email.trim();
+
+  if (!isValidRecipientEmail(recipientEmail)) {
+    result.confirmationError = "Invalid email address for confirmation.";
+    result.errors.push(result.confirmationError);
+  }
+
   const urgent = isUrgent(input.urgency);
   const notifyTo = getEnquiryNotifyEmail();
 
@@ -246,23 +257,8 @@ export async function sendEnquiryEmails(params: {
     "Scope & details:",
     input.message,
     "",
-    `Reply to: ${input.email}`,
+    `Reply to: ${recipientEmail}`,
   ].join("\n");
-
-  const teamResult = await sendResendEmail({
-    to: notifyTo,
-    subject: teamSubject,
-    html: buildTeamEmailHtml({ reference, input, createdAt }),
-    text: teamText,
-    replyTo: input.email,
-  });
-
-  if (teamResult.ok) {
-    result.teamSent = true;
-  } else if (!teamResult.skipped) {
-    result.errors.push(`Team notification: ${teamResult.error}`);
-    console.error("[enquiry-email] team notification failed:", teamResult.error);
-  }
 
   const firstName = input.name.trim().split(/\s+/)[0] || "there";
   const confirmationText = [
@@ -293,19 +289,42 @@ export async function sendEnquiryEmails(params: {
     .filter((line) => line !== null)
     .join("\n");
 
-  const confirmationResult = await sendResendEmail({
-    to: input.email,
-    subject: `Pelagic Marine — enquiry confirmed (${reference})`,
-    html: buildConfirmationEmailHtml({ reference, input }),
-    text: confirmationText,
-    replyTo: company.emails.info,
-  });
+  const [teamResult, confirmationResult] = await Promise.all([
+    sendResendEmail({
+      to: notifyTo,
+      subject: teamSubject,
+      html: buildTeamEmailHtml({ reference, input, createdAt }),
+      text: teamText,
+      replyTo: recipientEmail,
+    }),
+    isValidRecipientEmail(recipientEmail)
+      ? sendResendEmail({
+          to: recipientEmail,
+          subject: `Pelagic Marine — enquiry confirmed (${reference})`,
+          html: buildConfirmationEmailHtml({ reference, input }),
+          text: confirmationText,
+          replyTo: company.emails.info,
+        })
+      : Promise.resolve({ ok: false as const, error: "Invalid recipient email" }),
+  ]);
+
+  if (teamResult.ok) {
+    result.teamSent = true;
+  } else if (!teamResult.skipped) {
+    result.errors.push(`Team notification: ${teamResult.error}`);
+    console.error("[enquiry-email] team notification failed:", teamResult.error);
+  }
 
   if (confirmationResult.ok) {
     result.confirmationSent = true;
-  } else if (!confirmationResult.skipped) {
-    result.errors.push(`Confirmation: ${confirmationResult.error}`);
-    console.error("[enquiry-email] confirmation failed:", confirmationResult.error);
+  } else if (!("skipped" in confirmationResult && confirmationResult.skipped)) {
+    const message = confirmationResult.error;
+    result.confirmationError = message;
+    result.errors.push(`Confirmation: ${message}`);
+    console.error("[enquiry-email] confirmation failed:", message, {
+      to: recipientEmail,
+      sandboxFrom: isResendSandboxFrom(),
+    });
   }
 
   return result;

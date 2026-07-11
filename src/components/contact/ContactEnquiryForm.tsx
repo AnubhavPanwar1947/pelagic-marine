@@ -5,10 +5,10 @@ import { ContactPanelShell } from "@/components/contact/ContactPanelShell";
 import { company, contactPage, serviceCategories } from "@/lib/site-data";
 
 const fieldClass =
-  "mt-1.5 w-full rounded-lg border border-pelagic-warm bg-white px-4 py-3 text-sm text-pelagic-charcoal outline-none transition focus:border-pelagic-gold focus:ring-2 focus:ring-pelagic-gold/15";
+  "mt-1.5 w-full rounded-lg border border-pelagic-warm bg-white px-4 py-3 text-sm text-pelagic-ink placeholder:text-pelagic-slate outline-none transition focus:border-pelagic-accent focus:ring-2 focus:ring-pelagic-accent/15";
 
 function fieldHighlight(active: boolean) {
-  return active ? "border-pelagic-gold ring-2 ring-pelagic-gold/25" : "";
+  return active ? "border-pelagic-accent ring-2 ring-pelagic-accent/25" : "";
 }
 
 export function ContactEnquiryForm() {
@@ -30,6 +30,7 @@ export function ContactEnquiryForm() {
     reference,
     submissionSummary,
     confirmationEmailSent,
+    confirmationEmailError,
     loading,
     error,
     handleSubmit,
@@ -55,18 +56,29 @@ export function ContactEnquiryForm() {
           </div>
           <p className="font-display mt-5 text-2xl font-semibold text-pelagic-ink">Enquiry received</p>
           {reference && (
-            <p className="mt-2 text-sm font-semibold text-pelagic-gold">
+            <p className="mt-2 text-sm font-semibold text-pelagic-accent">
               Reference: <span className="font-mono tracking-wide">{reference}</span>
             </p>
           )}
           <p className="mt-3 text-sm leading-7 text-pelagic-steel">
-            {confirmationEmailSent ? "A confirmation email with your enquiry summary has been sent. " : null}
+            {confirmationEmailSent ? (
+              <>A confirmation email with your enquiry summary has been sent to {submissionSummary?.email}. </>
+            ) : confirmationEmailError ? (
+              <>
+                We received your enquiry, but the confirmation email could not be delivered. Please save your
+                reference above or contact us at{" "}
+                <a href={`mailto:${company.emails.info}`} className="font-semibold text-pelagic-accent hover:underline">
+                  {company.emails.info}
+                </a>
+                .{" "}
+              </>
+            ) : null}
             {contactPage.sla.standard}. {contactPage.sla.avgLabel}: {contactPage.sla.avgValue}.
           </p>
 
           {submissionSummary && (
             <div className="mt-5 rounded-xl border border-pelagic-sand bg-pelagic-cream/60 p-4 text-left text-sm">
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-pelagic-gold">
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-pelagic-accent">
                 Your enquiry summary
               </p>
               <dl className="mt-3 space-y-2 text-pelagic-charcoal">
@@ -107,7 +119,7 @@ export function ContactEnquiryForm() {
           )}
 
           <div className="mt-5 rounded-xl border border-pelagic-sand bg-white p-4 text-left">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-pelagic-gold">What happens next</p>
+            <p className="text-xs font-bold uppercase tracking-[0.12em] text-pelagic-accent">What happens next</p>
             <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-7 text-pelagic-steel">
               {contactPage.expectations.map((step) => (
                 <li key={step}>{step}</li>
@@ -116,7 +128,7 @@ export function ContactEnquiryForm() {
           </div>
 
           {isUrgent && (
-            <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-7 text-amber-950">
+            <p className="mt-4 rounded-lg border border-pelagic-sand bg-pelagic-sky/50 px-4 py-3 text-sm leading-7 text-pelagic-navy">
               Time-critical matter: call India or UAE now — do not rely on email alone for casualty or
               vessel-alongside attendance.
             </p>
@@ -125,13 +137,13 @@ export function ContactEnquiryForm() {
           <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             <a
               href={`tel:${company.phones.india.replace(/\s/g, "")}`}
-              className="inline-flex items-center justify-center rounded-lg bg-pelagic-gold px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-pelagic-gold-light"
+              className="inline-flex items-center justify-center rounded-lg bg-pelagic-accent px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-pelagic-light"
             >
               Call India {company.phones.india}
             </a>
             <a
               href={`tel:${company.phones.uae.replace(/\s/g, "")}`}
-              className="inline-flex items-center justify-center rounded-lg border border-pelagic-sand bg-white px-4 py-2.5 text-sm font-semibold text-pelagic-charcoal transition hover:border-pelagic-gold"
+              className="inline-flex items-center justify-center rounded-lg border border-pelagic-sand bg-white px-4 py-2.5 text-sm font-semibold text-pelagic-charcoal transition hover:border-pelagic-accent"
             >
               Call UAE {company.phones.uae}
             </a>
@@ -163,15 +175,15 @@ export function ContactEnquiryForm() {
             />
 
             <div
-              className={`rounded-xl border border-pelagic-gold/20 bg-pelagic-cream/40 p-4 transition ${
-                highlightFields ? "ring-2 ring-pelagic-gold/20" : ""
+              className={`rounded-xl border border-pelagic-accent/20 bg-pelagic-cream/40 p-4 transition ${
+                highlightFields ? "ring-2 ring-pelagic-accent/20" : ""
               }`}
             >
-              <p className="text-xs font-bold uppercase tracking-wider text-pelagic-gold">Operational details</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-pelagic-accent">Operational details</p>
               <div className="mt-3 grid gap-4 sm:grid-cols-2">
                 <div className="sm:col-span-2">
-                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="subject">
-                    Enquiry subject <span className="text-pelagic-gold">*</span>
+                  <label className="text-sm font-semibold text-pelagic-ink" htmlFor="subject">
+                    Enquiry subject <span className="text-pelagic-accent">*</span>
                   </label>
                   <select
                     id="subject"
@@ -189,7 +201,7 @@ export function ContactEnquiryForm() {
                   </select>
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="preferredOffice">
+                  <label className="text-sm font-semibold text-pelagic-ink" htmlFor="preferredOffice">
                     Preferred office
                   </label>
                   <select
@@ -207,8 +219,8 @@ export function ContactEnquiryForm() {
                   </select>
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="vessel">
-                    Vessel / project <span className="text-pelagic-gold">*</span>
+                  <label className="text-sm font-semibold text-pelagic-ink" htmlFor="vessel">
+                    Vessel / project <span className="text-pelagic-accent">*</span>
                   </label>
                   <input
                     id="vessel"
@@ -219,7 +231,7 @@ export function ContactEnquiryForm() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="imo">
+                  <label className="text-sm font-semibold text-pelagic-ink" htmlFor="imo">
                     IMO number
                   </label>
                   <input
@@ -231,8 +243,8 @@ export function ContactEnquiryForm() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="port">
-                    Port / location <span className="text-pelagic-gold">*</span>
+                  <label className="text-sm font-semibold text-pelagic-ink" htmlFor="port">
+                    Port / location <span className="text-pelagic-accent">*</span>
                   </label>
                   <input
                     id="port"
@@ -245,8 +257,8 @@ export function ContactEnquiryForm() {
               </div>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="service">
-                    Service required <span className="text-pelagic-gold">*</span>
+                  <label className="text-sm font-semibold text-pelagic-ink" htmlFor="service">
+                    Service required <span className="text-pelagic-accent">*</span>
                   </label>
                   <select
                     id="service"
@@ -264,8 +276,8 @@ export function ContactEnquiryForm() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="urgency">
-                    Urgency <span className="text-pelagic-gold">*</span>
+                  <label className="text-sm font-semibold text-pelagic-ink" htmlFor="urgency">
+                    Urgency <span className="text-pelagic-accent">*</span>
                   </label>
                   <select
                     id="urgency"
@@ -287,13 +299,13 @@ export function ContactEnquiryForm() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="name">
-                  Full name <span className="text-pelagic-gold">*</span>
+                <label className="text-sm font-semibold text-pelagic-ink" htmlFor="name">
+                  Full name <span className="text-pelagic-accent">*</span>
                 </label>
                 <input id="name" name="name" required className={fieldClass} placeholder="Your name" />
               </div>
               <div>
-                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="company">
+                <label className="text-sm font-semibold text-pelagic-ink" htmlFor="company">
                   Company
                 </label>
                 <input id="company" name="company" className={fieldClass} placeholder="Ship owner / manager" />
@@ -302,8 +314,8 @@ export function ContactEnquiryForm() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="email">
-                  Work email <span className="text-pelagic-gold">*</span>
+                <label className="text-sm font-semibold text-pelagic-ink" htmlFor="email">
+                  Work email <span className="text-pelagic-accent">*</span>
                 </label>
                 <input
                   id="email"
@@ -315,7 +327,7 @@ export function ContactEnquiryForm() {
                 />
               </div>
               <div>
-                <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="phone">
+                <label className="text-sm font-semibold text-pelagic-ink" htmlFor="phone">
                   Phone
                 </label>
                 <input
@@ -329,8 +341,8 @@ export function ContactEnquiryForm() {
             </div>
 
             <div>
-              <label className="text-sm font-semibold text-pelagic-charcoal" htmlFor="message">
-                Scope & details <span className="text-pelagic-gold">*</span>
+              <label className="text-sm font-semibold text-pelagic-ink" htmlFor="message">
+                Scope & details <span className="text-pelagic-accent">*</span>
               </label>
               <textarea
                 id="message"
@@ -348,24 +360,24 @@ export function ContactEnquiryForm() {
               <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-red-100">{error}</p>
             )}
 
-            <label className="flex items-start gap-3 rounded-xl border border-pelagic-mist bg-pelagic-cream/30 px-4 py-3 text-sm text-pelagic-charcoal">
+            <label className="flex items-start gap-3 rounded-xl border border-pelagic-mist bg-pelagic-cream/30 px-4 py-3 text-sm text-pelagic-body">
               <input
                 type="checkbox"
                 name="privacy"
                 checked={privacyAccepted}
                 onChange={(e) => setPrivacyAccepted(e.target.checked)}
-                className="mt-1 h-4 w-4 rounded border-pelagic-warm text-pelagic-gold focus:ring-pelagic-gold/20"
+                className="mt-1 h-4 w-4 rounded border-pelagic-warm text-pelagic-accent focus:ring-pelagic-accent/20"
                 required
               />
               <span>
-                {contactPage.form.privacyConsent} <span className="text-pelagic-gold">*</span>
+                {contactPage.form.privacyConsent} <span className="text-pelagic-accent">*</span>
               </span>
             </label>
 
             <button
               type="submit"
               disabled={loading || !privacyAccepted}
-              className="hidden w-full rounded-lg bg-pelagic-gold px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-pelagic-gold-light disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex md:justify-center"
+              className="hidden w-full rounded-lg bg-pelagic-accent px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-pelagic-light disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex md:justify-center"
             >
               {loading ? "Submitting..." : "Submit enquiry"}
             </button>
@@ -382,7 +394,7 @@ export function ContactEnquiryForm() {
           type="button"
           disabled={loading || !privacyAccepted}
           onClick={() => formRef.current?.requestSubmit()}
-          className="w-full rounded-lg bg-pelagic-gold px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-pelagic-gold-light disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full rounded-lg bg-pelagic-accent px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-pelagic-light disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? "Submitting..." : "Submit enquiry"}
         </button>

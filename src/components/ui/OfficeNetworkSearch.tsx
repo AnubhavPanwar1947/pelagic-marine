@@ -42,7 +42,7 @@ export function OfficeNetworkSearch({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search city, country, or address…"
-        className="w-full rounded-2xl border border-pelagic-mist bg-white px-5 py-4 text-sm outline-none transition focus:border-pelagic-gold focus:ring-2 focus:ring-pelagic-gold/20"
+        className="w-full rounded-2xl border border-pelagic-mist bg-white px-5 py-4 text-sm outline-none transition focus:border-pelagic-accent focus:ring-2 focus:ring-pelagic-accent/20"
       />
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -60,8 +60,8 @@ export function OfficeNetworkSearch({
                 onClick={() => onSelectOffice(index)}
                 className={`rounded-2xl border p-5 text-left transition ${
                   isSelected
-                    ? "border-pelagic-gold bg-pelagic-sand/60 shadow-md ring-2 ring-pelagic-gold/30"
-                    : "border-pelagic-mist bg-white hover:border-pelagic-gold/50"
+                    ? "border-pelagic-accent bg-pelagic-sand/60 shadow-md ring-2 ring-pelagic-accent/30"
+                    : "border-pelagic-mist bg-white hover:border-pelagic-accent/50"
                 }`}
               >
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-pelagic-charcoal text-sm font-bold text-white">

@@ -11,13 +11,13 @@ type ButtonProps = {
 
 const variants = {
   primary:
-    "bg-pelagic-gold text-white shadow-lg shadow-pelagic-gold/30 hover:bg-pelagic-gold-light",
+    "bg-pelagic-accent text-white shadow-lg shadow-pelagic-accent/30 hover:bg-pelagic-blue",
   secondary:
-    "bg-pelagic-ink text-white shadow-md hover:bg-pelagic-charcoal",
+    "bg-pelagic-navy text-white shadow-md hover:bg-pelagic-charcoal",
   outline:
-    "border-2 border-pelagic-charcoal/20 bg-white text-pelagic-ink hover:border-pelagic-gold hover:text-pelagic-gold",
+    "border-2 border-pelagic-accent/30 bg-white text-pelagic-navy hover:border-pelagic-accent hover:text-pelagic-accent",
   light:
-    "border-2 border-white bg-white text-pelagic-ink shadow-lg hover:bg-pelagic-gold hover:border-pelagic-gold hover:text-white",
+    "border-2 border-white bg-white text-pelagic-navy shadow-lg hover:bg-pelagic-accent hover:border-pelagic-accent hover:text-white",
 };
 
 export function Button({
@@ -27,7 +27,7 @@ export function Button({
   external,
   className = "",
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold tracking-wide transition-all duration-300 ${variants[variant]} ${className}`;
+  const classes = `inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold tracking-normal transition-all duration-300 ${variants[variant]} ${className}`;
 
   if (external) {
     return (

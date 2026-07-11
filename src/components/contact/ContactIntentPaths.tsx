@@ -32,7 +32,7 @@ export function ContactIntentPaths() {
         const icon = iconMap[path.icon as keyof typeof iconMap];
         const isForm = "target" in path && path.target === "enquiry-form";
         const className =
-          "group flex flex-col rounded-xl border border-pelagic-sand/80 bg-white/90 p-3 shadow-sm transition hover:border-pelagic-gold/50 hover:shadow-md";
+          "group card-maritime flex flex-col rounded-xl border p-3 shadow-sm transition hover:border-pelagic-accent/50 hover:shadow-md";
 
         const content = (
           <>
@@ -44,12 +44,12 @@ export function ContactIntentPaths() {
                 <p className="font-display text-xs font-semibold leading-snug text-pelagic-ink sm:text-sm">
                   {path.title}
                 </p>
-                <p className="mt-0.5 hidden text-[11px] leading-4 text-pelagic-steel sm:block">
+                <p className="type-caption mt-0.5 leading-snug">
                   {path.description}
                 </p>
               </div>
             </div>
-            <span className="mt-2 inline-flex text-[10px] font-bold uppercase tracking-wide text-pelagic-gold">
+            <span className="type-muted mt-2 inline-flex font-bold uppercase tracking-wide text-pelagic-accent">
               {path.cta} →
             </span>
           </>

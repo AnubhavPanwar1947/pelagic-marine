@@ -1,28 +1,29 @@
 @import "tailwindcss";
 
-/* Pelagic — vanilla sky, warm sunset, soft water tones */
+/* Pelagic Marine — logo palette: navy #14306E, accent #266AAE, light #4B9FD9, sky #E8F4FC */
 :root {
-  --background: #fdfbf7;
-  --foreground: #1a1614;
-  --pelagic-ink: #1a1614;
-  --pelagic-deep: #2c2420;
-  --pelagic-charcoal: #3d3530;
-  --pelagic-steel: #5c534c;
-  --pelagic-slate: #7a716a;
-  --pelagic-cream: #fdfbf7;
-  --pelagic-sand: #f3ece2;
-  --pelagic-warm: #e8dfd2;
-  --pelagic-gold: #c9941a;
-  --pelagic-gold-light: #e0b04a;
-  --pelagic-accent: #0f766e;
-  --pelagic-sky: #e8f2fa;
-  --pelagic-sunset: #f5e6d3;
-  --pelagic-water: #a8d4e6;
+  --background: #ffffff;
+  --foreground: #2d3f52;
+  --pelagic-ink: #0c2340;
+  --pelagic-deep: #0c2340;
+  --pelagic-charcoal: #1a3577;
+  --pelagic-body: #243848;
+  --pelagic-steel: #364b5e;
+  --pelagic-slate: #4a5f72;
+  --pelagic-muted: #5c7082;
+  --pelagic-cream: #ffffff;
+  --pelagic-sand: #d4e5f5;
+  --pelagic-warm: #c5daf0;
+  --pelagic-accent: #266aae;
+  --pelagic-accent-light: #4b9fd9;
+  --pelagic-sky: #e8f4fc;
+  --pelagic-sunset: #f0f7fc;
+  --pelagic-water: #7ec8ff;
 
-  --pelagic-navy: #2c2420;
-  --pelagic-blue: #3d3530;
-  --pelagic-light: #5c534c;
-  --pelagic-mist: #f3ece2;
+  --pelagic-navy: #14306e;
+  --pelagic-blue: #1a3577;
+  --pelagic-light: #4b9fd9;
+  --pelagic-mist: #e8f4fc;
 }
 
 @theme inline {
@@ -31,14 +32,15 @@
   --color-pelagic-ink: var(--pelagic-ink);
   --color-pelagic-deep: var(--pelagic-deep);
   --color-pelagic-charcoal: var(--pelagic-charcoal);
+  --color-pelagic-body: var(--pelagic-body);
   --color-pelagic-steel: var(--pelagic-steel);
   --color-pelagic-slate: var(--pelagic-slate);
+  --color-pelagic-muted: var(--pelagic-muted);
   --color-pelagic-cream: var(--pelagic-cream);
   --color-pelagic-sand: var(--pelagic-sand);
   --color-pelagic-warm: var(--pelagic-warm);
-  --color-pelagic-gold: var(--pelagic-gold);
-  --color-pelagic-gold-light: var(--pelagic-gold-light);
   --color-pelagic-accent: var(--pelagic-accent);
+  --color-pelagic-accent-light: var(--pelagic-accent-light);
   --color-pelagic-sky: var(--pelagic-sky);
   --color-pelagic-sunset: var(--pelagic-sunset);
   --color-pelagic-water: var(--pelagic-water);
@@ -46,30 +48,27 @@
   --color-pelagic-blue: var(--pelagic-blue);
   --color-pelagic-light: var(--pelagic-light);
   --color-pelagic-mist: var(--pelagic-mist);
-  --font-sans: var(--font-dm-sans);
-  --font-display: var(--font-playfair);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-cormorant);
 }
 
 body {
-  background-color: var(--pelagic-cream);
+  background-color: #fafcfe;
   background-image:
-    radial-gradient(rgba(168, 212, 230, 0.22) 1px, transparent 1px),
-    linear-gradient(rgba(201, 148, 26, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201, 148, 26, 0.045) 1px, transparent 1px),
-    linear-gradient(
-      180deg,
-      rgba(232, 242, 250, 0.35) 0%,
-      transparent 35%,
-      rgba(245, 230, 211, 0.2) 100%
-    );
-  background-size:
-    28px 28px,
-    52px 52px,
-    52px 52px,
-    100% 100%;
+    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(232, 244, 252, 0.95), transparent 55%),
+    radial-gradient(ellipse 65% 45% at 0% 100%, rgba(212, 229, 245, 0.35), transparent 50%),
+    radial-gradient(ellipse 45% 35% at 100% 55%, rgba(126, 200, 255, 0.08), transparent 45%),
+    radial-gradient(rgba(38, 106, 174, 0.1) 1.25px, transparent 1.25px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 44px 44px;
   background-attachment: fixed;
-  color: var(--foreground);
-  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  color: var(--pelagic-body);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -101,15 +100,82 @@ html {
 }
 
 .font-display {
-  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  font-optical-sizing: auto;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Typography scale — single source of truth for hierarchy */
+.type-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pelagic-accent);
+}
+
+@media (min-width: 640px) {
+  .type-eyebrow {
+    font-size: 0.8125rem;
+  }
+}
+
+.type-lead {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--pelagic-body);
+}
+
+@media (min-width: 640px) {
+  .type-lead {
+    font-size: 1.125rem;
+  }
+}
+
+.type-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--pelagic-body);
+}
+
+.type-caption {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--pelagic-steel);
+}
+
+.type-muted {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--pelagic-slate);
+}
+
+.type-display {
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+/* Form fields — readable text & placeholders */
+input,
+select,
+textarea {
+  color: var(--pelagic-ink);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--pelagic-slate);
+  opacity: 1;
 }
 
 .bg-maritime-grid {
   background-image:
-    radial-gradient(rgba(168, 212, 230, 0.18) 1px, transparent 1px),
-    linear-gradient(rgba(201, 148, 26, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201, 148, 26, 0.06) 1px, transparent 1px);
-  background-size: 28px 28px, 52px 52px, 52px 52px;
+    radial-gradient(rgba(38, 106, 174, 0.1) 1.25px, transparent 1.25px),
+    linear-gradient(rgba(20, 48, 110, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 48, 110, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px, 72px 72px, 72px 72px;
 }
 
 .bg-sky-gradient {
@@ -123,14 +189,14 @@ html {
 
 /* Contact — industry-standard marine consultancy layout */
 .contact-emergency-bar {
-  background: linear-gradient(90deg, #1a1614 0%, #2c2420 50%, #1a3a38 100%);
+  background: linear-gradient(90deg, #0c2340 0%, #14306e 50%, #1a3577 100%);
 }
 
 .contact-page-hero {
   background:
-    radial-gradient(ellipse 80% 60% at 0% 0%, rgba(15, 118, 110, 0.35), transparent 55%),
-    radial-gradient(ellipse 70% 55% at 100% 100%, rgba(201, 148, 26, 0.15), transparent 50%),
-    linear-gradient(165deg, #1a1614 0%, #2c2420 45%, #1e3d3a 100%);
+    radial-gradient(ellipse 80% 60% at 0% 0%, rgba(38, 106, 174, 0.35), transparent 55%),
+    radial-gradient(ellipse 70% 55% at 100% 100%, rgba(75, 159, 217, 0.15), transparent 50%),
+    linear-gradient(165deg, #0c2340 0%, #14306e 45%, #1a3577 100%);
 }
 
 .contact-page-hero-grid {
@@ -144,7 +210,7 @@ html {
 .contact-field {
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid #e8dfd2;
+  border: 1px solid var(--pelagic-sand);
   background: #fff;
   padding: 0.75rem 1rem;
   font-size: 0.875rem;
@@ -154,8 +220,8 @@ html {
 }
 
 .contact-field:focus {
-  border-color: var(--pelagic-gold);
-  box-shadow: 0 0 0 3px rgba(201, 148, 26, 0.15);
+  border-color: var(--pelagic-accent);
+  box-shadow: 0 0 0 3px rgba(38, 106, 174, 0.15);
 }
 
 .contact-intent-card:focus-visible {
@@ -164,7 +230,7 @@ html {
 }
 
 .contact-hero-ribbon {
-  background: linear-gradient(90deg, #0f766e 0%, #0d9488 35%, #c9941a 100%);
+  background: linear-gradient(90deg, #14306e 0%, #266aae 50%, #4b9fd9 100%);
 }
 
 .contact-hero-ribbon--deep-navy {
@@ -176,7 +242,7 @@ html {
 }
 
 .contact-hero-ribbon--sunset-warm {
-  background: linear-gradient(90deg, #b45309 0%, #c9941a 50%, #e0b04a 100%);
+  background: linear-gradient(90deg, #1a3577 0%, #266aae 50%, #4b9fd9 100%);
 }
 
 .contact-hero-ribbon--marine-classic {
@@ -184,8 +250,8 @@ html {
 }
 
 .contact-hero-ribbon--soft-minimal {
-  background: linear-gradient(90deg, #f3ece2 0%, #e8f2fa 100%);
-  border-bottom-color: #e8dfd2;
+  background: linear-gradient(90deg, #e8f4fc 0%, #e8f2fa 100%);
+  border-bottom-color: #d4e5f5;
 }
 
 .contact-hero-ribbon--soft-minimal + * .text-white,
@@ -194,7 +260,7 @@ html {
 }
 
 .contact-hero-shade-soft-minimal .contact-hero-ribbon-dot {
-  background: #c9941a;
+  background: #266aae;
   box-shadow: 0 0 8px rgba(201, 148, 26, 0.6);
 }
 
@@ -203,7 +269,7 @@ html {
 }
 
 .contact-hero-shade-soft-minimal .contact-hero-ribbon-link:hover {
-  color: #c9941a;
+  color: #266aae;
 }
 
 .contact-hero-shade-deep-navy .hero-shimmer {
@@ -259,7 +325,7 @@ html {
 }
 
 .contact-hero-shade-sunset-warm .contact-hero-body {
-  background-color: #fffbeb;
+  background-color: #f0f7fc;
 }
 
 .contact-hero-shade-deep-navy .contact-hero-body {
@@ -271,7 +337,7 @@ html {
 }
 
 .contact-hero-shade-soft-minimal .contact-hero-body {
-  background-color: #fdfbf7;
+  background-color: #ffffff;
 }
 
 /* ── Themed hero gradients (teal-gold + blue) ── */
@@ -281,23 +347,23 @@ html {
 }
 
 .contact-hero-ribbon--teal-gold-dawn {
-  background: linear-gradient(90deg, #0f766e 0%, #14b8a6 35%, #e0b04a 100%);
+  background: linear-gradient(90deg, #0f766e 0%, #14b8a6 35%, #4b9fd9 100%);
 }
 
 .contact-hero-ribbon--teal-gold-harbour {
-  background: linear-gradient(90deg, #0c4f4a 0%, #0f766e 55%, #c9941a 100%);
+  background: linear-gradient(90deg, #0c4f4a 0%, #0f766e 55%, #266aae 100%);
 }
 
 .contact-hero-ribbon--teal-gold-sunset {
-  background: linear-gradient(90deg, #0d9488 0%, #c9941a 45%, #e0b04a 100%);
+  background: linear-gradient(90deg, #0d9488 0%, #266aae 45%, #4b9fd9 100%);
 }
 
 .contact-hero-ribbon--teal-gold-premium {
-  background: linear-gradient(90deg, #134e4a 0%, #0f766e 35%, #d4a017 72%, #e0b04a 100%);
+  background: linear-gradient(90deg, #134e4a 0%, #0f766e 35%, #266aae 72%, #4b9fd9 100%);
 }
 
 .contact-hero-ribbon--teal-gold-soft {
-  background: linear-gradient(90deg, #0f766e 0%, #5eead4 42%, #fcd34d 100%);
+  background: linear-gradient(90deg, #0f766e 0%, #5eead4 42%, #7ec8ff 100%);
 }
 
 .contact-hero-shade-teal-gold-mellow .contact-hero-body,
@@ -396,7 +462,7 @@ html {
     radial-gradient(ellipse 75% 55% at 8% 30%, rgba(142, 207, 196, 0.22), transparent 55%),
     radial-gradient(ellipse 65% 50% at 92% 20%, rgba(217, 196, 160, 0.18), transparent 52%),
     radial-gradient(ellipse 80% 60% at 50% 95%, rgba(232, 244, 242, 0.55), transparent 55%),
-    linear-gradient(158deg, #fdfbf7 0%, #f5faf9 40%, #faf6ef 75%, #fdfbf7 100%);
+    linear-gradient(158deg, #ffffff 0%, #f5faf9 40%, #faf6ef 75%, #ffffff 100%);
 }
 
 .contact-hero-theme-mesh--teal-gold {
@@ -404,7 +470,7 @@ html {
     radial-gradient(ellipse 70% 55% at 10% 25%, rgba(168, 212, 230, 0.55), transparent 55%),
     radial-gradient(ellipse 65% 50% at 90% 20%, rgba(201, 148, 26, 0.18), transparent 50%),
     radial-gradient(ellipse 75% 55% at 50% 95%, rgba(15, 118, 110, 0.12), transparent 52%),
-    linear-gradient(155deg, #f8fafc 0%, #f0fdfa 35%, #fdfbf7 70%, #f8fafc 100%);
+    linear-gradient(155deg, #f8fafc 0%, #f0fdfa 35%, #ffffff 70%, #f8fafc 100%);
 }
 
 .contact-hero-theme-mesh--teal-gold-dawn {
@@ -412,7 +478,7 @@ html {
     radial-gradient(ellipse 90% 45% at 50% 0%, rgba(251, 191, 36, 0.35), transparent 58%),
     radial-gradient(ellipse 65% 50% at 15% 60%, rgba(20, 184, 166, 0.25), transparent 52%),
     radial-gradient(ellipse 60% 45% at 85% 55%, rgba(224, 176, 74, 0.2), transparent 50%),
-    linear-gradient(175deg, #fffbeb 0%, #f0fdfa 40%, #f8fafc 100%);
+    linear-gradient(175deg, #f0f7fc 0%, #f0fdfa 40%, #f8fafc 100%);
 }
 
 .contact-hero-theme-mesh--teal-gold-harbour {
@@ -428,7 +494,7 @@ html {
     radial-gradient(ellipse 80% 50% at 70% 15%, rgba(251, 191, 36, 0.32), transparent 55%),
     radial-gradient(ellipse 70% 55% at 20% 70%, rgba(13, 148, 136, 0.2), transparent 52%),
     radial-gradient(ellipse 65% 45% at 50% 50%, rgba(245, 230, 211, 0.45), transparent 50%),
-    linear-gradient(145deg, #fffbeb 0%, #fef3c7 25%, #f0fdfa 60%, #fdfbf7 100%);
+    linear-gradient(145deg, #f0f7fc 0%, #e8f4fc 25%, #f0fdfa 60%, #ffffff 100%);
 }
 
 .contact-hero-theme-mesh--teal-gold-premium {
@@ -436,7 +502,7 @@ html {
     radial-gradient(ellipse 70% 55% at 12% 30%, rgba(15, 118, 110, 0.28), transparent 55%),
     radial-gradient(ellipse 65% 50% at 88% 25%, rgba(212, 160, 23, 0.28), transparent 52%),
     radial-gradient(ellipse 80% 60% at 50% 90%, rgba(19, 78, 74, 0.15), transparent 55%),
-    linear-gradient(140deg, #f0fdfa 0%, #ecfdf5 30%, #fffbeb 65%, #f8fafc 100%);
+    linear-gradient(140deg, #f0fdfa 0%, #ecfdf5 30%, #f0f7fc 65%, #f8fafc 100%);
 }
 
 .contact-hero-theme-mesh--teal-gold-soft {
@@ -444,7 +510,7 @@ html {
     radial-gradient(ellipse 75% 55% at 25% 35%, rgba(153, 246, 228, 0.35), transparent 55%),
     radial-gradient(ellipse 60% 45% at 75% 30%, rgba(252, 211, 77, 0.22), transparent 50%),
     radial-gradient(ellipse 70% 50% at 50% 85%, rgba(243, 236, 226, 0.55), transparent 52%),
-    linear-gradient(160deg, #fdfbf7 0%, #f0fdfa 45%, #fffbeb 100%);
+    linear-gradient(160deg, #ffffff 0%, #f0fdfa 45%, #f0f7fc 100%);
 }
 
 .contact-hero-theme-glow {
@@ -910,10 +976,10 @@ html {
 .contact-page-theme-base {
   background: linear-gradient(
     180deg,
-    #fdfbf7 0%,
+    #ffffff 0%,
     #f8fafc 40%,
     #f0fdfa 70%,
-    #fdfbf7 100%
+    #ffffff 100%
   );
   opacity: 1;
 }
@@ -946,9 +1012,9 @@ html {
 .page-hero-scrim {
   background: linear-gradient(
     105deg,
-    rgba(253, 251, 247, 0.94) 0%,
-    rgba(253, 251, 247, 0.72) 42%,
-    rgba(253, 251, 247, 0.22) 68%,
+    rgba(240, 247, 252, 0.94) 0%,
+    rgba(232, 244, 252, 0.72) 42%,
+    rgba(232, 244, 252, 0.22) 68%,
     transparent 88%
   );
 }
@@ -995,7 +1061,7 @@ html {
 }
 
 .contact-page-section--soft {
-  background: #fdfbf7;
+  background: #ffffff;
 }
 
 .contact-page-channels {
@@ -1006,8 +1072,8 @@ html {
 
 .contact-page-form {
   box-shadow:
-    0 12px 40px rgba(15, 118, 110, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 12px 40px rgba(20, 48, 110, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 /* Contact page — static gradients on cards (animation removed for scroll performance) */
@@ -1026,7 +1092,7 @@ html {
     #b8d9eb 18%,
     #e8f2fa 36%,
     #f5e6d3 54%,
-    #c9941a 72%,
+    #266aae 72%,
     #0d9488 88%,
     #8ecfc4 100%
   );
@@ -1035,12 +1101,11 @@ html {
 .contact-card-gradient-shell--medium {
   background-image: linear-gradient(
     125deg,
-    #0f766e 0%,
-    #0d9488 20%,
-    #c9941a 40%,
-    #115e59 60%,
-    #b45309 80%,
-    #134e4a 100%
+    #14306e 0%,
+    #266aae 32%,
+    #4b9fd9 58%,
+    #1a3577 82%,
+    #14306e 100%
   );
 }
 
@@ -1051,8 +1116,8 @@ html {
     #0d9488 15%,
     #115e59 30%,
     #92400e 50%,
-    #b45309 70%,
-    #c9941a 85%,
+    #1a3577 70%,
+    #266aae 85%,
     #134e4a 100%
   );
 }
@@ -1103,7 +1168,7 @@ html {
     135deg,
     #115e59 0%,
     #0f766e 30%,
-    #b45309 55%,
+    #1a3577 55%,
     #134e4a 80%,
     #0d9488 100%
   );
@@ -1127,7 +1192,7 @@ html {
   background:
     radial-gradient(ellipse 100% 60% at 50% 0%, rgba(142, 207, 196, 0.35), transparent 65%),
     radial-gradient(ellipse 80% 50% at 0% 80%, rgba(201, 148, 26, 0.15), transparent 55%),
-    linear-gradient(180deg, #fdfbf7 0%, #f0fdfa 50%, #f5e6d3 100%);
+    linear-gradient(180deg, #ffffff 0%, #f0fdfa 50%, #f5e6d3 100%);
   background-size: 280% 280%;
   animation: contact-gradient-shift 24s ease-in-out infinite alternate;
 }
@@ -1174,7 +1239,7 @@ html {
     radial-gradient(ellipse 95% 75% at 0% 0%, rgba(15, 118, 110, 0.32), transparent 58%),
     radial-gradient(ellipse 85% 65% at 100% 15%, rgba(201, 148, 26, 0.28), transparent 52%),
     radial-gradient(ellipse 75% 55% at 50% 100%, rgba(142, 207, 196, 0.35), transparent 62%),
-    linear-gradient(165deg, #b8d9eb 0%, #e8f2fa 32%, #fdfbf7 55%, #f5e6d3 82%, #d4eaf7 100%);
+    linear-gradient(165deg, #b8d9eb 0%, #e8f2fa 32%, #ffffff 55%, #f5e6d3 82%, #d4eaf7 100%);
 }
 
 .contact-trust-gradient {
@@ -1210,7 +1275,7 @@ html {
     radial-gradient(ellipse 80% 60% at 0% 100%, rgba(15, 118, 110, 0.32), transparent 58%),
     linear-gradient(
       180deg,
-      #e8dfd2 0%,
+      #d4e5f5 0%,
       #e8f2fa 28%,
       #fef9f3 52%,
       #d1fae5 78%,
@@ -1229,8 +1294,8 @@ html {
       #115e59 42%,
       #134e4a 58%,
       #92400e 78%,
-      #b45309 92%,
-      #c9941a 100%
+      #1a3577 92%,
+      #266aae 100%
     );
 }
 
@@ -1254,9 +1319,9 @@ html {
   background: linear-gradient(
     115deg,
     transparent 0%,
-    rgba(168, 212, 230, 0.35) 35%,
-    rgba(201, 148, 26, 0.15) 55%,
-    rgba(15, 118, 110, 0.12) 70%,
+    rgba(126, 200, 255, 0.25) 35%,
+    rgba(38, 106, 174, 0.12) 55%,
+    rgba(20, 48, 110, 0.08) 70%,
     transparent 100%
   );
   background-size: 220% 100%;
@@ -1268,7 +1333,7 @@ html {
     105deg,
     transparent 0%,
     rgba(255, 255, 255, 0.14) 45%,
-    rgba(224, 176, 74, 0.12) 55%,
+    rgba(75, 159, 217, 0.12) 55%,
     transparent 100%
   );
   background-size: 200% 100%;
@@ -1290,14 +1355,14 @@ html {
     radial-gradient(ellipse 85% 65% at 12% 18%, rgba(255, 230, 200, 0.85), transparent 55%),
     radial-gradient(ellipse 80% 60% at 88% 78%, rgba(168, 212, 230, 0.55), transparent 52%),
     radial-gradient(ellipse 70% 50% at 55% 45%, rgba(255, 255, 255, 0.7), transparent 58%),
-    linear-gradient(155deg, #eef6fc 0%, #fdfbf7 38%, #f8efe4 72%, #e8f2fa 100%);
+    linear-gradient(155deg, #eef6fc 0%, #ffffff 38%, #f8efe4 72%, #e8f2fa 100%);
 }
 
 .bg-contact-section {
   background:
     radial-gradient(ellipse 75% 55% at 95% 8%, rgba(224, 176, 74, 0.14), transparent 50%),
     radial-gradient(ellipse 65% 45% at 5% 92%, rgba(168, 212, 230, 0.4), transparent 50%),
-    linear-gradient(180deg, #f3ece2 0%, #fdfbf7 50%, #eef6fc 100%);
+    linear-gradient(180deg, #e8f4fc 0%, #ffffff 50%, #eef6fc 100%);
 }
 
 .contact-hero-glow {
@@ -1317,7 +1382,7 @@ html {
     radial-gradient(ellipse 75% 55% at 92% 8%, rgba(45, 212, 191, 0.55), transparent 52%),
     radial-gradient(ellipse 65% 50% at 8% 88%, rgba(245, 158, 11, 0.38), transparent 48%),
     radial-gradient(ellipse 50% 40% at 50% 50%, rgba(56, 189, 248, 0.2), transparent 60%),
-    linear-gradient(165deg, #a7f3d0 0%, #7dd3fc 38%, #fde68a 72%, #ecfdf5 100%);
+    linear-gradient(165deg, #a7f3d0 0%, #7dd3fc 38%, #d4e5f5 72%, #ecfdf5 100%);
 }
 
 .contact-section-vibrant-b {
@@ -1333,7 +1398,7 @@ html {
     radial-gradient(ellipse 75% 60% at 50% 0%, rgba(245, 158, 11, 0.42), transparent 52%),
     radial-gradient(ellipse 65% 55% at 85% 95%, rgba(20, 184, 166, 0.38), transparent 50%),
     radial-gradient(ellipse 50% 45% at 10% 60%, rgba(251, 191, 36, 0.25), transparent 55%),
-    linear-gradient(180deg, #fde68a 0%, #a7f3d0 45%, #93c5fd 100%);
+    linear-gradient(180deg, #d4e5f5 0%, #a7f3d0 45%, #93c5fd 100%);
 }
 
 .contact-section-vibrant-d {
@@ -1376,36 +1441,35 @@ html {
 
 .contact-hero-gradient {
   background:
-    radial-gradient(ellipse 90% 70% at 12% 12%, rgba(254, 243, 199, 0.95), transparent 52%),
-    radial-gradient(ellipse 85% 65% at 88% 22%, rgba(252, 211, 77, 0.45), transparent 50%),
-    radial-gradient(ellipse 75% 55% at 72% 88%, rgba(224, 176, 74, 0.32), transparent 52%),
-    radial-gradient(ellipse 65% 50% at 8% 78%, rgba(186, 230, 253, 0.35), transparent 48%),
+    radial-gradient(ellipse 90% 70% at 12% 12%, rgba(232, 244, 252, 0.95), transparent 52%),
+    radial-gradient(ellipse 85% 65% at 88% 22%, rgba(126, 200, 255, 0.35), transparent 50%),
+    radial-gradient(ellipse 75% 55% at 72% 88%, rgba(38, 106, 174, 0.18), transparent 52%),
+    radial-gradient(ellipse 65% 50% at 8% 78%, rgba(75, 159, 217, 0.2), transparent 48%),
     linear-gradient(
       135deg,
-      #fffbeb 0%,
-      #fef3c7 18%,
-      #fdfbf7 38%,
-      #fde68a 58%,
-      #fef9c3 78%,
-      #fff7ed 100%
+      #f0f7fc 0%,
+      #e8f4fc 22%,
+      #ffffff 42%,
+      #d4e5f5 68%,
+      #f0f7fc 100%
     );
 }
 
 .contact-brand-showcase {
   background:
-    radial-gradient(ellipse 90% 70% at 12% 12%, rgba(254, 243, 199, 0.95), transparent 52%),
-    radial-gradient(ellipse 85% 65% at 88% 22%, rgba(252, 211, 77, 0.4), transparent 50%),
-    radial-gradient(ellipse 75% 55% at 72% 88%, rgba(224, 176, 74, 0.28), transparent 52%),
+    radial-gradient(ellipse 90% 70% at 12% 12%, rgba(232, 244, 252, 0.95), transparent 52%),
+    radial-gradient(ellipse 85% 65% at 88% 22%, rgba(126, 200, 255, 0.3), transparent 50%),
+    radial-gradient(ellipse 75% 55% at 72% 88%, rgba(38, 106, 174, 0.15), transparent 52%),
     linear-gradient(
       145deg,
-      #fffbeb 0%,
-      #fef3c7 22%,
-      #ffffff 48%,
-      #fde68a 72%,
-      #fff7ed 100%
+      #f0f7fc 0%,
+      #e8f4fc 24%,
+      #ffffff 50%,
+      #d4e5f5 76%,
+      #f0f7fc 100%
     );
   box-shadow:
-    0 24px 60px -24px rgba(201, 148, 26, 0.28),
+    0 24px 60px -24px rgba(20, 48, 110, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
@@ -1415,7 +1479,7 @@ html {
     transparent 0%,
     rgba(255, 255, 255, 0.12) 35%,
     transparent 50%,
-    rgba(201, 148, 26, 0.08) 70%,
+    rgba(38, 106, 174, 0.08) 70%,
     transparent 100%
   );
   background-size: 100% 100%;
@@ -1886,14 +1950,29 @@ html {
   }
 }
 
-/* Contact lower sections — continues hero palette */
+/* Branded content cards — clean surfaces that sit above section graph texture */
+.card-maritime {
+  border-color: rgba(212, 229, 245, 0.95);
+  background-color: #ffffff;
+  background-image: linear-gradient(
+    168deg,
+    #ffffff 0%,
+    #fafcfe 48%,
+    #f3f8fc 100%
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 4px 24px -12px rgba(20, 48, 110, 0.12);
+}
+
 .card-premium {
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.card-premium:hover {
+.card-premium:hover,
+.card-maritime:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -12px rgba(26, 22, 20, 0.12);
+  box-shadow: 0 20px 40px -12px rgba(20, 48, 110, 0.16);
 }
 
 .reveal-on-scroll {
@@ -1969,19 +2048,19 @@ html {
 .cta-overlay {
   background: linear-gradient(
     135deg,
-    rgba(26, 22, 20, 0.88) 0%,
-    rgba(44, 36, 32, 0.78) 50%,
-    rgba(26, 22, 20, 0.85) 100%
+    rgba(12, 35, 64, 0.9) 0%,
+    rgba(20, 48, 110, 0.82) 50%,
+    rgba(26, 53, 119, 0.88) 100%
   );
 }
 
 .logo-armor {
   background: linear-gradient(
     145deg,
-    #e0b04a 0%,
-    #f5e6c8 40%,
-    #c9941a 60%,
-    #e0b04a 100%
+    #4b9fd9 0%,
+    #e8f4fc 40%,
+    #266aae 60%,
+    #14306e 100%
   );
 }
 

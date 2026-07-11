@@ -81,7 +81,7 @@ export function OfficeNetworkPanel({
 
   return (
     <div
-      className={`overflow-hidden rounded-2xl border border-pelagic-mist bg-white shadow-sm ${
+      className={`card-maritime overflow-hidden rounded-2xl border shadow-sm ${
         variant === "compact" ? "" : "lg:grid lg:grid-cols-5"
       }`}
     >
@@ -158,7 +158,7 @@ export function OfficeNetworkPanel({
               r={expandedHub === "india" || activeOffice?.hubId === "india" ? 10 : 7}
               className={
                 expandedHub === "india" || activeOffice?.hubId === "india"
-                  ? "fill-pelagic-gold cursor-pointer"
+                  ? "fill-pelagic-accent cursor-pointer"
                   : "fill-pelagic-accent cursor-pointer"
               }
               onClick={() => selectHub("india")}
@@ -170,7 +170,7 @@ export function OfficeNetworkPanel({
               r={activeOffice?.hubId === "uae" ? 10 : 7}
               className={
                 activeOffice?.hubId === "uae"
-                  ? "fill-pelagic-gold cursor-pointer"
+                  ? "fill-pelagic-accent cursor-pointer"
                   : "fill-pelagic-accent cursor-pointer"
               }
               onClick={() => selectHub("uae")}
@@ -192,7 +192,7 @@ export function OfficeNetworkPanel({
                 <button
                   type="button"
                   onClick={backToHubs}
-                  className="mb-1 text-xs font-semibold uppercase tracking-wider text-pelagic-accent hover:text-pelagic-gold"
+                  className="mb-1 text-xs font-semibold uppercase tracking-wider text-pelagic-accent hover:text-pelagic-accent"
                 >
                   ← Back to regions
                 </button>
@@ -219,7 +219,7 @@ export function OfficeNetworkPanel({
                     >
                       <span
                         className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${
-                          isActive ? "bg-pelagic-gold" : "bg-pelagic-accent"
+                          isActive ? "bg-pelagic-accent" : "bg-pelagic-accent"
                         }`}
                       >
                         {office.label[0]}
@@ -254,7 +254,7 @@ export function OfficeNetworkPanel({
                   >
                     <span
                       className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${
-                        isActive ? "bg-pelagic-gold" : "bg-pelagic-accent"
+                        isActive ? "bg-pelagic-accent" : "bg-pelagic-accent"
                       }`}
                     >
                       {index + 1}
@@ -282,7 +282,7 @@ export function OfficeNetworkPanel({
         {showContactLink && (
           <Link
             href="/contact#offices-map"
-            className="mt-6 inline-flex text-sm font-semibold text-pelagic-accent hover:text-pelagic-gold"
+            className="mt-6 inline-flex text-sm font-semibold text-pelagic-accent hover:text-pelagic-accent"
           >
             Full Global Network Hub & directions →
           </Link>
@@ -295,7 +295,7 @@ export function OfficeNetworkPanel({
             <p className="mb-3 text-xs font-bold uppercase tracking-wider text-pelagic-steel">
               India · UAE corridor
             </p>
-            <div className="relative aspect-[4/3] min-h-[260px] overflow-hidden rounded-2xl border border-pelagic-gold/20 bg-pelagic-cream/30 shadow-sm ring-1 ring-pelagic-gold/10 sm:min-h-[320px]">
+            <div className="relative aspect-[4/3] min-h-[260px] overflow-hidden rounded-2xl border border-pelagic-accent/20 bg-pelagic-cream/30 shadow-sm ring-1 ring-pelagic-accent/10 sm:min-h-[320px]">
               <GoogleMapEmbed
                 src={getGoogleMapsRegionalEmbedUrl()}
                 title="Pelagic Marine — India and UAE network"

@@ -530,7 +530,7 @@ export const navMenu: NavMenuItem[] = [
   { type: "link", href: "/team", label: "Team" },
   {
     type: "dropdown",
-    label: "Decarbonization",
+    label: "Decarb",
     href: "/decarbonization",
     children: [
       {

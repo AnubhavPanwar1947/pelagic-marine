@@ -18,7 +18,7 @@ export default function ContactPage() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 text-sm text-pelagic-steel sm:px-6 lg:px-8">
           {trustBadges.map((badge) => (
             <span key={badge} className="flex items-center gap-2">
-              <span className="text-pelagic-gold">✓</span>
+              <span className="text-pelagic-accent">✓</span>
               {badge}
             </span>
           ))}

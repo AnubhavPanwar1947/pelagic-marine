@@ -51,7 +51,7 @@ export default function DecarbonizationPage() {
             </ul>
             <Link
               href="/contact"
-              className="mt-10 inline-flex rounded-full bg-pelagic-gold px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-gold-light"
+              className="mt-10 inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-light"
             >
               Talk to our LNG & clean fuels team
             </Link>

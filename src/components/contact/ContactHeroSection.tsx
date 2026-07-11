@@ -14,7 +14,7 @@ export function ContactHeroSection() {
 
   return (
     <ContactEnquiryProvider>
-      <section className="contact-hero-body relative overflow-hidden border-b border-pelagic-gold/20">
+      <section className="contact-hero-body relative overflow-hidden border-b border-pelagic-accent/20">
         <div className="contact-hero-gradient absolute inset-0" aria-hidden />
         <ContactHeroAmbience />
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 lg:block" aria-hidden>
@@ -26,7 +26,7 @@ export function ContactHeroSection() {
             className="object-cover"
             sizes="50vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-amber-50/25 to-amber-50/75" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-pelagic-sky/25 to-pelagic-sky/75" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8 lg:pt-8">

@@ -49,7 +49,7 @@ export function SplashScreen() {
         Marine Consultants
       </p>
       <div className="mt-10 h-0.5 w-24 overflow-hidden rounded-full bg-pelagic-warm">
-        <div className="h-full animate-splash-bar bg-pelagic-gold" />
+        <div className="h-full animate-splash-bar bg-pelagic-accent" />
       </div>
     </div>
   );

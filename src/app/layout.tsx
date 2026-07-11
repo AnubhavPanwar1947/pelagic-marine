@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { SplashScreen } from "@/components/ui/SplashScreen";
-import { dmSans, playfair } from "@/lib/fonts";
+import { cormorant, inter } from "@/lib/fonts";
 import { company } from "@/lib/site-data";
 import "./globals.css";
 
@@ -33,13 +33,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${playfair.variable} h-full antialiased`}
+      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://maps.google.com" />
         <link rel="dns-prefetch" href="https://maps.google.com" />
       </head>
-      <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
+      <body className="flex min-h-full flex-col bg-background font-sans text-pelagic-body">
         <SplashScreen />
         <Header />
         <main className="flex-1">{children}</main>

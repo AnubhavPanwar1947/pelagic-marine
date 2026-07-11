@@ -36,7 +36,7 @@ export function CookieConsent() {
           <p className="mt-1">
             We use essential cookies so the site works. With your consent we may
             use analytics cookies later to improve the site. See our{" "}
-            <Link href="/contact" className="text-pelagic-gold underline">
+            <Link href="/contact" className="text-pelagic-accent underline">
               privacy policy
             </Link>{" "}
             (contact us for details).
@@ -46,14 +46,14 @@ export function CookieConsent() {
           <button
             type="button"
             onClick={reject}
-            className="rounded-full border border-pelagic-warm px-5 py-2.5 text-sm font-semibold text-pelagic-steel transition hover:border-pelagic-gold"
+            className="rounded-full border border-pelagic-warm px-5 py-2.5 text-sm font-semibold text-pelagic-steel transition hover:border-pelagic-accent"
           >
             Necessary only
           </button>
           <button
             type="button"
             onClick={accept}
-            className="rounded-full bg-pelagic-gold px-5 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-pelagic-gold-light"
+            className="rounded-full bg-pelagic-accent px-5 py-2.5 text-sm font-bold text-white shadow-md transition hover:bg-pelagic-light"
           >
             Accept
           </button>

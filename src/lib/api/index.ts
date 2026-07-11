@@ -3,6 +3,7 @@ import type { ApiResult, EnquiryInput, EnquiryRecord } from "./types";
 export type EnquiryRecordWithReference = EnquiryRecord & {
   reference?: string;
   confirmationEmailSent?: boolean;
+  confirmationEmailError?: string;
 };
 
 export async function submitEnquiry(

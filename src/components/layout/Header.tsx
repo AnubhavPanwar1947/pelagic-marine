@@ -10,7 +10,7 @@ import { company, navMenu, type NavDropdownChild, type NavMenuItem } from "@/lib
 function Chevron({ open }: { open?: boolean }) {
   return (
     <svg
-      className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""}`}
+      className={`h-3 w-3 transition-transform ${open ? "rotate-180" : ""}`}
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden
@@ -29,10 +29,10 @@ function isActive(pathname: string, href: string) {
 }
 
 function navLinkClass(active: boolean) {
-  return `relative px-2 py-2 text-xs font-medium transition-colors after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:rounded-full after:bg-pelagic-gold after:transition-transform after:duration-200 xl:px-2.5 xl:text-sm ${
+  return `relative whitespace-nowrap px-2 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:rounded-full after:bg-pelagic-accent after:transition-transform after:duration-200 xl:px-2.5 ${
     active
       ? "text-pelagic-ink after:scale-x-100"
-      : "text-pelagic-steel after:scale-x-0 hover:text-pelagic-ink hover:after:scale-x-100"
+      : "text-pelagic-body after:scale-x-0 hover:text-pelagic-ink hover:after:scale-x-100"
   }`;
 }
 
@@ -51,7 +51,7 @@ function DesktopServiceChild({
       <Link
         href={child.href}
         onClick={onClose}
-        className="block rounded-xl px-3 py-3 transition hover:bg-pelagic-cream"
+        className="block rounded-xl px-3 py-3 transition hover:bg-pelagic-sky/60"
       >
         <span className="text-sm font-semibold text-pelagic-ink">{child.label}</span>
         {child.description && (
@@ -69,7 +69,7 @@ function DesktopServiceChild({
       onMouseEnter={() => setSubOpen(true)}
       onMouseLeave={() => setSubOpen(false)}
     >
-      <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2.5 transition hover:bg-pelagic-cream">
+      <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2.5 transition hover:bg-pelagic-sky/60">
         <Link
           href={child.href}
           onClick={onClose}
@@ -81,13 +81,13 @@ function DesktopServiceChild({
       </div>
       {subOpen && (
         <div className="absolute top-0 left-full z-50 pl-2">
-          <ul className="w-72 space-y-0.5 rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5">
+          <ul className="max-h-[70vh] w-72 space-y-0.5 overflow-y-auto rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5">
             {child.children!.map((sub) => (
               <li key={sub.href}>
                 <Link
                   href={sub.href}
                   onClick={onClose}
-                  className="block rounded-lg px-3 py-2 text-sm text-pelagic-steel transition hover:bg-pelagic-cream hover:text-pelagic-ink"
+                  className="block rounded-lg px-3 py-2 text-sm text-pelagic-steel transition hover:bg-pelagic-sky/50 hover:text-pelagic-ink"
                 >
                   {sub.label}
                 </Link>
@@ -177,15 +177,15 @@ function DesktopNavItem({
         >
           <div
             className={`rounded-2xl border border-pelagic-sand bg-white p-3 shadow-xl ring-1 ring-black/5 ${
-              wide ? "w-[min(90vw,20rem)]" : "w-80"
+              wide ? "w-[min(90vw,22rem)]" : "w-80"
             }`}
           >
             <Link
               href={item.href}
-              className="mb-2 block rounded-lg bg-pelagic-cream px-3 py-2.5 text-sm font-bold uppercase tracking-wider text-pelagic-gold hover:bg-pelagic-sand"
+              className="mb-2 block rounded-lg bg-pelagic-sky/50 px-3 py-2.5 text-xs font-bold uppercase tracking-wider text-pelagic-navy hover:bg-pelagic-sky"
               onClick={() => setOpen(false)}
             >
-              View all {item.label} →
+              View all {item.label === "Decarb" ? "Decarbonization" : item.label} →
             </Link>
             <ul className="space-y-1">
               {item.children.map((child) => (
@@ -216,7 +216,7 @@ function MobileServiceChild({
       <Link
         href={child.href}
         onClick={onNavigate}
-        className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-cream"
+        className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-sky/50"
       >
         {child.label}
       </Link>
@@ -238,7 +238,7 @@ function MobileServiceChild({
           <Link
             href={child.href}
             onClick={onNavigate}
-            className="mt-2 block rounded-lg px-2 py-1.5 text-xs font-bold text-pelagic-gold"
+            className="mt-2 block rounded-lg px-2 py-1.5 text-xs font-bold text-pelagic-accent"
           >
             All {child.label} →
           </Link>
@@ -247,7 +247,7 @@ function MobileServiceChild({
               key={sub.href}
               href={sub.href}
               onClick={onNavigate}
-              className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-cream"
+              className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-sky/50"
             >
               {sub.label}
             </Link>
@@ -272,7 +272,7 @@ function MobileNavItem({
       <Link
         href={item.href}
         onClick={onNavigate}
-        className="rounded-lg px-3 py-2.5 text-sm font-medium text-pelagic-charcoal hover:bg-pelagic-cream"
+        className="rounded-lg px-3 py-2.5 text-sm font-semibold text-pelagic-charcoal hover:bg-pelagic-sky/50"
       >
         {item.label}
       </Link>
@@ -294,9 +294,9 @@ function MobileNavItem({
           <Link
             href={item.href}
             onClick={onNavigate}
-            className="mt-2 block rounded-lg px-2 py-2 text-xs font-bold text-pelagic-gold"
+            className="mt-2 block rounded-lg px-2 py-2 text-xs font-bold text-pelagic-accent"
           >
-            All {item.label} →
+            All {item.label === "Decarb" ? "Decarbonization" : item.label} →
           </Link>
           <div className="space-y-1">
             {item.children.map((child) => (
@@ -329,44 +329,44 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ease-out ${
         scrolled
-          ? "border-b border-pelagic-mist bg-white shadow-[0_8px_30px_rgba(26,22,20,0.08)]"
-          : "border-b border-transparent bg-white/75 backdrop-blur-md"
+          ? "border-b border-pelagic-sand bg-white shadow-[0_8px_30px_rgba(20,48,110,0.1)]"
+          : "border-b border-transparent bg-white/90 backdrop-blur-md"
       }`}
     >
       <div
-        className={`h-1 bg-gradient-to-r from-pelagic-accent via-pelagic-gold to-pelagic-gold-light transition-opacity duration-300 ${
-          scrolled ? "opacity-100" : "opacity-70"
+        className={`h-1 bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light transition-opacity duration-300 ${
+          scrolled ? "opacity-100" : "opacity-90"
         }`}
         aria-hidden
       />
       <div
-        className={`mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:gap-2 lg:px-8 transition-all duration-300 ${
-          scrolled ? "py-2" : "py-3.5"
+        className={`mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
+          scrolled ? "py-2" : "py-3"
         }`}
       >
         <BrandLogo variant="header" compact={scrolled} />
 
-        <nav className="hidden items-center lg:flex lg:gap-0.5 xl:gap-1">
+        <nav className="hidden min-w-0 flex-1 items-center justify-center lg:flex lg:gap-0 xl:gap-0.5">
           {navMenu.map((item) => (
             <DesktopNavItem key={item.label} item={item} pathname={pathname} />
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <div className="hidden sm:block">
+        <div className="flex shrink-0 items-center gap-2">
+          <div className="hidden md:block">
             <NavSearch />
           </div>
 
           <Link
             href="/contact"
-            className="hidden rounded-full bg-pelagic-gold px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-pelagic-gold/25 transition hover:bg-pelagic-gold-light sm:inline-flex lg:px-3 lg:py-2 lg:text-xs xl:px-4 xl:py-2.5 xl:text-sm"
+            className="hidden rounded-full bg-[#266aae] px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-white shadow-md shadow-[#266aae]/35 transition hover:bg-[#1a5f9e] sm:inline-flex xl:text-sm"
           >
-            Contact
+            Talk to us
           </Link>
 
           <button
             type="button"
-            className="rounded-lg border border-pelagic-warm bg-pelagic-cream px-3 py-2 text-sm font-medium text-pelagic-charcoal lg:hidden"
+            className="rounded-lg border border-pelagic-sand bg-white px-3 py-2 text-sm font-semibold text-pelagic-navy lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label="Toggle menu"
@@ -378,7 +378,7 @@ export function Header() {
 
       {open && (
         <div className="border-t border-pelagic-sand bg-white px-4 py-4 lg:hidden">
-          <div className="mb-4 sm:hidden">
+          <div className="mb-4 md:hidden">
             <NavSearch />
           </div>
           <nav className="flex flex-col gap-2">
@@ -391,9 +391,9 @@ export function Header() {
             ))}
             <Link
               href="/contact"
-              className="mt-2 rounded-full bg-pelagic-gold py-2.5 text-center text-sm font-bold text-white"
+              className="mt-2 rounded-full bg-[#266aae] py-2.5 text-center text-sm font-bold text-white shadow-md shadow-[#266aae]/35 transition hover:bg-[#1a5f9e]"
             >
-              Contact
+              Talk to us
             </Link>
           </nav>
         </div>

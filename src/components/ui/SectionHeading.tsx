@@ -15,16 +15,14 @@ export function SectionHeading({
     <div
       className={`max-w-4xl ${align === "center" ? "mx-auto text-center" : ""}`}
     >
-      {eyebrow && (
-        <p className="text-base font-bold uppercase tracking-[0.22em] text-pelagic-gold sm:text-lg md:text-xl">
-          {eyebrow}
-        </p>
-      )}
-      <h2 className="font-display mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-pelagic-ink sm:text-5xl lg:text-6xl">
+      {eyebrow && <p className="type-eyebrow">{eyebrow}</p>}
+      <h2 className="type-display mt-4 text-3xl leading-[1.08] text-pelagic-ink sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-5 text-base leading-relaxed text-pelagic-steel sm:text-lg">
+        <p
+          className={`type-lead mt-5 max-w-3xl ${align === "center" ? "mx-auto" : ""}`}
+        >
           {description}
         </p>
       )}

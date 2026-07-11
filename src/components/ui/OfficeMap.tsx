@@ -18,8 +18,8 @@ export function OfficeMap({ office, className = "", tall = false, dark = false }
       <div
         className={`relative overflow-hidden rounded-2xl shadow-lg ${
           dark
-            ? "border border-pelagic-gold/35 bg-pelagic-charcoal/40 ring-1 ring-white/10"
-            : "border border-pelagic-gold/20 bg-pelagic-cream/30 ring-1 ring-pelagic-gold/10 shadow-pelagic-accent/5"
+            ? "border border-pelagic-accent/35 bg-pelagic-charcoal/40 ring-1 ring-white/10"
+            : "border border-pelagic-accent/20 bg-pelagic-cream/30 ring-1 ring-pelagic-accent/10 shadow-pelagic-accent/5"
         } ${tall ? "aspect-[21/9] min-h-[260px] sm:min-h-[320px]" : "aspect-[4/3]"}`}
       >
         <GoogleMapEmbed
@@ -37,7 +37,7 @@ export function OfficeMap({ office, className = "", tall = false, dark = false }
         target="_blank"
         rel="noopener noreferrer"
         className={`mt-2 inline-flex text-sm font-semibold underline-offset-4 hover:underline ${
-          dark ? "text-pelagic-gold-light hover:text-white" : "text-pelagic-steel hover:text-pelagic-accent"
+          dark ? "text-pelagic-light hover:text-white" : "text-pelagic-steel hover:text-pelagic-accent"
         }`}
       >
         Open in Google Maps →

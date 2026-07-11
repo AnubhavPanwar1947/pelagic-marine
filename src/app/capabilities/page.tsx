@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
+import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { capabilitiesSections } from "@/lib/site-data";
 import { siteImages } from "@/lib/site-images";
@@ -22,7 +23,8 @@ export default function CapabilitiesPage() {
         imageSrc={siteImages.expertise}
       />
 
-      <section className="mx-auto max-w-7xl space-y-20 px-4 py-24 sm:px-6 lg:px-8">
+      <SectionMaritime variant="mist" className="py-24" gridOpacity={48}>
+        <div className="mx-auto max-w-7xl space-y-20 px-4 sm:px-6 lg:px-8">
         {capabilitiesSections.map((section) => (
           <article key={section.id} id={section.id} className="scroll-mt-28">
             <SectionHeading eyebrow={section.eyebrow} title={section.title} />
@@ -50,7 +52,8 @@ export default function CapabilitiesPage() {
             )}
           </article>
         ))}
-      </section>
+        </div>
+      </SectionMaritime>
 
       <section className="bg-pelagic-charcoal py-20 text-white">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
@@ -64,7 +67,7 @@ export default function CapabilitiesPage() {
             <Button href="/contact" variant="primary">
               Contact the team
             </Button>
-            <Link href="/services" className="text-sm font-bold text-pelagic-gold hover:underline">
+            <Link href="/services" className="text-sm font-bold text-pelagic-accent hover:underline">
               Explore services →
             </Link>
           </div>

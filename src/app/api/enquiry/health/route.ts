@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { BACKEND_PROVIDER } from "@/lib/api/config";
-import { getEnquiryNotifyEmail, isEmailConfigured } from "@/lib/email/resend";
+import { getEnquiryNotifyEmail, isEmailConfigured, isResendSandboxFrom } from "@/lib/email/resend";
 import { getSupabaseServerDiagnostics } from "@/lib/supabase/server";
 
 /** Safe diagnostics — no secrets. Use to verify Vercel ↔ Supabase wiring. */
@@ -18,6 +18,10 @@ export async function GET() {
     email: {
       configured: isEmailConfigured(),
       notifyTo: getEnquiryNotifyEmail(),
+      sandboxFrom: isResendSandboxFrom(),
+      note: isResendSandboxFrom()
+        ? "Resend sandbox: verify pelagic-marine.com and set RESEND_FROM_EMAIL to send confirmations to visitors."
+        : undefined,
     },
   });
 }
