@@ -344,7 +344,7 @@ export function Header() {
           scrolled ? "py-2" : "py-3"
         }`}
       >
-        <BrandLogo variant="header" compact={scrolled} />
+        <BrandLogo variant="header" compact={scrolled} navSolid={scrolled} />
 
         <nav className="hidden min-w-0 flex-1 items-center justify-center lg:flex lg:gap-0 xl:gap-0.5">
           {navMenu.map((item) => (
@@ -361,7 +361,7 @@ export function Header() {
             href="/contact"
             className="hidden rounded-full bg-[#266aae] px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-white shadow-md shadow-[#266aae]/35 transition hover:bg-[#1a5f9e] sm:inline-flex xl:text-sm"
           >
-            Talk to us
+            Contact us
           </Link>
 
           <button
@@ -393,7 +393,7 @@ export function Header() {
               href="/contact"
               className="mt-2 rounded-full bg-[#266aae] py-2.5 text-center text-sm font-bold text-white shadow-md shadow-[#266aae]/35 transition hover:bg-[#1a5f9e]"
             >
-              Talk to us
+              Contact us
             </Link>
           </nav>
         </div>

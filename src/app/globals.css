@@ -20,6 +20,10 @@
   --pelagic-sunset: #f0f7fc;
   --pelagic-water: #7ec8ff;
 
+  /* Official logo wordmark — sampled from public/logo-final.pdf render */
+  --logo-pelagic-text: #40538d;
+  --logo-marine-text: #7b88b1;
+
   --pelagic-navy: #14306e;
   --pelagic-blue: #1a3577;
   --pelagic-light: #4b9fd9;
@@ -105,10 +109,109 @@ html {
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
-/* Logo — Final.pdf emblem + full lockup + armor shine */
-.brand-logo-img {
-  filter: brightness(1.04) contrast(1.16) saturate(1.22)
-    drop-shadow(0 2px 12px rgba(38, 106, 174, 0.3));
+.brand-logo-lockup {
+  max-width: 100%;
+}
+
+.brand-logo-lockup--shine {
+  isolation: isolate;
+}
+
+/* One continuous sweep: anchor → PELAGIC → Marine Solutions (soft logo-blue brush) */
+.brand-logo-lockup-shine-sweep {
+  position: absolute;
+  top: -4%;
+  bottom: -4%;
+  left: 0;
+  width: 40%;
+  z-index: 6;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(64, 83, 141, 0.06) 18%,
+    rgba(126, 200, 255, 0.14) 36%,
+    rgba(220, 240, 252, 0.32) 47%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(220, 240, 252, 0.32) 53%,
+    rgba(126, 200, 255, 0.14) 64%,
+    rgba(64, 83, 141, 0.06) 82%,
+    transparent 100%
+  );
+  mix-blend-mode: soft-light;
+  filter: blur(0.75px);
+  animation: brand-lockup-shine 6.2s ease-in-out infinite;
+}
+
+@keyframes brand-lockup-shine {
+  0%,
+  14% {
+    transform: translateX(-108%);
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.82;
+  }
+  56% {
+    transform: translateX(215%);
+    opacity: 0.82;
+  }
+  64%,
+  100% {
+    transform: translateX(215%);
+    opacity: 0;
+  }
+}
+
+.brand-logo-wordmark {
+  border-left: 1px solid rgba(64, 83, 141, 0.22);
+  padding-left: 0.75rem;
+}
+
+.brand-logo-wordmark-pelagic {
+  color: var(--logo-pelagic-text);
+}
+
+.brand-logo-wordmark-tagline {
+  color: var(--logo-marine-text);
+}
+
+@media (min-width: 640px) {
+  .brand-logo-wordmark {
+    padding-left: 0.875rem;
+  }
+}
+
+/* Logo — PDF anchor mark, original colors */
+.brand-logo-img,
+.brand-logo-img--circle {
+  filter: none;
+}
+
+.brand-logo-circle {
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(3, 22, 56, 0.12);
+}
+
+.brand-logo-circle--header {
+  box-shadow: none;
+}
+
+.brand-logo-circle--splash {
+  background: #fdfbf7;
+  box-shadow:
+    0 12px 32px rgba(3, 22, 56, 0.18),
+    0 4px 12px rgba(38, 106, 174, 0.14);
+}
+
+.brand-logo-shell--circle {
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.brand-logo-circle--splash .brand-logo-shell--circle {
+  background: #fdfbf7;
 }
 
 .brand-logo-shine {
@@ -124,11 +227,11 @@ html {
     transparent 72%
   );
   mix-blend-mode: screen;
-  mask-image: url("/logo.png?v=17");
+  mask-image: url("/logo-circle.png?v=32");
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo.png?v=17");
+  -webkit-mask-image: url("/logo-circle.png?v=32");
   -webkit-mask-size: contain;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
@@ -147,11 +250,11 @@ html {
   );
   mix-blend-mode: overlay;
   animation: brand-logo-armor 4.5s ease-in-out infinite;
-  mask-image: url("/logo.png?v=17");
+  mask-image: url("/logo-circle.png?v=32");
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo.png?v=17");
+  -webkit-mask-image: url("/logo-circle.png?v=32");
   -webkit-mask-size: contain;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
@@ -168,22 +271,23 @@ html {
   );
   mix-blend-mode: soft-light;
   animation: brand-logo-shine 5.2s ease-in-out infinite;
-  mask-image: url("/logo.png?v=17");
+  mask-image: url("/logo-circle.png?v=32");
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo.png?v=17");
+  -webkit-mask-image: url("/logo-circle.png?v=32");
   -webkit-mask-size: contain;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
 }
 
-/* Splash — full PDF lockup shine masks */
-.brand-logo-shell--full .brand-logo-armor-rim,
-.brand-logo-shell--full .brand-logo-armor-glint,
-.brand-logo-shell--full .brand-logo-shine-sweep {
-  mask-image: url("/logo-full.png?v=17");
-  -webkit-mask-image: url("/logo-full.png?v=17");
+/* Circular medallion — shine follows the round frame */
+.brand-logo-shell--circle .brand-logo-armor-rim,
+.brand-logo-shell--circle .brand-logo-armor-glint,
+.brand-logo-shell--circle .brand-logo-shine-sweep {
+  border-radius: 50%;
+  mask-image: none;
+  -webkit-mask-image: none;
 }
 
 @keyframes brand-logo-armor {
@@ -231,6 +335,11 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .brand-logo-lockup-shine-sweep {
+    animation: none;
+    opacity: 0;
+  }
+
   .brand-logo-armor-glint,
   .brand-logo-shine-sweep {
     animation: none;

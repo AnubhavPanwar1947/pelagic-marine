@@ -1,7 +1,7 @@
 /**
  * Build web logos from Final.pdf (Canva vector export).
- * logo.png       — PELAGIC + anchor + waves (header, enhanced)
- * logo-full.png  — full lockup + MARINE SOLUTIONS (splash)
+ * logo.png       — anchor + waves (PDF colors, no enhancement)
+ * logo-circle.png — anchor mark for circular UI (header + splash)
  */
 import { copyFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -11,6 +11,7 @@ import sharp from "sharp";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const publicDir = `${root}public/`;
 const BG = { r: 253, g: 251, b: 247, alpha: 0 };
+const WHITE = { r: 255, g: 255, b: 255 };
 
 const pdfCandidates = [
   `${publicDir}logo-final.pdf`,
@@ -34,76 +35,103 @@ function renderPdfToPng(pdfPath) {
   return found;
 }
 
-async function enhanceEmblem(buffer) {
+/** Remove PELAGIC — clear text rows above ring apex, keep full ring */
+async function stripPelagicText(buffer) {
   const { data, info } = await sharp(buffer).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const iw = info.width;
   const ih = info.height;
   const ch = info.channels;
-  const topBand = Math.floor(ih * 0.24);
-  const waveStart = Math.floor(ih * 0.62);
 
-  for (let y = 0; y < ih; y++) {
-    for (let x = 0; x < iw; x++) {
-      const i = (y * iw + x) * ch;
-      let r = data[i];
-      let g = data[i + 1];
-      let b = data[i + 2];
-      const a = data[i + 3];
-      if (a < 8) continue;
+  const cx0 = Math.floor(iw * 0.41);
+  const cx1 = Math.floor(iw * 0.59);
+  const scanX0 = Math.floor(iw * 0.38);
+  const scanX1 = Math.floor(iw * 0.62);
 
-      const lum = 0.299 * r + 0.587 * g + 0.114 * b;
-      const maxC = Math.max(r, g, b);
-      const minC = Math.min(r, g, b);
-      const sat = maxC ? (maxC - minC) / maxC : 0;
+  let ringApex = -1;
+  for (let y = 0; y < Math.floor(ih * 0.3); y++) {
+    let minX = iw;
+    let maxX = -1;
+    for (let x = scanX0; x < scanX1; x++) {
+      if (data[(y * iw + x) * ch + 3] > 48) {
+        minX = Math.min(minX, x);
+        maxX = Math.max(maxX, x);
+      }
+    }
+    if (maxX >= minX && maxX - minX <= iw * 0.09) {
+      ringApex = y;
+      break;
+    }
+  }
 
-      if (y < topBand && sat > 0.15 && lum > 25 && lum < 130) {
-        // Darken & sharpen PELAGIC letterforms
-        data[i] = Math.round(Math.min(40, r * 0.72));
-        data[i + 1] = Math.round(Math.min(55, g * 0.75));
-        data[i + 2] = Math.round(Math.min(95, b * 0.82));
-      } else if (y >= waveStart && sat > 0.18 && lum < 220) {
-        // Boost wave blues — deeper navy + brighter highlights
-        if (lum < 95) {
-          data[i] = Math.round(r * 0.82);
-          data[i + 1] = Math.round(g * 0.88);
-          data[i + 2] = Math.round(Math.min(255, b * 1.08));
-        } else {
-          data[i] = Math.round(Math.min(255, r * 0.95 + 8));
-          data[i + 1] = Math.round(Math.min(255, g * 1.06 + 12));
-          data[i + 2] = Math.round(Math.min(255, b * 1.22 + 18));
-        }
+  if (ringApex < 0) {
+    for (let y = 0; y < Math.floor(ih * 0.34); y++) {
+      let centerHits = 0;
+      for (let x = cx0; x < cx1; x++) {
+        if (data[(y * iw + x) * ch + 3] > 48) centerHits++;
+      }
+      if (centerHits > (cx1 - cx0) * 0.14) {
+        ringApex = y;
+        break;
       }
     }
   }
 
-  let out = await sharp(data, { raw: { width: iw, height: ih, channels: ch } }).png().toBuffer();
+  const clearThrough = ringApex > 0 ? Math.max(0, ringApex - 16) : Math.floor(ih * 0.2);
 
-  const topH = Math.floor(ih * 0.34);
-  const topBoost = await sharp(out)
-    .extract({ left: 0, top: 0, width: iw, height: topH })
-    .linear(1.2, -14)
-    .sharpen({ sigma: 1.1, m1: 1.2, m2: 0.5 })
+  for (let y = 0; y < clearThrough; y++) {
+    for (let x = 0; x < iw; x++) {
+      const i = (y * iw + x) * ch;
+      data[i] = 255;
+      data[i + 1] = 255;
+      data[i + 2] = 255;
+      data[i + 3] = 0;
+    }
+  }
+
+  let cleared = await sharp(data, { raw: { width: iw, height: ih, channels: ch } })
+    .flatten({ background: WHITE })
     .png()
     .toBuffer();
 
-  const waveH = ih - Math.floor(ih * 0.6);
-  const waveBoost = await sharp(out)
-    .extract({ left: 0, top: Math.floor(ih * 0.6), width: iw, height: waveH })
-    .modulate({ saturation: 1.42, brightness: 1.04 })
-    .linear(1.18, -12)
-    .sharpen({ sigma: 1.3, m1: 1.3, m2: 0.55 })
+  cleared = await clearPelagicWingRemnants(cleared);
+
+  const padTop = Math.round(ih * 0.08);
+  return sharp(cleared)
+    .extend({ top: padTop, bottom: 0, left: 0, right: 0, background: WHITE })
     .png()
     .toBuffer();
+}
 
-  out = await sharp(out)
-    .composite([
-      { input: topBoost, top: 0, left: 0 },
-      { input: waveBoost, top: Math.floor(ih * 0.6), left: 0 },
-    ])
+/** Erase leftover PELAGIC letter wings in top corners (ring stays centered) */
+async function clearPelagicWingRemnants(buffer) {
+  const { data, info } = await sharp(buffer).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const iw = info.width;
+  const ih = info.height;
+  const ch = info.channels;
+  const wingRows = Math.floor(ih * 0.38);
+  const wingCols = Math.floor(iw * 0.34);
+
+  for (let y = 0; y < wingRows; y++) {
+    for (let x = 0; x < wingCols; x++) {
+      const i = (y * iw + x) * ch;
+      data[i] = 255;
+      data[i + 1] = 255;
+      data[i + 2] = 255;
+      data[i + 3] = 255;
+    }
+    for (let x = iw - wingCols; x < iw; x++) {
+      const i = (y * iw + x) * ch;
+      data[i] = 255;
+      data[i + 1] = 255;
+      data[i + 2] = 255;
+      data[i + 3] = 255;
+    }
+  }
+
+  return sharp(data, { raw: { width: iw, height: ih, channels: ch } })
+    .flatten({ background: WHITE })
     .png()
     .toBuffer();
-
-  return out;
 }
 
 async function writeSizes(trimmedBuffer, baseName) {
@@ -117,7 +145,7 @@ async function writeSizes(trimmedBuffer, baseName) {
     const outH = maxH;
     const out = await sharp(trimmedBuffer)
       .resize(outW, outH, { fit: "inside", background: BG, kernel: sharp.kernel.lanczos3 })
-      .png({ compressionLevel: 6 })
+      .png({ compressionLevel: 4 })
       .toBuffer();
 
     const name =
@@ -130,6 +158,65 @@ async function writeSizes(trimmedBuffer, baseName) {
           : `logo-full-${maxH}.png`;
     writeFileSync(`${publicDir}${name}`, out);
     console.log(`Wrote ${name} (${outW}x${outH}) aspect ${(outH / outW).toFixed(2)}`);
+  }
+}
+
+/** Square canvas — full anchor visible top-to-bottom, PDF colors preserved */
+async function toCircleSquare(buffer) {
+  const trimmed = await sharp(buffer).flatten({ background: WHITE }).trim({ threshold: 10 }).toBuffer();
+
+  const meta = await sharp(trimmed).metadata();
+  const w = meta.width ?? 700;
+  const h = meta.height ?? 700;
+  const size = Math.max(w, h);
+  const padTop = Math.round(size * 0.1);
+  const padSide = Math.round(size * 0.04);
+  const padBottom = Math.round(size * 0.03);
+  const innerW = size - padSide * 2;
+  const innerH = size - padTop - padBottom;
+
+  const scaled = await sharp(trimmed)
+    .resize(innerW, innerH, { fit: "inside", background: WHITE })
+    .png()
+    .toBuffer();
+
+  const sm = await sharp(scaled).metadata();
+  const sw = sm.width ?? innerW;
+  const sh = sm.height ?? innerH;
+
+  return sharp({
+    create: { width: size, height: size, channels: 3, background: WHITE },
+  })
+    .composite([
+      {
+        input: scaled,
+        left: Math.floor((size - sw) / 2),
+        top: padTop + Math.floor((innerH - sh) / 2),
+      },
+    ])
+    .png()
+    .toBuffer();
+}
+
+async function writeCircleSizes(trimmedBuffer, baseName) {
+  const square = await toCircleSquare(trimmedBuffer);
+
+  for (const maxS of [256, 512, 1024]) {
+    const out = await sharp(square)
+      .resize(maxS, maxS, { fit: "fill", kernel: sharp.kernel.lanczos3 })
+      .png({ compressionLevel: 4 })
+      .toBuffer();
+
+    const name =
+      baseName === "logo-circle"
+        ? maxS === 1024
+          ? "logo-circle.png"
+          : `logo-circle-${maxS}.png`
+        : maxS === 1024
+          ? "logo-full-circle.png"
+          : `logo-full-circle-${maxS}.png`;
+    writeFileSync(`${publicDir}${name}`, out);
+    console.log(`Wrote ${name} (${maxS}x${maxS})`);
   }
 }
 
@@ -149,16 +236,16 @@ const meta = await sharp(trimmed).metadata();
 const w = meta.width ?? 1115;
 const h = meta.height ?? 1628;
 
-await writeSizes(trimmed, "logo-full");
-
-// Crop: PELAGIC → waves only (remove MARINE SOLUTIONS + padding below)
+// Anchor + waves only: remove MARINE SOLUTIONS below, then PELAGIC above
 const emblemH = Math.round(h * 0.795);
 let emblem = await sharp(trimmed)
   .extract({ left: 0, top: 0, width: w, height: emblemH })
-  .trim({ threshold: 12 })
+  .trim({ threshold: 10 })
   .png()
   .toBuffer();
 
-emblem = await enhanceEmblem(emblem);
+emblem = await stripPelagicText(emblem);
+
 await writeSizes(emblem, "logo");
-console.log("Enhanced emblem: bolder PELAGIC + clearer waves");
+await writeCircleSizes(emblem, "logo-circle");
+console.log("Anchor mark — PELAGIC removed");

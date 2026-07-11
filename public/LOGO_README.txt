@@ -4,11 +4,9 @@ SOURCE
   public/logo-final.pdf
   npm run prepare-logo-pdf
 
-SITE
-  logo.png — cropped emblem (header, footer, compact marks)
-  logo-full.png — full PDF lockup (splash screen)
+SITE (anchor only — PDF original colors)
+  logo.png / logo-circle.png — anchor + waves, no color processing
 
-CROP (logo.png only)
-  Top: PELAGIC
-  Bottom: full waves
-  Removed: MARINE SOLUTIONS tagline
+CROP
+  Removed: PELAGIC (top) + MARINE SOLUTIONS (bottom)
+  Preserved: full anchor ring → flukes → waves
