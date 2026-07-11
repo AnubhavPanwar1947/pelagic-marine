@@ -1,34 +1,44 @@
 @import "tailwindcss";
 
-/* Pelagic Marine — logo palette: navy #14306E, accent #266AAE, light #4B9FD9, sky #E8F4FC */
+/* Pelagic Marine — boss official palette (Jul 2026) */
 :root {
   --background: #ffffff;
   --foreground: #2d3f52;
-  --pelagic-ink: #0c2340;
-  --pelagic-deep: #0c2340;
-  --pelagic-charcoal: #1a3577;
+
+  /* Logo colors (from boss artwork) */
+  --logo-navy-deep: #003070;
+  --logo-navy: #1d3070;
+  --logo-mid-blue: #1e7fd0;
+  --logo-mid-blue-deep: #0d60b0;
+  --logo-azure: #2fa8ee;
+  --logo-azure-bright: #38b0f0;
+  --logo-azure-light: #5ba0e0;
+  --logo-pelagic-text: #003070;
+  --logo-marine-text: #003070;
+  --logo-anchor-surface: #ffffff;
+
+  /* Site theme — boss standardized build */
+  --pelagic-ink: #0e235e;
+  --pelagic-deep: #0e235e;
+  --pelagic-charcoal: #1d3070;
   --pelagic-body: #243848;
   --pelagic-steel: #364b5e;
   --pelagic-slate: #4a5f72;
   --pelagic-muted: #5c7082;
   --pelagic-cream: #ffffff;
-  --pelagic-sand: #d4e5f5;
-  --pelagic-warm: #c5daf0;
-  --pelagic-accent: #266aae;
-  --pelagic-accent-light: #4b9fd9;
-  --pelagic-sky: #e8f4fc;
-  --pelagic-sunset: #f0f7fc;
-  --pelagic-water: #7ec8ff;
+  --pelagic-sand: #eef2f6;
+  --pelagic-warm: #e0eaf2;
+  --pelagic-accent: #2fa8ee;
+  --pelagic-accent-hover: #1e7fd0;
+  --pelagic-accent-light: #5ba0e0;
+  --pelagic-sky: #f3f9fb;
+  --pelagic-sunset: #eef2f6;
+  --pelagic-water: #2fa8ee;
 
-  /* Official logo wordmark — sampled from public/logo-final.pdf render */
-  --logo-pelagic-text: #40538d;
-  --logo-marine-text: #7b88b1;
-  --logo-anchor-surface: #ffffff;
-
-  --pelagic-navy: #14306e;
-  --pelagic-blue: #1a3577;
-  --pelagic-light: #4b9fd9;
-  --pelagic-mist: #e8f4fc;
+  --pelagic-navy: #143868;
+  --pelagic-blue: #1e7fd0;
+  --pelagic-light: #38b0f0;
+  --pelagic-mist: #f3f9fb;
 }
 
 @theme inline {
@@ -45,6 +55,7 @@
   --color-pelagic-sand: var(--pelagic-sand);
   --color-pelagic-warm: var(--pelagic-warm);
   --color-pelagic-accent: var(--pelagic-accent);
+  --color-pelagic-accent-hover: var(--pelagic-accent-hover);
   --color-pelagic-accent-light: var(--pelagic-accent-light);
   --color-pelagic-sky: var(--pelagic-sky);
   --color-pelagic-sunset: var(--pelagic-sunset);
@@ -58,12 +69,12 @@
 }
 
 body {
-  background-color: #fafcfe;
+  background-color: #f3f9fb;
   background-image:
-    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(232, 244, 252, 0.95), transparent 55%),
-    radial-gradient(ellipse 65% 45% at 0% 100%, rgba(212, 229, 245, 0.35), transparent 50%),
-    radial-gradient(ellipse 45% 35% at 100% 55%, rgba(126, 200, 255, 0.08), transparent 45%),
-    radial-gradient(rgba(38, 106, 174, 0.1) 1.25px, transparent 1.25px);
+    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(243, 249, 251, 0.95), transparent 55%),
+    radial-gradient(ellipse 65% 45% at 0% 100%, rgba(238, 242, 246, 0.45), transparent 50%),
+    radial-gradient(ellipse 45% 35% at 100% 55%, rgba(47, 168, 238, 0.06), transparent 45%),
+    radial-gradient(rgba(30, 127, 208, 0.08) 1.25px, transparent 1.25px);
   background-size: 100% 100%, 100% 100%, 100% 100%, 44px 44px;
   background-attachment: fixed;
   color: var(--pelagic-body);
@@ -129,13 +140,13 @@ html {
   background: linear-gradient(
     100deg,
     transparent 0%,
-    rgba(64, 83, 141, 0.06) 18%,
-    rgba(126, 200, 255, 0.14) 36%,
+    rgba(0, 48, 112, 0.06) 18%,
+    rgba(47, 168, 238, 0.14) 36%,
     rgba(220, 240, 252, 0.32) 47%,
     rgba(255, 255, 255, 0.22) 50%,
     rgba(220, 240, 252, 0.32) 53%,
-    rgba(126, 200, 255, 0.14) 64%,
-    rgba(64, 83, 141, 0.06) 82%,
+    rgba(47, 168, 238, 0.14) 64%,
+    rgba(0, 48, 112, 0.06) 82%,
     transparent 100%
   );
   mix-blend-mode: soft-light;
@@ -164,7 +175,7 @@ html {
 }
 
 .brand-logo-wordmark {
-  border-left: 1px solid rgba(64, 83, 141, 0.22);
+  border-left: 1px solid rgba(0, 48, 112, 0.22);
   padding-left: 0.75rem;
 }
 
@@ -244,11 +255,11 @@ html {
     transparent 72%
   );
   mix-blend-mode: screen;
-  mask-image: url("/logo-circle.png?v=33");
+  mask-image: url("/logo-circle.png?v=35");
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo-circle.png?v=33");
+  -webkit-mask-image: url("/logo-circle.png?v=35");
   -webkit-mask-size: contain;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
@@ -267,11 +278,11 @@ html {
   );
   mix-blend-mode: overlay;
   animation: brand-logo-armor 4.5s ease-in-out infinite;
-  mask-image: url("/logo-circle.png?v=33");
+  mask-image: url("/logo-circle.png?v=35");
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo-circle.png?v=33");
+  -webkit-mask-image: url("/logo-circle.png?v=35");
   -webkit-mask-size: contain;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
@@ -288,11 +299,11 @@ html {
   );
   mix-blend-mode: soft-light;
   animation: brand-logo-shine 5.2s ease-in-out infinite;
-  mask-image: url("/logo-circle.png?v=33");
+  mask-image: url("/logo-circle.png?v=35");
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo-circle.png?v=33");
+  -webkit-mask-image: url("/logo-circle.png?v=35");
   -webkit-mask-size: contain;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;

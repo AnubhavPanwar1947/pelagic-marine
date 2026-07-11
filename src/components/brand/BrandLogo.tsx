@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const LOGO_CIRCLE_SRC = "/logo-circle.png?v=33";
+const LOGO_CIRCLE_SRC = "/logo-circle.png?v=35";
 
 type BrandLogoProps = {
   variant?: "header" | "footer" | "promo";

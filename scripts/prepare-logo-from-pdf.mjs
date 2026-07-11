@@ -161,7 +161,7 @@ async function writeSizes(trimmedBuffer, baseName) {
   }
 }
 
-/** Square canvas — full anchor visible top-to-bottom, PDF colors preserved */
+/** Square canvas — full anchor + waves visible, PDF colors preserved */
 async function toCircleSquare(buffer) {
   const trimmed = await sharp(buffer).flatten({ background: WHITE }).trim({ threshold: 10 }).toBuffer();
 
@@ -169,11 +169,12 @@ async function toCircleSquare(buffer) {
   const w = meta.width ?? 700;
   const h = meta.height ?? 700;
   const size = Math.max(w, h);
-  const padTop = Math.round(size * 0.1);
-  const padSide = Math.round(size * 0.04);
-  const padBottom = Math.round(size * 0.03);
-  const innerW = size - padSide * 2;
-  const innerH = size - padTop - padBottom;
+  const padTop = Math.round(size * 0.13);
+  const padSide = Math.round(size * 0.11);
+  const padBottom = Math.round(size * 0.16);
+  const zoom = 0.68;
+  const innerW = Math.floor((size - padSide * 2) * zoom);
+  const innerH = Math.floor((size - padTop - padBottom) * zoom);
 
   const scaled = await sharp(trimmed)
     .resize(innerW, innerH, { fit: "inside", background: WHITE })

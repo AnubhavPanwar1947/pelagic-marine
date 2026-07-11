@@ -359,7 +359,7 @@ export function Header() {
 
           <Link
             href="/contact"
-            className="hidden rounded-full bg-[#266aae] px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-white shadow-md shadow-[#266aae]/35 transition hover:bg-[#1a5f9e] sm:inline-flex xl:text-sm"
+            className="hidden rounded-full bg-pelagic-accent px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-white shadow-md shadow-pelagic-accent/35 transition hover:bg-pelagic-accent-hover sm:inline-flex xl:text-sm"
           >
             Contact us
           </Link>
@@ -391,7 +391,7 @@ export function Header() {
             ))}
             <Link
               href="/contact"
-              className="mt-2 rounded-full bg-[#266aae] py-2.5 text-center text-sm font-bold text-white shadow-md shadow-[#266aae]/35 transition hover:bg-[#1a5f9e]"
+              className="mt-2 rounded-full bg-pelagic-accent py-2.5 text-center text-sm font-bold text-white shadow-md shadow-pelagic-accent/35 transition hover:bg-pelagic-accent-hover"
             >
               Contact us
             </Link>
