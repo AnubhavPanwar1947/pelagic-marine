@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const LOGO_CIRCLE_SRC = "/logo-circle.png?v=32";
+const LOGO_CIRCLE_SRC = "/logo-circle.png?v=33";
 
 type BrandLogoProps = {
   variant?: "header" | "footer" | "promo";
@@ -12,19 +12,37 @@ type BrandLogoProps = {
   navSolid?: boolean;
 };
 
-function BrandLogoWordmark({ compact = false }: { compact?: boolean }) {
+function BrandLogoWordmark({
+  compact = false,
+  promo = false,
+}: {
+  compact?: boolean;
+  promo?: boolean;
+}) {
   return (
-    <div className="brand-logo-wordmark hidden min-w-0 flex-col justify-center sm:flex">
+    <div
+      className={`brand-logo-wordmark min-w-0 flex-col justify-center ${
+        promo ? "brand-logo-wordmark--promo flex" : "hidden sm:flex"
+      }`}
+    >
       <span
         className={`brand-logo-wordmark-pelagic font-display block font-bold leading-none tracking-[0.05em] ${
-          compact ? "text-base" : "text-lg lg:text-xl"
+          promo
+            ? "text-3xl sm:text-4xl"
+            : compact
+              ? "text-base"
+              : "text-lg lg:text-xl"
         }`}
       >
         PELAGIC
       </span>
       <span
         className={`brand-logo-wordmark-tagline mt-1 block font-semibold uppercase leading-none tracking-[0.24em] ${
-          compact ? "text-[9px]" : "text-[10px] lg:text-[11px]"
+          promo
+            ? "mt-1.5 text-xs sm:text-sm"
+            : compact
+              ? "text-[9px]"
+              : "text-[10px] lg:text-[11px]"
         }`}
       >
         Marine Solutions
@@ -43,11 +61,11 @@ export function BrandLogo({
   const isHeader = variant === "header";
   const isPromo = variant === "promo";
   const isFooter = variant === "footer";
-  const showWordmark = isHeader || isFooter;
-  const lockupShine = showWordmark && (shine || isHeader || isFooter);
+  const showWordmark = isHeader || isFooter || isPromo;
+  const lockupShine = showWordmark && (shine || isHeader || isFooter || isPromo);
   const markShine = shine && !showWordmark;
 
-  const diameter = isPromo ? 300 : compact ? 92 : isHeader ? 124 : 96;
+  const diameter = isPromo ? 200 : compact ? 92 : isHeader ? 124 : 96;
 
   const headerSurface = navSolid ? "bg-white" : "bg-white/90 backdrop-blur-md";
 
@@ -55,7 +73,7 @@ export function BrandLogo({
     <div
       className={`brand-logo-circle group relative inline-flex shrink-0 transition-transform duration-300 group-hover:scale-[1.02] ${
         isPromo
-          ? "brand-logo-circle--splash"
+          ? "brand-logo-circle--promo"
           : isHeader
             ? `brand-logo-circle--header ${headerSurface}`
             : ""
@@ -63,7 +81,13 @@ export function BrandLogo({
       style={{ width: diameter, height: diameter }}
     >
       <div
-        className={`brand-logo-shell brand-logo-shell--circle relative h-full w-full ${isHeader ? headerSurface : isPromo ? "bg-[#fdfbf7]" : "bg-white"} ${markShine ? "brand-logo-shine" : ""}`}
+        className={`brand-logo-shell brand-logo-shell--circle relative h-full w-full ${
+          isPromo
+            ? "brand-logo-shell--promo"
+            : isHeader
+              ? headerSurface
+              : "bg-white"
+        } ${markShine ? "brand-logo-shine" : ""}`}
       >
         <Image
           src={LOGO_CIRCLE_SRC}
@@ -87,12 +111,12 @@ export function BrandLogo({
 
   const content = (
     <div
-      className={`brand-logo-lockup relative inline-flex items-center gap-2.5 sm:gap-3 ${
-        lockupShine ? "brand-logo-lockup--shine" : ""
-      }`}
+      className={`brand-logo-lockup relative inline-flex items-center ${
+        isPromo ? "gap-4 sm:gap-5" : "gap-2.5 sm:gap-3"
+      } ${lockupShine ? "brand-logo-lockup--shine" : ""}`}
     >
       {mark}
-      {showWordmark && <BrandLogoWordmark compact={compact} />}
+      {showWordmark && <BrandLogoWordmark compact={compact} promo={isPromo} />}
       {lockupShine && (
         <span className="brand-logo-lockup-shine-sweep pointer-events-none" aria-hidden />
       )}

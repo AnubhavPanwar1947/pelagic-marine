@@ -37,7 +37,7 @@ export function SplashScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-pelagic-sky via-pelagic-cream to-pelagic-sunset transition-opacity duration-500 ${
+      className={`splash-screen fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500 ${
         fadeOut ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
       aria-hidden="true"
@@ -45,8 +45,8 @@ export function SplashScreen() {
       <div className="animate-splash-scale">
         <BrandLogo variant="promo" linked={false} shine />
       </div>
-      <div className="mt-10 h-0.5 w-24 overflow-hidden rounded-full bg-pelagic-warm">
-        <div className="h-full animate-splash-bar bg-pelagic-accent" />
+      <div className="mt-10 h-0.5 w-24 overflow-hidden rounded-full bg-pelagic-sand/70">
+        <div className="h-full animate-splash-bar bg-pelagic-accent/80" />
       </div>
     </div>
   );

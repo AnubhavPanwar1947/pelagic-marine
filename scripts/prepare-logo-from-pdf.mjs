@@ -198,11 +198,37 @@ async function toCircleSquare(buffer) {
     .toBuffer();
 }
 
+/** Transparent white canvas — anchor blends with splash / page backgrounds */
+async function knockOutWhiteBackground(buffer) {
+  const { data, info } = await sharp(buffer).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { width: iw, height: ih, channels: ch } = info;
+
+  for (let y = 0; y < ih; y++) {
+    for (let x = 0; x < iw; x++) {
+      const i = (y * iw + x) * ch;
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+      const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+      const maxC = Math.max(r, g, b);
+      const minC = Math.min(r, g, b);
+      const sat = maxC ? (maxC - minC) / maxC : 0;
+      if (lum > 248 && sat < 0.06) {
+        data[i + 3] = 0;
+      }
+    }
+  }
+
+  return sharp(data, { raw: { width: iw, height: ih, channels: ch } }).png({ compressionLevel: 4 }).toBuffer();
+}
+
 async function writeCircleSizes(trimmedBuffer, baseName) {
   const square = await toCircleSquare(trimmedBuffer);
+  const transparent =
+    baseName === "logo-circle" ? await knockOutWhiteBackground(square) : square;
 
   for (const maxS of [256, 512, 1024]) {
-    const out = await sharp(square)
+    const out = await sharp(transparent)
       .resize(maxS, maxS, { fit: "fill", kernel: sharp.kernel.lanczos3 })
       .png({ compressionLevel: 4 })
       .toBuffer();

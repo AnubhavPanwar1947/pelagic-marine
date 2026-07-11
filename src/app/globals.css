@@ -23,6 +23,7 @@
   /* Official logo wordmark — sampled from public/logo-final.pdf render */
   --logo-pelagic-text: #40538d;
   --logo-marine-text: #7b88b1;
+  --logo-anchor-surface: #ffffff;
 
   --pelagic-navy: #14306e;
   --pelagic-blue: #1a3577;
@@ -181,6 +182,16 @@ html {
   }
 }
 
+.brand-logo-wordmark--promo {
+  padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  .brand-logo-wordmark--promo {
+    padding-left: 1.25rem;
+  }
+}
+
 /* Logo — PDF anchor mark, original colors */
 .brand-logo-img,
 .brand-logo-img--circle {
@@ -194,6 +205,12 @@ html {
 }
 
 .brand-logo-circle--header {
+  box-shadow: none;
+}
+
+.brand-logo-circle--promo,
+.brand-logo-shell--promo {
+  background: transparent;
   box-shadow: none;
 }
 
@@ -227,11 +244,11 @@ html {
     transparent 72%
   );
   mix-blend-mode: screen;
-  mask-image: url("/logo-circle.png?v=32");
+  mask-image: url("/logo-circle.png?v=33");
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo-circle.png?v=32");
+  -webkit-mask-image: url("/logo-circle.png?v=33");
   -webkit-mask-size: contain;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
@@ -250,11 +267,11 @@ html {
   );
   mix-blend-mode: overlay;
   animation: brand-logo-armor 4.5s ease-in-out infinite;
-  mask-image: url("/logo-circle.png?v=32");
+  mask-image: url("/logo-circle.png?v=33");
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo-circle.png?v=32");
+  -webkit-mask-image: url("/logo-circle.png?v=33");
   -webkit-mask-size: contain;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
@@ -271,11 +288,11 @@ html {
   );
   mix-blend-mode: soft-light;
   animation: brand-logo-shine 5.2s ease-in-out infinite;
-  mask-image: url("/logo-circle.png?v=32");
+  mask-image: url("/logo-circle.png?v=33");
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo-circle.png?v=32");
+  -webkit-mask-image: url("/logo-circle.png?v=33");
   -webkit-mask-size: contain;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
@@ -2246,6 +2263,11 @@ textarea::placeholder {
 
 .animate-fade-up {
   animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Splash — same solid white as header anchor circle */
+.splash-screen {
+  background: var(--logo-anchor-surface);
 }
 
 @keyframes splash-scale {

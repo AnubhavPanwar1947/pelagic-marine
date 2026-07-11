@@ -1,4 +1,4 @@
-const LOGO_CIRCLE_SRC = "/logo-circle.png?v=32";
+const LOGO_CIRCLE_SRC = "/logo-circle.png?v=33";
 
 type BrandLogoMarkProps = {
   size?: number;
