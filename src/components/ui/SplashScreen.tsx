@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { BrandLogo } from "@/components/brand/BrandLogo";
 
 const SPLASH_KEY = "pelagic-splash-seen";
 const DURATION_MS = 3000;
+const SPLASH_LOGO_SRC = "/logo-full.png";
 
 export function SplashScreen() {
   const pathname = usePathname();
@@ -43,7 +44,18 @@ export function SplashScreen() {
       aria-hidden="true"
     >
       <div className="animate-splash-scale">
-        <BrandLogo variant="promo" linked={false} shine />
+        <div className="brand-logo-lockup brand-logo-lockup--shine relative inline-block">
+          <Image
+            src={SPLASH_LOGO_SRC}
+            alt="Pelagic Marine Solutions"
+            width={480}
+            height={701}
+            priority
+            unoptimized
+            className="relative z-[1] h-auto w-[min(72vw,300px)] max-w-[320px] sm:w-[340px]"
+          />
+          <span className="brand-logo-lockup-shine-sweep pointer-events-none" aria-hidden />
+        </div>
       </div>
       <div className="mt-10 h-0.5 w-24 overflow-hidden rounded-full bg-pelagic-sand/70">
         <div className="h-full animate-splash-bar bg-pelagic-accent/80" />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 
 export const metadata: Metadata = {
@@ -15,6 +16,9 @@ export default function LoginPage() {
       gridOpacity={45}
     >
       <div className="card-maritime w-full max-w-md rounded-3xl border p-10 shadow-xl">
+        <div className="mb-6 flex justify-center">
+          <BrandLogo variant="header" linked={false} compact />
+        </div>
         <h1 className="font-display text-center text-2xl font-semibold text-pelagic-ink">
           Client Login
         </h1>

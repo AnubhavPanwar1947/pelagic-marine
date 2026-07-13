@@ -8,30 +8,37 @@ type BrandLogoProps = {
   linked?: boolean;
   compact?: boolean;
   shine?: boolean;
-  /** Matches header `bg-white` vs `bg-white/90` when scrolled state changes */
   navSolid?: boolean;
 };
 
 function BrandLogoWordmark({
   compact = false,
   promo = false,
+  footer = false,
 }: {
   compact?: boolean;
   promo?: boolean;
+  footer?: boolean;
 }) {
   return (
     <div
       className={`brand-logo-wordmark min-w-0 flex-col justify-center ${
-        promo ? "brand-logo-wordmark--promo flex" : "hidden sm:flex"
+        promo
+          ? "brand-logo-wordmark--promo flex"
+          : footer
+            ? "brand-logo-wordmark--footer flex"
+            : "hidden sm:flex"
       }`}
     >
       <span
         className={`brand-logo-wordmark-pelagic font-display block font-bold leading-none tracking-[0.05em] ${
           promo
             ? "text-3xl sm:text-4xl"
-            : compact
-              ? "text-base"
-              : "text-lg lg:text-xl"
+            : footer
+              ? "text-base sm:text-lg"
+              : compact
+                ? "text-base"
+                : "text-lg lg:text-xl"
         }`}
       >
         PELAGIC
@@ -39,10 +46,12 @@ function BrandLogoWordmark({
       <span
         className={`brand-logo-wordmark-tagline mt-1 block font-semibold uppercase leading-none tracking-[0.24em] ${
           promo
-            ? "mt-1.5 text-xs sm:text-sm"
-            : compact
-              ? "text-[9px]"
-              : "text-[10px] lg:text-[11px]"
+            ? "text-xs sm:text-sm"
+            : footer
+              ? "text-[9px] sm:text-[10px]"
+              : compact
+                ? "text-[9px]"
+                : "text-[10px] lg:text-[11px]"
         }`}
       >
         Marine Solutions
@@ -62,61 +71,60 @@ export function BrandLogo({
   const isPromo = variant === "promo";
   const isFooter = variant === "footer";
   const showWordmark = isHeader || isFooter || isPromo;
-  const lockupShine = showWordmark && (shine || isHeader || isFooter || isPromo);
-  const markShine = shine && !showWordmark;
+  const lockupShine = shine && showWordmark;
 
-  const diameter = isPromo ? 200 : compact ? 92 : isHeader ? 124 : 96;
-
-  const headerSurface = navSolid ? "bg-white" : "bg-white/90 backdrop-blur-md";
+  const diameter = isPromo ? 200 : compact ? 92 : isFooter ? 88 : isHeader ? 100 : 96;
 
   const mark = (
     <div
-      className={`brand-logo-circle group relative inline-flex shrink-0 transition-transform duration-300 group-hover:scale-[1.02] ${
-        isPromo
-          ? "brand-logo-circle--promo"
-          : isHeader
-            ? `brand-logo-circle--header ${headerSurface}`
-            : ""
-      }`}
+      className="brand-logo-anchor-slot relative shrink-0"
       style={{ width: diameter, height: diameter }}
     >
       <div
-        className={`brand-logo-shell brand-logo-shell--circle relative h-full w-full ${
+        className={`brand-logo-circle absolute inset-0 inline-flex ${
           isPromo
-            ? "brand-logo-shell--promo"
-            : isHeader
-              ? headerSurface
-              : "bg-white"
-        } ${markShine ? "brand-logo-shine" : ""}`}
+            ? "brand-logo-circle--promo"
+            : isHeader || isFooter
+              ? "brand-logo-circle--header"
+              : ""
+        }`}
       >
-        <Image
-          src={LOGO_CIRCLE_SRC}
-          alt=""
-          width={diameter}
-          height={diameter}
-          unoptimized
-          className="brand-logo-img brand-logo-img--circle absolute inset-0 z-[1] h-full w-full object-contain object-center"
-          priority={isHeader || isPromo}
-        />
-        {markShine && (
-          <>
-            <span className="brand-logo-armor-rim pointer-events-none absolute inset-0 z-[2]" aria-hidden />
-            <span className="brand-logo-armor-glint pointer-events-none absolute inset-0 z-[3]" aria-hidden />
-            <span className="brand-logo-shine-sweep pointer-events-none absolute inset-0 z-[4]" aria-hidden />
-          </>
-        )}
+        <div
+          className={`brand-logo-shell brand-logo-shell--circle relative h-full w-full ${
+            isPromo
+              ? "brand-logo-shell--promo"
+              : isHeader || isFooter
+                ? "brand-logo-shell--header"
+                : "bg-white"
+          }`}
+        >
+          <Image
+            src={LOGO_CIRCLE_SRC}
+            alt=""
+            width={diameter}
+            height={diameter}
+            unoptimized
+            className="brand-logo-img brand-logo-img--circle absolute inset-0 z-[1] h-full w-full object-contain object-center"
+            priority={isHeader || isPromo}
+          />
+        </div>
       </div>
     </div>
   );
 
   const content = (
     <div
-      className={`brand-logo-lockup relative inline-flex items-center ${
-        isPromo ? "gap-4 sm:gap-5" : "gap-2.5 sm:gap-3"
-      } ${lockupShine ? "brand-logo-lockup--shine" : ""}`}
+      className={`brand-logo-lockup relative inline-flex items-center${
+        isPromo ? " brand-logo-lockup--promo" : ""
+      }${isFooter ? " brand-logo-lockup--footer" : ""} ${lockupShine ? "brand-logo-lockup--shine" : ""}`}
     >
       {mark}
-      {showWordmark && <BrandLogoWordmark compact={compact} promo={isPromo} />}
+      {showWordmark && (
+        <div className="brand-logo-wordmark-group inline-flex items-stretch">
+          <span className="brand-logo-lockup-divider shrink-0" aria-hidden />
+          <BrandLogoWordmark compact={compact} promo={isPromo} footer={isFooter} />
+        </div>
+      )}
       {lockupShine && (
         <span className="brand-logo-lockup-shine-sweep pointer-events-none" aria-hidden />
       )}

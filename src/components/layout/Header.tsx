@@ -327,24 +327,25 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ease-out ${
+      className={`sticky top-0 z-50 transition-[box-shadow,background-color,border-color] duration-300 ease-out ${
         scrolled
-          ? "border-b border-pelagic-sand bg-white shadow-[0_8px_30px_rgba(20,48,110,0.1)]"
+          ? "border-b border-pelagic-sand bg-white shadow-[0_12px_40px_rgba(20,48,110,0.14)] backdrop-blur-lg"
           : "border-b border-transparent bg-white/90 backdrop-blur-md"
       }`}
+      data-scrolled={scrolled ? "true" : "false"}
     >
       <div
-        className={`h-1 bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light transition-opacity duration-300 ${
-          scrolled ? "opacity-100" : "opacity-90"
+        className={`site-header-accent h-1 bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light transition-all duration-300 ${
+          scrolled ? "opacity-100 shadow-[0_1px_8px_rgba(47,168,238,0.35)]" : "opacity-90"
         }`}
         aria-hidden
       />
       <div
-        className={`mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
-          scrolled ? "py-2" : "py-3"
+        className={`site-header-bar mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 ${
+          scrolled ? "py-2.5" : "py-3"
         }`}
       >
-        <BrandLogo variant="header" compact={scrolled} navSolid={scrolled} />
+        <BrandLogo variant="header" shine />
 
         <nav className="hidden min-w-0 flex-1 items-center justify-center lg:flex lg:gap-0 xl:gap-0.5">
           {navMenu.map((item) => (
@@ -378,6 +379,9 @@ export function Header() {
 
       {open && (
         <div className="border-t border-pelagic-sand bg-white px-4 py-4 lg:hidden">
+          <div className="mb-4 flex justify-center border-b border-pelagic-sand/80 pb-4">
+            <BrandLogo variant="header" linked={false} compact />
+          </div>
           <div className="mb-4 md:hidden">
             <NavSearch />
           </div>

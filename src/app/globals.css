@@ -17,6 +17,13 @@
   --logo-marine-text: #003070;
   --logo-anchor-surface: #ffffff;
 
+  /* Lockup alignment — Version 6 */
+  --logo-lockup-anchor-x: 12px;
+  --logo-lockup-anchor-y: 20px;
+  --logo-lockup-gap: 0.25rem;
+  --logo-lockup-wordmark-pad: 0.375rem;
+  --logo-lockup-wordmark-x: 0px;
+
   /* Site theme — boss standardized build */
   --pelagic-ink: #0e235e;
   --pelagic-deep: #0e235e;
@@ -108,11 +115,6 @@ html {
     opacity: 1 !important;
     transform: none !important;
   }
-
-  .logo-armor-shine::after {
-    animation: none !important;
-    opacity: 0 !important;
-  }
 }
 
 .font-display {
@@ -123,60 +125,32 @@ html {
 
 .brand-logo-lockup {
   max-width: 100%;
+  align-items: center;
+  gap: var(--logo-lockup-gap);
 }
 
-.brand-logo-lockup--shine {
-  isolation: isolate;
+.brand-logo-anchor-slot {
+  flex-shrink: 0;
 }
 
-/* One continuous sweep: anchor → PELAGIC → Marine Solutions (soft logo-blue brush) */
-.brand-logo-lockup-shine-sweep {
-  position: absolute;
-  top: -4%;
-  bottom: -4%;
-  left: 0;
-  width: 40%;
-  z-index: 6;
-  background: linear-gradient(
-    100deg,
-    transparent 0%,
-    rgba(0, 48, 112, 0.06) 18%,
-    rgba(47, 168, 238, 0.14) 36%,
-    rgba(220, 240, 252, 0.32) 47%,
-    rgba(255, 255, 255, 0.22) 50%,
-    rgba(220, 240, 252, 0.32) 53%,
-    rgba(47, 168, 238, 0.14) 64%,
-    rgba(0, 48, 112, 0.06) 82%,
-    transparent 100%
-  );
-  mix-blend-mode: soft-light;
-  filter: blur(0.75px);
-  animation: brand-lockup-shine 6.2s ease-in-out infinite;
+.brand-logo-lockup .brand-logo-circle {
+  transform: translate(var(--logo-lockup-anchor-x), var(--logo-lockup-anchor-y));
 }
 
-@keyframes brand-lockup-shine {
-  0%,
-  14% {
-    transform: translateX(-108%);
-    opacity: 0;
-  }
-  22% {
-    opacity: 0.82;
-  }
-  56% {
-    transform: translateX(215%);
-    opacity: 0.82;
-  }
-  64%,
-  100% {
-    transform: translateX(215%);
-    opacity: 0;
-  }
+.brand-logo-wordmark-group {
+  position: relative;
+  z-index: 1;
+  gap: var(--logo-lockup-wordmark-pad);
+}
+
+.brand-logo-lockup-divider {
+  width: 1px;
+  background: rgba(0, 48, 112, 0.22);
 }
 
 .brand-logo-wordmark {
-  border-left: 1px solid rgba(0, 48, 112, 0.22);
-  padding-left: 0.75rem;
+  justify-content: center;
+  margin-left: var(--logo-lockup-wordmark-x);
 }
 
 .brand-logo-wordmark-pelagic {
@@ -187,19 +161,81 @@ html {
   color: var(--logo-marine-text);
 }
 
+.brand-logo-lockup--footer .brand-logo-lockup-divider {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.brand-logo-wordmark--footer .brand-logo-wordmark-pelagic {
+  color: #ffffff;
+}
+
+.brand-logo-wordmark--footer .brand-logo-wordmark-tagline {
+  color: rgba(191, 219, 254, 0.92);
+}
+
+.brand-logo-lockup--promo {
+  gap: 0.75rem;
+}
+
 @media (min-width: 640px) {
-  .brand-logo-wordmark {
-    padding-left: 0.875rem;
+  .brand-logo-lockup--promo {
+    gap: 1rem;
   }
 }
 
-.brand-logo-wordmark--promo {
-  padding-left: 1rem;
+.brand-logo-lockup--shine {
+  isolation: isolate;
 }
 
-@media (min-width: 640px) {
-  .brand-logo-wordmark--promo {
-    padding-left: 1.25rem;
+.brand-logo-lockup-shine-sweep {
+  position: absolute;
+  top: -4%;
+  bottom: -4%;
+  left: 0;
+  width: 40%;
+  z-index: 6;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  filter: blur(0.75px);
+  background: linear-gradient(
+    100deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 48, 112, 0.06) 18%,
+    rgba(47, 168, 238, 0.14) 36%,
+    rgba(220, 240, 252, 0.32) 47%,
+    rgba(255, 255, 255, 0.22) 50%,
+    rgba(220, 240, 252, 0.32) 53%,
+    rgba(47, 168, 238, 0.14) 64%,
+    rgba(0, 48, 112, 0.06) 82%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  animation: brand-lockup-shine 6.2s ease-in-out infinite;
+}
+
+@keyframes brand-lockup-shine {
+  0%,
+  14% {
+    opacity: 0;
+    transform: translateX(-108%);
+  }
+  22% {
+    opacity: 0.82;
+  }
+  56% {
+    opacity: 0.82;
+    transform: translateX(215%);
+  }
+  64%,
+  100% {
+    opacity: 0;
+    transform: translateX(215%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo-lockup-shine-sweep {
+    animation: none;
+    opacity: 0;
   }
 }
 
@@ -211,171 +247,23 @@ html {
 
 .brand-logo-circle {
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 4px 16px rgba(3, 22, 56, 0.12);
+  background: var(--logo-anchor-surface);
 }
 
-.brand-logo-circle--header {
-  box-shadow: none;
-}
-
+.brand-logo-circle--header,
+.brand-logo-circle--header .brand-logo-shell--circle,
+.brand-logo-shell--header,
 .brand-logo-circle--promo,
+.brand-logo-circle--promo .brand-logo-shell--circle,
 .brand-logo-shell--promo {
-  background: transparent;
   box-shadow: none;
-}
-
-.brand-logo-circle--splash {
-  background: #fdfbf7;
-  box-shadow:
-    0 12px 32px rgba(3, 22, 56, 0.18),
-    0 4px 12px rgba(38, 106, 174, 0.14);
+  background: transparent;
 }
 
 .brand-logo-shell--circle {
   border-radius: 50%;
   overflow: hidden;
-  background: #ffffff;
-}
-
-.brand-logo-circle--splash .brand-logo-shell--circle {
-  background: #fdfbf7;
-}
-
-.brand-logo-shine {
-  isolation: isolate;
-}
-
-/* Soft steel highlight — emblem (header) */
-.brand-logo-armor-rim {
-  background: radial-gradient(
-    ellipse 85% 70% at 50% 42%,
-    rgba(255, 255, 255, 0.22) 0%,
-    rgba(200, 225, 255, 0.08) 35%,
-    transparent 72%
-  );
-  mix-blend-mode: screen;
-  mask-image: url("/logo-circle.png?v=35");
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo-circle.png?v=35");
-  -webkit-mask-size: contain;
-  -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-}
-
-.brand-logo-armor-glint {
-  background: linear-gradient(
-    108deg,
-    transparent 32%,
-    rgba(255, 255, 255, 0.12) 40%,
-    rgba(230, 242, 255, 0.75) 46%,
-    rgba(255, 255, 255, 0.98) 49.5%,
-    rgba(210, 230, 255, 0.85) 53%,
-    rgba(255, 255, 255, 0.15) 58%,
-    transparent 66%
-  );
-  mix-blend-mode: overlay;
-  animation: brand-logo-armor 4.5s ease-in-out infinite;
-  mask-image: url("/logo-circle.png?v=35");
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo-circle.png?v=35");
-  -webkit-mask-size: contain;
-  -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-}
-
-.brand-logo-shine-sweep {
-  background: linear-gradient(
-    115deg,
-    transparent 34%,
-    rgba(140, 190, 255, 0.2) 42%,
-    rgba(255, 255, 255, 0.55) 50%,
-    rgba(75, 159, 217, 0.35) 56%,
-    transparent 64%
-  );
-  mix-blend-mode: soft-light;
-  animation: brand-logo-shine 5.2s ease-in-out infinite;
-  mask-image: url("/logo-circle.png?v=35");
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-  -webkit-mask-image: url("/logo-circle.png?v=35");
-  -webkit-mask-size: contain;
-  -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-}
-
-/* Circular medallion — shine follows the round frame */
-.brand-logo-shell--circle .brand-logo-armor-rim,
-.brand-logo-shell--circle .brand-logo-armor-glint,
-.brand-logo-shell--circle .brand-logo-shine-sweep {
-  border-radius: 50%;
-  mask-image: none;
-  -webkit-mask-image: none;
-}
-
-@keyframes brand-logo-armor {
-  0%,
-  100% {
-    transform: translateX(-110%) skewX(-14deg);
-    opacity: 0;
-  }
-  38% {
-    opacity: 0.55;
-  }
-  48% {
-    transform: translateX(0%) skewX(-14deg);
-    opacity: 1;
-  }
-  58% {
-    opacity: 0.55;
-  }
-  72% {
-    transform: translateX(110%) skewX(-14deg);
-    opacity: 0;
-  }
-}
-
-@keyframes brand-logo-shine {
-  0%,
-  100% {
-    transform: translateX(-95%) skewX(-10deg);
-    opacity: 0;
-  }
-  44% {
-    opacity: 0.7;
-  }
-  52% {
-    transform: translateX(0%) skewX(-10deg);
-    opacity: 0.9;
-  }
-  60% {
-    opacity: 0.7;
-  }
-  74% {
-    transform: translateX(95%) skewX(-10deg);
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .brand-logo-lockup-shine-sweep {
-    animation: none;
-    opacity: 0;
-  }
-
-  .brand-logo-armor-glint,
-  .brand-logo-shine-sweep {
-    animation: none;
-    opacity: 0;
-  }
-  .brand-logo-armor-rim {
-    opacity: 0.35;
-  }
+  background: var(--logo-anchor-surface);
 }
 
 /* Typography scale — single source of truth for hierarchy */
@@ -2276,9 +2164,9 @@ textarea::placeholder {
   animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Splash — same solid white as header anchor circle */
+/* Splash — same white as navbar; anchor uses transparent shell like header */
 .splash-screen {
-  background: var(--logo-anchor-surface);
+  background: var(--background);
 }
 
 @keyframes splash-scale {
@@ -2346,37 +2234,6 @@ textarea::placeholder {
 .logo-sharp {
   image-rendering: auto;
   -webkit-font-smoothing: antialiased;
-}
-
-.logo-armor-shine::after {
-  content: "";
-  position: absolute;
-  inset: -60%;
-  background: linear-gradient(
-    105deg,
-    transparent 42%,
-    rgba(255, 255, 255, 0.85) 50%,
-    transparent 58%
-  );
-  animation: armor-shine 3.5s ease-in-out infinite;
-}
-
-@keyframes armor-shine {
-  0%,
-  100% {
-    transform: translateX(-80%) rotate(20deg);
-    opacity: 0;
-  }
-  45% {
-    opacity: 1;
-  }
-  55% {
-    transform: translateX(80%) rotate(20deg);
-    opacity: 1;
-  }
-  70% {
-    opacity: 0;
-  }
 }
 
 .map-brand-overlay {

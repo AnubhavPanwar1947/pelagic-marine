@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { SocialBrandIcon } from "@/components/ui/SocialBrandIcon";
 import { company, navLinks } from "@/lib/site-data";
 import { socialLinks } from "@/lib/social-links";
@@ -8,10 +9,8 @@ export function Footer() {
     <footer className="relative z-30 isolate border-t border-pelagic-blue/40 bg-pelagic-navy text-blue-100">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-5">
-          <p className="type-display text-lg text-white">
-            {company.name}
-          </p>
-          <p className="type-caption mt-3 max-w-sm text-blue-100/85">
+          <BrandLogo variant="footer" />
+          <p className="type-caption mt-4 max-w-sm text-blue-100/85">
             Naval architecture and marine engineering consultancy — stability, structures,
             hydrodynamics and clean-fuel advisory, from Dubai to fleets worldwide.
           </p>
