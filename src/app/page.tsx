@@ -21,47 +21,42 @@ import { siteImages } from "@/lib/site-images";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — video or image, sunset sky feel */}
-      <section className="relative overflow-x-hidden bg-sky-gradient">
-        <div className="pointer-events-none absolute inset-0 bg-maritime-grid opacity-[0.28]" aria-hidden />
-        <div className="hero-shimmer pointer-events-none absolute inset-0 opacity-50" aria-hidden />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 lg:min-h-[68vh]">
-            <div className="relative z-10 flex flex-col justify-center py-16 lg:py-20">
-              <div className="animate-fade-up">
-                <span className="type-eyebrow inline-flex items-center gap-2 rounded-full bg-white/85 px-4 py-1.5 shadow-sm">
-                  <span className="h-1.5 w-1.5 rounded-full bg-pelagic-accent animate-pulse" />
-                  India & Dubai
-                </span>
-                <h1 className="type-display mt-6 text-4xl leading-[1.08] text-pelagic-ink sm:text-5xl lg:text-[3.35rem]">
-                  {company.heroHeadline}
-                </h1>
-                <p className="type-lead mt-5 max-w-lg">
-                  {company.heroSubline}
-                </p>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Button href="/contact" variant="primary">
-                    Start a consultation
-                  </Button>
-                  <Button
-                    href={`tel:${company.phones.india.replace(/\s/g, "")}`}
-                    variant="outline"
-                    external
-                  >
-                    Urgent call
-                  </Button>
-                </div>
-              </div>
+      {/* 1. Hero — full-bleed cinematic media (Enesel-style motion) */}
+      <section className="relative min-h-[88vh] overflow-hidden bg-pelagic-navy lg:min-h-[92vh]">
+        <HeroMedia cinematic className="absolute inset-0" />
+        <div className="hero-shimmer pointer-events-none absolute inset-0 opacity-30 mix-blend-soft-light" aria-hidden />
+        <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-4 pb-16 pt-28 sm:px-6 lg:min-h-[92vh] lg:justify-center lg:px-8 lg:pb-24 lg:pt-32">
+          <div className="max-w-2xl animate-fade-up">
+            <p className="font-display text-2xl tracking-tight text-white sm:text-3xl lg:text-4xl">
+              {company.name}
+            </p>
+            <h1 className="mt-5 text-xl font-medium leading-snug text-blue-50/95 sm:text-2xl lg:text-[1.75rem]">
+              {company.heroHeadline}
+            </h1>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-blue-100/85 sm:text-lg">
+              {company.heroSubline}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button href="/contact" variant="primary">
+                Start a consultation
+              </Button>
+              <Button
+                href={`tel:${company.phones.india.replace(/\s/g, "")}`}
+                variant="light"
+                external
+              >
+                Urgent call
+              </Button>
             </div>
-            <div className="relative min-h-[300px] lg:min-h-0">
-              <HeroMedia className="absolute inset-0" />
-            </div>
-          </div>
-          <div className="relative z-20 mt-8 pb-10 lg:mt-6 lg:pb-12">
-            <HeroProjectsCard />
           </div>
         </div>
       </section>
+
+      <div className="relative z-20 -mt-6 bg-pelagic-cream px-4 pb-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <HeroProjectsCard />
+        </div>
+      </div>
 
       {/* 3. Services */}
       <SectionMaritime className="py-20 lg:py-24" gridOpacity={58}>

@@ -12,6 +12,10 @@ export interface EnquiryInput {
   message: string;
   /** Honeypot — must stay empty */
   website?: string;
+  /** Client timestamp when the form was opened (anti-bot timing) */
+  formStartedAt?: number;
+  /** Cloudflare Turnstile token */
+  turnstileToken?: string;
 }
 
 export interface EnquiryRecord extends EnquiryInput {

@@ -1,14 +1,21 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { FooterCookieLink } from "@/components/layout/FooterCookieLink";
 import { SocialBrandIcon } from "@/components/ui/SocialBrandIcon";
 import { company, navLinks } from "@/lib/site-data";
 import { socialLinks } from "@/lib/social-links";
+
+const legalLinks = [
+  { href: "/privacy", label: "Privacy policy" },
+  { href: "/cookies", label: "Cookie policy" },
+  { href: "/terms", label: "Terms of use" },
+];
 
 export function Footer() {
   return (
     <footer className="relative z-30 isolate border-t border-pelagic-blue/40 bg-pelagic-navy text-blue-100">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:px-8">
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-4">
           <BrandLogo variant="footer" />
           <p className="type-caption mt-4 max-w-sm text-blue-100/85">
             Naval architecture and marine engineering consultancy — stability, structures,
@@ -16,7 +23,7 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-2">
           <p className="type-eyebrow text-pelagic-light">Links</p>
           <ul className="mt-4 space-y-2 text-sm">
             {navLinks.map((link) => (
@@ -29,7 +36,23 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="lg:col-span-4">
+        <div className="lg:col-span-3">
+          <p className="type-eyebrow text-pelagic-light">Legal</p>
+          <ul className="mt-4 space-y-2 text-sm">
+            {legalLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="text-blue-100/90 hover:text-white">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <FooterCookieLink />
+            </li>
+          </ul>
+        </div>
+
+        <div className="lg:col-span-3">
           <p className="type-eyebrow text-pelagic-light">Contact</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
@@ -62,7 +85,9 @@ export function Footer() {
       </div>
 
       <div className="border-t border-pelagic-blue/30 px-4 py-5 text-center text-xs text-blue-200/60">
-        © {new Date().getFullYear()} {company.legalName}. All rights reserved.
+        <p>
+          © {new Date().getFullYear()} {company.legalName}. All rights reserved.
+        </p>
       </div>
     </footer>
   );

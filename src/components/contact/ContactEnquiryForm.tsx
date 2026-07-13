@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useContactEnquiry, urgencyOptions } from "@/components/contact/ContactEnquiryContext";
 import { ContactPanelShell } from "@/components/contact/ContactPanelShell";
+import { TurnstileWidget } from "@/components/ui/TurnstileWidget";
 import { company, contactPage, serviceCategories } from "@/lib/site-data";
 
 const fieldClass =
@@ -25,6 +27,7 @@ export function ContactEnquiryForm() {
     setMessage,
     privacyAccepted,
     setPrivacyAccepted,
+    setTurnstileToken,
     highlightFields,
     submitted,
     reference,
@@ -173,6 +176,11 @@ export function ContactEnquiryForm() {
               className="pointer-events-none absolute h-0 w-0 opacity-0"
               aria-hidden
             />
+
+            <p className="rounded-lg bg-pelagic-cream/70 px-3 py-2 text-[11px] leading-5 text-pelagic-steel">
+              Protected enquiry form — rate-limited and filtered against automated spam. Urgent
+              casualties should call the 24/7 line, not wait on email.
+            </p>
 
             <div
               className={`rounded-xl border border-pelagic-accent/20 bg-pelagic-cream/40 p-4 transition ${
@@ -360,6 +368,8 @@ export function ContactEnquiryForm() {
               <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-red-100">{error}</p>
             )}
 
+            <TurnstileWidget onToken={setTurnstileToken} />
+
             <label className="flex items-start gap-3 rounded-xl border border-pelagic-mist bg-pelagic-cream/30 px-4 py-3 text-sm text-pelagic-body">
               <input
                 type="checkbox"
@@ -370,7 +380,12 @@ export function ContactEnquiryForm() {
                 required
               />
               <span>
-                {contactPage.form.privacyConsent} <span className="text-pelagic-accent">*</span>
+                I agree that Pelagic Marine may contact me about this enquiry and related marine
+                consultancy services. I have read the{" "}
+                <Link href="/privacy" className="font-semibold text-pelagic-accent underline-offset-2 hover:underline">
+                  Privacy policy
+                </Link>
+                . <span className="text-pelagic-accent">*</span>
               </span>
             </label>
 

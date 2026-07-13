@@ -12,15 +12,17 @@ export function PageHero({ eyebrow, title, description, imageSrc }: PageHeroProp
   return (
     <section className="relative min-h-[17rem] overflow-hidden border-b border-pelagic-sand sm:min-h-[19rem]">
       {imageSrc ? (
-        <div className="absolute inset-0" aria-hidden>
-          <SiteImage
-            src={imageSrc}
-            alt=""
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-          />
+        <div className="absolute inset-0 overflow-hidden" aria-hidden>
+          <div className="hero-ken-burns absolute inset-0">
+            <SiteImage
+              src={imageSrc}
+              alt=""
+              fill
+              priority
+              className="scale-110 object-cover"
+              sizes="100vw"
+            />
+          </div>
           <div className="page-hero-scrim absolute inset-0" />
         </div>
       ) : (

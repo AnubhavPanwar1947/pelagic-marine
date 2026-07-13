@@ -122,9 +122,9 @@ export const contactPage = {
   ],
   form: {
     privacyNotice:
-      "Your enquiry is stored securely and used only to respond to your request. We do not sell or share your contact details.",
+      "Your enquiry is stored securely and used only to respond to your request. We do not sell contact details. Protected by rate limits, bot checks and encryption in transit.",
     privacyConsent:
-      "I agree that Pelagic Marine may contact me about this enquiry and related marine consultancy services.",
+      "I agree that Pelagic Marine may contact me about this enquiry and related marine consultancy services. I have read the Privacy policy.",
     offices: [
       { value: "auto", label: "Route to nearest qualified office (recommended)" },
       { value: "mumbai", label: "Mumbai — Surveys & fleet support" },

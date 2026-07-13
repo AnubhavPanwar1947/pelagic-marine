@@ -123,6 +123,58 @@ html {
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
+.legal-prose {
+  color: var(--pelagic-steel);
+  font-size: 0.975rem;
+  line-height: 1.75;
+}
+
+.legal-prose h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--pelagic-ink);
+}
+
+.legal-prose h3 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--pelagic-ink);
+}
+
+.legal-prose p + p {
+  margin-top: 1rem;
+}
+
+.legal-prose ul {
+  margin-top: 0.75rem;
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+
+.legal-prose li + li {
+  margin-top: 0.4rem;
+}
+
+.legal-prose a {
+  font-weight: 600;
+  color: var(--pelagic-accent);
+  text-underline-offset: 2px;
+}
+
+.legal-prose a:hover {
+  text-decoration: underline;
+}
+
+.legal-prose strong {
+  color: var(--pelagic-charcoal);
+  font-weight: 600;
+}
+
 .brand-logo-lockup {
   max-width: 100%;
   align-items: center;
@@ -346,6 +398,31 @@ textarea::placeholder {
     var(--pelagic-cream) 45%,
     var(--pelagic-sunset) 100%
   );
+}
+
+/* Slow cinematic pan/zoom — Enesel-style background motion */
+@keyframes hero-ken-burns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate3d(-1.5%, -0.8%, 0);
+  }
+  100% {
+    transform: scale(1.12) translate3d(1%, 0.5%, 0);
+  }
+}
+
+.hero-ken-burns {
+  animation: hero-ken-burns 28s ease-in-out infinite alternate;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-ken-burns {
+    animation: none;
+  }
 }
 
 /* Contact — industry-standard marine consultancy layout */
@@ -2164,15 +2241,51 @@ textarea::placeholder {
   animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Splash — same white as navbar; anchor uses transparent shell like header */
+/* Splash — quiet brand moment; smaller mark, soft single shine */
 .splash-screen {
   background: var(--background);
+}
+
+.splash-logo-wrap {
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.35rem;
+}
+
+.splash-logo-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.08) 46%,
+    rgba(255, 255, 255, 0.38) 50%,
+    rgba(255, 255, 255, 0.08) 54%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+  animation: splash-logo-shine 1.8s ease-in-out 0.35s 1 forwards;
+}
+
+@keyframes splash-logo-shine {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
 }
 
 @keyframes splash-scale {
   from {
     opacity: 0;
-    transform: scale(0.92);
+    transform: scale(0.96);
   }
   to {
     opacity: 1;
@@ -2181,7 +2294,7 @@ textarea::placeholder {
 }
 
 .animate-splash-scale {
-  animation: splash-scale 0.6s ease forwards;
+  animation: splash-scale 0.55s ease forwards;
 }
 
 @keyframes splash-bar {
@@ -2194,7 +2307,19 @@ textarea::placeholder {
 }
 
 .animate-splash-bar {
-  animation: splash-bar 2.8s ease-in-out forwards;
+  animation: splash-bar 2s ease-in-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-logo-shine,
+  .animate-splash-scale,
+  .animate-splash-bar {
+    animation: none;
+  }
+
+  .splash-logo-shine {
+    opacity: 0;
+  }
 }
 
 @keyframes wave-shimmer {

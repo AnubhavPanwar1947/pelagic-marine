@@ -43,6 +43,8 @@ type ContactEnquiryContextValue = {
   setMessage: (value: string) => void;
   privacyAccepted: boolean;
   setPrivacyAccepted: (value: boolean) => void;
+  turnstileToken: string | null;
+  setTurnstileToken: (value: string | null) => void;
   activeIntake: string | null;
   highlightFields: boolean;
   applyQuickIntake: (id: string) => void;
@@ -66,6 +68,7 @@ function getOfficeLabel(value: string) {
 
 export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
   const formRef = useRef<HTMLFormElement>(null);
+  const formStartedAtRef = useRef<number>(Date.now());
   const [submitted, setSubmitted] = useState(false);
   const [reference, setReference] = useState<string | null>(null);
   const [submissionSummary, setSubmissionSummary] = useState<SubmissionSummary | null>(null);
@@ -79,6 +82,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
   const [urgency, setUrgency] = useState("standard");
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [activeIntake, setActiveIntake] = useState<string | null>(null);
   const [highlightFields, setHighlightFields] = useState(false);
 
@@ -107,6 +111,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
     setUrgency("standard");
     setMessage("");
     setPrivacyAccepted(false);
+    setTurnstileToken(null);
     setActiveIntake(null);
     setHighlightFields(false);
     setError(null);
@@ -168,6 +173,8 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
         preferredOffice: officeValue,
         message: composedMessage,
         website: honeypot,
+        formStartedAt: formStartedAtRef.current,
+        turnstileToken: turnstileToken ?? undefined,
       });
 
       setLoading(false);
@@ -185,6 +192,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
         });
         form.reset();
         resetDraft();
+        formStartedAtRef.current = Date.now();
         setReference(result.data?.reference ?? null);
         setConfirmationEmailSent(Boolean(result.data?.confirmationEmailSent));
         setConfirmationEmailError(result.data?.confirmationEmailError ?? null);
@@ -193,7 +201,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
         setError(result.error ?? "Something went wrong. Please try again.");
       }
     },
-    [privacyAccepted, resetDraft]
+    [privacyAccepted, resetDraft, turnstileToken]
   );
 
   const resetSubmission = useCallback(() => {
@@ -202,6 +210,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
     setSubmissionSummary(null);
     setConfirmationEmailSent(false);
     setConfirmationEmailError(null);
+    formStartedAtRef.current = Date.now();
     resetDraft();
   }, [resetDraft]);
 
@@ -219,6 +228,8 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       setMessage,
       privacyAccepted,
       setPrivacyAccepted,
+      turnstileToken,
+      setTurnstileToken,
       activeIntake,
       highlightFields,
       applyQuickIntake,
@@ -240,6 +251,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       urgency,
       message,
       privacyAccepted,
+      turnstileToken,
       activeIntake,
       highlightFields,
       applyQuickIntake,

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const SPLASH_KEY = "pelagic-splash-seen";
-const DURATION_MS = 3000;
+const DURATION_MS = 2400;
 const SPLASH_LOGO_SRC = "/logo-full.png";
 
 export function SplashScreen() {
@@ -20,7 +20,7 @@ export function SplashScreen() {
     setVisible(true);
     document.body.style.overflow = "hidden";
 
-    const fadeTimer = setTimeout(() => setFadeOut(true), DURATION_MS - 400);
+    const fadeTimer = setTimeout(() => setFadeOut(true), DURATION_MS - 350);
     const hideTimer = setTimeout(() => {
       sessionStorage.setItem(SPLASH_KEY, "1");
       setVisible(false);
@@ -44,21 +44,21 @@ export function SplashScreen() {
       aria-hidden="true"
     >
       <div className="animate-splash-scale">
-        <div className="brand-logo-lockup brand-logo-lockup--shine relative inline-block">
+        <div className="splash-logo-wrap relative inline-block">
           <Image
             src={SPLASH_LOGO_SRC}
             alt="Pelagic Marine Solutions"
-            width={480}
-            height={701}
+            width={280}
+            height={409}
             priority
             unoptimized
-            className="relative z-[1] h-auto w-[min(72vw,300px)] max-w-[320px] sm:w-[340px]"
+            className="relative z-[1] h-auto w-[min(42vw,148px)] max-w-[160px] sm:w-[168px]"
           />
-          <span className="brand-logo-lockup-shine-sweep pointer-events-none" aria-hidden />
+          <span className="splash-logo-shine pointer-events-none" aria-hidden />
         </div>
       </div>
-      <div className="mt-10 h-0.5 w-24 overflow-hidden rounded-full bg-pelagic-sand/70">
-        <div className="h-full animate-splash-bar bg-pelagic-accent/80" />
+      <div className="mt-8 h-px w-16 overflow-hidden rounded-full bg-pelagic-sand/80">
+        <div className="h-full animate-splash-bar bg-pelagic-accent/70" />
       </div>
     </div>
   );

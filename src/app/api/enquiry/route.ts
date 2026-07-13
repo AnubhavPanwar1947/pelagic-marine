@@ -3,6 +3,8 @@ import { mockProvider } from "@/lib/api/providers/mock";
 import { supabaseProvider } from "@/lib/api/providers/supabase";
 import { BACKEND_PROVIDER } from "@/lib/api/config";
 import { sendEnquiryEmails } from "@/lib/email/enquiry-emails";
+import { checkEnquirySpam, checkRateLimit, getClientIp } from "@/lib/spam-guard";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 import type { EnquiryInput } from "@/lib/api/types";
 
 function formatReference(id: string) {
@@ -21,7 +23,39 @@ export async function POST(request: Request) {
     );
   }
 
-  if (body.website?.trim()) {
+  const ip = getClientIp(request);
+  const rate = checkRateLimit(ip);
+  if (!rate.ok) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: `Too many enquiries from this network. Please try again in ${Math.ceil(rate.retryAfterSec / 60)} minutes, or call our 24/7 line.`,
+      },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rate.retryAfterSec) },
+      }
+    );
+  }
+
+  const turnstile = await verifyTurnstileToken(body.turnstileToken, ip);
+  if (!turnstile.ok) {
+    return NextResponse.json({ success: false, error: turnstile.message }, { status: 400 });
+  }
+
+  const spam = checkEnquirySpam({
+    name: body.name,
+    email: body.email,
+    company: body.company,
+    message: body.message,
+    phone: body.phone,
+    vessel: body.vessel,
+    formStartedAt: body.formStartedAt,
+    website: body.website,
+  });
+
+  // Honeypot: pretend success so bots don't retry harder
+  if (!spam.ok && spam.reason === "honeypot") {
     return NextResponse.json({
       success: true,
       data: {
@@ -37,6 +71,10 @@ export async function POST(request: Request) {
         confirmationEmailSent: false,
       },
     });
+  }
+
+  if (!spam.ok) {
+    return NextResponse.json({ success: false, error: spam.message }, { status: 400 });
   }
 
   const { name, email, message, surveyType } = body;
