@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
+import { SiteImage } from "@/components/ui/SiteImage";
 import { teamMembers } from "@/lib/site-data";
 import { siteImages } from "@/lib/site-images";
 
@@ -23,22 +24,37 @@ export default function TeamPage() {
 
       <SectionMaritime className="py-24" gridOpacity={50}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-2">
-          {teamMembers.map((member) => (
-            <article
-              key={member.name}
-              className="card-maritime rounded-3xl border p-8 shadow-sm"
-            >
-              <h2 className="font-display text-2xl font-semibold text-pelagic-ink">
-                {member.name}
-              </h2>
-              <p className="mt-1 text-sm font-bold uppercase tracking-wider text-pelagic-accent">
-                {member.role}
-              </p>
-              <p className="mt-4 text-sm leading-7 text-pelagic-steel">{member.bio}</p>
-            </article>
-          ))}
-        </div>
+          <div className="grid gap-8 lg:grid-cols-2">
+            {teamMembers.map((member) => (
+              <article
+                key={member.name}
+                className="card-maritime overflow-hidden rounded-3xl border shadow-sm"
+              >
+                <div className="grid sm:grid-cols-[11.5rem_1fr]">
+                  <div className="relative h-64 w-full shrink-0 overflow-hidden bg-pelagic-sand sm:h-full sm:min-h-[17rem]">
+                    <SiteImage
+                      src={member.photo}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 640px) 100vw, 184px"
+                    />
+                  </div>
+                  <div className="p-6 sm:p-8">
+                    <h2 className="font-display text-2xl font-semibold text-pelagic-ink">
+                      {member.name}
+                    </h2>
+                    <p className="mt-1 text-sm font-bold uppercase tracking-wider text-pelagic-accent">
+                      {member.role}
+                    </p>
+                    <p className="mt-4 text-sm leading-7 text-pelagic-steel">
+                      {member.bio}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </SectionMaritime>
 

@@ -552,26 +552,31 @@ export const teamMembers = [
   {
     name: "Nishchay Maken",
     role: "Founder & Director",
+    photo: "/images/team/nishchay.png",
     bio: "Nishchay founded Pelagic Marine to solve, through engineering and design, the problems most firms only survey. Across more than two decades, including over a decade at sea on tankers, he has specialised in project cargo workscopes and stability — the work that inspired UMISTAB-X. His wider expertise spans regulatory compliance, audits and inspections, loss prevention and incident investigation for leading P&I clubs.",
   },
   {
     name: "Bhanu Prabhakar",
     role: "Co-Founder & Head of Engineering and Design",
+    photo: "/images/team/bhanu.png",
     bio: "A Naval Architect with fifteen years across offshore structures and seagoing vessels, Bhanu leads Pelagic Marine's design and engineering practice. A graduate of IIT Kharagpur in Ocean Engineering and Naval Architecture, his core strengths lie in structural and finite-element analysis, intact and damage stability, hydrodynamics, mooring analysis and CFD.",
   },
   {
     name: "Capt. Vipul Negi",
     role: "General Manager",
+    photo: "/images/team/vipul.png",
     bio: "A Master Mariner and an expert in chemical cargo handling, Capt. Negi brings more than two decades across the marine and petrochemical industries. He leads the firm's inspection and survey work — including CDI inspections, condition and pre-purchase surveys, and damage and P&I claim surveys — together with ISM, ISPS and MLC audits.",
   },
   {
     name: "Capt. Abhinav Upadhyay",
     role: "Senior Marine Consultant | Clean Fuels",
+    photo: "/images/team/abhinav.png",
     bio: "A Master Mariner with over twenty years in gas-carrier operations, Capt. Upadhyay is Pelagic Marine's specialist in clean and future fuels. He brings hands-on cargo experience across LNG, LPG, ethane, ethylene and ammonia, and advises on emerging fuels including methanol.",
   },
   {
     name: "Capt. Harjit Singh Sidhu",
     role: "Operations Manager",
+    photo: "/images/team/harjit.png",
     bio: "Capt. Sidhu brings a container-shipping background and sea time with Maersk to his role managing Pelagic Marine's operations and day-to-day delivery. He advises on container-ship stability, cargo planning and load optimisation, and is a certified practitioner of remote magnetic compass adjustment.",
   },
 ];

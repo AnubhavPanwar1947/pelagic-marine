@@ -35,7 +35,7 @@ export function SiteImage({
   }
 
   return (
-    <div className={`relative ${fill ? "absolute inset-0" : ""}`}>
+    <div className={fill ? "absolute inset-0" : "relative"}>
       <Image
         src={src}
         alt={alt}
