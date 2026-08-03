@@ -1,14 +1,16 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pelagic-marine.vercel.app";
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pelagic-marine.com";
 
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/login"],
+        disallow: ["/login/"],
       },
     ],
     sitemap: `${base}/sitemap.xml`,

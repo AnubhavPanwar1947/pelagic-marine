@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPageShell eyebrow="Legal" title="Privacy policy" updated="14 July 2026">
+    <LegalPageShell eyebrow="Legal" title="Privacy policy" updated="3 August 2026">
       <p>
         {company.legalName} (“Pelagic”, “we”, “us”) respects your privacy. This policy explains what
         personal data we collect through our website and enquiry channels, why we use it, and your
@@ -31,8 +31,8 @@ export default function PrivacyPage() {
           related operational details you submit on the contact form.
         </li>
         <li>
-          <strong>Technical data</strong> — IP address (for rate-limiting and security), browser type,
-          and security challenge tokens (e.g. Cloudflare Turnstile) when configured.
+          <strong>Technical data</strong> — IP address (for rate-limiting and security) and
+          basic browser information when you submit an enquiry.
         </li>
         <li>
           <strong>Consent &amp; preference data</strong> — your cookie choices stored in the browser.
@@ -56,10 +56,10 @@ export default function PrivacyPage() {
 
       <h2>Sharing</h2>
       <p>
-        We do not sell personal data. We may use trusted processors such as hosting (e.g. Vercel),
-        database (Supabase), email delivery (Resend), and bot protection (Cloudflare Turnstile) solely
-        to run the website and enquiry workflow. They process data under their own security and
-        privacy terms.
+        We do not sell personal data. Enquiry emails are processed on our DreamHost hosting
+        account and delivered to our business mailbox. We do not use third-party form databases
+        or marketing APIs for this site. Embedded maps (Google Maps) may load when you view office
+        locations; those services apply their own privacy terms.
       </p>
 
       <h2>Retention</h2>
@@ -71,9 +71,8 @@ export default function PrivacyPage() {
 
       <h2>Security</h2>
       <p>
-        We use HTTPS, security headers, form spam controls (rate limits, honeypot, timing checks, and
-        optional CAPTCHA), and access-restricted storage for enquiry data. No method is perfect; if
-        you suspect an issue, email us immediately.
+        We use HTTPS, security headers, and form spam controls (rate limits, honeypot, and timing
+        checks) on DreamHost. No method is perfect; if you suspect an issue, email us immediately.
       </p>
 
       <h2>Your rights</h2>

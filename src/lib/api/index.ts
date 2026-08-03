@@ -1,25 +1,51 @@
-import type { ApiResult, EnquiryInput, EnquiryRecord } from "./types";
+/**
+ * Contact enquiry client — posts to DreamHost PHP mailer (no Node/API routes).
+ */
 
-export type EnquiryRecordWithReference = EnquiryRecord & {
-  reference?: string;
-  confirmationEmailSent?: boolean;
-  confirmationEmailError?: string;
+export type EnquirySubmitResult = {
+  success: boolean;
+  error?: string;
+  data?: {
+    reference?: string;
+    confirmationEmailSent?: boolean;
+    confirmationEmailError?: string | null;
+  };
 };
 
-export async function submitEnquiry(
-  input: EnquiryInput
-): Promise<ApiResult<EnquiryRecordWithReference>> {
-  const response = await fetch("/api/enquiry", {
+export async function submitEnquiryForm(
+  formData: FormData
+): Promise<EnquirySubmitResult> {
+  const response = await fetch("/send-mail.php", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(input),
+    body: formData,
+    headers: {
+      Accept: "application/json",
+      "X-Requested-With": "XMLHttpRequest",
+    },
   });
 
-  const result = (await response.json()) as ApiResult<EnquiryRecordWithReference>;
+  const result = (await response.json().catch(() => null)) as {
+    ok?: boolean;
+    success?: boolean;
+    error?: string | null;
+    message?: string;
+    data?: EnquirySubmitResult["data"];
+  } | null;
 
-  if (!response.ok && result.success === false) {
-    return result;
+  const ok = Boolean(result?.ok ?? result?.success) && response.ok;
+
+  if (!ok) {
+    return {
+      success: false,
+      error:
+        result?.error ||
+        result?.message ||
+        "We couldn’t send your enquiry right now. Please email info@pelagic-marine.com.",
+    };
   }
 
-  return result;
+  return {
+    success: true,
+    data: result?.data,
+  };
 }

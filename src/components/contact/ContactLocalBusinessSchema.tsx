@@ -19,7 +19,7 @@ export function ContactLocalBusinessSchema() {
         latitude: office.coordinates.lat,
         longitude: office.coordinates.lng,
       },
-      url: "https://pelagic-marine.vercel.app/contact",
+      url: "https://pelagic-marine.com/contact/",
       parentOrganization: {
         "@type": "Organization",
         name: company.legalName,

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useContactEnquiry, urgencyOptions } from "@/components/contact/ContactEnquiryContext";
 import { ContactPanelShell } from "@/components/contact/ContactPanelShell";
-import { TurnstileWidget } from "@/components/ui/TurnstileWidget";
 import { company, contactPage, serviceCategories } from "@/lib/site-data";
 
 const fieldClass =
@@ -27,7 +26,6 @@ export function ContactEnquiryForm() {
     setMessage,
     privacyAccepted,
     setPrivacyAccepted,
-    setTurnstileToken,
     highlightFields,
     submitted,
     reference,
@@ -168,17 +166,20 @@ export function ContactEnquiryForm() {
       <ContactPanelShell>
         <div className="flex flex-1 flex-col p-6 pb-24 sm:p-8 md:pb-8">
           <form ref={formRef} className="relative flex flex-1 flex-col space-y-4" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="website"
-              tabIndex={-1}
-              autoComplete="off"
-              className="pointer-events-none absolute h-0 w-0 opacity-0"
-              aria-hidden
-            />
+            <div className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden>
+              <label>
+                Company website
+                <input
+                  type="text"
+                  name="company_website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </label>
+            </div>
 
             <p className="rounded-lg bg-pelagic-cream/70 px-3 py-2 text-[11px] leading-5 text-pelagic-steel">
-              Protected enquiry form — rate-limited and filtered against automated spam. Urgent
+              Protected enquiry form — DreamHost mail with honeypot and rate limits. Urgent
               casualties should call the 24/7 line, not wait on email.
             </p>
 
@@ -367,8 +368,6 @@ export function ContactEnquiryForm() {
             {error && (
               <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-red-100">{error}</p>
             )}
-
-            <TurnstileWidget onToken={setTurnstileToken} />
 
             <label className="flex items-start gap-3 rounded-xl border border-pelagic-mist bg-pelagic-cream/30 px-4 py-3 text-sm text-pelagic-body">
               <input

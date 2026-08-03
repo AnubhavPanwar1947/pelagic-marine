@@ -1,0 +1,27 @@
+Options -Indexes
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+  Header set X-DNS-Prefetch-Control "on"
+</IfModule>
+
+# Soft redirects (same behaviour as the old Next.js redirects)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Keep PHP contact handler reachable
+  RewriteRule ^send-mail\.php$ - [L]
+
+  RewriteRule ^sectors(/.*)?$ / [R=302,L]
+  RewriteRule ^careers(/.*)?$ /contact/ [R=302,L]
+  RewriteRule ^login(/.*)?$ /contact/ [R=302,L]
+</IfModule>
+
+# Block access to backup / config leftovers if uploaded by mistake
+<FilesMatch "\.(env|log|sql|bak|config\.php)$">
+  Require all denied
+</FilesMatch>

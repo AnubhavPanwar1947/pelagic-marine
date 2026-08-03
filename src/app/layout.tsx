@@ -9,7 +9,7 @@ import { company } from "@/lib/site-data";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://pelagic-marine.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://pelagic-marine.com"),
   title: {
     default: `${company.name} | Marine & Engineering Consultancy`,
     template: `%s | ${company.name}`,

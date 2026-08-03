@@ -10,8 +10,8 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
-import { submitEnquiry } from "@/lib/api";
-import { contactPage, serviceCategories } from "@/lib/site-data";
+import { submitEnquiryForm } from "@/lib/api";
+import { company, contactPage, serviceCategories } from "@/lib/site-data";
 
 export const urgencyOptions = [
   { value: "standard", label: "Standard — within business days" },
@@ -43,8 +43,6 @@ type ContactEnquiryContextValue = {
   setMessage: (value: string) => void;
   privacyAccepted: boolean;
   setPrivacyAccepted: (value: boolean) => void;
-  turnstileToken: string | null;
-  setTurnstileToken: (value: string | null) => void;
   activeIntake: string | null;
   highlightFields: boolean;
   applyQuickIntake: (id: string) => void;
@@ -82,7 +80,6 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
   const [urgency, setUrgency] = useState("standard");
   const [message, setMessage] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
-  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [activeIntake, setActiveIntake] = useState<string | null>(null);
   const [highlightFields, setHighlightFields] = useState(false);
 
@@ -111,7 +108,6 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
     setUrgency("standard");
     setMessage("");
     setPrivacyAccepted(false);
-    setTurnstileToken(null);
     setActiveIntake(null);
     setHighlightFields(false);
     setError(null);
@@ -126,82 +122,60 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       const form = event.currentTarget;
       const formData = new FormData(form);
 
-      const vessel = String(formData.get("vessel") ?? "").trim();
-      const imo = String(formData.get("imo") ?? "").trim();
-      const port = String(formData.get("port") ?? "").trim();
-      const phone = String(formData.get("phone") ?? "").trim();
-      const urgencyValue = String(formData.get("urgency") ?? "standard");
-      const subjectValue = String(formData.get("subject") ?? "").trim();
-      const officeValue = String(formData.get("preferredOffice") ?? "auto");
-      const messageValue = String(formData.get("message") ?? "").trim();
-      const honeypot = String(formData.get("website") ?? "").trim();
-
       if (!privacyAccepted) {
         setLoading(false);
         setError("Please confirm you agree to be contacted about this enquiry.");
         return;
       }
 
+      const vessel = String(formData.get("vessel") ?? "").trim();
+      const imo = String(formData.get("imo") ?? "").trim();
+      const port = String(formData.get("port") ?? "").trim();
+      const urgencyValue = String(formData.get("urgency") ?? "standard");
+      const subjectValue = String(formData.get("subject") ?? "").trim();
+      const officeValue = String(formData.get("preferredOffice") ?? "auto");
       const urgencyLabel =
         urgencyOptions.find((o) => o.value === urgencyValue)?.label ?? urgencyValue;
       const officeLabel = getOfficeLabel(officeValue);
       const vesselLine = [vessel, imo ? `IMO ${imo}` : null].filter(Boolean).join(" · ");
 
-      const composedMessage = [
-        `Subject: ${subjectValue}`,
-        `Preferred office: ${officeLabel}`,
-        vesselLine ? `Vessel / project: ${vesselLine}` : null,
-        port ? `Port / location: ${port}` : null,
-        phone ? `Phone: ${phone}` : null,
-        `Urgency: ${urgencyLabel}`,
-        "",
-        messageValue,
-      ]
-        .filter((line) => line !== null)
-        .join("\n");
+      formData.set("form_started_at", String(formStartedAtRef.current));
+      formData.set("preferredOffice", officeLabel);
+      formData.set("urgency", urgencyLabel);
 
-      const result = await submitEnquiry({
-        name: String(formData.get("name") ?? ""),
-        company: String(formData.get("company") ?? ""),
-        email: String(formData.get("email") ?? ""),
-        phone,
-        vessel: vesselLine || vessel,
-        port,
-        surveyType: String(formData.get("service") ?? ""),
-        urgency: urgencyValue,
-        subject: subjectValue,
-        preferredOffice: officeValue,
-        message: composedMessage,
-        website: honeypot,
-        formStartedAt: formStartedAtRef.current,
-        turnstileToken: turnstileToken ?? undefined,
-      });
+      try {
+        const result = await submitEnquiryForm(formData);
+        setLoading(false);
 
-      setLoading(false);
-
-      if (result.success) {
-        setSubmissionSummary({
-          name: String(formData.get("name") ?? ""),
-          email: String(formData.get("email") ?? ""),
-          service: String(formData.get("service") ?? ""),
-          subject: subjectValue,
-          urgency: urgencyLabel,
-          office: officeLabel,
-          vessel: vesselLine || vessel || undefined,
-          port: port || undefined,
-        });
-        form.reset();
-        resetDraft();
-        formStartedAtRef.current = Date.now();
-        setReference(result.data?.reference ?? null);
-        setConfirmationEmailSent(Boolean(result.data?.confirmationEmailSent));
-        setConfirmationEmailError(result.data?.confirmationEmailError ?? null);
-        setSubmitted(true);
-      } else {
-        setError(result.error ?? "Something went wrong. Please try again.");
+        if (result.success) {
+          setSubmissionSummary({
+            name: String(formData.get("name") ?? ""),
+            email: String(formData.get("email") ?? ""),
+            service: String(formData.get("service") ?? ""),
+            subject: subjectValue,
+            urgency: urgencyLabel,
+            office: officeLabel,
+            vessel: vesselLine || vessel || undefined,
+            port: port || undefined,
+          });
+          form.reset();
+          resetDraft();
+          formStartedAtRef.current = Date.now();
+          setReference(result.data?.reference ?? null);
+          setConfirmationEmailSent(Boolean(result.data?.confirmationEmailSent));
+          setConfirmationEmailError(result.data?.confirmationEmailError ?? null);
+          setSubmitted(true);
+        } else {
+          setError(result.error ?? "Something went wrong. Please try again.");
+        }
+      } catch {
+        setLoading(false);
+        setError(
+          `Contact email works after the site is uploaded to DreamHost. Locally you can review the form UI; on live it sends via DreamHost to ${company.emails.info}.`
+        );
       }
     },
-    [privacyAccepted, resetDraft, turnstileToken]
+    [privacyAccepted, resetDraft]
   );
 
   const resetSubmission = useCallback(() => {
@@ -228,8 +202,6 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       setMessage,
       privacyAccepted,
       setPrivacyAccepted,
-      turnstileToken,
-      setTurnstileToken,
       activeIntake,
       highlightFields,
       applyQuickIntake,
@@ -251,7 +223,6 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       urgency,
       message,
       privacyAccepted,
-      turnstileToken,
       activeIntake,
       highlightFields,
       applyQuickIntake,

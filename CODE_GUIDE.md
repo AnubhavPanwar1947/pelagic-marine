@@ -168,9 +168,9 @@ pelagic-marine/
 
 **Option B — GitHub (recommended later):** Push to a private repo; they clone it. Install Git first when ready.
 
-**Option C — Live website:** Deploy to Vercel (Phase 2 in ROADMAP.md) — they get a URL, not raw files.
+**Option C — Live website:** Build with `npm run build`, then upload the `out/` folder to DreamHost (see `DREAMHOST-DEPLOY.md`).
 
-The **full project** is everything in `pelagic-marine` — source code, images, config. They need Node.js installed to run it locally, or Vercel to host it online.
+The **full project** is everything in `pelagic-marine` — source code, images, config. They need Node.js to edit/build locally; the live site is the static `out/` upload on DreamHost.
 
 ---
 

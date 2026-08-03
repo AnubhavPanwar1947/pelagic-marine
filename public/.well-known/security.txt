@@ -1,3 +1,3 @@
 Contact: mailto:info@pelagic-marine.com
 Preferred-Languages: en
-Canonical: https://pelagic-marine.vercel.app/.well-known/security.txt
+Canonical: https://pelagic-marine.com/.well-known/security.txt

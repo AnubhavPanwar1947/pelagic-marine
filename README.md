@@ -1,62 +1,52 @@
 # Pelagic Marine Solutions — Website
 
-Professional marketing website for **Pelagic Marine Solutions**, built with **Next.js**, **TypeScript**, and **Tailwind CSS**.
+Professional marketing website for **Pelagic Marine Solutions**, built for **DreamHost shared hosting** (same approach as Beluga Educorp).
+
+## Stack
+
+- Next.js → **static export** (`out/`)
+- TypeScript + Tailwind CSS
+- Contact form → DreamHost **`send-mail.php`** (no Vercel / Supabase / Resend)
 
 ## What's included
 
-- **Home** — hero, stats, services overview, offices, CTA
-- **About** — company story, vision, leadership
+- **Home** — hero, services overview, offices, CTA
+- **About** — company story, leadership
 - **Services** — full service catalogue
-- **Contact** — offices, phone, enquiry form (UI only for now)
-- **Login** — placeholder for future Maritime Advisory Platform
+- **Contact** — offices, map, enquiry form (PHP mail on live)
+- Legal pages — privacy, cookies, terms
 
-## Getting started
+## Local preview (design)
 
-1. Install [Node.js LTS](https://nodejs.org/) if needed
-2. Open this folder in Cursor
-3. Install dependencies:
-
-```bash
-npm install
+```powershell
+cd D:\Projects\pelagic-marine
+npm.cmd install
+npm.cmd run dev
 ```
 
-4. Run the development server:
+Open http://localhost:3000  
+(Contact email send works after DreamHost upload — PHP is not available in `next dev`.)
 
-```bash
-npm run dev
+## Build for DreamHost
+
+```powershell
+npm.cmd run build
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000)
-
-## Replace the logo
-
-Save your company logo image as one of these files:
-
-- `public/logo.png` (recommended)
-- or keep using `public/logo.svg`
-
-If you use `logo.png`, update `src/components/layout/Header.tsx` and `src/app/login/page.tsx` to use `/logo.png`.
+Upload **everything inside `out/`** to the Pelagic web root. See **`DREAMHOST-DEPLOY.md`**.
 
 ## Project structure
 
 ```
 src/
-  app/           # Pages (Home, About, Services, Contact, Login)
-  components/    # Header, Footer, UI blocks
-  lib/           # Company content and site data
-public/          # Logo and static assets
+  app/           # Pages
+  components/    # Header, Footer, Contact, UI
+  lib/           # Company content and helpers
+public/          # Logo, images, send-mail.php, .htaccess
 ```
-
-## Next phases
-
-1. Connect contact form to Supabase or email
-2. Add real client login (Supabase Auth)
-3. Build Maritime Advisory Platform screens (claims, deadlines, CP review)
-4. Deploy to replace pelagic-marine.com
 
 ## Scripts
 
-- `npm run dev` — development server
-- `npm run build` — production build
-- `npm run start` — run production build locally
+- `npm run dev` — local design server
+- `npm run build` / `npm run export` — production static build → `out/`
 - `npm run lint` — ESLint check
