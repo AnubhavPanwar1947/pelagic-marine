@@ -13,7 +13,7 @@ export const siteImages = {
   expertise: u("photo-1578645024771-21df5e60af96", 1200, 1500),
   team: u("photo-1529107386315-5eafae266a63", 2400, 1000),
   cta: u("photo-1544551763-5cf5a5c5e61d", 2400, 1400),
-  decarbonization: u("photo-1532601228370-a1c69299fc04", 1920, 1080),
+  decarbonization: "/images/decarbonization.jpg",
   cases: [
     u("photo-1611270627529-a18006394599", 1200, 750),
     u("photo-1494412578317-4c933aa5369f", 1200, 750),

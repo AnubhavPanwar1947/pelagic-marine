@@ -488,6 +488,25 @@ export const trustBadges = [
   "Expert-led consultancy",
 ];
 
+/**
+ * Homepage client marquee — replace with boss-approved client / operator names.
+ * Keep names short so the running strip stays readable.
+ */
+export const clientCompanies = [
+  "Gulf Star Shipping",
+  "Horizon Tankers",
+  "Eastern Bulk Carriers",
+  "Blue Anchor Marine",
+  "Sapphire Gas Carriers",
+  "Indigo Fleet Management",
+  "Pacific Harbour Lines",
+  "Coral Offshore Services",
+  "Meridian Ship Managers",
+  "Atlas Marine Operators",
+  "Silver Tide Shipping",
+  "Nautilus Energy Marine",
+];
+
 /** Client testimonials — replace with real quotes when approved by boss */
 export const testimonials = [
   {

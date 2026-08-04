@@ -401,26 +401,24 @@ textarea::placeholder {
 }
 
 /* Slow cinematic pan/zoom — Enesel-style background motion */
-@keyframes hero-ken-burns {
+/* Slow horizontal run across the hero photo */
+@keyframes hero-pan-across {
   0% {
-    transform: scale(1) translate3d(0, 0, 0);
-  }
-  50% {
-    transform: scale(1.08) translate3d(-1.5%, -0.8%, 0);
+    transform: scale(1.12) translate3d(0, 0, 0);
   }
   100% {
-    transform: scale(1.12) translate3d(1%, 0.5%, 0);
+    transform: scale(1.12) translate3d(-6%, 0, 0);
   }
 }
 
-.hero-ken-burns {
-  animation: hero-ken-burns 28s ease-in-out infinite alternate;
+.hero-pan-across {
+  animation: hero-pan-across 32s ease-in-out infinite alternate;
   will-change: transform;
   transform-origin: center center;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-ken-burns {
+  .hero-pan-across {
     animation: none;
   }
 }
@@ -2239,6 +2237,30 @@ textarea::placeholder {
 
 .animate-fade-up {
   animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Homepage client strip */
+.client-marquee-track {
+  animation: client-marquee-scroll 38s linear infinite;
+}
+
+.client-marquee:hover .client-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes client-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee-track {
+    animation: none;
+  }
 }
 
 /* Splash — quiet brand moment; smaller mark, soft single shine */
