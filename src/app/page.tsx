@@ -53,9 +53,10 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="relative min-h-[300px] lg:min-h-0">
+            <div className="relative mt-8 min-h-[280px] overflow-hidden rounded-2xl border border-pelagic-sand/80 shadow-lg sm:min-h-[340px] lg:mt-0 lg:min-h-full lg:rounded-none lg:border-0 lg:shadow-none">
               <HeroMedia className="absolute inset-0" />
             </div>
+
           </div>
           <div className="relative z-20 mt-8 pb-10 lg:mt-6 lg:pb-12">
             <HeroProjectsCard />

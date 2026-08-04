@@ -68,7 +68,7 @@ export function buildSearchIndex(): SearchResult[] {
 
     href: "/news",
 
-    category: "News",
+    category: "Blog",
 
     excerpt: n.excerpt,
 

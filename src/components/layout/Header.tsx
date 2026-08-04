@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { NavSearch } from "@/components/layout/NavSearch";
-import { company, navMenu, type NavDropdownChild, type NavMenuItem } from "@/lib/site-data";
+import { navMenu, type NavDropdownChild, type NavMenuItem } from "@/lib/site-data";
 
 function Chevron({ open }: { open?: boolean }) {
   return (
@@ -36,6 +36,7 @@ function navLinkClass(active: boolean) {
   }`;
 }
 
+/** Same nested flyout pattern as live pelagic-marine.vercel.app */
 function DesktopServiceChild({
   child,
   onClose,
@@ -81,9 +82,9 @@ function DesktopServiceChild({
       </div>
       {subOpen && (
         <div className="absolute top-0 left-full z-50 pl-2">
-          <ul className="max-h-[70vh] w-72 space-y-0.5 overflow-y-auto rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5">
+          <ul className="max-h-[70vh] w-72 space-y-0.5 overflow-y-auto overscroll-contain rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5">
             {child.children!.map((sub) => (
-              <li key={sub.href}>
+              <li key={`${sub.href}-${sub.label}`}>
                 <Link
                   href={sub.href}
                   onClick={onClose}
@@ -175,6 +176,7 @@ function DesktopNavItem({
           onMouseEnter={openMenu}
           onMouseLeave={scheduleClose}
         >
+          {/* No overflow on this panel — overflow would clip the nested flyout (same as live Vercel). */}
           <div
             className={`rounded-2xl border border-pelagic-sand bg-white p-3 shadow-xl ring-1 ring-black/5 ${
               wide ? "w-[min(90vw,22rem)]" : "w-80"
@@ -235,16 +237,9 @@ function MobileServiceChild({
       </button>
       {open && (
         <div className="border-t border-pelagic-sand px-2 pb-2">
-          <Link
-            href={child.href}
-            onClick={onNavigate}
-            className="mt-2 block rounded-lg px-2 py-1.5 text-xs font-bold text-pelagic-accent"
-          >
-            All {child.label} →
-          </Link>
           {child.children!.map((sub) => (
             <Link
-              key={sub.href}
+              key={`${sub.href}-${sub.label}`}
               href={sub.href}
               onClick={onNavigate}
               className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-sky/50"
@@ -300,7 +295,11 @@ function MobileNavItem({
           </Link>
           <div className="space-y-1">
             {item.children.map((child) => (
-              <MobileServiceChild key={child.href + child.label} child={child} onNavigate={onNavigate} />
+              <MobileServiceChild
+                key={child.href + child.label}
+                child={child}
+                onNavigate={onNavigate}
+              />
             ))}
           </div>
         </div>
@@ -345,7 +344,7 @@ export function Header() {
           scrolled ? "py-2.5" : "py-3"
         }`}
       >
-        <BrandLogo variant="header" shine />
+        <BrandLogo variant="header" />
 
         <nav className="hidden min-w-0 flex-1 items-center justify-center lg:flex lg:gap-0 xl:gap-0.5">
           {navMenu.map((item) => (
@@ -385,7 +384,7 @@ export function Header() {
           <div className="mb-4 md:hidden">
             <NavSearch />
           </div>
-          <nav className="flex flex-col gap-2">
+          <nav className="flex max-h-[min(70vh,32rem)] flex-col gap-2 overflow-y-auto overscroll-contain">
             {navMenu.map((item) => (
               <MobileNavItem
                 key={item.label}

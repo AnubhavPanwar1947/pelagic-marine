@@ -249,7 +249,7 @@ export const navLinks = [
   { href: "/projects", label: "Projects" },
   { href: "/team", label: "Team" },
   { href: "/decarbonization", label: "Decarbonization" },
-  { href: "/news", label: "News" },
+  { href: "/news", label: "Blog" },
   { href: "/capabilities", label: "Capabilities" },
   { href: "/contact", label: "Contact" },
 ];
@@ -517,14 +517,59 @@ export const navMenu: NavMenuItem[] = [
     type: "dropdown",
     label: "Services",
     href: "/services",
-    children: serviceCategories.map((s) => ({
-      href: `/services#${s.slug}`,
-      label: s.title,
-      children: s.items.map((item) => ({
-        href: getServiceItemHref(item),
-        label: item.label,
-      })),
-    })),
+    children: [
+      {
+        href: "/services#naval-architecture-design",
+        label: "Naval Architecture",
+        description: "Design, analysis, FEA and ship plans.",
+        children: serviceCategories[0].items.map((item) => ({
+          href: getServiceItemHref(item),
+          label: item.label,
+        })),
+      },
+      {
+        href: "/services#engineering",
+        label: "Engineering",
+        description: "Conversion, hydrodynamics, CFD and stability.",
+        children: serviceCategories[1].items.map((item) => ({
+          href: getServiceItemHref(item),
+          label: item.label,
+        })),
+      },
+      {
+        href: "/services#inspection-audits-surveying",
+        label: "Inspection",
+        description: "Surveys, audits, warranty and loss prevention.",
+        children: serviceCategories[2].items.map((item) => ({
+          href: getServiceItemHref(item),
+          label: item.label,
+        })),
+      },
+      {
+        href: "/services#legal-consultancy",
+        label: "Legal Consultancy",
+        description: "Contracts, disputes and maritime law.",
+        children: serviceCategories[3].items.map((item) => ({
+          href: getServiceItemHref(item),
+          label: item.label,
+        })),
+      },
+      {
+        href: "/capabilities#mooring",
+        label: "Mooring & compatibility",
+        description: "Static and dynamic mooring analysis and ship-shore studies.",
+        children: [
+          { href: "/capabilities#mooring", label: "Optimoor" },
+          { href: "/capabilities#mooring", label: "OrcaFlex" },
+        ],
+      },
+      {
+        href: "/capabilities#umistab",
+        label: "Loadicator",
+        description: "Class-approved loading and stability tools.",
+        children: [{ href: "/capabilities#umistab", label: "UMISTAB-X" }],
+      },
+    ],
   },
   { type: "link", href: "/projects", label: "Projects" },
   { type: "link", href: "/team", label: "Team" },
@@ -545,7 +590,7 @@ export const navMenu: NavMenuItem[] = [
       },
     ],
   },
-  { type: "link", href: "/news", label: "News" },
+  { type: "link", href: "/news", label: "Blog" },
 ];
 
 export const teamMembers = [

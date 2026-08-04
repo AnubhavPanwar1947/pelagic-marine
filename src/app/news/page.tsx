@@ -8,8 +8,8 @@ import { newsItems } from "@/lib/site-data";
 import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
-  title: "News",
-  description: "Latest news and insights from Pelagic Marine Solutions.",
+  title: "Blog",
+  description: "Latest articles and insights from Pelagic Marine Solutions.",
 };
 
 function formatDate(iso: string) {
@@ -24,7 +24,7 @@ export default function NewsPage() {
   return (
     <div>
       <PageHero
-        eyebrow="News & insights"
+        eyebrow="Blog"
         title="Latest from Pelagic"
         description="Company updates, project highlights, and industry insights."
         imageSrc={siteImages.pageHeroes.news}

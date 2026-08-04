@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { OfficeNetworkPanel } from "@/components/contact/OfficeNetworkPanel";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { SiteImage } from "@/components/ui/SiteImage";
-import { company } from "@/lib/site-data";
 import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
@@ -73,45 +69,6 @@ export default function AboutPage() {
           </h2>
         </div>
       </section>
-
-      <SectionMaritime variant="sky" className="py-24" gridOpacity={45}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
-            <div>
-              <SectionHeading eyebrow="Clients" title="Who we work with" />
-              <p className="mt-6 leading-8 text-pelagic-steel">
-                Owners, operators, charterers, P&amp;I interests, insurers and offshore developers across
-                the industry.
-              </p>
-              <Link
-                href="/team"
-                className="mt-8 inline-flex rounded-full bg-pelagic-charcoal px-6 py-3 text-sm font-bold text-white hover:bg-pelagic-ink"
-              >
-                Meet the team →
-              </Link>
-            </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-pelagic-mist shadow-sm">
-              <SiteImage
-                src={siteImages.expertise}
-                alt="Container port and maritime operations"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-        </div>
-      </SectionMaritime>
-
-      <SectionMaritime variant="sand" className="py-20" gridOpacity={48}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <OfficeNetworkPanel
-            offices={company.offices}
-            title="India · Dubai"
-            description="Tap India to see Mumbai and Dehradun, or select Dubai for UAE directions."
-          />
-        </div>
-      </SectionMaritime>
     </div>
   );
 }
