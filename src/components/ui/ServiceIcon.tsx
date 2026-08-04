@@ -45,6 +45,20 @@ export function ServiceIcon({ slug, className = "h-7 w-7" }: ServiceIconProps) {
         <path d="M12 7V4" strokeLinecap="round" />
       </svg>
     ),
+    "mooring-compatibility": (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+        <path d="M4 16c2-4 4-6 8-6s6 2 8 6" strokeLinecap="round" />
+        <path d="M12 10V5" strokeLinecap="round" />
+        <circle cx="12" cy="18" r="2" />
+        <path d="M7 18h10" strokeLinecap="round" />
+      </svg>
+    ),
+    loadicator: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+        <path d="M8 16V10M12 16V8M16 16v-4" strokeLinecap="round" />
+      </svg>
+    ),
   };
 
   return <>{icons[slug] ?? icons.engineering}</>;

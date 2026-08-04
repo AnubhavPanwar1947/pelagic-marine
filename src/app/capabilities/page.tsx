@@ -13,6 +13,13 @@ export const metadata: Metadata = {
     "ANSYS, NAPA, AutoHydro, Optimoor and SACS; mooring and LNG compatibility analysis; and UMISTAB-X from Pelagic Marine Solutions.",
 };
 
+const sectionHrefs: Record<string, string> = {
+  software: "/capabilities/software/",
+  mooring: "/services/mooring-compatibility/",
+  "clean-fuel": "/capabilities/clean-fuel/",
+  umistab: "/services/umistab-x/",
+};
+
 export default function CapabilitiesPage() {
   return (
     <div>
@@ -25,33 +32,41 @@ export default function CapabilitiesPage() {
 
       <SectionMaritime variant="mist" className="py-24" gridOpacity={48}>
         <div className="mx-auto max-w-7xl space-y-20 px-4 sm:px-6 lg:px-8">
-        {capabilitiesSections.map((section) => (
-          <article key={section.id} id={section.id} className="scroll-mt-28">
-            <SectionHeading eyebrow={section.eyebrow} title={section.title} />
-            <p className="mt-6 max-w-3xl text-base leading-8 text-pelagic-steel">
-              {section.summary}
-            </p>
-            {"tags" in section && section.tags && (
-              <div className="mt-6 flex flex-wrap gap-2">
-                {section.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-pelagic-mist bg-pelagic-cream px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-pelagic-charcoal"
+          {capabilitiesSections.map((section) => (
+            <article key={section.id} id={section.id} className="scroll-mt-28">
+              <SectionHeading eyebrow={section.eyebrow} title={section.title} />
+              <p className="mt-6 max-w-3xl text-base leading-8 text-pelagic-steel">
+                {section.summary}
+              </p>
+              {"tags" in section && section.tags && (
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {section.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-pelagic-mist bg-pelagic-cream px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-pelagic-charcoal"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                {sectionHrefs[section.id] ? (
+                  <Link
+                    href={sectionHrefs[section.id]}
+                    className="text-sm font-semibold text-pelagic-accent hover:underline"
                   >
-                    {tag}
-                  </span>
-                ))}
+                    Open {section.title} page →
+                  </Link>
+                ) : null}
+                {section.id === "umistab" ? (
+                  <Button href="/contact" variant="primary">
+                    Enquire about UMISTAB-X
+                  </Button>
+                ) : null}
               </div>
-            )}
-            {section.id === "umistab" && (
-              <div className="mt-8">
-                <Button href="/contact" variant="primary">
-                  Enquire about UMISTAB-X
-                </Button>
-              </div>
-            )}
-          </article>
-        ))}
+            </article>
+          ))}
         </div>
       </SectionMaritime>
 

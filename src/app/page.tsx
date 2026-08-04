@@ -71,10 +71,12 @@ export default function HomePage() {
             />
           </Reveal>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {serviceCategories.map((service, i) => (
+            {serviceCategories
+              .filter((service) => service.home !== false)
+              .map((service, i) => (
               <Reveal key={service.slug} delay={i * 50}>
                 <Link
-                  href="/services"
+                  href={`/services/${service.slug}/`}
                   className="group relative flex h-full flex-col overflow-hidden rounded-[1.5rem] bg-gradient-to-b from-white via-white to-pelagic-sky/35 p-6 shadow-[0_18px_40px_rgba(20,48,110,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(20,48,110,0.1)] sm:p-7"
                 >
                   <span
@@ -139,7 +141,7 @@ export default function HomePage() {
                 ))}
               </ul>
               <Link
-                href="/capabilities#clean-fuel"
+                href="/capabilities/clean-fuel/"
                 className="mt-9 inline-flex w-fit rounded-full bg-pelagic-accent px-7 py-3 text-sm font-semibold text-white shadow-md shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
               >
                 LNG bunkering & compatibility

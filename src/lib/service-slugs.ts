@@ -14,7 +14,11 @@ export function getServiceItemHref(item: ServiceItem | string, serviceSlug?: str
     const slug = serviceSlug
       ? `${serviceSlug}-${getServiceItemSlug(item)}`
       : getServiceItemSlug(item);
-    return `/services#${slug}`;
+    return `/services/${slug}/`;
   }
-  return `/services#${item.slug}`;
+  return `/services/${item.slug}/`;
+}
+
+export function getServiceCategoryHref(slug: string) {
+  return `/services/${slug}/`;
 }

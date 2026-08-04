@@ -1,5 +1,5 @@
 import { offices } from "./offices";
-import { getServiceItemHref } from "./service-slugs";
+import { getServiceCategoryHref, getServiceItemHref } from "./service-slugs";
 
 export type {
   MapHub,
@@ -410,10 +410,32 @@ export const serviceCategories = [
       { label: "Legal Consultancy", slug: "service-legal", teaser: "Contracts, disputes and maritime law." },
     ],
   },
+  {
+    title: "Mooring & Compatibility",
+    slug: "mooring-compatibility",
+    summary:
+      "Static and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.",
+    home: false,
+    items: [
+      { label: "Optimoor", slug: "optimoor", teaser: "Static and dynamic mooring analysis." },
+      { label: "OrcaFlex", slug: "orcaflex", teaser: "Dynamic marine systems modelling." },
+    ],
+  },
+  {
+    title: "Loadicator",
+    slug: "loadicator",
+    summary:
+      "Class-approved loading and stability tools for crews and fleet technical teams.",
+    home: false,
+    items: [
+      { label: "UMISTAB-X", slug: "umistab-x", teaser: "Proprietary class-approved loadicator." },
+    ],
+  },
 ] satisfies {
   title: string;
   slug: string;
   summary: string;
+  home?: boolean;
   items: ServiceItem[];
 }[];
 
@@ -538,7 +560,7 @@ export const navMenu: NavMenuItem[] = [
     href: "/services",
     children: [
       {
-        href: "/services#naval-architecture-design",
+        href: getServiceCategoryHref("naval-architecture-design"),
         label: "Naval Architecture",
         description: "Design, analysis, FEA and ship plans.",
         children: serviceCategories[0].items.map((item) => ({
@@ -547,7 +569,7 @@ export const navMenu: NavMenuItem[] = [
         })),
       },
       {
-        href: "/services#engineering",
+        href: getServiceCategoryHref("engineering"),
         label: "Engineering",
         description: "Conversion, hydrodynamics, CFD and stability.",
         children: serviceCategories[1].items.map((item) => ({
@@ -556,7 +578,7 @@ export const navMenu: NavMenuItem[] = [
         })),
       },
       {
-        href: "/services#inspection-audits-surveying",
+        href: getServiceCategoryHref("inspection-audits-surveying"),
         label: "Inspection",
         description: "Surveys, audits, warranty and loss prevention.",
         children: serviceCategories[2].items.map((item) => ({
@@ -565,7 +587,7 @@ export const navMenu: NavMenuItem[] = [
         })),
       },
       {
-        href: "/services#legal-consultancy",
+        href: getServiceCategoryHref("legal-consultancy"),
         label: "Legal Consultancy",
         description: "Contracts, disputes and maritime law.",
         children: serviceCategories[3].items.map((item) => ({
@@ -574,19 +596,21 @@ export const navMenu: NavMenuItem[] = [
         })),
       },
       {
-        href: "/capabilities#mooring",
+        href: getServiceCategoryHref("mooring-compatibility"),
         label: "Mooring & compatibility",
         description: "Static and dynamic mooring analysis and ship-shore studies.",
         children: [
-          { href: "/capabilities#mooring", label: "Optimoor" },
-          { href: "/capabilities#mooring", label: "OrcaFlex" },
+          { href: getServiceItemHref({ label: "Optimoor", slug: "optimoor" }), label: "Optimoor" },
+          { href: getServiceItemHref({ label: "OrcaFlex", slug: "orcaflex" }), label: "OrcaFlex" },
         ],
       },
       {
-        href: "/capabilities#umistab",
+        href: getServiceCategoryHref("loadicator"),
         label: "Loadicator",
         description: "Class-approved loading and stability tools.",
-        children: [{ href: "/capabilities#umistab", label: "UMISTAB-X" }],
+        children: [
+          { href: getServiceItemHref({ label: "UMISTAB-X", slug: "umistab-x" }), label: "UMISTAB-X" },
+        ],
       },
     ],
   },
@@ -603,7 +627,7 @@ export const navMenu: NavMenuItem[] = [
         description: decarbonization.summary,
       },
       {
-        href: "/capabilities#clean-fuel",
+        href: "/capabilities/clean-fuel/",
         label: "LNG bunkering & compatibility",
         description: "Mooring, transfer compatibility, procedures and attendance.",
       },
