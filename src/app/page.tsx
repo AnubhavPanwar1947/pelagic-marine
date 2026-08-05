@@ -19,27 +19,44 @@ import { siteImages } from "@/lib/site-images";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — jacket branding left, copy right */}
-      <section className="relative min-h-[82vh] overflow-hidden lg:min-h-[88vh]">
-        <HeroMedia />
-        <div className="relative z-10 mx-auto flex min-h-[82vh] max-w-7xl items-end px-4 pb-14 pt-28 sm:px-6 lg:min-h-[88vh] lg:items-center lg:justify-end lg:px-8 lg:pb-28 lg:pt-28">
-          <div className="animate-fade-up w-full max-w-[22rem] sm:max-w-md lg:max-w-lg xl:max-w-xl">
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-pelagic-accent [text-shadow:0_1px_10px_rgba(0,0,0,0.45)]">
-              Pelagic Marine Solutions · India & Dubai
-            </p>
-            <h1 className="type-display mt-4 text-[2rem] leading-[1.08] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.5)] sm:text-4xl lg:mt-5 lg:text-[3.15rem] lg:leading-[1.06]">
-              {company.heroHeadline}
-            </h1>
-            <p className="mt-4 max-w-md text-[0.95rem] leading-7 text-white/95 [text-shadow:0_1px_14px_rgba(0,0,0,0.45)] sm:mt-5 sm:text-base sm:leading-8">
-              {company.heroSubline}
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9">
-              <Button href="/contact" variant="primary">
-                Start a consultation
-              </Button>
-              <Button href="/services" variant="light" className="!shadow-md">
-                Explore services
-              </Button>
+      {/* 1. Hero — native 16:9 stage (sharp on wide screens), copy on the right */}
+      <section className="relative overflow-hidden bg-[#071a33]">
+        <div className="relative mx-auto w-full max-w-[2400px]">
+          <div className="relative aspect-[5/6] min-h-[560px] sm:aspect-[16/10] sm:min-h-0 lg:aspect-[16/9]">
+            <HeroMedia />
+
+            <div className="relative z-10 flex h-full items-end justify-end px-4 pb-10 pt-24 sm:px-8 sm:pb-12 lg:items-center lg:px-12 lg:pb-0 xl:px-16">
+              <div className="animate-fade-up w-full max-w-[20.5rem] sm:max-w-md lg:max-w-[26rem]">
+                <div className="rounded-2xl border border-white/12 bg-[#071a33]/68 px-5 py-6 shadow-[0_28px_80px_rgba(0,0,0,0.38)] backdrop-blur-md sm:px-7 sm:py-8">
+                  <div className="flex items-center gap-3">
+                    <span className="h-px w-8 bg-pelagic-accent" aria-hidden />
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-pelagic-accent sm:text-[11px]">
+                      India · Dubai
+                    </p>
+                  </div>
+
+                  <h1 className="type-display mt-4 text-[1.85rem] leading-[1.12] text-white sm:text-[2.35rem] lg:text-[2.75rem] lg:leading-[1.1]">
+                    {company.heroHeadline}
+                  </h1>
+
+                  <p className="mt-3.5 text-sm leading-7 text-white/82 sm:mt-4 sm:text-[0.95rem] sm:leading-7">
+                    {company.heroSubline}
+                  </p>
+
+                  <div className="mt-7 flex flex-wrap items-center gap-3">
+                    <Button href="/contact" variant="primary">
+                      Start a consultation
+                    </Button>
+                    <Link
+                      href="/services/"
+                      className="inline-flex items-center gap-1.5 px-2 text-sm font-semibold text-white/90 transition hover:text-white"
+                    >
+                      Explore services
+                      <span aria-hidden>→</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
