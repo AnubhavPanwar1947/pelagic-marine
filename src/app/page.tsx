@@ -19,44 +19,54 @@ import { siteImages } from "@/lib/site-images";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — native 16:9 stage (sharp on wide screens), copy on the right */}
-      <section className="relative overflow-hidden bg-[#071a33]">
-        <div className="relative mx-auto w-full max-w-[2400px]">
-          <div className="relative aspect-[5/6] min-h-[560px] sm:aspect-[16/10] sm:min-h-0 lg:aspect-[16/9]">
-            <HeroMedia />
+      {/* 1. Hero — cinematic port video, brand-led editorial copy */}
+      <section className="relative isolate min-h-[88vh] overflow-hidden bg-[#071a33] lg:min-h-[92vh]">
+        <div className="absolute inset-0">
+          <HeroMedia />
+        </div>
 
-            <div className="relative z-10 flex h-full items-end justify-end px-4 pb-10 pt-24 sm:px-8 sm:pb-12 lg:items-center lg:px-12 lg:pb-0 xl:px-16">
-              <div className="animate-fade-up w-full max-w-[20.5rem] sm:max-w-md lg:max-w-[26rem]">
-                <div className="rounded-2xl border border-white/12 bg-[#071a33]/68 px-5 py-6 shadow-[0_28px_80px_rgba(0,0,0,0.38)] backdrop-blur-md sm:px-7 sm:py-8">
-                  <div className="flex items-center gap-3">
-                    <span className="h-px w-8 bg-pelagic-accent" aria-hidden />
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-pelagic-accent sm:text-[11px]">
-                      India · Dubai
-                    </p>
-                  </div>
+        {/* Soft left readability wash only — keeps the harbour scene open */}
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#071a33]/78 via-[#071a33]/35 to-transparent"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071a33]/55 via-transparent to-[#071a33]/25"
+          aria-hidden
+        />
 
-                  <h1 className="type-display mt-4 text-[1.85rem] leading-[1.12] text-white sm:text-[2.35rem] lg:text-[2.75rem] lg:leading-[1.1]">
-                    {company.heroHeadline}
-                  </h1>
+        <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-7xl items-end px-4 pb-16 pt-28 sm:px-6 lg:min-h-[92vh] lg:items-center lg:px-8 lg:pb-24 lg:pt-28">
+          <div className="animate-fade-up max-w-xl lg:max-w-2xl">
+            <p className="type-display text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-white sm:text-4xl lg:text-[3.15rem]">
+              Pelagic Marine Solutions
+            </p>
+            <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-pelagic-accent">
+              India · Dubai · Worldwide
+            </p>
 
-                  <p className="mt-3.5 text-sm leading-7 text-white/82 sm:mt-4 sm:text-[0.95rem] sm:leading-7">
-                    {company.heroSubline}
-                  </p>
+            <h1 className="mt-7 max-w-xl text-xl font-medium leading-snug text-white/95 sm:text-2xl lg:mt-8 lg:text-[1.75rem] lg:leading-snug">
+              {company.heroHeadline}
+            </h1>
+            <p className="mt-4 max-w-lg text-base leading-8 text-white/80 sm:text-[1.05rem] sm:leading-8">
+              {company.heroSubline}
+            </p>
 
-                  <div className="mt-7 flex flex-wrap items-center gap-3">
-                    <Button href="/contact" variant="primary">
-                      Start a consultation
-                    </Button>
-                    <Link
-                      href="/services/"
-                      className="inline-flex items-center gap-1.5 px-2 text-sm font-semibold text-white/90 transition hover:text-white"
-                    >
-                      Explore services
-                      <span aria-hidden>→</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <Button href="/contact" variant="primary">
+                Start a consultation
+              </Button>
+              <Link
+                href="/services/"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-white/90 transition hover:text-white"
+              >
+                Explore services
+                <span
+                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                  aria-hidden
+                >
+                  →
+                </span>
+              </Link>
             </div>
           </div>
         </div>

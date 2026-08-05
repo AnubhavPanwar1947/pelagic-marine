@@ -8,7 +8,8 @@ function u(id: string, w: number, h: number, q = 88) {
 }
 
 export const siteImages = {
-  hero: "/images/hero.jpg",
+  hero: "/images/hero-port.jpg",
+  heroBridge: "/images/hero-bridge.jpg",
   contactHero: "/images/contact-hero.jpg",
   expertise: u("photo-1578645024771-21df5e60af96", 1200, 1500),
   team: u("photo-1529107386315-5eafae266a63", 2400, 1000),
