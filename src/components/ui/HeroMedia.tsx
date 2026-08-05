@@ -25,10 +25,10 @@ export function HeroMedia({ className = "" }: { className?: string }) {
 
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight || 1;
-      // Move image opposite to scroll, capped so it stays covered
+      // Move image opposite to scroll, capped so it stays covered (keep it crisp)
       const progress = Math.min(Math.max(-rect.top / sectionHeight, 0), 1.4);
       const offset = progress * 90; // px — subtle, professional
-      image.style.transform = `translate3d(0, ${offset}px, 0) scale(1.12)`;
+      image.style.transform = `translate3d(0, ${offset}px, 0) scale(1)`;
     };
 
     const onScroll = () => {
@@ -48,14 +48,14 @@ export function HeroMedia({ className = "" }: { className?: string }) {
   }, []);
 
   return (
-    <div className={`absolute inset-0 overflow-hidden bg-pelagic-navy ${className}`}>
+    <div className={`absolute inset-0 overflow-hidden ${className}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={imageRef}
         src="/images/hero.jpg?v=bridge-3"
         alt="Pelagic Marine surveyor on the bridge overlooking harbour operations"
-        className="absolute inset-0 h-[120%] w-full object-cover object-center will-change-transform"
-        style={{ top: "-10%", transform: "translate3d(0, 0, 0) scale(1.12)" }}
+        className="absolute inset-0 h-full w-full object-cover object-center will-change-transform"
+        style={{ top: "0%", transform: "translate3d(0, 0, 0) scale(1)" }}
         fetchPriority="high"
         decoding="async"
       />

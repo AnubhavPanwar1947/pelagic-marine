@@ -19,7 +19,9 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-4">
           <BrandLogo variant="footer" />
-          <p className="mt-4 max-w-sm text-sm leading-7 text-blue-50">
+          <p
+            className="mt-4 max-w-sm pl-[var(--logo-lockup-anchor-x)] text-sm leading-7 text-blue-50"
+          >
             Naval architecture and marine engineering consultancy — stability, structures,
             hydrodynamics and clean-fuel advisory, from Dubai to fleets worldwide.
           </p>

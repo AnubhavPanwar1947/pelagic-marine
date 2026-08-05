@@ -2239,29 +2239,7 @@ textarea::placeholder {
   animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Homepage client strip */
-.client-marquee-track {
-  animation: client-marquee-scroll 38s linear infinite;
-}
-
-.client-marquee:hover .client-marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes client-marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .client-marquee-track {
-    animation: none;
-  }
-}
+/* Homepage client strip — animation lives in ClientMarquee.tsx */
 
 /* Splash — quiet brand moment; smaller mark, soft single shine */
 .splash-screen {

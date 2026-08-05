@@ -23,11 +23,11 @@ export default function HomePage() {
       <section className="relative min-h-[78vh] overflow-hidden lg:min-h-[86vh]">
         <HeroMedia />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-pelagic-ink/88 via-pelagic-navy/55 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-pelagic-ink/72 via-pelagic-navy/35 to-transparent"
           aria-hidden
         />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-pelagic-ink/50 via-transparent to-pelagic-ink/25"
+          className="absolute inset-0 bg-gradient-to-t from-pelagic-ink/40 via-transparent to-pelagic-ink/18"
           aria-hidden
         />
         <div className="relative z-10 mx-auto flex min-h-[78vh] max-w-7xl items-center px-4 py-20 sm:px-6 lg:min-h-[86vh] lg:px-8 lg:py-28">
@@ -121,31 +121,22 @@ export default function HomePage() {
                   className="absolute inset-0 bg-gradient-to-t from-pelagic-ink/50 via-transparent to-transparent"
                   aria-hidden
                 />
-                <p className="absolute bottom-5 left-5 right-5 text-sm font-semibold text-white">
-                  Clean fuels · Compliance · Practical transition
-                </p>
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <SectionHeading
-                eyebrow="Decarbonization"
-                title={decarbonization.headline}
-                description={decarbonization.summary}
-              />
-              <ul className="mt-8 space-y-3.5">
-                {decarbonization.points.slice(0, 4).map((point) => (
-                  <li key={point} className="type-caption flex gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-pelagic-accent" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/capabilities/clean-fuel/"
-                className="mt-9 inline-flex w-fit rounded-full bg-pelagic-accent px-7 py-3 text-sm font-semibold text-white shadow-md shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
-              >
-                LNG bunkering & compatibility
-              </Link>
+              <div className="space-y-7">
+                <SectionHeading eyebrow="Decarbonization" title={decarbonization.headline} />
+
+                <div className="relative overflow-hidden rounded-[1.5rem] border border-pelagic-sand shadow-sm">
+                  <SiteImage
+                    src={siteImages.decarbonization}
+                    alt="Supporting the voyage to cleaner seas"
+                    fill
+                    className="object-cover object-[50%_35%]"
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                  />
+                </div>
+              </div>
             </Reveal>
           </div>
         </div>
@@ -184,9 +175,6 @@ export default function HomePage() {
                     className="absolute inset-0 bg-gradient-to-t from-pelagic-ink/45 via-transparent to-transparent"
                     aria-hidden
                   />
-                  <p className="absolute bottom-5 left-5 right-5 text-sm font-semibold text-white">
-                    Field judgement meets engineering depth
-                  </p>
                 </div>
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
                   {stats.map((stat) => (
@@ -218,9 +206,9 @@ export default function HomePage() {
               align="center"
             />
           </Reveal>
-          <Reveal className="mt-12">
+          <div className="mt-12">
             <ClientMarquee />
-          </Reveal>
+          </div>
         </div>
       </SectionMaritime>
 
