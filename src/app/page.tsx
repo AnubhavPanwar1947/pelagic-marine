@@ -19,23 +19,26 @@ import { siteImages } from "@/lib/site-images";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — photo only, no overlays */}
-      <section className="relative min-h-[78vh] overflow-hidden lg:min-h-[86vh]">
+      {/* 1. Hero — jacket branding left, copy right */}
+      <section className="relative min-h-[82vh] overflow-hidden lg:min-h-[88vh]">
         <HeroMedia />
-        <div className="relative z-10 mx-auto flex min-h-[78vh] max-w-7xl items-center px-4 py-20 sm:px-6 lg:min-h-[86vh] lg:px-8 lg:py-28">
-          <div className="animate-fade-up max-w-2xl">
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-pelagic-accent drop-shadow-[0_1px_8px_rgba(0,0,0,0.55)]">
+        <div className="relative z-10 mx-auto flex min-h-[82vh] max-w-7xl items-end px-4 pb-14 pt-28 sm:px-6 lg:min-h-[88vh] lg:items-center lg:justify-end lg:px-8 lg:pb-28 lg:pt-28">
+          <div className="animate-fade-up w-full max-w-[22rem] sm:max-w-md lg:max-w-lg xl:max-w-xl">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-pelagic-accent [text-shadow:0_1px_10px_rgba(0,0,0,0.45)]">
               Pelagic Marine Solutions · India & Dubai
             </p>
-            <h1 className="type-display mt-5 text-4xl leading-[1.05] text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-[3.6rem]">
+            <h1 className="type-display mt-4 text-[2rem] leading-[1.08] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.5)] sm:text-4xl lg:mt-5 lg:text-[3.15rem] lg:leading-[1.06]">
               {company.heroHeadline}
             </h1>
-            <p className="mt-5 max-w-lg text-base leading-8 text-white drop-shadow-[0_1px_12px_rgba(0,0,0,0.5)] sm:text-lg">
+            <p className="mt-4 max-w-md text-[0.95rem] leading-7 text-white/95 [text-shadow:0_1px_14px_rgba(0,0,0,0.45)] sm:mt-5 sm:text-base sm:leading-8">
               {company.heroSubline}
             </p>
-            <div className="mt-9">
+            <div className="mt-8 flex flex-wrap items-center gap-3 sm:mt-9">
               <Button href="/contact" variant="primary">
                 Start a consultation
+              </Button>
+              <Button href="/services" variant="light" className="!shadow-md">
+                Explore services
               </Button>
             </div>
           </div>
