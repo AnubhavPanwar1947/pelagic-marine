@@ -27,9 +27,9 @@ export const company = {
   name: "Pelagic Marine Solutions",
   legalName: "Pelagic Marine Solutions LLC",
   tagline: "Delivering marine and engineering consultancy worldwide.",
-  heroHeadline: "Clarity for every voyage.",
+  heroHeadline: "Serving the shipping industry, round the clock.",
   heroSubline:
-    "Naval architecture, surveys and clean-fuel advisory — delivered around the clock from India and Dubai.",
+    "Naval architecture, stability, structures and clean-fuel advisory for owners, operators and charterers worldwide.",
   sectors: ["Maritime", "Offshore", "Oil & Gas", "Renewables"],
   phones: {
     india: "+91 7895039068",

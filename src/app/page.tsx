@@ -19,54 +19,36 @@ import { siteImages } from "@/lib/site-images";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — cinematic port video, brand-led editorial copy */}
+      {/* 1. Hero */}
       <section className="relative isolate min-h-[88vh] overflow-hidden bg-[#071a33] lg:min-h-[92vh]">
         <div className="absolute inset-0">
           <HeroMedia />
         </div>
 
-        {/* Soft left readability wash only — keeps the harbour scene open */}
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#071a33]/78 via-[#071a33]/35 to-transparent"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071a33]/55 via-transparent to-[#071a33]/25"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071a33]/50 via-transparent to-[#071a33]/20"
           aria-hidden
         />
 
-        <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-7xl items-end px-4 pb-16 pt-28 sm:px-6 lg:min-h-[92vh] lg:items-center lg:px-8 lg:pb-24 lg:pt-28">
-          <div className="animate-fade-up max-w-xl lg:max-w-2xl">
-            <p className="type-display text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-white sm:text-4xl lg:text-[3.15rem]">
-              Pelagic Marine Solutions
+        <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-7xl items-center px-4 py-20 sm:px-6 lg:min-h-[92vh] lg:px-8 lg:py-28">
+          <div className="animate-fade-up max-w-2xl">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-pelagic-accent">
+              Pelagic Marine Solutions · India & Dubai
             </p>
-            <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-pelagic-accent">
-              India · Dubai · Worldwide
-            </p>
-
-            <h1 className="mt-7 max-w-xl text-xl font-medium leading-snug text-white/95 sm:text-2xl lg:mt-8 lg:text-[1.75rem] lg:leading-snug">
+            <h1 className="type-display mt-5 text-4xl leading-[1.05] text-white sm:text-5xl lg:text-[3.6rem]">
               {company.heroHeadline}
             </h1>
-            <p className="mt-4 max-w-lg text-base leading-8 text-white/80 sm:text-[1.05rem] sm:leading-8">
+            <p className="mt-5 max-w-lg text-base leading-8 text-blue-50/90 sm:text-lg">
               {company.heroSubline}
             </p>
-
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            <div className="mt-9">
               <Button href="/contact" variant="primary">
                 Start a consultation
               </Button>
-              <Link
-                href="/services/"
-                className="group inline-flex items-center gap-2 text-sm font-semibold text-white/90 transition hover:text-white"
-              >
-                Explore services
-                <span
-                  className="transition-transform duration-300 group-hover:translate-x-0.5"
-                  aria-hidden
-                >
-                  →
-                </span>
-              </Link>
             </div>
           </div>
         </div>
