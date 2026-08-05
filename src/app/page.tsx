@@ -19,27 +19,18 @@ import { siteImages } from "@/lib/site-images";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero */}
+      {/* 1. Hero — photo only, no overlays */}
       <section className="relative min-h-[78vh] overflow-hidden lg:min-h-[86vh]">
         <HeroMedia />
-        {/* Soft scrim only — keep photo sharp like the decarbonization card */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-pelagic-ink/78 via-pelagic-navy/40 to-transparent"
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-pelagic-ink/35 via-transparent to-pelagic-ink/15"
-          aria-hidden
-        />
         <div className="relative z-10 mx-auto flex min-h-[78vh] max-w-7xl items-center px-4 py-20 sm:px-6 lg:min-h-[86vh] lg:px-8 lg:py-28">
           <div className="animate-fade-up max-w-2xl">
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-pelagic-accent">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-pelagic-accent drop-shadow-[0_1px_8px_rgba(0,0,0,0.55)]">
               Pelagic Marine Solutions · India & Dubai
             </p>
-            <h1 className="type-display mt-5 text-4xl leading-[1.05] text-white sm:text-5xl lg:text-[3.6rem]">
+            <h1 className="type-display mt-5 text-4xl leading-[1.05] text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-[3.6rem]">
               {company.heroHeadline}
             </h1>
-            <p className="mt-5 max-w-lg text-base leading-8 text-blue-50/90 sm:text-lg">
+            <p className="mt-5 max-w-lg text-base leading-8 text-white drop-shadow-[0_1px_12px_rgba(0,0,0,0.5)] sm:text-lg">
               {company.heroSubline}
             </p>
             <div className="mt-9">
