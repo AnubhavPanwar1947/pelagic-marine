@@ -208,7 +208,7 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* 6. Clients */}
+      {/* 6. Clients — full-bleed dual marquee */}
       <SectionMaritime variant="mist" className="border-y border-pelagic-sand py-20 lg:py-24" gridOpacity={42}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
@@ -219,9 +219,9 @@ export default function HomePage() {
               align="center"
             />
           </Reveal>
-          <div className="mt-12">
-            <ClientMarquee />
-          </div>
+        </div>
+        <div className="mt-12 sm:mt-14">
+          <ClientMarquee />
         </div>
       </SectionMaritime>
 
