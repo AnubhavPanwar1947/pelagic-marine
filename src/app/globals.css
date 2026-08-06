@@ -2349,21 +2349,24 @@ textarea::placeholder {
 
 .section-wash-services {
   background:
-    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(30, 127, 208, 0.12), transparent 50%),
+    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(30, 127, 208, 0.14), transparent 50%),
     linear-gradient(165deg, #e8f3fb 0%, #f7fbfe 45%, #e3eef8 100%);
+  background-color: #e8f3fb;
 }
 
 .section-wash-decarb {
   background:
-    radial-gradient(ellipse 85% 65% at 100% 50%, rgba(56, 176, 240, 0.16), transparent 55%),
+    radial-gradient(ellipse 85% 65% at 100% 50%, rgba(56, 176, 240, 0.18), transparent 55%),
     linear-gradient(180deg, #e6f4fc 0%, #f4fafd 50%, #dceef9 100%);
+  background-color: #e6f4fc;
 }
 
 .section-wash-why {
   background:
-    radial-gradient(ellipse 70% 55% at 0% 0%, rgba(0, 48, 112, 0.08), transparent 50%),
-    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(47, 168, 238, 0.1), transparent 45%),
+    radial-gradient(ellipse 70% 55% at 0% 0%, rgba(0, 48, 112, 0.1), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(47, 168, 238, 0.12), transparent 45%),
     linear-gradient(180deg, #edf2f8 0%, #f8fafc 52%, #e8eef6 100%);
+  background-color: #edf2f8;
 }
 
 .section-shade {

@@ -2,7 +2,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ClientMarquee } from "@/components/ui/ClientMarquee";
 import { CtaParallaxMedia } from "@/components/ui/CtaParallaxMedia";
-import { HeroMedia } from "@/components/ui/HeroMedia";
+import {
+  HeroMedia,
+  HeroParallaxBackdrop,
+  HeroSectionFill,
+} from "@/components/ui/HeroMedia";
 import { ProjectsCapabilitiesCard } from "@/components/ui/ProjectsCapabilitiesCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -21,18 +25,15 @@ import { siteImages } from "@/lib/site-images";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — static image, no graph / no parallax */}
-      <section className="relative isolate min-h-[88vh] overflow-hidden bg-[#071a33] lg:min-h-[92vh]">
-        <div className="absolute inset-0">
-          <HeroMedia />
-        </div>
+      {/* Fixed hero photo — visible through Hero, Delivery, Clients (desktop) */}
+      <HeroParallaxBackdrop />
 
+      {/* 1. Hero — light scrim only so the photo stays clear */}
+      <section className="relative z-10 min-h-[88vh] overflow-hidden bg-transparent lg:min-h-[92vh]">
+        <HeroMedia />
+        {/* Desktop uses fixed backdrop; keep a soft local wash for text only */}
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#071a33]/78 via-[#071a33]/35 to-transparent"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071a33]/50 via-transparent to-[#071a33]/20"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#071a33]/70 via-[#071a33]/25 to-transparent lg:from-[#071a33]/55 lg:via-[#071a33]/15"
           aria-hidden
         />
 
@@ -57,16 +58,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Delivery & capability — soft azure mist wash */}
-      <SectionMaritime variant="delivery" className="py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* 2. Delivery — hero photo shows through (frosted content panel) */}
+      <section className="relative z-10 overflow-hidden bg-transparent py-20 lg:py-24">
+        <HeroSectionFill />
+        <div
+          className="pointer-events-none absolute inset-0 hidden bg-[#071a33]/35 lg:block"
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <ProjectsCapabilitiesCard />
+            <div className="rounded-[1.75rem] border border-white/50 bg-white/88 p-6 shadow-[0_20px_50px_rgba(7,26,51,0.18)] backdrop-blur-md sm:p-8 lg:p-10">
+              <ProjectsCapabilitiesCard />
+            </div>
           </Reveal>
         </div>
-      </SectionMaritime>
+      </section>
 
-      {/* 3. Services — mid-blue logo wash */}
+      {/* 3. Services — opaque wash covers the fixed hero */}
       <SectionMaritime variant="services" className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
@@ -112,7 +120,7 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* 4. Decarbonization — brighter azure wash */}
+      {/* 4. Decarbonization — opaque */}
       <SectionMaritime variant="decarb" className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
@@ -160,7 +168,7 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* 5. Why Pelagic — deep navy mist wash */}
+      {/* 5. Why Pelagic — opaque */}
       <SectionMaritime variant="why" className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
@@ -184,7 +192,7 @@ export default function HomePage() {
               <div className="space-y-5">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-pelagic-sand shadow-md sm:aspect-[4/3]">
                   <SiteImage
-                    src={siteImages.hero}
+                    src={siteImages.heroBridge}
                     alt="Pelagic Marine operations on the bridge"
                     fill
                     className="object-cover object-[58%_center]"
@@ -214,26 +222,33 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* 6. Clients — no graph / no border line; subtle synced shade parallax */}
-      <section className="relative overflow-hidden bg-pelagic-mist py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* 6. Clients — hero photo shows through again */}
+      <section className="relative z-10 overflow-hidden bg-transparent py-20 lg:py-24">
+        <HeroSectionFill />
+        <div
+          className="pointer-events-none absolute inset-0 hidden bg-[#071a33]/40 lg:block"
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <SectionHeading
-              eyebrow="Clients"
-              title="Trusted across"
-              titleAccent="the fleet"
-              description="Owners, managers and operators who rely on Pelagic for surveys, engineering and clean-fuel advisory."
-              align="center"
-            />
+            <div className="mx-auto max-w-3xl rounded-[1.5rem] border border-white/45 bg-white/88 px-6 py-7 text-center shadow-[0_16px_40px_rgba(7,26,51,0.16)] backdrop-blur-md sm:px-8">
+              <SectionHeading
+                eyebrow="Clients"
+                title="Trusted across"
+                titleAccent="the fleet"
+                description="Owners, managers and operators who rely on Pelagic for surveys, engineering and clean-fuel advisory."
+                align="center"
+              />
+            </div>
           </Reveal>
         </div>
-        <div className="mt-12 sm:mt-14">
+        <div className="relative mt-12 sm:mt-14">
           <ClientMarquee />
         </div>
       </section>
 
-      {/* 7. Next step — visible parallax background, no graph */}
-      <section className="relative overflow-hidden py-24 text-white lg:py-28">
+      {/* 7. Next step — own image (covers fixed hero) */}
+      <section className="relative z-10 overflow-hidden py-24 text-white lg:py-28">
         <CtaParallaxMedia src={siteImages.cta} />
         <div className="absolute inset-0 bg-pelagic-ink/72" aria-hidden />
         <div
@@ -266,8 +281,7 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      {/* Wave bridge between Next step and footer — same single soft color */}
-      <div className="relative z-[2] overflow-hidden bg-pelagic-navy">
+      <div className="relative z-10 overflow-hidden bg-pelagic-navy">
         <FooterWave variant="bridge" />
       </div>
     </>
