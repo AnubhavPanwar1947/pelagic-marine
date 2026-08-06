@@ -2261,6 +2261,73 @@ textarea::placeholder {
   animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/* Homepage — motion & polish (benchmarked against Aqualis / Kannamwar / ShoreSafe) */
+.home-hero-copy {
+  animation: fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.home-hero-backdrop-img {
+  transform: scale(1.04);
+  animation: home-hero-drift 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes home-hero-drift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.09) translate3d(-1.2%, 0.6%, 0);
+  }
+}
+
+.home-scroll-line {
+  animation: home-scroll-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes home-scroll-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleY(0.75);
+    transform-origin: top;
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+.home-glass-panel {
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.home-service-tile:hover {
+  background-color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(47, 168, 238, 0.12);
+}
+
+.home-stats-band > div {
+  transition: background-color 0.35s ease;
+}
+
+.home-stats-band > div:hover {
+  background-color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-backdrop-img,
+  .home-scroll-line,
+  .home-hero-copy {
+    animation: none !important;
+  }
+
+  .home-hero-backdrop-img {
+    transform: none;
+  }
+}
+
 /* Homepage client strip — animation lives in ClientMarquee.tsx */
 
 /* Footer wave — 3 soft layers, slow, behind copy (~half footer) */

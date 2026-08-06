@@ -16,24 +16,26 @@ const MARQUEE_CSS = `
 }
 .pelagic-client-marquee-row {
   overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 .pelagic-client-marquee-track {
   display: flex;
   width: max-content;
-  gap: 1rem;
+  gap: 0.875rem;
   will-change: transform;
 }
 .pelagic-client-marquee-track--left {
-  animation: pelagic-marquee-left 42s linear infinite;
+  animation: pelagic-marquee-left 44s linear infinite;
 }
 .pelagic-client-marquee-track--right {
-  animation: pelagic-marquee-right 48s linear infinite;
+  animation: pelagic-marquee-right 50s linear infinite;
 }
 .pelagic-client-marquee:hover .pelagic-client-marquee-track {
   animation-play-state: paused;
 }
 @media (min-width: 640px) {
-  .pelagic-client-marquee-track { gap: 1.25rem; }
+  .pelagic-client-marquee-track { gap: 1.125rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pelagic-client-marquee-track--left,
@@ -60,7 +62,7 @@ function MarqueeRow({
         {row.map((name, index) => (
           <span
             key={`${direction}-${name}-${index}`}
-            className="inline-flex h-[4.5rem] w-[15.5rem] shrink-0 items-center justify-center rounded-2xl border border-white/70 bg-white/92 px-5 text-center text-sm font-semibold tracking-wide text-pelagic-ink backdrop-blur-sm sm:h-[5.25rem] sm:w-[17.5rem] sm:text-[15px]"
+            className="inline-flex h-[4.25rem] w-[15rem] shrink-0 items-center justify-center rounded-2xl border border-white/55 bg-white/90 px-5 text-center text-[13px] font-semibold tracking-[0.02em] text-pelagic-ink shadow-[0_8px_28px_rgba(7,26,51,0.12)] backdrop-blur-md sm:h-[4.75rem] sm:w-[16.5rem] sm:text-sm"
           >
             {name}
           </span>
@@ -84,7 +86,7 @@ export function ClientMarquee() {
       aria-label="Client companies"
     >
       <style dangerouslySetInnerHTML={{ __html: MARQUEE_CSS }} />
-      <div className="relative z-[1] flex flex-col gap-4 sm:gap-5">
+      <div className="relative z-[1] flex flex-col gap-3.5 sm:gap-4">
         <MarqueeRow names={top} direction="left" />
         <MarqueeRow names={bottom} direction="right" />
       </div>
