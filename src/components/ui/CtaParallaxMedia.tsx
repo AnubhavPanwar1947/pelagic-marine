@@ -3,58 +3,49 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Next-step CTA background — scroll parallax + slow ambient drift.
+ * Next-step CTA background — strong ken-burns + scroll parallax so motion is obvious.
  */
 export function CtaParallaxMedia({ src }: { src: string }) {
   const imageRef = useRef<HTMLImageElement>(null);
-  const scrollY = useRef(0);
 
   useEffect(() => {
     const image = imageRef.current;
     if (!image) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
+    if (reduceMotion) {
+      image.style.transform = "translate3d(0, 0, 0) scale(1.12)";
+      return;
+    }
 
-    let frame = 0;
     let raf = 0;
     let start = performance.now();
 
     const apply = (now: number) => {
       const section = image.closest("section");
-      if (!section) return;
+      if (!section) {
+        raf = requestAnimationFrame(apply);
+        return;
+      }
 
       const rect = section.getBoundingClientRect();
       const viewH = window.innerHeight || 1;
       const progress = Math.min(Math.max((viewH - rect.top) / (viewH + rect.height), 0), 1);
-      scrollY.current = (progress - 0.5) * 72;
+      const scrollOffset = (progress - 0.5) * 110;
 
       const t = (now - start) / 1000;
-      const driftY = Math.sin(t * 0.18) * 10;
-      const driftX = Math.cos(t * 0.12) * 6;
-      const pulse = 1.1 + Math.sin(t * 0.15) * 0.025;
+      // Visible ambient motion (~±24px, clear zoom pulse)
+      const driftY = Math.sin(t * 0.35) * 24;
+      const driftX = Math.cos(t * 0.22) * 18;
+      const pulse = 1.14 + Math.sin(t * 0.28) * 0.06;
 
-      image.style.transform = `translate3d(${driftX}px, ${scrollY.current + driftY}px, 0) scale(${pulse})`;
+      image.style.transform = `translate3d(${driftX}px, ${scrollOffset + driftY}px, 0) scale(${pulse})`;
       raf = requestAnimationFrame(apply);
     };
 
-    const onScroll = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = 0;
-      });
-    };
-
     raf = requestAnimationFrame(apply);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
 
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
-      if (frame) cancelAnimationFrame(frame);
-    };
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   return (
@@ -64,13 +55,14 @@ export function CtaParallaxMedia({ src }: { src: string }) {
         ref={imageRef}
         src={src}
         alt=""
-        className="absolute inset-0 h-[125%] w-full object-cover object-center will-change-transform"
-        style={{ transform: "translate3d(0, 0, 0) scale(1.12)" }}
+        className="absolute -inset-[8%] h-[116%] w-[116%] max-w-none object-cover object-center will-change-transform"
+        style={{ transform: "translate3d(0, 0, 0) scale(1.14)" }}
         decoding="async"
         draggable={false}
       />
-      {/* Soft animated light wash over the photo */}
-      <div className="home-cta-light pointer-events-none absolute inset-0" aria-hidden />
+      <div className="home-cta-orb home-cta-orb--a pointer-events-none absolute inset-0" aria-hidden />
+      <div className="home-cta-orb home-cta-orb--b pointer-events-none absolute inset-0" aria-hidden />
+      <div className="home-cta-shimmer pointer-events-none absolute inset-0" aria-hidden />
     </div>
   );
 }

@@ -286,9 +286,9 @@ export default function HomePage() {
       {/* ── Next step: animated photo background ── */}
       <section className="relative z-10 overflow-hidden py-28 text-white lg:py-36">
         <CtaParallaxMedia src={siteImages.cta} />
-        <div className="absolute inset-0 bg-[#071a33]/62" aria-hidden />
+        <div className="absolute inset-0 bg-[#071a33]/48" aria-hidden />
         <div
-          className="absolute inset-0 bg-gradient-to-b from-[#071a33]/20 via-transparent to-[#071a33]/55"
+          className="absolute inset-0 bg-gradient-to-b from-[#071a33]/15 via-transparent to-[#071a33]/45"
           aria-hidden
         />
         <Reveal className="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6">

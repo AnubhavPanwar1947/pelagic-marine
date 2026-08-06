@@ -2304,7 +2304,8 @@ textarea::placeholder {
 }
 
 .home-service-tile {
-  background-color: rgba(255, 255, 255, 0.92);
+  background-color: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(2px);
 }
 
 .home-service-tile:hover {
@@ -2320,23 +2321,69 @@ textarea::placeholder {
   background-color: #ffffff;
 }
 
-/* Next-step ambient light sweep */
-.home-cta-light {
-  background:
-    radial-gradient(ellipse 55% 45% at 20% 30%, rgba(47, 168, 238, 0.22), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(56, 176, 240, 0.14), transparent 55%);
-  animation: home-cta-light-drift 14s ease-in-out infinite alternate;
-  mix-blend-mode: soft-light;
+/* Next-step — clearly visible ambient motion layers */
+.home-cta-orb--a {
+  background: radial-gradient(
+    ellipse 48% 42% at 18% 35%,
+    rgba(47, 168, 238, 0.45),
+    transparent 62%
+  );
+  animation: home-cta-orb-a 9s ease-in-out infinite alternate;
 }
 
-@keyframes home-cta-light-drift {
+.home-cta-orb--b {
+  background: radial-gradient(
+    ellipse 42% 38% at 82% 68%,
+    rgba(56, 176, 240, 0.38),
+    transparent 60%
+  );
+  animation: home-cta-orb-b 11s ease-in-out infinite alternate;
+}
+
+.home-cta-shimmer {
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.14) 48%,
+    transparent 66%
+  );
+  background-size: 220% 220%;
+  animation: home-cta-shimmer 7.5s ease-in-out infinite;
+}
+
+@keyframes home-cta-orb-a {
   from {
     opacity: 0.55;
-    transform: translate3d(-2%, -1%, 0) scale(1);
+    transform: translate3d(-4%, -3%, 0) scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(8%, 5%, 0) scale(1.2);
+  }
+}
+
+@keyframes home-cta-orb-b {
+  from {
+    opacity: 0.45;
+    transform: translate3d(5%, 4%, 0) scale(1.05);
   }
   to {
     opacity: 0.95;
-    transform: translate3d(3%, 2%, 0) scale(1.08);
+    transform: translate3d(-7%, -6%, 0) scale(1.25);
+  }
+}
+
+@keyframes home-cta-shimmer {
+  0% {
+    background-position: 120% 40%;
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    background-position: -40% 60%;
+    opacity: 0.3;
   }
 }
 
@@ -2344,7 +2391,9 @@ textarea::placeholder {
   .home-hero-backdrop-img,
   .home-scroll-line,
   .home-hero-copy,
-  .home-cta-light {
+  .home-cta-orb--a,
+  .home-cta-orb--b,
+  .home-cta-shimmer {
     animation: none !important;
   }
 
@@ -2440,15 +2489,19 @@ textarea::placeholder {
 }
 
 .section-wash-services {
-  /* Gibbs & Cox “The Latest” style — light topo contours on soft wash */
-  background-color: #f4f8fb;
-  background-image:
-    url("/images/patterns/topo-contours.svg"),
-    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(30, 127, 208, 0.08), transparent 50%),
-    linear-gradient(165deg, #f7fafc 0%, #f4f8fb 48%, #eef5fa 100%);
-  background-size: 75% auto, 100% 100%, 100% 100%;
-  background-repeat: repeat, no-repeat, no-repeat;
-  background-position: center top, center, center;
+  background-color: #f2f6fa;
+  background-image: linear-gradient(165deg, #f7fafc 0%, #f2f6fa 50%, #eaf2f8 100%);
+}
+
+/* Gibbs & Cox “The Latest” topographic contour — dedicated layer (high visibility) */
+.home-services-topo {
+  z-index: 0;
+  background-color: transparent;
+  background-image: url("/images/patterns/topo-contours.svg");
+  background-size: 42rem 42rem;
+  background-repeat: repeat;
+  background-position: center top;
+  opacity: 1;
 }
 
 .section-wash-decarb {
