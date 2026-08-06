@@ -12,7 +12,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SiteImage } from "@/components/ui/SiteImage";
-import { FooterWave } from "@/components/layout/FooterWave";
 import {
   company,
   decarbonization,
@@ -77,21 +76,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Delivery: hero photo shows through ── */}
-      <section className="relative z-10 overflow-hidden bg-transparent py-20 lg:py-28">
-        <HeroSectionFill />
-        <div
-          className="pointer-events-none absolute inset-0 hidden bg-[#071a33]/30 lg:block"
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* ── Delivery: solid wash (no parallax) ── */}
+      <SectionMaritime variant="delivery" className="relative z-10 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="home-glass-panel rounded-[1.85rem] border border-white/55 bg-white/90 p-7 shadow-[0_24px_60px_rgba(7,26,51,0.2)] backdrop-blur-xl sm:p-9 lg:p-12">
-              <ProjectsCapabilitiesCard />
-            </div>
+            <ProjectsCapabilitiesCard />
           </Reveal>
         </div>
-      </section>
+      </SectionMaritime>
 
       {/* ── Services: opaque editorial grid (Kannamwar / Foreship) ── */}
       <SectionMaritime variant="services" className="py-20 lg:py-28">
@@ -106,12 +98,12 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <div className="mt-16 grid gap-px overflow-hidden rounded-[1.75rem] border border-pelagic-sand/80 bg-pelagic-sand/80 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-16 grid gap-px overflow-hidden rounded-[1.75rem] border border-pelagic-navy/10 bg-pelagic-navy/10 sm:grid-cols-2 xl:grid-cols-4">
             {homeServices.map((service, i) => (
               <Reveal key={service.slug} delay={i * 60} className="h-full">
                 <Link
                   href={`/services/${service.slug}/`}
-                  className="home-service-tile group relative flex h-full min-h-[17rem] flex-col bg-white/95 p-7 transition duration-500 sm:p-8"
+                  className="home-service-tile group relative flex h-full min-h-[17rem] flex-col p-7 transition duration-500 sm:p-8"
                 >
                   <span className="type-eyebrow text-pelagic-accent/80">
                     0{i + 1}
@@ -291,12 +283,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Next step: single composition CTA ── */}
+      {/* ── Next step: animated photo background ── */}
       <section className="relative z-10 overflow-hidden py-28 text-white lg:py-36">
         <CtaParallaxMedia src={siteImages.cta} />
-        <div className="absolute inset-0 bg-[#071a33]/68" aria-hidden />
+        <div className="absolute inset-0 bg-[#071a33]/62" aria-hidden />
         <div
-          className="absolute inset-0 bg-gradient-to-b from-[#071a33]/25 via-transparent to-[#071a33]/50"
+          className="absolute inset-0 bg-gradient-to-b from-[#071a33]/20 via-transparent to-[#071a33]/55"
           aria-hidden
         />
         <Reveal className="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6">
@@ -325,10 +317,6 @@ export default function HomePage() {
           </div>
         </Reveal>
       </section>
-
-      <div className="relative z-10 overflow-hidden bg-pelagic-navy">
-        <FooterWave variant="bridge" />
-      </div>
     </>
   );
 }

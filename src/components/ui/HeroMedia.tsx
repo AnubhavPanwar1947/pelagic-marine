@@ -1,6 +1,6 @@
 /**
  * Shared hero photo used as a fixed parallax backdrop for:
- * Hero → Delivery & Capability → (covered by solid sections) → Clients
+ * Hero → (solid sections cover) → Clients
  * Desktop only — mobile sections keep their own local image fills.
  */
 export function HeroParallaxBackdrop() {
@@ -47,7 +47,7 @@ export function HeroMedia({ className = "" }: { className?: string }) {
   );
 }
 
-/** Same photo as section fill — used on Delivery / Clients for mobile */
+/** Same photo as section fill — used on Clients for mobile */
 export function HeroSectionFill({ className = "" }: { className?: string }) {
   return (
     <div className={`absolute inset-0 overflow-hidden lg:hidden ${className}`} aria-hidden>

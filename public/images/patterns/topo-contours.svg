@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" fill="none">
+  <!-- Gibbs & Coxinspired topographic contour tile (original drawing) -->
+  <path d="M-20 90C40 70 90 110 150 95C220 75 260 40 330 55C400 70 450 120 520 105C590 90 640 50 740 70" stroke="#1e5078" stroke-opacity=".11" stroke-width="1.1"/>
+  <path d="M-20 130C50 115 100 150 165 135C240 115 290 85 360 100C430 115 485 155 555 140C620 125 670 90 740 115" stroke="#1e5078" stroke-opacity=".1" stroke-width="1"/>
+  <path d="M-20 175C55 155 115 195 180 175C255 150 310 125 385 145C460 165 510 200 580 180C645 162 690 130 740 155" stroke="#1e5078" stroke-opacity=".12" stroke-width="1.1"/>
+  <path d="M-20 220C60 200 120 240 195 220C275 195 335 165 410 185C485 205 545 245 620 220C680 200 710 175 740 195" stroke="#1e5078" stroke-opacity=".1" stroke-width="1"/>
+  <path d="M-20 270C70 245 130 290 205 265C280 240 350 210 430 235C505 258 560 295 635 270C690 252 715 230 740 250" stroke="#1e5078" stroke-opacity=".11" stroke-width="1.1"/>
+  <path d="M-20 320C65 300 140 340 215 315C295 285 360 260 445 285C525 308 580 350 655 320C700 305 720 285 740 300" stroke="#1e5078" stroke-opacity=".1" stroke-width="1"/>
+  <path d="M-20 370C75 345 145 390 225 360C310 325 380 300 460 330C540 358 600 400 670 365C710 348 725 330 740 345" stroke="#1e5078" stroke-opacity=".12" stroke-width="1.1"/>
+  <path d="M-20 420C80 395 155 440 235 410C320 375 395 350 480 380C560 408 625 450 695 415C720 400 730 385 740 395" stroke="#1e5078" stroke-opacity=".1" stroke-width="1"/>
+  <path d="M-20 475C70 450 160 495 245 460C330 425 410 400 495 435C575 465 640 510 710 470C725 460 735 450 740 455" stroke="#1e5078" stroke-opacity=".11" stroke-width="1.1"/>
+  <path d="M-20 525C85 500 165 545 255 510C345 470 420 450 510 485C590 515 655 555 720 520" stroke="#1e5078" stroke-opacity=".1" stroke-width="1"/>
+  <path d="M-20 575C90 550 175 595 265 555C355 515 440 495 530 535C610 565 670 605 740 570" stroke="#1e5078" stroke-opacity=".11" stroke-width="1.1"/>
+  <path d="M-20 625C95 600 180 645 275 605C365 565 455 545 545 585C625 615 690 655 740 620" stroke="#1e5078" stroke-opacity=".1" stroke-width="1"/>
+  <path d="M-20 50C45 35 100 70 160 50C230 25 285 5 355 25C425 45 480 80 550 55C620 32 680 5 740 30" stroke="#1e5078" stroke-opacity=".09" stroke-width="1"/>
+  <path d="M-20 680C100 655 190 700 285 660C380 620 470 600 560 640C640 670 700 705 740 680" stroke="#1e5078" stroke-opacity=".09" stroke-width="1"/>
+  <!-- Soft closed contours (topo islands) -->
+  <path d="M180 240C210 210 270 205 305 235C340 265 335 325 295 350C255 375 195 360 170 320C145 280 150 270 180 240Z" stroke="#1e5078" stroke-opacity=".1" stroke-width="1"/>
+  <path d="M200 255C225 232 265 230 290 252C315 274 312 315 282 333C252 351 210 340 192 312C174 284 175 278 200 255Z" stroke="#1e5078" stroke-opacity=".09" stroke-width="1"/>
+  <path d="M480 430C520 395 595 400 635 445C675 490 660 560 605 590C550 620 475 595 450 540C425 485 440 465 480 430Z" stroke="#1e5078" stroke-opacity=".1" stroke-width="1"/>
+  <path d="M505 450C535 425 585 430 612 460C639 490 628 535 590 555C552 575 505 558 490 520C475 482 475 475 505 450Z" stroke="#1e5078" stroke-opacity=".09" stroke-width="1"/>
+</svg>
