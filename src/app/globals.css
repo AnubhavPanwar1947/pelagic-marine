@@ -71,8 +71,8 @@
   --color-pelagic-blue: var(--pelagic-blue);
   --color-pelagic-light: var(--pelagic-light);
   --color-pelagic-mist: var(--pelagic-mist);
-  --font-sans: var(--font-poppins);
-  --font-display: var(--font-jost);
+  --font-sans: var(--font-montserrat);
+  --font-display: var(--font-montserrat);
 }
 
 body {
@@ -85,7 +85,7 @@ body {
   background-size: 100% 100%, 100% 100%, 100% 100%, 44px 44px;
   background-attachment: fixed;
   color: var(--pelagic-body);
-  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-family: var(--font-montserrat), Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.65;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
@@ -118,7 +118,7 @@ html {
 }
 
 .font-display {
-  font-family: var(--font-jost), system-ui, sans-serif;
+  font-family: var(--font-montserrat), Helvetica Neue, Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-feature-settings: "kern" 1, "liga" 1;
 }
@@ -365,8 +365,8 @@ html {
 }
 
 .type-display {
-  font-family: var(--font-jost), system-ui, sans-serif;
-  font-weight: 600;
+  font-family: var(--font-montserrat), Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 500;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
@@ -2263,49 +2263,52 @@ textarea::placeholder {
 
 /* Homepage client strip — animation lives in ClientMarquee.tsx */
 
-/* Footer wave — full-bleed ShoreSafe-style SVG parallax */
+/* Footer wave — single color, behind copy, ~half footer height */
 .footer-wave {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  top: auto;
+  width: 100%;
+  height: 55%;
+  min-height: 180px;
   line-height: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 .footer-wave-svg {
   display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: 100%;
+  min-height: 180px;
+}
+
+/* Bridge wave between Next step CTA and footer */
+.footer-wave-bridge {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  height: 90px;
-  min-height: 70px;
+  line-height: 0;
+  margin-top: -1px;
+  overflow: hidden;
+  pointer-events: none;
+  background: transparent;
+}
+
+.footer-wave-bridge-svg {
+  display: block;
+  width: 200%;
+  height: 120px;
 }
 
 .footer-wave-parallax > use {
-  animation: pelagic-wave-move 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-}
-
-.footer-wave-parallax > use:nth-child(1) {
-  animation-delay: -2s;
-  animation-duration: 7s;
-}
-
-.footer-wave-parallax > use:nth-child(2) {
-  animation-delay: -3s;
-  animation-duration: 10s;
-}
-
-.footer-wave-parallax > use:nth-child(3) {
-  animation-delay: -4s;
-  animation-duration: 13s;
-}
-
-.footer-wave-parallax > use:nth-child(4) {
-  animation-delay: -5s;
-  animation-duration: 20s;
+  animation: pelagic-wave-move 18s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
 }
 
 @keyframes pelagic-wave-move {
@@ -2317,50 +2320,9 @@ textarea::placeholder {
   }
 }
 
-/* Top wavy edge into navy footer */
-.footer-wave-edge {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  line-height: 0;
-  transform: translateY(-99%);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.footer-wave-edge svg {
-  display: block;
-  width: 100%;
-  height: 72px;
-}
-
-/* Desktop-only fixed hero (scroll-over / fixed background) */
-.hero-media-fixed {
-  position: absolute;
-  inset: 0;
-}
-
-@media (min-width: 1024px) {
-  .hero-media-fixed {
-    position: fixed;
-    inset: 0;
-    height: 100vh;
-    width: 100%;
-    z-index: 0;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .footer-wave-parallax > use {
     animation: none;
-  }
-
-  .hero-media-fixed {
-    position: absolute !important;
-    height: 100% !important;
   }
 }
 

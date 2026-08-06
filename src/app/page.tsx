@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ClientMarquee } from "@/components/ui/ClientMarquee";
+import { CtaParallaxMedia } from "@/components/ui/CtaParallaxMedia";
 import { HeroMedia } from "@/components/ui/HeroMedia";
 import { ProjectsCapabilitiesCard } from "@/components/ui/ProjectsCapabilitiesCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SiteImage } from "@/components/ui/SiteImage";
+import { FooterWave } from "@/components/layout/FooterWave";
 import {
   company,
   decarbonization,
@@ -19,18 +21,18 @@ import { siteImages } from "@/lib/site-images";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero — desktop fixed background (scroll-over) */}
-      <section className="relative isolate z-0 min-h-[88vh] overflow-hidden bg-[#071a33] lg:min-h-[92vh]">
-        <div className="absolute inset-0 z-0">
+      {/* 1. Hero — static image, no graph / no parallax */}
+      <section className="relative isolate min-h-[88vh] overflow-hidden bg-[#071a33] lg:min-h-[92vh]">
+        <div className="absolute inset-0">
           <HeroMedia />
         </div>
 
         <div
-          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[#071a33]/78 via-[#071a33]/35 to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#071a33]/78 via-[#071a33]/35 to-transparent"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#071a33]/50 via-transparent to-[#071a33]/20"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071a33]/50 via-transparent to-[#071a33]/20"
           aria-hidden
         />
 
@@ -212,8 +214,8 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* 6. Clients — full-bleed dual marquee */}
-      <SectionMaritime variant="mist" className="border-y border-pelagic-sand py-20 lg:py-24" gridOpacity={42}>
+      {/* 6. Clients — no graph / no border line; subtle synced shade parallax */}
+      <section className="relative overflow-hidden bg-pelagic-mist py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeading
@@ -228,23 +230,17 @@ export default function HomePage() {
         <div className="mt-12 sm:mt-14">
           <ClientMarquee />
         </div>
-      </SectionMaritime>
+      </section>
 
-      {/* 7. CTA */}
+      {/* 7. Next step — visible parallax background, no graph */}
       <section className="relative overflow-hidden py-24 text-white lg:py-28">
-        <SiteImage
-          src={siteImages.cta}
-          alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-pelagic-ink/80" aria-hidden />
+        <CtaParallaxMedia src={siteImages.cta} />
+        <div className="absolute inset-0 bg-pelagic-ink/72" aria-hidden />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-pelagic-navy/70 via-transparent to-pelagic-accent/20"
+          className="absolute inset-0 bg-gradient-to-r from-pelagic-navy/55 via-transparent to-pelagic-navy/30"
           aria-hidden
         />
-        <Reveal className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
+        <Reveal className="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-pelagic-accent">
             Next step
           </p>
@@ -269,6 +265,11 @@ export default function HomePage() {
           </div>
         </Reveal>
       </section>
+
+      {/* Wave bridge between Next step and footer — same single soft color */}
+      <div className="relative z-[2] overflow-hidden bg-pelagic-navy">
+        <FooterWave variant="bridge" />
+      </div>
     </>
   );
 }

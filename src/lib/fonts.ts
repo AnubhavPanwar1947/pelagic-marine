@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, Jost, Poppins } from "next/font/google";
+import { Cormorant_Garamond, Montserrat } from "next/font/google";
 
 /** Brand wordmark — matches logo lockup */
 export const cormorant = Cormorant_Garamond({
@@ -8,17 +8,13 @@ export const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-/** UI & body — Poppins (ShoreSafe-style readability) */
-export const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
-/** Section headings — Jost (ShoreSafe display sans) */
-export const jost = Jost({
-  variable: "--font-jost",
+/**
+ * Tesla.com uses proprietary Universal Sans (Display + Text).
+ * Montserrat is the closest free geometric sans (same family as Gotham,
+ * Tesla’s previous typeface) for both headings and body.
+ */
+export const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
