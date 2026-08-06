@@ -2263,7 +2263,7 @@ textarea::placeholder {
 
 /* Homepage client strip — animation lives in ClientMarquee.tsx */
 
-/* Footer wave — single color, behind copy, ~half footer height */
+/* Footer wave — 3 soft layers, slow, behind copy (~half footer) */
 .footer-wave {
   position: absolute;
   left: 0;
@@ -2272,7 +2272,7 @@ textarea::placeholder {
   top: auto;
   width: 100%;
   height: 55%;
-  min-height: 180px;
+  min-height: 200px;
   line-height: 0;
   overflow: hidden;
   pointer-events: none;
@@ -2282,14 +2282,13 @@ textarea::placeholder {
 .footer-wave-svg {
   display: block;
   position: absolute;
-  left: 0;
+  left: -25%;
   bottom: 0;
   width: 200%;
   height: 100%;
-  min-height: 180px;
+  min-height: 200px;
 }
 
-/* Bridge wave between Next step CTA and footer */
 .footer-wave-bridge {
   position: relative;
   z-index: 2;
@@ -2308,7 +2307,22 @@ textarea::placeholder {
 }
 
 .footer-wave-parallax > use {
-  animation: pelagic-wave-move 18s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  animation: pelagic-wave-move 32s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.footer-wave-parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 38s;
+}
+
+.footer-wave-parallax > use:nth-child(2) {
+  animation-delay: -6s;
+  animation-duration: 48s;
+}
+
+.footer-wave-parallax > use:nth-child(3) {
+  animation-delay: -10s;
+  animation-duration: 58s;
 }
 
 @keyframes pelagic-wave-move {
@@ -2324,6 +2338,38 @@ textarea::placeholder {
   .footer-wave-parallax > use {
     animation: none;
   }
+}
+
+/* Homepage section washes — logo navy / azure mixtures (no graph) */
+.section-wash-delivery {
+  background:
+    radial-gradient(ellipse 90% 70% at 100% 0%, rgba(47, 168, 238, 0.14), transparent 55%),
+    linear-gradient(180deg, #f5fafd 0%, #ffffff 48%, #eef6fc 100%);
+}
+
+.section-wash-services {
+  background:
+    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(30, 127, 208, 0.12), transparent 50%),
+    linear-gradient(165deg, #e8f3fb 0%, #f7fbfe 45%, #e3eef8 100%);
+}
+
+.section-wash-decarb {
+  background:
+    radial-gradient(ellipse 85% 65% at 100% 50%, rgba(56, 176, 240, 0.16), transparent 55%),
+    linear-gradient(180deg, #e6f4fc 0%, #f4fafd 50%, #dceef9 100%);
+}
+
+.section-wash-why {
+  background:
+    radial-gradient(ellipse 70% 55% at 0% 0%, rgba(0, 48, 112, 0.08), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(47, 168, 238, 0.1), transparent 45%),
+    linear-gradient(180deg, #edf2f8 0%, #f8fafc 52%, #e8eef6 100%);
+}
+
+.section-shade {
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(255, 255, 255, 0.55), transparent 70%);
+  opacity: 0.9;
 }
 
 /* Splash — quiet brand moment; smaller mark, soft single shine */

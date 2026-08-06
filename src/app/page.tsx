@@ -57,8 +57,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Delivery & capability */}
-      <SectionMaritime variant="mist" className="py-20 lg:py-24" gridOpacity={48}>
+      {/* 2. Delivery & capability — soft azure mist wash */}
+      <SectionMaritime variant="delivery" className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <ProjectsCapabilitiesCard />
@@ -66,8 +66,8 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* 3. Services */}
-      <SectionMaritime className="py-20 lg:py-24" gridOpacity={58}>
+      {/* 3. Services — mid-blue logo wash */}
+      <SectionMaritime variant="services" className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeading
@@ -112,8 +112,8 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* 4. Decarbonization — open split like Why Pelagic */}
-      <SectionMaritime variant="sand" className="py-20 lg:py-24" gridOpacity={45}>
+      {/* 4. Decarbonization — brighter azure wash */}
+      <SectionMaritime variant="decarb" className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
             <Reveal>
@@ -160,8 +160,8 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* 5. Why Pelagic */}
-      <SectionMaritime variant="mist" className="border-y border-pelagic-sand py-20" gridOpacity={48}>
+      {/* 5. Why Pelagic — deep navy mist wash */}
+      <SectionMaritime variant="why" className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
             <Reveal>

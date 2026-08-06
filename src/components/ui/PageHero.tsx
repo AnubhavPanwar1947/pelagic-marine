@@ -26,10 +26,7 @@ export function PageHero({ eyebrow, title, description, imageSrc }: PageHeroProp
           <div className="page-hero-scrim absolute inset-0" />
         </div>
       ) : (
-        <>
-          <div className="absolute inset-0 bg-gradient-to-br from-pelagic-sky/70 via-white to-pelagic-mist/50" />
-          <div className="absolute inset-0 bg-maritime-grid opacity-40" />
-        </>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#e8f3fb] via-white to-[#f3f9fb]" />
       )}
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <p className="type-eyebrow">{eyebrow}</p>
