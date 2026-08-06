@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { FooterCookieLink } from "@/components/layout/FooterCookieLink";
+import { FooterWave } from "@/components/layout/FooterWave";
 import { SocialBrandIcon } from "@/components/ui/SocialBrandIcon";
 import { company, navLinks } from "@/lib/site-data";
 import { socialLinks } from "@/lib/social-links";
@@ -15,13 +16,21 @@ const officeLocations = ["Singapore", "India", "Dubai"];
 
 export function Footer() {
   return (
-    <footer className="relative z-30 isolate border-t border-pelagic-blue/40 bg-pelagic-navy text-blue-100">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-8">
+    <footer className="relative z-30 isolate overflow-x-clip border-t border-pelagic-blue/40 bg-pelagic-navy text-blue-100">
+      {/* Full-bleed wavy top edge (white → navy) */}
+      <div className="footer-wave-edge" aria-hidden>
+        <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill="#ffffff"
+            d="M0,40 C240,80 480,0 720,32 C960,64 1200,8 1440,40 L1440,72 L0,72 Z"
+          />
+        </svg>
+      </div>
+
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-4">
           <BrandLogo variant="footer" />
-          <p
-            className="mt-4 max-w-sm pl-[var(--logo-lockup-anchor-x)] text-sm leading-7 text-blue-50"
-          >
+          <p className="mt-4 max-w-sm pl-[var(--logo-lockup-anchor-x)] text-sm leading-7 text-blue-50">
             Naval architecture and marine engineering consultancy — stability, structures,
             hydrodynamics and clean-fuel advisory, from Dubai to fleets worldwide.
           </p>
@@ -105,11 +114,14 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-pelagic-blue/30 px-4 py-5 text-center text-xs text-blue-200/70">
+      <div className="relative z-10 border-t border-pelagic-blue/30 px-4 pb-24 pt-5 text-center text-xs text-blue-200/70 sm:pb-28">
         <p>
           © {new Date().getFullYear()} {company.legalName}. All rights reserved.
         </p>
       </div>
+
+      {/* Animated wave layers — full left → right */}
+      <FooterWave />
     </footer>
   );
 }

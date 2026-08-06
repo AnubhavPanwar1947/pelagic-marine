@@ -25,7 +25,7 @@ export function SectionMaritime({
   as: Tag = "section",
 }: SectionMaritimeProps) {
   return (
-    <Tag className={`relative overflow-hidden ${variants[variant]} ${className}`}>
+    <Tag className={`relative z-[1] overflow-hidden ${variants[variant]} ${className}`}>
       <div
         className="pointer-events-none absolute inset-0 bg-maritime-grid"
         style={{ opacity: gridOpacity / 100 }}

@@ -1,6 +1,8 @@
 type SectionHeadingProps = {
   eyebrow?: string;
   title: string;
+  /** Highlighted trailing phrase — ShoreSafe-style accent color on key words */
+  titleAccent?: string;
   description?: string;
   align?: "left" | "center";
 };
@@ -8,6 +10,7 @@ type SectionHeadingProps = {
 export function SectionHeading({
   eyebrow,
   title,
+  titleAccent,
   description,
   align = "left",
 }: SectionHeadingProps) {
@@ -18,6 +21,12 @@ export function SectionHeading({
       {eyebrow && <p className="type-eyebrow">{eyebrow}</p>}
       <h2 className="type-display mt-4 text-3xl leading-[1.08] text-pelagic-ink sm:text-4xl lg:text-5xl">
         {title}
+        {titleAccent ? (
+          <>
+            {" "}
+            <span className="text-heading-accent">{titleAccent}</span>
+          </>
+        ) : null}
       </h2>
       {description && (
         <p

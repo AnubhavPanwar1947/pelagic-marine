@@ -1,6 +1,6 @@
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Jost, Poppins } from "next/font/google";
 
-/** Serif display — matches logo wordmark */
+/** Brand wordmark — matches logo lockup */
 export const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
@@ -8,9 +8,17 @@ export const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-/** UI & body — crisp, Google-grade readability */
-export const inter = Inter({
-  variable: "--font-inter",
+/** UI & body — Poppins (ShoreSafe-style readability) */
+export const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+/** Section headings — Jost (ShoreSafe display sans) */
+export const jost = Jost({
+  variable: "--font-jost",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",

@@ -71,8 +71,8 @@
   --color-pelagic-blue: var(--pelagic-blue);
   --color-pelagic-light: var(--pelagic-light);
   --color-pelagic-mist: var(--pelagic-mist);
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-poppins);
+  --font-display: var(--font-jost);
 }
 
 body {
@@ -85,7 +85,7 @@ body {
   background-size: 100% 100%, 100% 100%, 100% 100%, 44px 44px;
   background-attachment: fixed;
   color: var(--pelagic-body);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-poppins), system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.65;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
@@ -118,7 +118,7 @@ html {
 }
 
 .font-display {
-  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  font-family: var(--font-jost), system-ui, sans-serif;
   font-optical-sizing: auto;
   font-feature-settings: "kern" 1, "liga" 1;
 }
@@ -206,6 +206,7 @@ html {
 }
 
 .brand-logo-wordmark-pelagic {
+  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
   color: var(--logo-pelagic-text);
 }
 
@@ -364,10 +365,15 @@ html {
 }
 
 .type-display {
-  font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  font-family: var(--font-jost), system-ui, sans-serif;
   font-weight: 600;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+}
+
+/* ShoreSafe-style accent words inside headings — Pelagic accent blue */
+.text-heading-accent {
+  color: var(--pelagic-accent);
 }
 
 /* Form fields — readable text & placeholders */
@@ -2256,6 +2262,107 @@ textarea::placeholder {
 }
 
 /* Homepage client strip — animation lives in ClientMarquee.tsx */
+
+/* Footer wave — full-bleed ShoreSafe-style SVG parallax */
+.footer-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  line-height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.footer-wave-svg {
+  display: block;
+  width: 100%;
+  height: 90px;
+  min-height: 70px;
+}
+
+.footer-wave-parallax > use {
+  animation: pelagic-wave-move 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.footer-wave-parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.footer-wave-parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.footer-wave-parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.footer-wave-parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes pelagic-wave-move {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/* Top wavy edge into navy footer */
+.footer-wave-edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  line-height: 0;
+  transform: translateY(-99%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.footer-wave-edge svg {
+  display: block;
+  width: 100%;
+  height: 72px;
+}
+
+/* Desktop-only fixed hero (scroll-over / fixed background) */
+.hero-media-fixed {
+  position: absolute;
+  inset: 0;
+}
+
+@media (min-width: 1024px) {
+  .hero-media-fixed {
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-wave-parallax > use {
+    animation: none;
+  }
+
+  .hero-media-fixed {
+    position: absolute !important;
+    height: 100% !important;
+  }
+}
 
 /* Splash — quiet brand moment; smaller mark, soft single shine */
 .splash-screen {

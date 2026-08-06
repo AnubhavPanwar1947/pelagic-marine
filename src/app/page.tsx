@@ -19,18 +19,18 @@ import { siteImages } from "@/lib/site-images";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero */}
-      <section className="relative isolate min-h-[88vh] overflow-hidden bg-[#071a33] lg:min-h-[92vh]">
-        <div className="absolute inset-0">
+      {/* 1. Hero — desktop fixed background (scroll-over) */}
+      <section className="relative isolate z-0 min-h-[88vh] overflow-hidden bg-[#071a33] lg:min-h-[92vh]">
+        <div className="absolute inset-0 z-0">
           <HeroMedia />
         </div>
 
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#071a33]/78 via-[#071a33]/35 to-transparent"
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[#071a33]/78 via-[#071a33]/35 to-transparent"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071a33]/50 via-transparent to-[#071a33]/20"
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#071a33]/50 via-transparent to-[#071a33]/20"
           aria-hidden
         />
 
@@ -40,7 +40,8 @@ export default function HomePage() {
               Pelagic Marine Solutions · India & Dubai
             </p>
             <h1 className="type-display mt-5 text-4xl leading-[1.05] text-white sm:text-5xl lg:text-[3.6rem]">
-              {company.heroHeadline}
+              Serving the shipping industry,{" "}
+              <span className="text-heading-accent">round the clock.</span>
             </h1>
             <p className="mt-5 max-w-lg text-base leading-8 text-blue-50/90 sm:text-lg">
               {company.heroSubline}
@@ -69,7 +70,8 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Services"
-              title="Four practices, one engineering standard"
+              title="Four practices, one"
+              titleAccent="engineering standard"
               description="From concept design and structural analysis to surveys, audits and clean-fuel advisory — delivered by naval architects and Master Mariners."
               align="center"
             />
@@ -133,7 +135,8 @@ export default function HomePage() {
             <Reveal delay={80}>
               <SectionHeading
                 eyebrow="Decarbonization"
-                title={decarbonization.headline}
+                title="Supporting the voyage to"
+                titleAccent="cleaner seas"
                 description={decarbonization.summary}
               />
               <ul className="mt-8 space-y-3.5">
@@ -162,7 +165,8 @@ export default function HomePage() {
             <Reveal>
               <SectionHeading
                 eyebrow="Why Pelagic"
-                title="Expertise forged at sea and ashore"
+                title="Expertise forged"
+                titleAccent="at sea and ashore"
                 description="Master Mariners, engineers, naval architects, and maritime lawyers — practical advice, not desk theory."
               />
               <div className="mt-8 space-y-3">
@@ -214,7 +218,8 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Clients"
-              title="Trusted across the fleet"
+              title="Trusted across"
+              titleAccent="the fleet"
               description="Owners, managers and operators who rely on Pelagic for surveys, engineering and clean-fuel advisory."
               align="center"
             />
@@ -244,7 +249,8 @@ export default function HomePage() {
             Next step
           </p>
           <h2 className="type-display mt-4 text-3xl text-white sm:text-4xl lg:text-5xl">
-            Let&apos;s move your project forward
+            Let&apos;s move your{" "}
+            <span className="text-heading-accent">project forward</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-blue-100/90">
             Naval architecture, surveys, engineering and clean-fuel advisory — from India and Dubai.

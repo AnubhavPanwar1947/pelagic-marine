@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { ConsentAwareAnalytics } from "@/components/ui/ConsentAwareAnalytics";
 import { SplashScreen } from "@/components/ui/SplashScreen";
-import { cormorant, inter } from "@/lib/fonts";
+import { cormorant, jost, poppins } from "@/lib/fonts";
 import { company } from "@/lib/site-data";
 import "./globals.css";
 
@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${poppins.variable} ${jost.variable} ${cormorant.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://maps.google.com" />
