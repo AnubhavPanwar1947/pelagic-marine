@@ -2322,68 +2322,83 @@ textarea::placeholder {
 }
 
 /* Next-step — clearly visible ambient motion layers */
+.home-cta-kenburns {
+  --cta-scroll-y: 0px;
+  animation: home-cta-kenburns 16s ease-in-out infinite alternate;
+  transform: translate3d(-50%, calc(-50% + var(--cta-scroll-y)), 0) scale(1.12);
+}
+
+@keyframes home-cta-kenburns {
+  from {
+    transform: translate3d(-52%, calc(-48% + var(--cta-scroll-y)), 0) scale(1.12);
+  }
+  to {
+    transform: translate3d(-46%, calc(-54% + var(--cta-scroll-y)), 0) scale(1.28);
+  }
+}
+
 .home-cta-orb--a {
   background: radial-gradient(
-    ellipse 48% 42% at 18% 35%,
-    rgba(47, 168, 238, 0.45),
-    transparent 62%
+    ellipse 55% 48% at 15% 30%,
+    rgba(47, 168, 238, 0.55),
+    transparent 65%
   );
-  animation: home-cta-orb-a 9s ease-in-out infinite alternate;
+  animation: home-cta-orb-a 8s ease-in-out infinite alternate;
 }
 
 .home-cta-orb--b {
   background: radial-gradient(
-    ellipse 42% 38% at 82% 68%,
-    rgba(56, 176, 240, 0.38),
-    transparent 60%
+    ellipse 50% 45% at 88% 72%,
+    rgba(56, 176, 240, 0.48),
+    transparent 62%
   );
-  animation: home-cta-orb-b 11s ease-in-out infinite alternate;
+  animation: home-cta-orb-b 10s ease-in-out infinite alternate;
 }
 
 .home-cta-shimmer {
   background: linear-gradient(
     115deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.14) 48%,
-    transparent 66%
+    transparent 28%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 72%
   );
-  background-size: 220% 220%;
-  animation: home-cta-shimmer 7.5s ease-in-out infinite;
+  background-size: 240% 240%;
+  animation: home-cta-shimmer 6.5s ease-in-out infinite;
 }
 
 @keyframes home-cta-orb-a {
   from {
-    opacity: 0.55;
-    transform: translate3d(-4%, -3%, 0) scale(1);
+    opacity: 0.5;
+    transform: translate3d(-6%, -4%, 0) scale(1);
   }
   to {
     opacity: 1;
-    transform: translate3d(8%, 5%, 0) scale(1.2);
+    transform: translate3d(12%, 8%, 0) scale(1.35);
   }
 }
 
 @keyframes home-cta-orb-b {
   from {
-    opacity: 0.45;
-    transform: translate3d(5%, 4%, 0) scale(1.05);
+    opacity: 0.4;
+    transform: translate3d(6%, 5%, 0) scale(1);
   }
   to {
-    opacity: 0.95;
-    transform: translate3d(-7%, -6%, 0) scale(1.25);
+    opacity: 1;
+    transform: translate3d(-10%, -8%, 0) scale(1.4);
   }
 }
 
 @keyframes home-cta-shimmer {
   0% {
-    background-position: 120% 40%;
-    opacity: 0.25;
+    background-position: 140% 30%;
+    opacity: 0.35;
   }
   50% {
-    opacity: 0.7;
+    opacity: 0.85;
   }
   100% {
-    background-position: -40% 60%;
-    opacity: 0.3;
+    background-position: -50% 70%;
+    opacity: 0.4;
   }
 }
 
@@ -2391,13 +2406,15 @@ textarea::placeholder {
   .home-hero-backdrop-img,
   .home-scroll-line,
   .home-hero-copy,
+  .home-cta-kenburns,
   .home-cta-orb--a,
   .home-cta-orb--b,
   .home-cta-shimmer {
     animation: none !important;
   }
 
-  .home-hero-backdrop-img {
+  .home-hero-backdrop-img,
+  .home-cta-kenburns {
     transform: none;
   }
 }

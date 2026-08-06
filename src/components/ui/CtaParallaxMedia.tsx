@@ -3,7 +3,8 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Next-step CTA background — strong ken-burns + scroll parallax so motion is obvious.
+ * Next-step CTA background — CSS ken-burns + JS scroll parallax.
+ * Motion is intentionally strong so it reads clearly behind the scrim.
  */
 export function CtaParallaxMedia({ src }: { src: string }) {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -13,15 +14,11 @@ export function CtaParallaxMedia({ src }: { src: string }) {
     if (!image) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
-      image.style.transform = "translate3d(0, 0, 0) scale(1.12)";
-      return;
-    }
+    if (reduceMotion) return;
 
     let raf = 0;
-    let start = performance.now();
 
-    const apply = (now: number) => {
+    const apply = () => {
       const section = image.closest("section");
       if (!section) {
         raf = requestAnimationFrame(apply);
@@ -31,32 +28,23 @@ export function CtaParallaxMedia({ src }: { src: string }) {
       const rect = section.getBoundingClientRect();
       const viewH = window.innerHeight || 1;
       const progress = Math.min(Math.max((viewH - rect.top) / (viewH + rect.height), 0), 1);
-      const scrollOffset = (progress - 0.5) * 110;
-
-      const t = (now - start) / 1000;
-      // Visible ambient motion (~±24px, clear zoom pulse)
-      const driftY = Math.sin(t * 0.35) * 24;
-      const driftX = Math.cos(t * 0.22) * 18;
-      const pulse = 1.14 + Math.sin(t * 0.28) * 0.06;
-
-      image.style.transform = `translate3d(${driftX}px, ${scrollOffset + driftY}px, 0) scale(${pulse})`;
+      // Extra scroll drift layered on top of CSS ken-burns
+      image.style.setProperty("--cta-scroll-y", `${(progress - 0.5) * 90}px`);
       raf = requestAnimationFrame(apply);
     };
 
     raf = requestAnimationFrame(apply);
-
     return () => cancelAnimationFrame(raf);
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-pelagic-navy">
+    <div className="absolute inset-0 overflow-hidden bg-[#0a2744]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={imageRef}
         src={src}
         alt=""
-        className="absolute -inset-[8%] h-[116%] w-[116%] max-w-none object-cover object-center will-change-transform"
-        style={{ transform: "translate3d(0, 0, 0) scale(1.14)" }}
+        className="home-cta-kenburns absolute left-1/2 top-1/2 h-[130%] w-[130%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-center will-change-transform"
         decoding="async"
         draggable={false}
       />
