@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ClientMarquee } from "@/components/ui/ClientMarquee";
-import { CtaParallaxMedia } from "@/components/ui/CtaParallaxMedia";
 import {
   HeroMedia,
   HeroParallaxBackdrop,
@@ -12,6 +11,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SiteImage } from "@/components/ui/SiteImage";
+import { StatsBand } from "@/components/ui/StatsBand";
 import {
   company,
   decarbonization,
@@ -35,44 +35,27 @@ export default function HomePage() {
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pb-24 pt-28 sm:px-6 lg:px-8 lg:pb-28 lg:pt-32">
           <div className="home-hero-copy max-w-3xl">
             <p
-              className="text-[clamp(2.4rem,6vw,4.25rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-white"
+              className="home-hero-line home-hero-line--1 text-[clamp(2.4rem,6vw,4.25rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-white"
               style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
             >
               Pelagic Marine
             </p>
-            <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-pelagic-accent sm:text-xs">
+            <p className="home-hero-line home-hero-line--2 mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-pelagic-accent sm:text-xs">
               Solutions · India & Dubai
             </p>
-            <h1 className="type-display mt-8 max-w-2xl text-[1.85rem] leading-[1.12] text-white sm:text-4xl lg:text-[2.85rem] lg:leading-[1.08]">
+            <h1 className="home-hero-line home-hero-line--3 type-display mt-8 max-w-2xl text-[1.85rem] leading-[1.12] text-white sm:text-4xl lg:text-[2.85rem] lg:leading-[1.08]">
               Serving the shipping industry,{" "}
               <span className="text-heading-accent">round the clock.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-8 text-blue-50/88 sm:text-lg">
+            <p className="home-hero-line home-hero-line--4 mt-5 max-w-xl text-base leading-8 text-blue-50/88 sm:text-lg">
               {company.heroSubline}
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="home-hero-line home-hero-line--5 mt-10">
               <Button href="/contact" variant="primary">
                 Start a consultation
               </Button>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-white/90 transition hover:gap-3 hover:text-white"
-              >
-                Explore services
-                <span aria-hidden>→</span>
-              </Link>
             </div>
           </div>
-        </div>
-
-        <div
-          className="home-scroll-cue pointer-events-none absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex"
-          aria-hidden
-        >
-          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/55">
-            Scroll
-          </span>
-          <span className="home-scroll-line block h-10 w-px bg-gradient-to-b from-white/70 to-transparent" />
         </div>
       </section>
 
@@ -139,61 +122,6 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* ── Decarbonization: Azolla / C-Job storytelling ── */}
-      <SectionMaritime variant="decarb" className="py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
-            <Reveal>
-              <div className="relative">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.85rem] shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:aspect-[5/4]">
-                  <SiteImage
-                    src={siteImages.decarbonization}
-                    alt="Clean energy turbines — maritime decarbonization"
-                    fill
-                    className="object-cover transition duration-700 hover:scale-[1.03]"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
-                <p className="mt-4 text-sm font-medium tracking-wide text-pelagic-slate">
-                  Clean fuels · Compliance · Practical transition
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <SectionHeading
-                eyebrow="Decarbonization"
-                title="Supporting the voyage to"
-                titleAccent="cleaner seas"
-                description={decarbonization.summary}
-              />
-              <ol className="mt-10 space-y-0">
-                {decarbonization.points.slice(0, 4).map((point, i) => (
-                  <li
-                    key={point}
-                    className="flex gap-4 border-t border-pelagic-navy/10 py-4 first:border-t-0 first:pt-0"
-                  >
-                    <span className="type-display shrink-0 text-sm text-pelagic-accent tabular-nums">
-                      0{i + 1}
-                    </span>
-                    <span className="text-[0.95rem] leading-relaxed text-pelagic-steel">
-                      {point}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-              <Link
-                href="/capabilities/clean-fuel/"
-                className="mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-pelagic-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
-              >
-                LNG bunkering & compatibility
-                <span aria-hidden>→</span>
-              </Link>
-            </Reveal>
-          </div>
-        </div>
-      </SectionMaritime>
-
       {/* ── Why Pelagic: proof without card clutter ── */}
       <SectionMaritime variant="why" className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -239,22 +167,61 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          {/* Aqualis-style restrained numbers band */}
-          <Reveal className="mt-16 lg:mt-20">
-            <div className="home-stats-band grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-pelagic-sand bg-pelagic-sand sm:grid-cols-3 lg:grid-cols-5">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-white/95 px-4 py-6 text-center sm:px-5 sm:py-7"
-                >
-                  <p className="type-display text-2xl text-pelagic-accent sm:text-3xl">
-                    {stat.value}
-                  </p>
-                  <p className="type-muted mt-2 leading-snug">{stat.label}</p>
+          <div className="mt-16 lg:mt-20">
+            <StatsBand stats={stats} />
+          </div>
+        </div>
+      </SectionMaritime>
+
+      {/* ── Decarbonization: Azolla / C-Job storytelling ── */}
+      <SectionMaritime variant="decarb" className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
+            <Reveal>
+              <div className="relative">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.85rem] shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:aspect-[5/4]">
+                  <SiteImage
+                    src={siteImages.decarbonization}
+                    alt="Clean energy turbines — maritime decarbonization"
+                    fill
+                    className="object-cover transition duration-700 hover:scale-[1.03]"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
                 </div>
-              ))}
-            </div>
-          </Reveal>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <SectionHeading
+                eyebrow="Decarbonization"
+                title="Supporting the voyage to"
+                titleAccent="cleaner seas"
+                description={decarbonization.summary}
+              />
+              <ol className="mt-10 space-y-0">
+                {decarbonization.points.slice(0, 4).map((point, i) => (
+                  <li
+                    key={point}
+                    className="flex gap-4 border-t border-pelagic-navy/10 py-4 first:border-t-0 first:pt-0"
+                  >
+                    <span className="type-display shrink-0 text-sm text-pelagic-accent tabular-nums">
+                      0{i + 1}
+                    </span>
+                    <span className="text-[0.95rem] leading-relaxed text-pelagic-steel">
+                      {point}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              <Link
+                href="/capabilities/clean-fuel/"
+                className="mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-pelagic-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
+              >
+                LNG bunkering & compatibility
+                <span aria-hidden>→</span>
+              </Link>
+            </Reveal>
+          </div>
         </div>
       </SectionMaritime>
 
@@ -283,15 +250,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Next step: animated photo background ── */}
-      <section className="relative z-10 overflow-hidden py-28 text-white lg:py-36">
-        <CtaParallaxMedia src="/images/hero-port.jpg?v=3" />
-        <div className="absolute inset-0 bg-[#071a33]/40" aria-hidden />
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-[#071a33]/10 via-transparent to-[#071a33]/50"
-          aria-hidden
-        />
-        <Reveal className="relative z-10 mx-auto max-w-3xl px-4 text-center sm:px-6">
+      {/* ── Next step ── */}
+      <section className="relative z-10 overflow-hidden bg-[#071a33] py-28 text-white lg:py-36">
+        <Reveal className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-pelagic-accent">
             Next step
           </p>

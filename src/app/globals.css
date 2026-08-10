@@ -2235,10 +2235,10 @@ textarea::placeholder {
 
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(14px);
   transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal-on-scroll.is-visible {
@@ -2249,7 +2249,7 @@ textarea::placeholder {
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -2258,12 +2258,44 @@ textarea::placeholder {
 }
 
 .animate-fade-up {
-  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: fade-up 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 /* Homepage — motion & polish (benchmarked against Aqualis / Kannamwar / ShoreSafe) */
-.home-hero-copy {
-  animation: fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+.home-hero-line {
+  opacity: 0;
+  animation: home-hero-reveal 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.home-hero-line--1 {
+  animation-delay: 0.1s;
+}
+
+.home-hero-line--2 {
+  animation-delay: 0.22s;
+}
+
+.home-hero-line--3 {
+  animation-delay: 0.34s;
+}
+
+.home-hero-line--4 {
+  animation-delay: 0.46s;
+}
+
+.home-hero-line--5 {
+  animation-delay: 0.58s;
+}
+
+@keyframes home-hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .home-hero-backdrop-img {
@@ -2406,11 +2438,17 @@ textarea::placeholder {
   .home-hero-backdrop-img,
   .home-scroll-line,
   .home-hero-copy,
+  .home-hero-line,
   .home-cta-kenburns,
   .home-cta-orb--a,
   .home-cta-orb--b,
   .home-cta-shimmer {
     animation: none !important;
+  }
+
+  .home-hero-line {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .home-hero-backdrop-img,

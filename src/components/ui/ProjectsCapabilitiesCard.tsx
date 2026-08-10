@@ -52,7 +52,7 @@ export function ProjectsCapabilitiesCard() {
           observer.unobserve(el);
         }
       },
-      { threshold: 0.35 }
+      { threshold: 0.32, rootMargin: "0px 0px -12% 0px" }
     );
 
     observer.observe(el);

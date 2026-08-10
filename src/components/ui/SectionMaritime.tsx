@@ -40,15 +40,9 @@ export function SectionMaritime({
   variant = "sky",
   as: Tag = "section",
 }: SectionMaritimeProps) {
-  const showTopo = variant === "services";
-
   return (
     <Tag className={`relative z-[1] overflow-hidden ${variants[variant]} ${className}`}>
-      {showTopo ? (
-        <div className="home-services-topo pointer-events-none absolute inset-0" aria-hidden />
-      ) : (
-        <div className="pointer-events-none absolute inset-0 section-shade" aria-hidden />
-      )}
+      <div className="pointer-events-none absolute inset-0 section-shade" aria-hidden />
       <div className="relative z-[1]">{children}</div>
     </Tag>
   );
