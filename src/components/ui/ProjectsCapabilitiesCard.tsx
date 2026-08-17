@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { Reveal } from "@/components/ui/Reveal";
+import { useInView } from "@/hooks/useInView";
 
 const PROJECT_COUNT = 1280;
 const COUNT_DURATION_MS = 3200;
@@ -36,32 +38,50 @@ function useCountUp(active: boolean, target: number, durationMs: number) {
   return { value, progress };
 }
 
-export function ProjectsCapabilitiesCard() {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const { value: count, progress } = useCountUp(visible, PROJECT_COUNT, COUNT_DURATION_MS);
-
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.32, rootMargin: "0px 0px -12% 0px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+function ProjectCounterPanel() {
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const { value: count, progress } = useCountUp(inView, PROJECT_COUNT, COUNT_DURATION_MS);
 
   return (
-    <div ref={rootRef} className={visible ? "animate-fade-up" : "opacity-0"}>
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_auto] lg:items-end lg:gap-16">
+    <div
+      ref={ref}
+      className="relative mx-auto w-full max-w-[15rem] text-center lg:mx-0 lg:text-left"
+    >
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-pelagic-slate">
+        Projects handled
+      </p>
+      <p
+        className="type-display mt-2 text-6xl leading-none text-pelagic-accent tabular-nums sm:text-7xl lg:text-[4.75rem]"
+        aria-live="polite"
+        aria-label={`${PROJECT_COUNT.toLocaleString()} projects handled`}
+      >
+        {count.toLocaleString()}
+        <span className="text-pelagic-accent/70">+</span>
+      </p>
+      <div
+        className="mx-auto mt-5 h-[3px] max-w-[11rem] overflow-hidden rounded-full bg-pelagic-sand lg:mx-0"
+        aria-hidden
+      >
+        <span
+          className="block h-full w-full origin-left rounded-full bg-gradient-to-r from-pelagic-accent to-pelagic-blue transition-transform duration-75 ease-linear"
+          style={{ transform: `scaleX(${progress})` }}
+        />
+      </div>
+      <Link
+        href="/capabilities"
+        className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-pelagic-accent transition hover:gap-2.5"
+      >
+        All capabilities
+        <span aria-hidden>→</span>
+      </Link>
+    </div>
+  );
+}
+
+export function ProjectsCapabilitiesCard() {
+  return (
+    <div className="grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_auto] lg:items-end lg:gap-16">
+      <Reveal variant="text">
         <div className="max-w-3xl">
           <p className="type-eyebrow">Delivery & capability</p>
           <h2 className="type-display mt-4 text-3xl leading-[1.06] text-pelagic-ink sm:text-4xl lg:text-[2.85rem]">
@@ -86,37 +106,11 @@ export function ProjectsCapabilitiesCard() {
             ))}
           </ul>
         </div>
+      </Reveal>
 
-        <div className="relative mx-auto w-full max-w-[15rem] text-center lg:mx-0 lg:text-left">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-pelagic-slate">
-            Projects handled
-          </p>
-          <p
-            className="type-display mt-2 text-6xl leading-none text-pelagic-accent tabular-nums sm:text-7xl lg:text-[4.75rem]"
-            aria-live="polite"
-            aria-label={`${PROJECT_COUNT.toLocaleString()} projects handled`}
-          >
-            {count.toLocaleString()}
-            <span className="text-pelagic-accent/70">+</span>
-          </p>
-          <div
-            className="mx-auto mt-5 h-[3px] max-w-[11rem] overflow-hidden rounded-full bg-pelagic-sand lg:mx-0"
-            aria-hidden
-          >
-            <span
-              className="block h-full w-full origin-left rounded-full bg-gradient-to-r from-pelagic-accent to-pelagic-blue transition-transform duration-75 ease-linear"
-              style={{ transform: `scaleX(${progress})` }}
-            />
-          </div>
-          <Link
-            href="/capabilities"
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-pelagic-accent transition hover:gap-2.5"
-          >
-            All capabilities
-            <span aria-hidden>→</span>
-          </Link>
-        </div>
-      </div>
+      <Reveal variant="card" delay={80}>
+        <ProjectCounterPanel />
+      </Reveal>
     </div>
   );
 }

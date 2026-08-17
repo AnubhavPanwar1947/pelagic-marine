@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useInView } from "@/hooks/useInView";
 
 type Stat = {
   value: string;
@@ -18,6 +19,12 @@ function useCountUp(active: boolean, target: number, durationMs = 1800) {
 
   useEffect(() => {
     if (!active) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setValue(target);
+      return;
+    }
 
     let start: number | null = null;
     let frame = 0;
@@ -38,13 +45,24 @@ function useCountUp(active: boolean, target: number, durationMs = 1800) {
   return value;
 }
 
-function StatCell({ stat, active, delay }: { stat: Stat; active: boolean; delay: number }) {
+function StatCell({
+  stat,
+  active,
+  delay,
+}: {
+  stat: Stat;
+  active: boolean;
+  delay: number;
+}) {
   const { number, suffix } = parseStatValue(stat.value);
   const count = useCountUp(active, number, 1800 + delay);
 
   return (
     <div className="bg-white/95 px-4 py-6 text-center sm:px-5 sm:py-7">
-      <p className="type-display text-2xl text-pelagic-accent tabular-nums sm:text-3xl">
+      <p
+        className="type-display text-2xl text-pelagic-accent tabular-nums sm:text-3xl"
+        aria-label={`${stat.value} ${stat.label}`}
+      >
         {active ? `${count}${suffix}` : `0${suffix}`}
       </p>
       <p className="type-muted mt-2 leading-snug">{stat.label}</p>
@@ -53,40 +71,15 @@ function StatCell({ stat, active, delay }: { stat: Stat; active: boolean; delay:
 }
 
 export function StatsBand({ stats }: { stats: Stat[] }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: reduced ? 0.1 : 0.32, rootMargin: "0px 0px -12% 0px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
     <div
-      ref={rootRef}
-      className={`home-stats-band grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-pelagic-sand bg-pelagic-sand transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] sm:grid-cols-3 lg:grid-cols-5 ${
-        visible
-          ? "translate-y-0 opacity-100"
-          : "translate-y-3 opacity-0"
-      }`}
+      ref={ref}
+      className="home-stats-band grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-pelagic-sand bg-pelagic-sand sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5"
     >
       {stats.map((stat, index) => (
-        <StatCell key={stat.label} stat={stat} active={visible} delay={index * 80} />
+        <StatCell key={stat.label} stat={stat} active={inView} delay={index * 80} />
       ))}
     </div>
   );

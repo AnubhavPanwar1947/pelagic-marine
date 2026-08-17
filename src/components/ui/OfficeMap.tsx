@@ -16,7 +16,7 @@ export function OfficeMap({ office, className = "", tall = false, dark = false }
   return (
     <div className={className}>
       <div
-        className={`relative overflow-hidden rounded-2xl shadow-lg ${
+        className={`relative w-full overflow-hidden rounded-2xl shadow-lg ${
           dark
             ? "border border-pelagic-accent/35 bg-pelagic-charcoal/40 ring-1 ring-white/10"
             : "border border-pelagic-accent/20 bg-pelagic-cream/30 ring-1 ring-pelagic-accent/10 shadow-pelagic-accent/5"

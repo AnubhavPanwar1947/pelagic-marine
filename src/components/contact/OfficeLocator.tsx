@@ -148,7 +148,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
         }`}
       >
         {(viewMode === "split" || viewMode === "list") && (
-          <div className={`space-y-4 ${viewMode === "split" ? "lg:col-span-2" : ""}`}>
+          <div className={`min-w-0 space-y-4 ${viewMode === "split" ? "lg:col-span-2" : ""}`}>
             {showHubList && expandedHub !== "india" ? (
               mapHubs.map((hub) => (
                 <button
@@ -263,7 +263,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
         )}
 
         {(viewMode === "split" || viewMode === "map") && (
-          <div className={viewMode === "split" ? "lg:col-span-3" : ""}>
+          <div className={`min-w-0 ${viewMode === "split" ? "lg:col-span-3" : ""}`}>
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-pelagic-sand bg-white/80 px-4 py-2.5 text-sm">
               <p className="font-semibold text-pelagic-ink">
                 {activeOffice.region === "India"

@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { heroImage } from "@/lib/site-images";
 import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
 
 /**
@@ -13,7 +15,7 @@ export function HeroParallaxBackdrop() {
     >
       <HeroSlideshow
         showGradients={false}
-        imageClassName="home-hero-backdrop-img scale-[1.04]"
+        imageClassName="home-hero-backdrop-img"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#071a33]/55 via-[#071a33]/20 to-[#071a33]/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#071a33]/45 via-transparent to-[#071a33]/15" />
@@ -26,25 +28,23 @@ export function HeroMedia({ className = "" }: { className?: string }) {
   return (
     <HeroSlideshow
       className={`lg:hidden ${className}`}
-      imageClassName="scale-105"
       priority
     />
   );
 }
 
-/** Same photo as section fill — used on Clients for mobile */
+/** Same photo as hero — used on Clients for mobile */
 export function HeroSectionFill({ className = "" }: { className?: string }) {
   return (
     <div className={`absolute inset-0 overflow-hidden lg:hidden ${className}`} aria-hidden>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/images/hero-port.jpg?v=3"
+      <Image
+        src={heroImage.src}
         alt=""
-        width={2560}
-        height={1440}
-        className="absolute inset-0 h-full w-full object-cover object-[62%_42%]"
-        decoding="async"
-        draggable={false}
+        fill
+        unoptimized
+        sizes="100vw"
+        className="object-cover"
+        style={{ objectPosition: heroImage.objectPosition }}
       />
       <div className="absolute inset-0 bg-[#071a33]/50" />
     </div>

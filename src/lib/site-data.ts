@@ -56,7 +56,7 @@ export const contactPage = {
       "Surveying, engineering, LNG support, and maritime legal — one qualified team across India and the UAE. Tell us your vessel, port, or project scope and we will route you to the right consultant.",
     fitStatement:
       "Strong fit: pre-purchase surveys, warranty attendance, LNG bunkering supervision, remote compass adjustment, casualty response, and fleet technical advisory.",
-    imageSrc: "/images/contact-hero.jpg",
+    imageSrc: "/images/hero-port.jpg",
     imageAlt: "Cargo vessel underway at sea — marine surveying and consultancy",
     imageCredit: "Unsplash",
     stats: [

@@ -7,10 +7,27 @@ function u(id: string, w: number, h: number, q = 88) {
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=${q}`;
 }
 
+/** Homepage hero — Pelagic Marine consultant on the bridge at golden hour */
+export const heroSlides = [
+  {
+    src: "/images/home-page-hero-.jpg",
+    alt: "Pelagic Marine Solutions consultant on the bridge overlooking port operations at golden hour",
+    objectPosition: "62% center",
+  },
+  {
+    src: "/images/hero-port.jpg",
+    alt: "Container vessel assisted by tugs in harbour at golden hour",
+    objectPosition: "62% 42%",
+  },
+] as const;
+
+/** Primary hero slide — used for section fills and metadata */
+export const heroImage = heroSlides[0];
+
 export const siteImages = {
-  hero: "/images/hero-port.jpg",
-  heroBridge: "/images/hero-bridge.jpg",
-  contactHero: "/images/contact-hero.jpg",
+  hero: heroImage.src,
+  heroBridge: "/images/home-page-hero-.jpg",
+  contactHero: "/images/hero-port.jpg",
   expertise: u("photo-1578645024771-21df5e60af96", 1200, 1500),
   team: u("photo-1529107386315-5eafae266a63", 2400, 1000),
   cta: u("photo-1544551763-5cf5a5c5e61d", 2400, 1400),
@@ -24,13 +41,13 @@ export const siteImages = {
     "maritime-shipping": u("photo-1494412578317-4c933aa5369f", 900, 600),
     "offshore-oil-gas": u("photo-1544551763-46a013bb70d5", 900, 600),
     renewables: u("photo-1532601228370-a1c69299fc04", 900, 600),
-    "ports-infrastructure": "/images/contact-hero.jpg",
+    "ports-infrastructure": "/images/hero-port.jpg",
   },
   pageHeroes: {
     about: u("photo-1529107386315-5eafae266a63", 2400, 1200),
     services: u("photo-1578645024771-21df5e60af96", 2400, 1200),
     sectors: u("photo-1544551763-46a013bb70d5", 2400, 1200),
-    projects: "/images/contact-hero.jpg",
+    projects: "/images/hero-port.jpg",
     decarbonization: u("photo-1473341303090-7cfada5af405", 2400, 1200),
     news: u("photo-1497366216548-37526070297c", 2400, 1200),
     careers: u("photo-1521737711862-ece3dec7f191", 2400, 1200),

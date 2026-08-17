@@ -71,7 +71,7 @@ function OfficeCard({
           fill
           brandOverlay
           className="object-cover transition duration-500 group-hover:scale-105"
-          sizes="33vw"
+          sizes="(max-width: 1024px) 100vw, 50vw"
         />
         <div className={`absolute inset-0 bg-gradient-to-t ${accent.overlay}`} />
         <div className="absolute inset-x-0 bottom-0 px-6 pb-5 pt-10 text-white">
@@ -135,7 +135,7 @@ function OfficeCard({
           </p>
         )}
 
-        <div className="mt-5 grid grid-cols-2 gap-2">
+        <div className="mt-5 grid gap-2 sm:grid-cols-2">
           <a
             href={`tel:${office.phone.replace(/\s/g, "")}`}
             className="flex items-center justify-center gap-2 rounded-xl bg-pelagic-charcoal px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-pelagic-ink"

@@ -295,7 +295,7 @@ export function OfficeNetworkPanel({
             <p className="mb-3 text-xs font-bold uppercase tracking-wider text-pelagic-steel">
               India · UAE corridor
             </p>
-            <div className="relative aspect-[4/3] min-h-[260px] overflow-hidden rounded-2xl border border-pelagic-accent/20 bg-pelagic-cream/30 shadow-sm ring-1 ring-pelagic-accent/10 sm:min-h-[320px]">
+            <div className="relative w-full aspect-[4/3] min-h-[260px] overflow-hidden rounded-2xl border border-pelagic-accent/20 bg-pelagic-cream/30 shadow-sm ring-1 ring-pelagic-accent/10 sm:min-h-[320px]">
               <GoogleMapEmbed
                 src={getGoogleMapsRegionalEmbedUrl()}
                 title="Pelagic Marine — India and UAE network"

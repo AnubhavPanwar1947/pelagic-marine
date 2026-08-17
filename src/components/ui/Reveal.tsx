@@ -1,39 +1,45 @@
 "use client";
 
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { useInView } from "@/hooks/useInView";
+
+export type RevealVariant = "text" | "image" | "card" | "fade";
 
 type RevealProps = {
   children: ReactNode;
   className?: string;
+  /** Stagger delay in ms — keep under 300ms total per section */
   delay?: number;
+  variant?: RevealVariant;
 };
 
-export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+const VARIANT_CLASS: Record<RevealVariant, string> = {
+  text: "reveal-on-scroll--text",
+  image: "reveal-on-scroll--image",
+  card: "reveal-on-scroll--card",
+  fade: "reveal-on-scroll--fade",
+};
+
+export function Reveal({
+  children,
+  className = "",
+  delay = 0,
+  variant = "text",
+}: RevealProps) {
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.32, rootMargin: "0px 0px -12% 0px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
+    const frame = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   return (
     <div
       ref={ref}
-      className={`reveal-on-scroll ${visible ? "is-visible" : ""} ${className}`}
+      className={`reveal-on-scroll ${VARIANT_CLASS[variant]} ${
+        mounted && !inView ? "is-pending" : ""
+      } ${inView ? "is-visible" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

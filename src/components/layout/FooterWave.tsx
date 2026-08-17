@@ -1,6 +1,6 @@
 /**
- * Soft animated waves (ShoreSafe-style).
- * Exactly 3 layers, very low opacity, slow motion — behind footer copy.
+ * Soft static waves — 3 layers, very low opacity, behind footer copy.
+ * Motion removed for minimalist scroll rhythm.
  */
 export function FooterWave({
   className = "",

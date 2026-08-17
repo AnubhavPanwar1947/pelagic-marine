@@ -13,6 +13,9 @@ const MARQUEE_CSS = `
 }
 .pelagic-client-marquee {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 .pelagic-client-marquee-row {
   overflow: hidden;
@@ -31,7 +34,8 @@ const MARQUEE_CSS = `
 .pelagic-client-marquee-track--right {
   animation: pelagic-marquee-right 50s linear infinite;
 }
-.pelagic-client-marquee:hover .pelagic-client-marquee-track {
+.pelagic-client-marquee:hover .pelagic-client-marquee-track,
+.pelagic-client-marquee:focus-within .pelagic-client-marquee-track {
   animation-play-state: paused;
 }
 @media (min-width: 640px) {
@@ -82,7 +86,7 @@ export function ClientMarquee() {
 
   return (
     <div
-      className="pelagic-client-marquee relative"
+      className="pelagic-client-marquee relative w-full min-w-0 max-w-full overflow-hidden"
       aria-label="Client companies"
     >
       <style dangerouslySetInnerHTML={{ __html: MARQUEE_CSS }} />

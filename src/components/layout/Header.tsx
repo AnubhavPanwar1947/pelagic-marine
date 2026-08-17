@@ -346,7 +346,7 @@ export function Header() {
       >
         <BrandLogo variant="header" />
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-center lg:flex lg:gap-0 xl:gap-0.5">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center xl:flex xl:gap-0.5">
           {navMenu.map((item) => (
             <DesktopNavItem key={item.label} item={item} pathname={pathname} />
           ))}
@@ -366,7 +366,7 @@ export function Header() {
 
           <button
             type="button"
-            className="rounded-lg border border-pelagic-sand bg-white px-3 py-2 text-sm font-semibold text-pelagic-navy lg:hidden"
+            className="rounded-lg border border-pelagic-sand bg-white px-3 py-2 text-sm font-semibold text-pelagic-navy xl:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label="Toggle menu"
@@ -377,7 +377,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-pelagic-sand bg-white px-4 py-4 lg:hidden">
+        <div className="border-t border-pelagic-sand bg-white px-4 py-4 xl:hidden">
           <div className="mb-4 flex justify-center border-b border-pelagic-sand/80 pb-4">
             <BrandLogo variant="header" linked={false} compact />
           </div>

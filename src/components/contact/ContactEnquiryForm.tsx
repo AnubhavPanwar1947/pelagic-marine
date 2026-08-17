@@ -164,7 +164,7 @@ export function ContactEnquiryForm() {
   return (
     <>
       <ContactPanelShell>
-        <div className="flex flex-1 flex-col p-6 pb-24 sm:p-8 md:pb-8">
+        <div className="flex flex-1 flex-col p-6 pb-[calc(7rem+env(safe-area-inset-bottom))] sm:p-8 md:pb-8">
           <form ref={formRef} className="relative flex flex-1 flex-col space-y-4" onSubmit={handleSubmit}>
             <div className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden>
               <label>
@@ -403,7 +403,7 @@ export function ContactEnquiryForm() {
         </div>
       </ContactPanelShell>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-pelagic-sand/80 bg-white/95 px-4 py-3 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur-md md:hidden">
+      <div className="contact-enquiry-mobile-bar fixed inset-x-0 bottom-0 z-40 border-t border-pelagic-sand/80 bg-white/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur-md md:hidden">
         <button
           type="button"
           disabled={loading || !privacyAccepted}

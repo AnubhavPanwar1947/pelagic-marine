@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import {
   CONSENT_OPEN_EVENT,
@@ -51,6 +52,7 @@ function Toggle({
 }
 
 export function CookieConsent() {
+  const pathname = usePathname();
   const titleId = useId();
   const descId = useId();
   const [show, setShow] = useState(false);
@@ -114,7 +116,11 @@ export function CookieConsent() {
       <button
         type="button"
         onClick={openCookieSettings}
-        className="fixed bottom-4 left-4 z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-pelagic-sand bg-white text-pelagic-navy shadow-lg transition hover:border-pelagic-accent hover:text-pelagic-accent"
+        className={`cookie-settings-button fixed left-4 z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-pelagic-sand bg-white text-pelagic-navy shadow-lg transition hover:border-pelagic-accent hover:text-pelagic-accent ${
+          pathname === "/contact" || pathname === "/contact/"
+            ? "bottom-[11rem] md:bottom-4"
+            : "bottom-4"
+        }`}
         aria-label="Cookie settings"
         title="Cookie settings"
       >

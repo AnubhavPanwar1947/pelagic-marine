@@ -75,7 +75,7 @@ export function NavSearch() {
       </button>
 
       {open && (
-        <div className="absolute right-0 z-50 mt-2 w-[min(100vw-2rem,22rem)] rounded-2xl border border-pelagic-sand bg-white p-3 shadow-xl sm:w-80">
+        <div className="absolute right-0 z-50 mt-2 w-[calc(100vw-2rem)] max-w-[22rem] rounded-2xl border border-pelagic-sand bg-white p-3 shadow-xl sm:w-80">
           <label className="sr-only" htmlFor="nav-search">
             Search
           </label>

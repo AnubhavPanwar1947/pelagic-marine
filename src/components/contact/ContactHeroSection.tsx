@@ -33,12 +33,12 @@ export function ContactHeroSection() {
           <ContactIntentPaths />
         </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:items-start md:gap-6 lg:gap-8">
-            <div id="enquiry-form" className="order-1 flex scroll-mt-28 md:order-2">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:items-start lg:gap-8">
+            <div id="enquiry-form" className="order-1 flex scroll-mt-28 lg:order-2">
               <ContactEnquiryForm />
             </div>
 
-            <div className="order-2 flex md:order-1">
+            <div className="order-2 flex lg:order-1">
               <ContactTrustPanel />
             </div>
           </div>

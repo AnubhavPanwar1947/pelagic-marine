@@ -1,19 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
-
-const SLIDES = [
-  {
-    src: "/images/hero-port.jpg?v=3",
-    alt: "Aerial view of a container ship assisted by tugs in harbour at golden hour",
-    objectPosition: "62% 42%",
-  },
-  {
-    src: "/images/contact-hero.jpg",
-    alt: "Pelagic Marine consultant on the bridge overlooking port operations",
-    objectPosition: "42% center",
-  },
-] as const;
+import { heroSlides } from "@/lib/site-images";
 
 const INTERVAL_MS = 7000;
 const FADE_MS = 1400;
@@ -35,10 +24,10 @@ export function HeroSlideshow({
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    if (reduced || heroSlides.length < 2) return;
 
     const id = window.setInterval(
-      () => setActive((current) => (current + 1) % SLIDES.length),
+      () => setActive((current) => (current + 1) % heroSlides.length),
       INTERVAL_MS
     );
     return () => window.clearInterval(id);
@@ -46,7 +35,7 @@ export function HeroSlideshow({
 
   return (
     <div className={`absolute inset-0 overflow-hidden bg-[#071a33] ${className}`}>
-      {SLIDES.map((slide, index) => {
+      {heroSlides.map((slide, index) => {
         const isActive = index === active;
         return (
           <div
@@ -57,16 +46,15 @@ export function HeroSlideshow({
             style={{ transitionDuration: `${FADE_MS}ms` }}
             aria-hidden={!isActive}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={slide.src}
               alt={isActive ? slide.alt : ""}
-              width={2560}
-              height={1440}
-              fetchPriority={priority && index === 0 ? "high" : undefined}
-              decoding="async"
+              fill
+              priority={priority && index === 0}
+              unoptimized
+              sizes="100vw"
               draggable={false}
-              className={`absolute inset-0 h-full w-full object-cover ${imageClassName}`}
+              className={`object-cover ${imageClassName}`}
               style={{ objectPosition: slide.objectPosition }}
             />
           </div>

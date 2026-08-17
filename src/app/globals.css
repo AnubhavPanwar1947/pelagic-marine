@@ -98,6 +98,23 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (max-width: 767px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 639px) {
+  .site-header-bar .brand-logo-anchor-slot {
+    width: 76px !important;
+    height: 76px !important;
+  }
+
+  .site-header-bar .brand-logo-circle {
+    transform: translate(6px, 10px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -111,7 +128,11 @@ html {
     transition-duration: 0.01ms !important;
   }
 
-  .reveal-on-scroll {
+  .reveal-on-scroll,
+  .reveal-on-scroll--text,
+  .reveal-on-scroll--image,
+  .reveal-on-scroll--card,
+  .reveal-on-scroll--fade {
     opacity: 1 !important;
     transform: none !important;
   }
@@ -2233,17 +2254,67 @@ textarea::placeholder {
   box-shadow: 0 20px 40px -12px rgba(20, 48, 110, 0.16);
 }
 
+/* Scroll reveal — shared motion tokens */
 .reveal-on-scroll {
+  opacity: 1;
+  will-change: opacity, transform;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-on-scroll.is-pending {
   opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal-on-scroll.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+}
+
+/* Text: fade + gentle rise */
+.reveal-on-scroll--text {
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Image: fade + subtle scale settle */
+.reveal-on-scroll--image {
+  transform: scale(1.02);
+  transition:
+    opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Card / grid blocks: slightly faster */
+.reveal-on-scroll--card {
+  transform: translateY(12px);
+  transition:
+    opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Footer: opacity only */
+.reveal-on-scroll--fade {
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (max-width: 639px) {
+  .reveal-on-scroll--text {
+    transform: translateY(10px);
+    transition-duration: 0.55s;
+  }
+
+  .reveal-on-scroll--image {
+    transform: translateY(10px);
+    transition-duration: 0.55s;
+  }
+
+  .reveal-on-scroll--card {
+    transform: translateY(8px);
+    transition-duration: 0.55s;
+  }
 }
 
 @keyframes fade-up {
@@ -2262,6 +2333,24 @@ textarea::placeholder {
 }
 
 /* Homepage — motion & polish (benchmarked against Aqualis / Kannamwar / ShoreSafe) */
+.home-hero-section {
+  min-width: 0;
+}
+
+.home-hero-copy,
+.home-hero-copy h1,
+.home-hero-copy p {
+  min-width: 0;
+}
+
+.home-hero-copy h1 {
+  text-wrap: balance;
+}
+
+.home-hero-copy p {
+  text-wrap: pretty;
+}
+
 .home-hero-line {
   opacity: 0;
   animation: home-hero-reveal 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
@@ -2287,10 +2376,16 @@ textarea::placeholder {
   animation-delay: 0.58s;
 }
 
+@media (max-width: 639px) {
+  .home-hero-line {
+    animation-duration: 0.7s;
+  }
+}
+
 @keyframes home-hero-reveal {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -2299,17 +2394,17 @@ textarea::placeholder {
 }
 
 .home-hero-backdrop-img {
-  transform: scale(1.04);
+  transform: scale(1);
   animation: home-hero-drift 28s ease-in-out infinite alternate;
   will-change: transform;
 }
 
 @keyframes home-hero-drift {
   from {
-    transform: scale(1.04) translate3d(0, 0, 0);
+    transform: scale(1) translate3d(0, 0, 0);
   }
   to {
-    transform: scale(1.09) translate3d(-1.2%, 0.6%, 0);
+    transform: scale(1.02) translate3d(-0.8%, 0.4%, 0);
   }
 }
 
@@ -2503,37 +2598,7 @@ textarea::placeholder {
 }
 
 .footer-wave-parallax > use {
-  animation: pelagic-wave-move 32s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-}
-
-.footer-wave-parallax > use:nth-child(1) {
-  animation-delay: -2s;
-  animation-duration: 38s;
-}
-
-.footer-wave-parallax > use:nth-child(2) {
-  animation-delay: -6s;
-  animation-duration: 48s;
-}
-
-.footer-wave-parallax > use:nth-child(3) {
-  animation-delay: -10s;
-  animation-duration: 58s;
-}
-
-@keyframes pelagic-wave-move {
-  0% {
-    transform: translate3d(-90px, 0, 0);
-  }
-  100% {
-    transform: translate3d(85px, 0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .footer-wave-parallax > use {
-    animation: none;
-  }
+  animation: none;
 }
 
 /* Homepage section washes — logo navy / azure mixtures (no graph) */

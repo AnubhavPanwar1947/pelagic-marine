@@ -28,12 +28,12 @@ export default function HomePage() {
     <>
       <HeroParallaxBackdrop />
 
-      {/* ── Hero: brand-first, full-bleed, calm (Aqualis / Kannamwar) ── */}
-      <section className="relative z-10 flex min-h-[100svh] flex-col overflow-hidden bg-transparent lg:min-h-[100vh]">
+      {/* ── Section 1 · Hero: staggered entrance on page load ── */}
+      <section className="home-hero-section relative z-10 flex min-h-[100svh] min-h-[100dvh] flex-col overflow-hidden bg-transparent lg:min-h-[100dvh]">
         <HeroMedia />
 
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pb-24 pt-28 sm:px-6 lg:px-8 lg:pb-28 lg:pt-32">
-          <div className="home-hero-copy max-w-3xl">
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pb-20 pt-28 sm:px-6 sm:pb-24 lg:px-8 lg:pb-28 lg:pt-32">
+          <div className="home-hero-copy w-full max-w-3xl">
             <p
               className="home-hero-line home-hero-line--1 text-[clamp(2.4rem,6vw,4.25rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-white"
               style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
@@ -43,14 +43,14 @@ export default function HomePage() {
             <p className="home-hero-line home-hero-line--2 mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-pelagic-accent sm:text-xs">
               Solutions · India & Dubai
             </p>
-            <h1 className="home-hero-line home-hero-line--3 type-display mt-8 max-w-2xl text-[1.85rem] leading-[1.12] text-white sm:text-4xl lg:text-[2.85rem] lg:leading-[1.08]">
+            <h1 className="home-hero-line home-hero-line--3 type-display mt-8 w-full max-w-2xl text-[clamp(1.75rem,5.5vw,2.85rem)] leading-[1.12] text-white sm:text-4xl lg:leading-[1.08]">
               Serving the shipping industry,{" "}
               <span className="text-heading-accent">round the clock.</span>
             </h1>
-            <p className="home-hero-line home-hero-line--4 mt-5 max-w-xl text-base leading-8 text-blue-50/88 sm:text-lg">
+            <p className="home-hero-line home-hero-line--4 mt-5 w-full max-w-xl text-base leading-7 text-blue-50/88 sm:text-lg sm:leading-8">
               {company.heroSubline}
             </p>
-            <div className="home-hero-line home-hero-line--5 mt-10">
+            <div className="home-hero-line home-hero-line--5 mt-8 sm:mt-10">
               <Button href="/contact" variant="primary">
                 Start a consultation
               </Button>
@@ -59,19 +59,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Delivery: solid wash (no parallax) ── */}
+      {/* ── Section 2 · Delivery: text + card ── */}
       <SectionMaritime variant="delivery" className="relative z-10 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <ProjectsCapabilitiesCard />
-          </Reveal>
+          <ProjectsCapabilitiesCard />
         </div>
       </SectionMaritime>
 
-      {/* ── Services: opaque editorial grid (Kannamwar / Foreship) ── */}
+      {/* ── Section 3 · Services: text + card grid ── */}
       <SectionMaritime variant="services" className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
+          <Reveal variant="text">
             <SectionHeading
               eyebrow="Services"
               title="Four practices, one"
@@ -81,10 +79,11 @@ export default function HomePage() {
             />
           </Reveal>
 
-          <div className="mt-16 grid gap-px overflow-hidden rounded-[1.75rem] border border-pelagic-navy/10 bg-pelagic-navy/10 sm:grid-cols-2 xl:grid-cols-4">
-            {homeServices.map((service, i) => (
-              <Reveal key={service.slug} delay={i * 60} className="h-full">
+          <Reveal variant="card" delay={80} className="mt-16">
+            <div className="grid gap-px overflow-hidden rounded-[1.75rem] border border-pelagic-navy/10 bg-pelagic-navy/10 sm:grid-cols-2 xl:grid-cols-4">
+              {homeServices.map((service, i) => (
                 <Link
+                  key={service.slug}
                   href={`/services/${service.slug}/`}
                   className="home-service-tile group relative flex h-full min-h-[17rem] flex-col p-7 transition duration-500 sm:p-8"
                 >
@@ -106,27 +105,27 @@ export default function HomePage() {
                     aria-hidden
                   />
                 </Link>
-              </Reveal>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          <Reveal className="mt-12 text-center">
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-pelagic-accent transition hover:gap-3"
-            >
-              Explore all services
-              <span aria-hidden>→</span>
-            </Link>
+            <div className="mt-12 text-center">
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-pelagic-accent transition hover:gap-3"
+              >
+                Explore all services
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
           </Reveal>
         </div>
       </SectionMaritime>
 
-      {/* ── Why Pelagic: proof without card clutter ── */}
+      {/* ── Section 4 · Why Pelagic: text + image ── */}
       <SectionMaritime variant="why" className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-start lg:gap-20">
-            <Reveal>
+            <Reveal variant="text">
               <SectionHeading
                 eyebrow="Why Pelagic"
                 title="Expertise forged"
@@ -150,7 +149,7 @@ export default function HomePage() {
               </ul>
             </Reveal>
 
-            <Reveal delay={100}>
+            <Reveal variant="image" delay={80}>
               <div className="relative aspect-[4/5] overflow-hidden rounded-[1.85rem] shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:aspect-[4/3] lg:sticky lg:top-28">
                 <SiteImage
                   src={siteImages.heroBridge}
@@ -173,25 +172,23 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* ── Decarbonization: Azolla / C-Job storytelling ── */}
+      {/* ── Section 5 · Decarbonization: image + text ── */}
       <SectionMaritime variant="decarb" className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
-            <Reveal>
-              <div className="relative">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.85rem] shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:aspect-[5/4]">
-                  <SiteImage
-                    src={siteImages.decarbonization}
-                    alt="Clean energy turbines — maritime decarbonization"
-                    fill
-                    className="object-cover transition duration-700 hover:scale-[1.03]"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
+            <Reveal variant="image">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.85rem] shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:aspect-[5/4]">
+                <SiteImage
+                  src={siteImages.decarbonization}
+                  alt="Clean energy turbines — maritime decarbonization"
+                  fill
+                  className="object-cover transition duration-700 hover:scale-[1.03]"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
             </Reveal>
 
-            <Reveal delay={80}>
+            <Reveal variant="text" delay={80}>
               <SectionHeading
                 eyebrow="Decarbonization"
                 title="Supporting the voyage to"
@@ -225,7 +222,7 @@ export default function HomePage() {
         </div>
       </SectionMaritime>
 
-      {/* ── Clients: photo returns (Kannamwar full-bleed marquee) ── */}
+      {/* ── Section 6 · Clients: text + marquee card ── */}
       <section className="relative z-10 overflow-hidden bg-transparent py-20 lg:py-28">
         <HeroSectionFill />
         <div
@@ -233,7 +230,7 @@ export default function HomePage() {
           aria-hidden
         />
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <Reveal>
+          <Reveal variant="text">
             <p className="type-eyebrow text-pelagic-accent">Clients</p>
             <h2 className="type-display mt-4 text-3xl text-white sm:text-4xl lg:text-5xl">
               Trusted across{" "}
@@ -245,14 +242,14 @@ export default function HomePage() {
             </p>
           </Reveal>
         </div>
-        <div className="relative mt-14 sm:mt-16">
+        <Reveal variant="card" delay={80} className="relative mt-14 sm:mt-16">
           <ClientMarquee />
-        </div>
+        </Reveal>
       </section>
 
-      {/* ── Next step ── */}
+      {/* ── Section 7 · CTA: fade-up on scroll ── */}
       <section className="relative z-10 overflow-hidden bg-[#071a33] py-28 text-white lg:py-36">
-        <Reveal className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+        <Reveal variant="text" className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-pelagic-accent">
             Next step
           </p>
