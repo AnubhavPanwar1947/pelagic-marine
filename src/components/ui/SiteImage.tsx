@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
+import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 
 type SiteImageProps = {
   src: string;
@@ -36,7 +36,7 @@ export function SiteImage({
 
   return (
     <div className={fill ? "absolute inset-0" : "relative"}>
-      <Image
+      <ResponsiveImage
         src={src}
         alt={alt}
         fill={fill}

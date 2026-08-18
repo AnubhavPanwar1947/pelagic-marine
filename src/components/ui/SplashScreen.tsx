@@ -51,7 +51,6 @@ export function SplashScreen() {
             width={280}
             height={409}
             priority
-            unoptimized
             className="relative z-[1] h-auto w-[min(42vw,148px)] max-w-[160px] sm:w-[168px]"
           />
           <span className="splash-logo-shine pointer-events-none" aria-hidden />

@@ -6,7 +6,7 @@ import { ContactPanelShell } from "@/components/contact/ContactPanelShell";
 import { company, contactPage, serviceCategories } from "@/lib/site-data";
 
 const fieldClass =
-  "mt-1.5 w-full rounded-lg border border-pelagic-warm bg-white px-4 py-3 text-sm text-pelagic-ink placeholder:text-pelagic-slate outline-none transition focus:border-pelagic-accent focus:ring-2 focus:ring-pelagic-accent/15";
+  "mt-1.5 w-full rounded-lg border border-pelagic-warm bg-white px-4 py-3 text-base text-pelagic-ink placeholder:text-pelagic-slate outline-none transition focus:border-pelagic-accent focus:ring-2 focus:ring-pelagic-accent/15 md:text-sm";
 
 function fieldHighlight(active: boolean) {
   return active ? "border-pelagic-accent ring-2 ring-pelagic-accent/25" : "";

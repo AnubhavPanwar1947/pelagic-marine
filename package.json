@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run generate-images && next build",
     "start": "next start",
     "lint": "eslint",
-    "export": "next build",
+    "export": "npm run build",
+    "generate-images": "node scripts/generate-responsive-images.mjs",
     "prepare-logo": "node scripts/prepare-logo.mjs",
     "prepare-logo-pdf": "node scripts/prepare-logo-from-pdf.mjs"
   },

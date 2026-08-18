@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { heroImage } from "@/lib/site-images";
 import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
+import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
+import { heroImage } from "@/lib/site-images";
 
 /**
  * Shared hero photo used as a fixed parallax backdrop for:
@@ -37,11 +37,10 @@ export function HeroMedia({ className = "" }: { className?: string }) {
 export function HeroSectionFill({ className = "" }: { className?: string }) {
   return (
     <div className={`absolute inset-0 overflow-hidden lg:hidden ${className}`} aria-hidden>
-      <Image
+      <ResponsiveImage
         src={heroImage.src}
         alt=""
         fill
-        unoptimized
         sizes="100vw"
         className="object-cover"
         style={{ objectPosition: heroImage.objectPosition }}

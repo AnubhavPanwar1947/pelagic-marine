@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 import { heroSlides } from "@/lib/site-images";
 
 const INTERVAL_MS = 7000;
@@ -46,12 +46,11 @@ export function HeroSlideshow({
             style={{ transitionDuration: `${FADE_MS}ms` }}
             aria-hidden={!isActive}
           >
-            <Image
+            <ResponsiveImage
               src={slide.src}
               alt={isActive ? slide.alt : ""}
               fill
               priority={priority && index === 0}
-              unoptimized
               sizes="100vw"
               draggable={false}
               className={`object-cover ${imageClassName}`}

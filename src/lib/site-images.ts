@@ -1,6 +1,6 @@
 /**
  * Site imagery — local files in public/images/ take priority when present.
- * Remote Unsplash URLs are fallbacks (allowed in next.config.ts); Next.js optimizes them.
+ * Remote Unsplash URLs are fallbacks; srcset widths are applied at runtime via responsive-image helpers.
  * Replace any URL with a local path (e.g. "/images/case-1.jpg") when boss-approved photos arrive.
  */
 function u(id: string, w: number, h: number, q = 88) {

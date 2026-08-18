@@ -103,7 +103,6 @@ export function BrandLogo({
             alt=""
             width={diameter}
             height={diameter}
-            unoptimized
             className="brand-logo-img brand-logo-img--circle absolute inset-0 z-[1] h-full w-full object-contain object-center"
             priority={isHeader || isPromo}
           />

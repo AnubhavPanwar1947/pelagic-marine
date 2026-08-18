@@ -88,7 +88,7 @@ export function NavSearch() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Services, news…"
-              className="w-full bg-transparent text-sm text-pelagic-ink outline-none placeholder:text-pelagic-slate"
+              className="w-full bg-transparent text-base text-pelagic-ink outline-none placeholder:text-pelagic-slate md:text-sm"
             />
           </div>
 

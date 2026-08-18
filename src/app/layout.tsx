@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { CookieConsent } from "@/components/ui/CookieConsent";
@@ -7,6 +7,12 @@ import { SplashScreen } from "@/components/ui/SplashScreen";
 import { cormorant, montserrat } from "@/lib/fonts";
 import { company } from "@/lib/site-data";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://pelagic-marine.com"),

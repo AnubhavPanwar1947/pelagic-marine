@@ -7,7 +7,7 @@ type ContactFormTrustBarProps = {
 export function ContactFormTrustBar({ compact = false }: ContactFormTrustBarProps) {
   if (compact) {
     return (
-      <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="mt-4 grid grid-cols-1 gap-2 min-[360px]:grid-cols-3">
         {contactPage.hero.stats.map((stat) => (
           <div
             key={`${stat.label}-${stat.value}`}
@@ -25,7 +25,7 @@ export function ContactFormTrustBar({ compact = false }: ContactFormTrustBarProp
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+      <div className="grid grid-cols-1 gap-2 min-[360px]:grid-cols-3">
         {contactPage.hero.stats.map((stat) => (
           <div
             key={`${stat.label}-${stat.value}`}

@@ -138,7 +138,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
             if (e.target.value.trim()) setExpandedHub(null);
           }}
           placeholder="Search city, country, or address…"
-          className="w-full rounded-2xl border border-pelagic-mist bg-white/90 px-5 py-4 text-sm text-pelagic-charcoal placeholder:text-pelagic-slate outline-none shadow-sm backdrop-blur-sm transition focus:border-pelagic-accent/70 focus:ring-2 focus:ring-pelagic-accent/15"
+          className="w-full rounded-2xl border border-pelagic-mist bg-white/90 px-5 py-4 text-base text-pelagic-charcoal placeholder:text-pelagic-slate outline-none shadow-sm backdrop-blur-sm transition focus:border-pelagic-accent/70 focus:ring-2 focus:ring-pelagic-accent/15 md:text-sm"
         />
       </div>
 

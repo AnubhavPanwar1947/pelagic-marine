@@ -141,7 +141,7 @@ export function CookieConsent() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-[95] p-3 sm:p-5" role="presentation">
       <div
-        className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-pelagic-sand bg-white shadow-[0_-16px_48px_rgba(15,23,42,0.18)]"
+        className="mx-auto max-h-[calc(100dvh-1.5rem)] max-w-3xl overflow-y-auto overscroll-contain rounded-2xl border border-pelagic-sand bg-white shadow-[0_-16px_48px_rgba(15,23,42,0.18)] sm:max-h-[calc(100dvh-2.5rem)]"
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}

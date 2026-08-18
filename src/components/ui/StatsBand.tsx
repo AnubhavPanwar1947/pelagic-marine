@@ -76,7 +76,7 @@ export function StatsBand({ stats }: { stats: Stat[] }) {
   return (
     <div
       ref={ref}
-      className="home-stats-band grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-pelagic-sand bg-pelagic-sand sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5"
+      className="home-stats-band grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-pelagic-sand bg-pelagic-sand sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 [&>*:last-child]:col-span-2 sm:[&>*:last-child]:col-span-1"
     >
       {stats.map((stat, index) => (
         <StatCell key={stat.label} stat={stat} active={inView} delay={index * 80} />

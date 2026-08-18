@@ -30,13 +30,13 @@ export default function LoginPage() {
           <input
             disabled
             placeholder="Work email"
-            className="w-full rounded-xl border border-pelagic-sand bg-white/90 px-4 py-3 text-sm text-pelagic-slate"
+            className="w-full rounded-xl border border-pelagic-sand bg-white/90 px-4 py-3 text-base text-pelagic-slate md:text-sm"
           />
           <input
             disabled
             type="password"
             placeholder="Password"
-            className="w-full rounded-xl border border-pelagic-sand bg-white/90 px-4 py-3 text-sm text-pelagic-slate"
+            className="w-full rounded-xl border border-pelagic-sand bg-white/90 px-4 py-3 text-base text-pelagic-slate md:text-sm"
           />
           <button
             type="button"
