@@ -12,12 +12,10 @@ export const heroSlides = [
   {
     src: "/images/home-page-hero-.jpg",
     alt: "Pelagic Marine Solutions consultant on the bridge overlooking port operations at golden hour",
-    objectPosition: "62% center",
   },
   {
     src: "/images/hero-port.jpg",
     alt: "Container vessel assisted by tugs in harbour at golden hour",
-    objectPosition: "62% 42%",
   },
 ] as const;
 

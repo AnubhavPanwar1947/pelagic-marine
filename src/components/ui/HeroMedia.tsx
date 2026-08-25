@@ -3,9 +3,9 @@ import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 import { heroImage } from "@/lib/site-images";
 
 /**
- * Shared hero photo used as a fixed parallax backdrop for:
- * Hero → (solid sections cover) → Clients
- * Desktop only — mobile sections keep their own local image fills.
+ * Fixed parallax backdrop for the Clients section on desktop.
+ * Sits behind solid homepage sections; the hero section uses its own local
+ * HeroMedia so crop is consistent at every viewport width.
  */
 export function HeroParallaxBackdrop() {
   return (
@@ -23,14 +23,9 @@ export function HeroParallaxBackdrop() {
   );
 }
 
-/** Local hero image for mobile (and as hero fill when fixed backdrop is off) */
+/** Hero slideshow — always section-local so crop matches the hero box at every breakpoint */
 export function HeroMedia({ className = "" }: { className?: string }) {
-  return (
-    <HeroSlideshow
-      className={`lg:hidden ${className}`}
-      priority
-    />
-  );
+  return <HeroSlideshow className={className} priority />;
 }
 
 /** Same photo as hero — used on Clients for mobile */
@@ -42,8 +37,7 @@ export function HeroSectionFill({ className = "" }: { className?: string }) {
         alt=""
         fill
         sizes="100vw"
-        className="object-cover"
-        style={{ objectPosition: heroImage.objectPosition }}
+        className="object-cover home-hero-cover-img"
       />
       <div className="absolute inset-0 bg-[#071a33]/50" />
     </div>

@@ -1,4 +1,6 @@
-const LOGO_CIRCLE_SRC = "/logo-circle.png?v=35";
+import Image from "next/image";
+
+export const BRAND_LOGO_CIRCLE_SRC = "/logo-circle.png?v=35";
 
 type BrandLogoMarkProps = {
   size?: number;
@@ -13,12 +15,11 @@ export function BrandLogoMark({ size = 56, className = "" }: BrandLogoMarkProps)
       aria-hidden
     >
       <div className="brand-logo-shell brand-logo-shell--circle relative h-full w-full">
-        <img
-          src={LOGO_CIRCLE_SRC}
+        <Image
+          src={BRAND_LOGO_CIRCLE_SRC}
           alt=""
           width={size}
           height={size}
-          decoding="async"
           className="brand-logo-img brand-logo-img--circle absolute inset-0 z-[1] h-full w-full object-contain object-center"
         />
       </div>

@@ -53,8 +53,9 @@ export function HeroSlideshow({
               priority={priority && index === 0}
               sizes="100vw"
               draggable={false}
-              className={`object-cover ${imageClassName}`}
-              style={{ objectPosition: slide.objectPosition }}
+              className={`object-cover home-hero-cover-img${
+                index === 1 ? " home-hero-cover-img--port" : ""
+              } ${imageClassName}`}
             />
           </div>
         );

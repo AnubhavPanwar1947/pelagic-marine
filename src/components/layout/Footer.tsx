@@ -20,8 +20,8 @@ export function Footer() {
       {/* Tall single-color wave behind content (~half footer height) */}
       <FooterWave />
 
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-8">
-        <div className="lg:col-span-4">
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 py-14 pb-[max(3.5rem,env(safe-area-inset-bottom))] sm:px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-8">
+        <div className="site-footer-brand min-w-0 lg:col-span-4">
           <BrandLogo variant="footer" />
           <p className="mt-4 max-w-sm pl-[var(--logo-lockup-anchor-x)] text-sm leading-7 text-blue-50">
             Naval architecture and marine engineering consultancy — stability, structures,
@@ -107,7 +107,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative z-10 border-t border-pelagic-blue/30 px-4 py-5 text-center text-xs text-blue-200/70">
+      <div className="relative z-10 border-t border-pelagic-blue/30 px-4 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] text-center text-xs text-blue-200/70">
         <p>
           © {new Date().getFullYear()} {company.legalName}. All rights reserved.
         </p>

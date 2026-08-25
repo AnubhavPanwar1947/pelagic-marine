@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { NavSearch } from "@/components/layout/NavSearch";
 import { navMenu, type NavDropdownChild, type NavMenuItem } from "@/lib/site-data";
@@ -10,7 +10,9 @@ import { navMenu, type NavDropdownChild, type NavMenuItem } from "@/lib/site-dat
 function Chevron({ open }: { open?: boolean }) {
   return (
     <svg
-      className={`h-3 w-3 transition-transform ${open ? "rotate-180" : ""}`}
+      className={`h-4 w-4 shrink-0 transition-transform duration-200 motion-reduce:transition-none ${
+        open ? "rotate-180" : ""
+      }`}
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden
@@ -24,12 +26,52 @@ function Chevron({ open }: { open?: boolean }) {
   );
 }
 
+const MOBILE_NAV_PANEL_ID = "site-mobile-nav";
+
+function MenuToggleIcon({ open }: { open: boolean }) {
+  const line =
+    "origin-center transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none";
+
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      aria-hidden
+    >
+      <path
+        d="M5 8h14"
+        className={`${line} ${open ? "scale-90 opacity-0" : "scale-100 opacity-100"}`}
+      />
+      <path
+        d="M5 12h14"
+        className={`${line} ${open ? "scale-90 opacity-0" : "scale-100 opacity-100"}`}
+      />
+      <path
+        d="M5 16h14"
+        className={`${line} ${open ? "scale-90 opacity-0" : "scale-100 opacity-100"}`}
+      />
+      <path
+        d="M7 7L17 17"
+        className={`${line} ${open ? "scale-100 opacity-100" : "scale-90 opacity-0"}`}
+      />
+      <path
+        d="M17 7L7 17"
+        className={`${line} ${open ? "scale-100 opacity-100" : "scale-90 opacity-0"}`}
+      />
+    </svg>
+  );
+}
+
 function isActive(pathname: string, href: string) {
   return pathname === href || (href !== "/" && pathname.startsWith(href));
 }
 
 function navLinkClass(active: boolean) {
-  return `relative whitespace-nowrap px-2 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors after:absolute after:bottom-0 after:left-2 after:right-2 after:h-0.5 after:rounded-full after:bg-pelagic-accent after:transition-transform after:duration-200 xl:px-2.5 ${
+  return `site-header-nav-link relative whitespace-nowrap px-1.5 py-2 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] transition-colors after:absolute after:bottom-0 after:left-1.5 after:right-1.5 after:h-0.5 after:rounded-full after:bg-pelagic-accent after:transition-transform after:duration-200 xl:px-2.5 xl:text-xs xl:tracking-[0.12em] after:xl:left-2 after:xl:right-2 ${
     active
       ? "text-pelagic-ink after:scale-x-100"
       : "text-pelagic-body after:scale-x-0 hover:text-pelagic-ink hover:after:scale-x-100"
@@ -206,19 +248,22 @@ function DesktopNavItem({
 function MobileServiceChild({
   child,
   onNavigate,
+  panelId,
 }: {
   child: NavDropdownChild;
   onNavigate: () => void;
+  panelId: string;
 }) {
   const [open, setOpen] = useState(false);
   const hasChildren = Boolean(child.children?.length);
+  const subPanelId = `${panelId}-${child.label.replace(/\s+/g, "-").toLowerCase()}`;
 
   if (!hasChildren) {
     return (
       <Link
         href={child.href}
         onClick={onNavigate}
-        className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-sky/50"
+        className="site-mobile-nav-sublink block min-h-11 rounded-lg px-3 py-2.5 text-sm text-pelagic-steel transition hover:bg-pelagic-sky/50 hover:text-pelagic-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent"
       >
         {child.label}
       </Link>
@@ -226,23 +271,25 @@ function MobileServiceChild({
   }
 
   return (
-    <div className="rounded-lg border border-pelagic-sand/60">
+    <div className="site-mobile-nav-subgroup rounded-lg border border-pelagic-sand/70 bg-white/80">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between px-2 py-2 text-sm font-semibold text-pelagic-charcoal"
+        className="flex min-h-11 w-full items-center justify-between gap-3 px-3 py-2.5 text-left text-sm font-semibold text-pelagic-charcoal focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pelagic-accent"
+        aria-expanded={open}
+        aria-controls={subPanelId}
       >
-        {child.label}
+        <span>{child.label}</span>
         <Chevron open={open} />
       </button>
       {open && (
-        <div className="border-t border-pelagic-sand px-2 pb-2">
+        <div id={subPanelId} className="border-t border-pelagic-sand/80 px-2 pb-2">
           {child.children!.map((sub) => (
             <Link
               key={`${sub.href}-${sub.label}`}
               href={sub.href}
               onClick={onNavigate}
-              className="block rounded-lg px-2 py-2 text-sm text-pelagic-steel hover:bg-pelagic-sky/50"
+              className="site-mobile-nav-sublink block min-h-11 rounded-lg px-3 py-2.5 text-sm text-pelagic-steel transition hover:bg-pelagic-sky/50 hover:text-pelagic-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent"
             >
               {sub.label}
             </Link>
@@ -255,19 +302,27 @@ function MobileServiceChild({
 
 function MobileNavItem({
   item,
+  pathname,
   onNavigate,
 }: {
   item: NavMenuItem;
+  pathname: string;
   onNavigate: () => void;
 }) {
   const [open, setOpen] = useState(false);
+  const panelId = `mobile-nav-${item.label.replace(/\s+/g, "-").toLowerCase()}`;
+  const active = isActive(pathname, item.href);
 
   if (item.type === "link") {
     return (
       <Link
         href={item.href}
         onClick={onNavigate}
-        className="rounded-lg px-3 py-2.5 text-sm font-semibold text-pelagic-charcoal hover:bg-pelagic-sky/50"
+        className={`site-mobile-nav-link block min-h-11 rounded-xl px-4 py-3 text-base font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent ${
+          active
+            ? "bg-white text-pelagic-navy shadow-sm ring-1 ring-pelagic-accent/30"
+            : "text-pelagic-charcoal hover:bg-white/90"
+        }`}
       >
         {item.label}
       </Link>
@@ -275,30 +330,35 @@ function MobileNavItem({
   }
 
   return (
-    <div className="rounded-lg border border-pelagic-sand/80">
+    <div className="site-mobile-nav-accordion overflow-hidden rounded-xl border border-pelagic-sand/80 bg-white/90 shadow-sm">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between px-3 py-2.5 text-sm font-semibold text-pelagic-charcoal"
+        className={`flex min-h-11 w-full items-center justify-between gap-3 px-4 py-3 text-left text-base font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pelagic-accent ${
+          active || open ? "text-pelagic-navy" : "text-pelagic-charcoal"
+        }`}
+        aria-expanded={open}
+        aria-controls={panelId}
       >
-        {item.label}
+        <span>{item.label}</span>
         <Chevron open={open} />
       </button>
       {open && (
-        <div className="border-t border-pelagic-sand px-2 pb-2">
+        <div id={panelId} className="border-t border-pelagic-sand/80 px-3 pb-3 pt-2">
           <Link
             href={item.href}
             onClick={onNavigate}
-            className="mt-2 block rounded-lg px-2 py-2 text-xs font-bold text-pelagic-accent"
+            className="mb-2 block min-h-11 rounded-lg px-3 py-2.5 text-xs font-bold uppercase tracking-wider text-pelagic-accent transition hover:bg-pelagic-sky/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent"
           >
             All {item.label === "Decarb" ? "Decarbonization" : item.label} →
           </Link>
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             {item.children.map((child) => (
               <MobileServiceChild
                 key={child.href + child.label}
                 child={child}
                 onNavigate={onNavigate}
+                panelId={panelId}
               />
             ))}
           </div>
@@ -310,8 +370,35 @@ function MobileNavItem({
 
 export function Header() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const shouldRestoreFocusRef = useRef(false);
+
+  const closeMenu = useCallback((restoreFocus = false) => {
+    shouldRestoreFocusRef.current = restoreFocus;
+    setMenuOpen(false);
+  }, []);
+
+  const handleSearchOpenChange = useCallback((next: boolean) => {
+    if (next) {
+      shouldRestoreFocusRef.current = false;
+      setMenuOpen(false);
+    }
+    setSearchOpen(next);
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    if (menuOpen) {
+      closeMenu(true);
+      return;
+    }
+    setSearchOpen(false);
+    setMenuOpen(true);
+  }, [menuOpen, closeMenu]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
@@ -321,86 +408,155 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+    closeMenu();
+    setSearchOpen(false);
+  }, [pathname, closeMenu]);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const updateHeight = () => setHeaderHeight(header.offsetHeight);
+    updateHeight();
+
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(header);
+    window.addEventListener("resize", updateHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      if (shouldRestoreFocusRef.current) {
+        menuButtonRef.current?.focus();
+        shouldRestoreFocusRef.current = false;
+      }
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") closeMenu(true);
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen, closeMenu]);
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-[box-shadow,background-color,border-color] duration-300 ease-out ${
-        scrolled
+      ref={headerRef}
+      style={
+        headerHeight > 0
+          ? ({ "--site-header-height": `${headerHeight}px` } as React.CSSProperties)
+          : undefined
+      }
+      className={`sticky top-0 z-50 transition-[box-shadow,background-color,border-color] duration-300 ease-out motion-reduce:transition-none ${
+        scrolled || menuOpen || searchOpen
           ? "border-b border-pelagic-sand bg-white shadow-[0_12px_40px_rgba(20,48,110,0.14)] backdrop-blur-lg"
           : "border-b border-transparent bg-white/90 backdrop-blur-md"
       }`}
       data-scrolled={scrolled ? "true" : "false"}
+      data-mobile-nav-open={menuOpen ? "true" : "false"}
+      data-search-open={searchOpen ? "true" : "false"}
     >
       <div
-        className={`site-header-accent h-1 bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light transition-all duration-300 ${
+        className={`site-header-accent h-1 bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light transition-all duration-300 motion-reduce:transition-none ${
           scrolled ? "opacity-100 shadow-[0_1px_8px_rgba(47,168,238,0.35)]" : "opacity-90"
         }`}
         aria-hidden
       />
       <div
-        className={`site-header-bar mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8 ${
+        className={`site-header-bar mx-auto flex max-w-7xl min-w-0 items-center justify-between gap-1 px-3 sm:gap-1.5 sm:px-4 nav:gap-1.5 nav:px-4 xl:gap-2 xl:px-8 ${
           scrolled ? "py-2.5" : "py-3"
         }`}
       >
-        <BrandLogo variant="header" />
+        <div className="min-w-0 shrink">
+          <BrandLogo variant="header" />
+        </div>
 
-          <nav className="hidden min-w-0 flex-1 items-center justify-center xl:flex xl:gap-0.5">
+        <nav className="site-header-nav hidden min-w-0 flex-1 items-center justify-center nav:flex nav:gap-0 xl:gap-0.5">
           {navMenu.map((item) => (
             <DesktopNavItem key={item.label} item={item} pathname={pathname} />
           ))}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-2">
-          <div className="hidden md:block">
-            <NavSearch />
+        <div className="flex shrink-0 items-center gap-1 sm:gap-1.5 nav:gap-2">
+          <div className="site-header-search">
+            <NavSearch open={searchOpen} onOpenChange={handleSearchOpenChange} />
           </div>
 
           <Link
             href="/contact"
-            className="hidden rounded-full bg-pelagic-accent px-4 py-2.5 text-xs font-bold uppercase tracking-wide text-white shadow-md shadow-pelagic-accent/35 transition hover:bg-pelagic-accent-hover sm:inline-flex xl:text-sm"
+            className="hidden shrink-0 whitespace-nowrap rounded-full bg-pelagic-accent px-2.5 py-2 text-[10px] font-bold uppercase tracking-wide text-white shadow-md shadow-pelagic-accent/35 transition hover:bg-pelagic-accent-hover nav:inline-flex nav:px-3.5 nav:py-2 nav:text-[11px] xl:px-4 xl:py-2.5 xl:text-sm"
           >
             Contact us
           </Link>
 
           <button
+            ref={menuButtonRef}
             type="button"
-            className="rounded-lg border border-pelagic-sand bg-white px-3 py-2 text-sm font-semibold text-pelagic-navy xl:hidden"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-label="Toggle menu"
+            className={`inline-flex h-11 w-11 shrink-0 items-center justify-center bg-transparent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent focus-visible:ring-offset-2 nav:hidden ${
+              menuOpen ? "text-pelagic-accent" : "text-pelagic-navy hover:text-pelagic-accent"
+            }`}
+            onClick={toggleMenu}
+            aria-expanded={menuOpen}
+            aria-controls={MOBILE_NAV_PANEL_ID}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
-            Menu
+            <MenuToggleIcon open={menuOpen} />
           </button>
         </div>
       </div>
 
-      {open && (
-        <div className="border-t border-pelagic-sand bg-white px-4 py-4 xl:hidden">
-          <div className="mb-4 flex justify-center border-b border-pelagic-sand/80 pb-4">
-            <BrandLogo variant="header" linked={false} compact />
+      {menuOpen ? (
+        <div
+          id={MOBILE_NAV_PANEL_ID}
+          className="site-mobile-nav-panel fixed inset-x-0 bottom-0 z-40 flex flex-col nav:hidden motion-reduce:transition-none"
+          style={{
+            top: headerHeight > 0 ? `${headerHeight}px` : undefined,
+            height:
+              headerHeight > 0 ? `calc(100svh - ${headerHeight}px)` : "calc(100svh - 4.5rem)",
+          }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
+        >
+          <div className="flex min-h-0 flex-1 flex-col">
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4 sm:px-6">
+              <nav className="flex flex-col gap-2" aria-label="Mobile">
+                {navMenu.map((item) => (
+                  <MobileNavItem
+                    key={item.label}
+                    item={item}
+                    pathname={pathname}
+                    onNavigate={() => closeMenu()}
+                  />
+                ))}
+              </nav>
+            </div>
+
+            <div className="site-mobile-nav-panel__footer shrink-0 border-t border-pelagic-sand/80 bg-white/95 px-4 py-4 backdrop-blur-sm sm:px-6">
+              <Link
+                href="/contact"
+                onClick={() => closeMenu()}
+                className="site-mobile-nav-panel__cta block min-h-11 rounded-full bg-pelagic-accent py-3 text-center text-sm font-bold text-white transition hover:bg-pelagic-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent focus-visible:ring-offset-2"
+              >
+                Contact us
+              </Link>
+            </div>
           </div>
-          <div className="mb-4 md:hidden">
-            <NavSearch />
-          </div>
-          <nav className="flex max-h-[min(70vh,32rem)] flex-col gap-2 overflow-y-auto overscroll-contain">
-            {navMenu.map((item) => (
-              <MobileNavItem
-                key={item.label}
-                item={item}
-                onNavigate={() => setOpen(false)}
-              />
-            ))}
-            <Link
-              href="/contact"
-              className="mt-2 rounded-full bg-pelagic-accent py-2.5 text-center text-sm font-bold text-white shadow-md shadow-pelagic-accent/35 transition hover:bg-pelagic-accent-hover"
-            >
-              Contact us
-            </Link>
-          </nav>
         </div>
-      )}
+      ) : null}
     </header>
   );
 }

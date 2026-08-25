@@ -1,14 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-
-const LOGO_CIRCLE_SRC = "/logo-circle.png?v=35";
+import { BRAND_LOGO_CIRCLE_SRC } from "@/components/brand/BrandLogoMark";
 
 type BrandLogoProps = {
   variant?: "header" | "footer" | "promo";
   linked?: boolean;
   compact?: boolean;
   shine?: boolean;
-  navSolid?: boolean;
 };
 
 function BrandLogoWordmark({
@@ -27,7 +25,7 @@ function BrandLogoWordmark({
           ? "brand-logo-wordmark--promo flex"
           : footer
             ? "brand-logo-wordmark--footer flex"
-            : "hidden sm:flex"
+            : "brand-logo-wordmark--header hidden min-[17.5rem]:flex"
       }`}
     >
       <span
@@ -65,7 +63,6 @@ export function BrandLogo({
   linked = true,
   compact = false,
   shine = false,
-  navSolid = true,
 }: BrandLogoProps) {
   const isHeader = variant === "header";
   const isPromo = variant === "promo";
@@ -77,8 +74,10 @@ export function BrandLogo({
 
   const mark = (
     <div
-      className="brand-logo-anchor-slot relative shrink-0"
-      style={{ width: diameter, height: diameter }}
+      className={`brand-logo-anchor-slot relative shrink-0${
+        isHeader ? " brand-logo-anchor-slot--header" : ""
+      }${isFooter ? " brand-logo-anchor-slot--footer" : ""}`}
+      style={isHeader || isFooter ? undefined : { width: diameter, height: diameter }}
     >
       <div
         className={`brand-logo-circle absolute inset-0 inline-flex ${
@@ -99,10 +98,10 @@ export function BrandLogo({
           }`}
         >
           <Image
-            src={LOGO_CIRCLE_SRC}
+            src={BRAND_LOGO_CIRCLE_SRC}
             alt=""
-            width={diameter}
-            height={diameter}
+            width={isHeader ? 100 : isFooter ? 88 : diameter}
+            height={isHeader ? 100 : isFooter ? 88 : diameter}
             className="brand-logo-img brand-logo-img--circle absolute inset-0 z-[1] h-full w-full object-contain object-center"
             priority={isHeader || isPromo}
           />
@@ -113,9 +112,11 @@ export function BrandLogo({
 
   const content = (
     <div
-      className={`brand-logo-lockup relative inline-flex items-center${
+      className={`brand-logo-lockup relative inline-flex min-w-0 items-center${
         isPromo ? " brand-logo-lockup--promo" : ""
-      }${isFooter ? " brand-logo-lockup--footer" : ""} ${lockupShine ? "brand-logo-lockup--shine" : ""}`}
+      }${isHeader ? " brand-logo-lockup--header" : ""}${
+        isFooter ? " brand-logo-lockup--footer" : ""
+      } ${lockupShine ? "brand-logo-lockup--shine" : ""}`}
     >
       {mark}
       {showWordmark && (
@@ -134,7 +135,9 @@ export function BrandLogo({
     return (
       <Link
         href="/"
-        className="group inline-flex rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent"
+        className={`group inline-flex rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent${
+          isHeader ? " brand-logo-home-link" : ""
+        }`}
         aria-label="Pelagic Marine Solutions — home"
       >
         {content}

@@ -29,7 +29,7 @@ export default function HomePage() {
       <HeroParallaxBackdrop />
 
       {/* ── Section 1 · Hero: staggered entrance on page load ── */}
-      <section className="home-hero-section relative z-10 flex min-h-[100svh] min-h-[100dvh] flex-col overflow-hidden bg-transparent lg:min-h-[100dvh]">
+      <section className="home-hero-section relative z-10 flex min-h-[100svh] min-h-[100dvh] flex-col overflow-hidden bg-[#071a33] lg:min-h-[100dvh]">
         <HeroMedia />
 
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pb-20 pt-28 sm:px-6 sm:pb-24 lg:px-8 lg:pb-28 lg:pt-32">
