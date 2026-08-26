@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { useContactEnquiry, urgencyOptions } from "@/components/contact/ContactEnquiryContext";
 import { ContactPanelShell } from "@/components/contact/ContactPanelShell";
 import { company, contactPage, serviceCategories } from "@/lib/site-data";
 
 const fieldClass =
-  "mt-1.5 w-full rounded-lg border border-pelagic-warm bg-white px-4 py-3 text-base text-pelagic-ink placeholder:text-pelagic-slate outline-none transition focus:border-pelagic-accent focus:ring-2 focus:ring-pelagic-accent/15 md:text-sm";
+  "contact-form-field mt-1.5 w-full min-w-0 rounded-lg border border-pelagic-warm bg-white px-4 py-3 text-base text-pelagic-ink placeholder:text-pelagic-slate outline-none transition focus:border-pelagic-accent focus:ring-2 focus:ring-pelagic-accent/15 md:text-sm";
 
 function fieldHighlight(active: boolean) {
   return active ? "border-pelagic-accent ring-2 ring-pelagic-accent/25" : "";
@@ -38,6 +39,30 @@ export function ContactEnquiryForm() {
     resetSubmission,
     formRef,
   } = useContactEnquiry();
+  const mobileBarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const bar = mobileBarRef.current;
+    if (!bar) return;
+
+    const syncBarHeight = () => {
+      document.documentElement.style.setProperty(
+        "--contact-mobile-bar-height",
+        `${bar.offsetHeight}px`,
+      );
+    };
+
+    syncBarHeight();
+    const observer = new ResizeObserver(syncBarHeight);
+    observer.observe(bar);
+    window.addEventListener("resize", syncBarHeight);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", syncBarHeight);
+      document.documentElement.style.removeProperty("--contact-mobile-bar-height");
+    };
+  }, [submitted]);
 
   if (submitted) {
     const isUrgent =
@@ -164,7 +189,7 @@ export function ContactEnquiryForm() {
   return (
     <>
       <ContactPanelShell>
-        <div className="flex flex-1 flex-col p-6 pb-[calc(7rem+env(safe-area-inset-bottom))] sm:p-8 md:pb-8">
+        <div className="contact-enquiry-form-body flex flex-1 flex-col p-6 sm:p-8 md:pb-8">
           <form ref={formRef} className="relative flex flex-1 flex-col space-y-4" onSubmit={handleSubmit}>
             <div className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden>
               <label>
@@ -403,16 +428,21 @@ export function ContactEnquiryForm() {
         </div>
       </ContactPanelShell>
 
-      <div className="contact-enquiry-mobile-bar fixed inset-x-0 bottom-0 z-40 border-t border-pelagic-sand/80 bg-white/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur-md md:hidden">
+      <div
+        ref={mobileBarRef}
+        className="contact-enquiry-mobile-bar fixed inset-x-0 bottom-0 z-40 border-t border-pelagic-sand/80 bg-white/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur-md md:hidden"
+      >
         <button
           type="button"
           disabled={loading || !privacyAccepted}
           onClick={() => formRef.current?.requestSubmit()}
-          className="w-full rounded-lg bg-pelagic-accent px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-pelagic-light disabled:cursor-not-allowed disabled:opacity-60"
+          className="min-h-11 w-full rounded-lg bg-pelagic-accent px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-pelagic-light disabled:cursor-not-allowed disabled:opacity-60"
         >
           {loading ? "Submitting..." : "Submit enquiry"}
         </button>
-        <p className="mt-2 text-center text-xs leading-5 text-pelagic-slate">{contactPage.form.privacyNotice}</p>
+        <p className="contact-enquiry-mobile-bar__notice mt-2 text-center text-[11px] leading-4 text-pelagic-slate">
+          {contactPage.form.privacyNotice}
+        </p>
       </div>
     </>
   );

@@ -75,8 +75,8 @@ function OfficeCard({
         />
         <div className={`absolute inset-0 bg-gradient-to-t ${accent.overlay}`} />
         <div className="absolute inset-x-0 bottom-0 px-6 pb-5 pt-10 text-white">
-          <div className="flex items-start justify-between gap-3">
-            <div>
+          <div className="flex min-w-0 items-start justify-between gap-3">
+            <div className="min-w-0">
               <div className="flex items-center gap-2">
                 <span className="text-lg" aria-hidden>
                   {region.badge}
@@ -85,7 +85,7 @@ function OfficeCard({
                   {office.region}
                 </p>
               </div>
-              <h3 className="font-display mt-2 text-3xl font-bold tracking-wide sm:text-[2rem]">
+              <h3 className="font-display mt-2 break-words text-2xl font-bold tracking-wide sm:text-3xl">
                 {cityUpper}
               </h3>
             </div>
@@ -123,7 +123,7 @@ function OfficeCard({
         </address>
 
         {office.hours && (
-          <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-pelagic-sky px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-pelagic-navy">
+          <p className="mt-3 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full bg-pelagic-sky px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-pelagic-navy">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pelagic-accent opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-pelagic-accent" />

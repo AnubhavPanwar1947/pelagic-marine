@@ -32,8 +32,6 @@ export default function ContactPage() {
       />
 
       <ContactFaqSection />
-
-      <div className="h-40 md:hidden" aria-hidden />
     </ContactPageTheme>
   );
 }

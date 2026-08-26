@@ -38,7 +38,7 @@ export function SplashScreen() {
 
   return (
     <div
-      className={`splash-screen fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500 ${
+      className={`splash-screen fixed inset-0 z-[100] flex min-h-0 flex-col items-center justify-center overflow-y-auto overscroll-contain p-4 transition-opacity duration-500 ${
         fadeOut ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
       aria-hidden="true"

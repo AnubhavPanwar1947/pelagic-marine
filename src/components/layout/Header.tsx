@@ -452,6 +452,15 @@ export function Header() {
     };
   }, [menuOpen, closeMenu]);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 60rem)");
+    const onChange = () => {
+      if (mq.matches && menuOpen) closeMenu();
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [menuOpen, closeMenu]);
+
   return (
     <header
       ref={headerRef}
@@ -470,14 +479,14 @@ export function Header() {
       data-search-open={searchOpen ? "true" : "false"}
     >
       <div
-        className={`site-header-accent h-1 bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light transition-all duration-300 motion-reduce:transition-none ${
+        className={`site-header-accent h-0.5 bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light transition-all duration-300 motion-reduce:transition-none ${
           scrolled ? "opacity-100 shadow-[0_1px_8px_rgba(47,168,238,0.35)]" : "opacity-90"
         }`}
         aria-hidden
       />
       <div
         className={`site-header-bar mx-auto flex max-w-7xl min-w-0 items-center justify-between gap-1 px-3 sm:gap-1.5 sm:px-4 nav:gap-1.5 nav:px-4 xl:gap-2 xl:px-8 ${
-          scrolled ? "py-2.5" : "py-3"
+          scrolled ? "py-1.5" : "py-2"
         }`}
       >
         <div className="min-w-0 shrink">

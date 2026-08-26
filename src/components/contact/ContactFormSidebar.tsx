@@ -36,7 +36,7 @@ export function ContactFormQuickIntake({
     <div className={`mt-3 flex flex-col ${fill ? "min-h-0 flex-1" : ""}`}>
       <p className="text-xs font-bold uppercase tracking-wider text-pelagic-slate">Quick intake</p>
       <div
-        className={`mt-2 grid grid-cols-2 gap-2 ${fill ? "min-h-0 flex-1 auto-rows-fr" : ""}`}
+        className={`mt-2 grid grid-cols-1 gap-2 min-[280px]:grid-cols-2 ${fill ? "min-h-0 flex-1 auto-rows-fr" : ""}`}
       >
         {contactPage.quickIntake.map((item) => {
           const isActive = activeIntake === item.id;
@@ -47,7 +47,7 @@ export function ContactFormQuickIntake({
               key={item.id}
               type="button"
               onClick={() => onSelect(item.id)}
-              className={`group flex h-full flex-col justify-between rounded-xl border text-left transition ${
+              className={`group flex h-full min-w-0 flex-col justify-between rounded-xl border text-left transition ${
                 fill ? "p-3 sm:p-3.5" : "p-2.5"
               } ${
                 isActive
@@ -56,7 +56,7 @@ export function ContactFormQuickIntake({
               }`}
             >
               <span
-                className={`font-display font-semibold leading-snug text-pelagic-ink ${
+                className={`font-display min-w-0 break-words font-semibold leading-snug text-pelagic-ink ${
                   fill ? "text-sm sm:text-base" : "text-xs sm:text-sm"
                 }`}
               >

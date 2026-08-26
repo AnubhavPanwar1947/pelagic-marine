@@ -96,7 +96,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
         </div>
 
         <div
-          className="inline-flex rounded-full border border-pelagic-mist bg-white/90 p-1 shadow-sm"
+          className="flex flex-wrap gap-1 rounded-full border border-pelagic-mist bg-white/90 p-1 shadow-sm"
           role="tablist"
           aria-label="Map or list view"
         >
@@ -113,7 +113,7 @@ export function OfficeLocator({ offices, selectedIndex, onSelectOffice }: Office
               role="tab"
               aria-selected={viewMode === mode.id}
               onClick={() => setViewMode(mode.id)}
-              className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
+              className={`min-h-11 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
                 viewMode === mode.id
                   ? "bg-pelagic-charcoal text-white"
                   : "text-pelagic-steel hover:text-pelagic-charcoal"

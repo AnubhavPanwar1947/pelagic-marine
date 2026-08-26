@@ -116,7 +116,7 @@ export function BrandLogo({
         isPromo ? " brand-logo-lockup--promo" : ""
       }${isHeader ? " brand-logo-lockup--header" : ""}${
         isFooter ? " brand-logo-lockup--footer" : ""
-      } ${lockupShine ? "brand-logo-lockup--shine" : ""}`}
+      }${compact && isHeader ? " brand-logo-lockup--compact" : ""} ${lockupShine ? "brand-logo-lockup--shine" : ""}`}
     >
       {mark}
       {showWordmark && (

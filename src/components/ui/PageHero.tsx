@@ -28,9 +28,9 @@ export function PageHero({ eyebrow, title, description, imageSrc }: PageHeroProp
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-[#e8f3fb] via-white to-[#f3f9fb]" />
       )}
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div className="relative mx-auto min-w-0 max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <p className="type-eyebrow">{eyebrow}</p>
-        <h1 className="type-display mt-4 max-w-4xl text-3xl leading-[1.08] text-pelagic-ink sm:text-4xl lg:text-5xl">
+        <h1 className="type-display mt-4 max-w-4xl min-w-0 break-words text-3xl leading-[1.08] text-pelagic-ink sm:text-4xl lg:text-5xl">
           {title}
         </h1>
         {description && (

@@ -17,7 +17,7 @@ export function GoogleMapEmbed({
   title,
   className = "",
   frameClassName = "",
-  eager = true,
+  eager = false,
   compact = false,
 }: GoogleMapEmbedProps) {
   const [mounted, setMounted] = useState(false);

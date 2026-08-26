@@ -118,7 +118,7 @@ export function CookieConsent() {
         onClick={openCookieSettings}
         className={`cookie-settings-button fixed left-4 z-[90] flex h-11 w-11 items-center justify-center rounded-full border border-pelagic-sand bg-white text-pelagic-navy shadow-lg transition hover:border-pelagic-accent hover:text-pelagic-accent ${
           pathname === "/contact" || pathname === "/contact/"
-            ? "bottom-[11rem] md:bottom-4"
+            ? "cookie-settings-button--contact-offset"
             : "bottom-4"
         }`}
         aria-label="Cookie settings"

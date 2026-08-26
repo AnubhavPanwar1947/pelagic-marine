@@ -46,6 +46,8 @@
   --pelagic-blue: #1e7fd0;
   --pelagic-light: #38b0f0;
   --pelagic-mist: #f3f9fb;
+
+  --contact-mobile-bar-height: 5.5rem;
 }
 
 @theme inline {
@@ -105,7 +107,7 @@ html {
   }
 }
 
-/* Header logo — responsive lockup (phone, tablet, desktop) */
+/* Header — content-driven vertical compaction (logo tiers unchanged) */
 .site-header-bar {
   --logo-phone-anchor-size: 3.75rem;
   --logo-phone-anchor-x: 7px;
@@ -150,8 +152,15 @@ html {
     --logo-header-anchor-x: 0px;
     --logo-header-anchor-y: 5px;
     gap: 0.25rem;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
     padding-left: max(0.5rem, env(safe-area-inset-left));
     padding-right: max(0.5rem, env(safe-area-inset-right));
+  }
+
+  header[data-scrolled="true"] .site-header-bar {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
 
   .site-header-bar > div:first-of-type {
@@ -536,6 +545,25 @@ html {
   flex-shrink: 0;
 }
 
+/* Header logo — intrinsic size when rendered outside .site-header-bar */
+.brand-logo-anchor-slot--header {
+  width: var(--logo-header-anchor-size, 6.25rem);
+  height: var(--logo-header-anchor-size, 6.25rem);
+}
+
+.brand-logo-lockup--header .brand-logo-circle {
+  transform: translate(
+    var(--logo-header-anchor-x, var(--logo-lockup-anchor-x)),
+    var(--logo-header-anchor-y, var(--logo-lockup-anchor-y))
+  );
+}
+
+.brand-logo-lockup--header.brand-logo-lockup--compact {
+  --logo-header-anchor-size: 3.5rem;
+  --logo-header-anchor-x: 6px;
+  --logo-header-anchor-y: 10px;
+}
+
 .brand-logo-lockup .brand-logo-circle {
   transform: translate(var(--logo-lockup-anchor-x), var(--logo-lockup-anchor-y));
 }
@@ -731,6 +759,9 @@ html {
   font-size: 1.0625rem;
   line-height: 1.7;
   color: var(--pelagic-body);
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 @media (min-width: 640px) {
@@ -762,6 +793,25 @@ html {
   font-weight: 500;
   letter-spacing: -0.02em;
   text-wrap: balance;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+@media (max-width: 279.99px) {
+  .type-display {
+    font-size: clamp(1.375rem, 7vw, 1.75rem);
+    letter-spacing: -0.01em;
+  }
+
+  .btn-responsive {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    white-space: normal;
+  }
 }
 
 /* ShoreSafe-style accent words inside headings — Pelagic accent blue */
@@ -780,6 +830,69 @@ input::placeholder,
 textarea::placeholder {
   color: var(--pelagic-slate);
   opacity: 1;
+}
+
+.contact-form-field {
+  min-width: 0;
+}
+
+.contact-form-field:is(select) {
+  text-overflow: ellipsis;
+}
+
+.contact-enquiry-form-body {
+  padding-bottom: calc(var(--contact-mobile-bar-height, 5.5rem) + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 48rem) {
+  .contact-enquiry-form-body {
+    padding-bottom: 2rem;
+  }
+}
+
+.contact-enquiry-mobile-bar__notice {
+  max-height: 4.5rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Ultra-narrow: duplicate notice hidden (privacy checkbox remains in-form) */
+@media (max-width: 279.99px) {
+  .contact-enquiry-mobile-bar__notice {
+    display: none;
+  }
+}
+
+/*
+ * Short viewport: hide duplicate bar notice so the measured bar height shrinks.
+ * In-form privacy checkbox + footer "Cookies & cache" remain available.
+ */
+@media (max-height: 20rem) {
+  .contact-enquiry-mobile-bar__notice {
+    display: none;
+  }
+}
+
+.cookie-settings-button--contact-offset {
+  bottom: calc(var(--contact-mobile-bar-height, 5.5rem) + 0.75rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 48rem) {
+  .cookie-settings-button--contact-offset {
+    bottom: 1rem;
+  }
+}
+
+/*
+ * When header + compact bar + cookie still cannot fit, hide only the floating
+ * shortcut. Cookie settings stay reachable via the footer control.
+ */
+@media (max-width: 47.99rem) and (max-height: 14.5625rem) {
+  .cookie-settings-button--contact-offset {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+  }
 }
 
 .bg-maritime-grid {
@@ -3065,6 +3178,17 @@ textarea::placeholder {
 /* Splash — quiet brand moment; smaller mark, soft single shine */
 .splash-screen {
   background: var(--background);
+}
+
+@media (max-height: 400px) {
+  .splash-screen .splash-logo-wrap img {
+    width: min(32vw, 100px) !important;
+    max-width: 100px;
+  }
+
+  .splash-screen .mt-8 {
+    margin-top: 1rem;
+  }
 }
 
 .splash-logo-wrap {
