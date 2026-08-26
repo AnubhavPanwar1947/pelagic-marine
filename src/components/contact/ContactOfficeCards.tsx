@@ -5,7 +5,8 @@ import { getGoogleMapsSearchUrl } from "@/lib/maps";
 import { getOfficeLocalTime } from "@/lib/office-time";
 import { getHubOffices, getOfficeIndex, mapHubs, type Office } from "@/lib/offices";
 import { SiteImage } from "@/components/ui/SiteImage";
-import { siteImages } from "@/lib/site-images";
+import { imageSizes } from "@/lib/image-sizes";
+import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 
 type ContactOfficeCardsProps = {
   offices: Office[];
@@ -64,14 +65,15 @@ function OfficeCard({
       }`}
     >
       <div className={`h-2.5 w-full ${accent.bar}`} aria-hidden />
-      <div className="relative h-40 overflow-hidden">
+      <div className="relative aspect-[21/9] overflow-hidden">
         <SiteImage
           src={imageSrc}
           alt={`${city} office`}
           fill
           brandOverlay
+          objectPosition={getImageObjectPosition(imageSrc)}
           className="object-cover transition duration-500 group-hover:scale-105"
-          sizes="(max-width: 1024px) 100vw, 50vw"
+          sizes={imageSizes.officeCard}
         />
         <div className={`absolute inset-0 bg-gradient-to-t ${accent.overlay}`} />
         <div className="absolute inset-x-0 bottom-0 px-6 pb-5 pt-10 text-white">

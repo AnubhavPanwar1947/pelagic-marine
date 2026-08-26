@@ -4,7 +4,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { decarbonization } from "@/lib/site-data";
-import { siteImages } from "@/lib/site-images";
+import { imageSizes } from "@/lib/image-sizes";
+import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Decarbonization",
@@ -30,8 +31,9 @@ export default function DecarbonizationPage() {
                 alt="Offshore wind and clean energy"
                 fill
                 brandOverlay
+                objectPosition={getImageObjectPosition(siteImages.decarbonization)}
                 className="object-cover"
-                sizes="100vw"
+                sizes={imageSizes.sectionBanner}
               />
             </div>
             <div className="bg-gradient-to-br from-pelagic-sky/50 to-pelagic-sunset/30 p-10 lg:p-14">

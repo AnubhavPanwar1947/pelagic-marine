@@ -10,6 +10,7 @@ type SiteImageProps = {
   priority?: boolean;
   className?: string;
   sizes?: string;
+  objectPosition?: string;
   /** Navy/gold wash so ship photos match the Pelagic brand palette */
   brandOverlay?: boolean;
 };
@@ -21,6 +22,7 @@ export function SiteImage({
   priority,
   className = "",
   sizes,
+  objectPosition,
   brandOverlay = false,
 }: SiteImageProps) {
   const [failed, setFailed] = useState(false);
@@ -29,7 +31,10 @@ export function SiteImage({
     return (
       <div
         className={`bg-gradient-to-br from-pelagic-sand via-pelagic-warm to-pelagic-accent/20 ${fill ? "absolute inset-0" : ""} ${className}`}
-        aria-hidden={alt === ""}
+        role={alt ? "img" : undefined}
+        aria-label={alt || undefined}
+        aria-hidden={alt === "" ? true : undefined}
+        data-missing-image={src}
       />
     );
   }
@@ -42,8 +47,14 @@ export function SiteImage({
         fill={fill}
         priority={priority}
         sizes={sizes}
+        objectPosition={objectPosition}
         className={className}
-        onError={() => setFailed(true)}
+        onError={() => {
+          if (process.env.NODE_ENV === "development") {
+            console.warn(`[SiteImage] Failed to load image: ${src}`);
+          }
+          setFailed(true);
+        }}
       />
       {brandOverlay && (
         <div

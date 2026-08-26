@@ -1,59 +1,199 @@
-import { readdir, stat } from "node:fs/promises";
+/**
+ * Generates width-based responsive variants (WebP, AVIF, and fallback) for local
+ * images under public/images/. Writes src/lib/image-manifest.generated.ts.
+ *
+ * Rules:
+ * - Target widths: 320, 480, 640, 960, 1280, 1920 — only when <= source width.
+ * - Never upscale; never advertise a width larger than the source.
+ * - Photographic PNGs get JPEG fallbacks instead of large PNG variants.
+ */
+import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
-const WIDTHS = [640, 960, 1280, 1920];
-const IMAGE_DIR = fileURLToPath(new URL("../public/images/", import.meta.url));
-const IMAGE_EXT = /\.(jpe?g|png|webp)$/i;
-const VARIANT_RE = /-\d+w\.(jpe?g|png|webp)$/i;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(__dirname, "..");
+const IMAGES_DIR = path.join(ROOT, "public", "images");
+const MANIFEST_PATH = path.join(ROOT, "src", "lib", "image-manifest.generated.ts");
 
-async function walk(dir) {
-  const entries = await readdir(dir, { withFileTypes: true });
+const TARGET_WIDTHS = [320, 480, 640, 960, 1280, 1920];
+const JPEG_QUALITY = 88;
+const WEBP_QUALITY = 85;
+const AVIF_QUALITY = 62;
+
+const VARIANT_RE = /-(\d+)w\.(jpe?g|png|webp|avif)$/i;
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function publicPath(absPath) {
+  const rel = path.relative(path.join(ROOT, "public"), absPath).replace(/\\/g, "/");
+  return `/${rel}`;
+}
+
+function variantBasename(srcPath, width) {
+  const parsed = path.parse(srcPath);
+  return path.join(parsed.dir, `${parsed.name}-${width}w`);
+}
+
+async function collectSourceImages(dir) {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
   const files = [];
-
   for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
+    const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      files.push(...(await walk(fullPath)));
+      files.push(...(await collectSourceImages(full)));
       continue;
     }
-    if (!IMAGE_EXT.test(entry.name) || VARIANT_RE.test(entry.name)) continue;
-    files.push(fullPath);
+    if (!/\.(jpe?g|png)$/i.test(entry.name)) continue;
+    if (VARIANT_RE.test(entry.name)) continue;
+    files.push(full);
   }
-
   return files;
 }
 
-async function generateVariants(filePath) {
-  const relative = path.relative(IMAGE_DIR, filePath).replace(/\\/g, "/");
-  const parsed = path.parse(filePath);
-  const meta = await sharp(filePath).metadata();
-  const sourceWidth = meta.width ?? WIDTHS[WIDTHS.length - 1];
+async function removeExistingVariants(srcPath) {
+  const parsed = path.parse(srcPath);
+  const dir = parsed.dir;
+  const variantForSourceRe = new RegExp(
+    `^${escapeRegExp(parsed.name)}-\\d+w\\.(jpe?g|png|webp|avif)$`,
+    "i",
+  );
+  const entries = await fs.readdir(dir);
+  await Promise.all(
+    entries
+      .filter((name) => variantForSourceRe.test(name))
+      .map((name) => fs.unlink(path.join(dir, name)).catch(() => undefined)),
+  );
+}
 
-  for (const width of WIDTHS) {
-    const targetWidth = Math.min(width, sourceWidth);
-    const outPath = path.join(parsed.dir, `${parsed.name}-${width}w${parsed.ext}`);
-
-    await sharp(filePath)
-      .resize({ width: targetWidth, withoutEnlargement: true })
-      .toFile(outPath);
-
-    console.log(`Wrote images/${relative.replace(parsed.base, path.basename(outPath))}`);
+function widthsForSource(sourceWidth) {
+  const widths = TARGET_WIDTHS.filter((w) => w <= sourceWidth);
+  if (widths.length === 0) {
+    return [sourceWidth];
   }
+  return widths;
 }
 
-const files = await walk(IMAGE_DIR);
-
-if (files.length === 0) {
-  console.log("No source images found in public/images.");
-  process.exit(0);
+async function hasAlpha(channel) {
+  return channel === "rgba" || channel === "grey+alpha";
 }
 
-for (const filePath of files) {
-  const info = await stat(filePath);
-  if (!info.isFile()) continue;
-  await generateVariants(filePath);
+async function generateVariants(srcPath) {
+  const metadata = await sharp(srcPath).metadata();
+  const sourceWidth = metadata.width ?? 0;
+  const sourceHeight = metadata.height ?? 0;
+  if (!sourceWidth || !sourceHeight) {
+    console.warn(`Skipping unreadable image: ${srcPath}`);
+    return null;
+  }
+
+  await removeExistingVariants(srcPath);
+
+  const ext = path.extname(srcPath).toLowerCase();
+  const isPng = ext === ".png";
+  const alpha = isPng && (await hasAlpha(metadata.channels));
+  const useJpegFallback = isPng && !alpha;
+
+  const widths = widthsForSource(sourceWidth);
+  const publicSrc = publicPath(srcPath);
+
+  const fallback = [];
+  const webp = [];
+  const avif = [];
+
+  for (const width of widths) {
+    const resizeWidth = Math.min(width, sourceWidth);
+    const pipeline = sharp(srcPath).resize({
+      width: resizeWidth,
+      withoutEnlargement: true,
+      fit: "inside",
+    });
+
+    const webpPath = `${variantBasename(srcPath, resizeWidth)}.webp`;
+    await pipeline
+      .clone()
+      .webp({ quality: WEBP_QUALITY, effort: 4 })
+      .toFile(webpPath);
+    webp.push({ width: resizeWidth, path: publicPath(webpPath) });
+
+    const avifPath = `${variantBasename(srcPath, resizeWidth)}.avif`;
+    await pipeline
+      .clone()
+      .avif({ quality: AVIF_QUALITY, effort: 4 })
+      .toFile(avifPath);
+    avif.push({ width: resizeWidth, path: publicPath(avifPath) });
+
+    if (useJpegFallback) {
+      const jpegPath = `${variantBasename(srcPath, resizeWidth)}.jpg`;
+      await pipeline
+        .clone()
+        .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
+        .toFile(jpegPath);
+      fallback.push({ width: resizeWidth, path: publicPath(jpegPath) });
+    } else if (isPng) {
+      const pngPath = `${variantBasename(srcPath, resizeWidth)}.png`;
+      await pipeline.clone().png({ compressionLevel: 9 }).toFile(pngPath);
+      fallback.push({ width: resizeWidth, path: publicPath(pngPath) });
+    } else {
+      const jpegPath = `${variantBasename(srcPath, resizeWidth)}.jpg`;
+      await pipeline
+        .clone()
+        .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
+        .toFile(jpegPath);
+      fallback.push({ width: resizeWidth, path: publicPath(jpegPath) });
+    }
+  }
+
+  return {
+    src: publicSrc,
+    width: sourceWidth,
+    height: sourceHeight,
+    fallback,
+    webp,
+    avif,
+  };
 }
 
-console.log(`Generated responsive variants for ${files.length} image(s).`);
+function writeManifest(manifest) {
+  const body = `/* eslint-disable */
+// Generated by scripts/generate-responsive-images.mjs — do not edit manually.
+export type ImageVariant = { width: number; path: string };
+
+export type ImageManifestEntry = {
+  src: string;
+  width: number;
+  height: number;
+  fallback: ImageVariant[];
+  webp: ImageVariant[];
+  avif: ImageVariant[];
+};
+
+export const imageManifest: Record<string, ImageManifestEntry> = ${JSON.stringify(manifest, null, 2)};
+`;
+  return fs.writeFile(MANIFEST_PATH, body, "utf8");
+}
+
+async function main() {
+  const sources = await collectSourceImages(IMAGES_DIR);
+  const manifest = {};
+
+  for (const srcPath of sources) {
+    const rel = path.relative(IMAGES_DIR, srcPath);
+    process.stdout.write(`Processing ${rel}…\n`);
+    const entry = await generateVariants(srcPath);
+    if (entry) {
+      manifest[entry.src] = entry;
+    }
+  }
+
+  await writeManifest(manifest);
+  process.stdout.write(`Wrote manifest with ${Object.keys(manifest).length} images.\n`);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

@@ -4,7 +4,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { careers, company } from "@/lib/site-data";
-import { siteImages } from "@/lib/site-images";
+import { imageSizes } from "@/lib/image-sizes";
+import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -28,8 +29,9 @@ export default function CareersPage() {
             alt="Maritime professionals at work"
             fill
             brandOverlay
+            objectPosition={getImageObjectPosition(siteImages.team)}
             className="object-cover"
-            sizes="100vw"
+            sizes={imageSizes.sectionBanner}
           />
         </div>
         <div className="grid gap-12 lg:grid-cols-2">

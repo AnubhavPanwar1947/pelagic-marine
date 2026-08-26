@@ -1,11 +1,12 @@
 import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
+import { imageSizes } from "@/lib/image-sizes";
 import { heroImage } from "@/lib/site-images";
 
 /**
  * Fixed parallax backdrop for the Clients section on desktop.
- * Sits behind solid homepage sections; the hero section uses its own local
- * HeroMedia so crop is consistent at every viewport width.
+ * Uses a single static hero frame (with drift CSS) so the same slides are not
+ * decoded twice alongside HeroMedia's slideshow.
  */
 export function HeroParallaxBackdrop() {
   return (
@@ -13,10 +14,15 @@ export function HeroParallaxBackdrop() {
       className="pointer-events-none fixed inset-0 z-0 hidden lg:block"
       aria-hidden
     >
-      <HeroSlideshow
-        showGradients={false}
-        imageClassName="home-hero-backdrop-img"
-      />
+      <div className="absolute inset-0 overflow-hidden bg-[#071a33]">
+        <ResponsiveImage
+          src={heroImage.src}
+          alt=""
+          fill
+          sizes={imageSizes.fullViewport}
+          className="object-cover home-hero-cover-img home-hero-backdrop-img"
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-r from-[#071a33]/55 via-[#071a33]/20 to-[#071a33]/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#071a33]/45 via-transparent to-[#071a33]/15" />
     </div>
@@ -36,7 +42,7 @@ export function HeroSectionFill({ className = "" }: { className?: string }) {
         src={heroImage.src}
         alt=""
         fill
-        sizes="100vw"
+        sizes={imageSizes.fullViewport}
         className="object-cover home-hero-cover-img"
       />
       <div className="absolute inset-0 bg-[#071a33]/50" />

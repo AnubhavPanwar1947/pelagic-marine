@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
+import { imageSizes } from "@/lib/image-sizes";
 import { heroSlides } from "@/lib/site-images";
 
 const INTERVAL_MS = 7000;
@@ -28,7 +29,7 @@ export function HeroSlideshow({
 
     const id = window.setInterval(
       () => setActive((current) => (current + 1) % heroSlides.length),
-      INTERVAL_MS
+      INTERVAL_MS,
     );
     return () => window.clearInterval(id);
   }, []);
@@ -37,6 +38,7 @@ export function HeroSlideshow({
     <div className={`absolute inset-0 overflow-hidden bg-[#071a33] ${className}`}>
       {heroSlides.map((slide, index) => {
         const isActive = index === active;
+        const isLcpCandidate = priority && index === 0;
         return (
           <div
             key={slide.src}
@@ -50,8 +52,8 @@ export function HeroSlideshow({
               src={slide.src}
               alt={isActive ? slide.alt : ""}
               fill
-              priority={priority && index === 0}
-              sizes="100vw"
+              priority={isLcpCandidate}
+              sizes={imageSizes.fullViewport}
               draggable={false}
               className={`object-cover home-hero-cover-img${
                 index === 1 ? " home-hero-cover-img--port" : ""

@@ -19,7 +19,8 @@ import {
   serviceCategories,
   stats,
 } from "@/lib/site-data";
-import { siteImages } from "@/lib/site-images";
+import { imageSizes } from "@/lib/image-sizes";
+import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 
 const homeServices = serviceCategories.filter((service) => service.home !== false);
 
@@ -155,8 +156,9 @@ export default function HomePage() {
                   src={siteImages.heroBridge}
                   alt="Pelagic Marine operations on the bridge"
                   fill
-                  className="object-cover object-[58%_center]"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  objectPosition={getImageObjectPosition(siteImages.heroBridge)}
+                  className="object-cover"
+                  sizes={imageSizes.contentHalf}
                 />
                 <div
                   className="absolute inset-0 bg-gradient-to-t from-pelagic-ink/35 via-transparent to-transparent"
@@ -182,8 +184,9 @@ export default function HomePage() {
                   src={siteImages.decarbonization}
                   alt="Clean energy turbines — maritime decarbonization"
                   fill
+                  objectPosition={getImageObjectPosition(siteImages.decarbonization)}
                   className="object-cover transition duration-700 hover:scale-[1.03]"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes={imageSizes.contentHalf}
                 />
               </div>
             </Reveal>

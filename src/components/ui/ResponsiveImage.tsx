@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { buildSrcSet, defaultResponsiveSrc } from "@/lib/responsive-image";
+import { buildPictureSources } from "@/lib/responsive-image";
 
 type ResponsiveImageProps = {
   src: string;
@@ -9,6 +9,7 @@ type ResponsiveImageProps = {
   className?: string;
   sizes?: string;
   style?: CSSProperties;
+  objectPosition?: string;
   draggable?: boolean;
   onError?: () => void;
 };
@@ -21,25 +22,51 @@ export function ResponsiveImage({
   className = "",
   sizes,
   style,
+  objectPosition,
   draggable,
   onError,
 }: ResponsiveImageProps) {
-  const srcSet = buildSrcSet(src);
-  const resolvedSrc = srcSet ? defaultResponsiveSrc(src) : src;
+  const picture = buildPictureSources(src);
+  const hasModernSources = Boolean(picture.avifSrcSet || picture.webpSrcSet);
+
+  const imgClassName = fill ? `absolute inset-0 h-full w-full ${className}` : className;
+  const imgStyle: CSSProperties = {
+    ...style,
+    ...(objectPosition ? { objectPosition } : {}),
+  };
+
+  const imgElementProps = {
+    src: picture.fallbackSrc,
+    srcSet: picture.fallbackSrcSet,
+    sizes,
+    draggable,
+    loading: priority ? ("eager" as const) : ("lazy" as const),
+    fetchPriority: priority ? ("high" as const) : undefined,
+    decoding: "async" as const,
+    onError,
+    className: imgClassName,
+    style: imgStyle,
+    width: !fill ? picture.intrinsicWidth : undefined,
+    height: !fill ? picture.intrinsicHeight : undefined,
+  };
+
+  if (!hasModernSources) {
+    // eslint-disable-next-line @next/next/no-img-element -- static export uses pre-generated srcset
+    return <img alt={alt} {...imgElementProps} />;
+  }
+
+  const pictureClassName = fill ? "absolute inset-0 block h-full w-full" : undefined;
 
   return (
-  // eslint-disable-next-line @next/next/no-img-element -- static export uses pre-generated srcset, not next/image optimization
-    <img
-      src={resolvedSrc}
-      srcSet={srcSet}
-      sizes={sizes}
-      alt={alt}
-      draggable={draggable}
-      loading={priority ? "eager" : "lazy"}
-      decoding="async"
-      onError={onError}
-      className={fill ? `absolute inset-0 h-full w-full ${className}` : className}
-      style={style}
-    />
+    <picture className={pictureClassName}>
+      {picture.avifSrcSet ? (
+        <source type="image/avif" srcSet={picture.avifSrcSet} sizes={sizes} />
+      ) : null}
+      {picture.webpSrcSet ? (
+        <source type="image/webp" srcSet={picture.webpSrcSet} sizes={sizes} />
+      ) : null}
+      {/* eslint-disable-next-line @next/next/no-img-element -- static export uses pre-generated srcset */}
+      <img alt={alt} {...imgElementProps} />
+    </picture>
   );
 }

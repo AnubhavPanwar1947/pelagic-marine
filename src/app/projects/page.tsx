@@ -5,7 +5,8 @@ import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { caseStudies } from "@/lib/site-data";
-import { siteImages } from "@/lib/site-images";
+import { imageSizes } from "@/lib/image-sizes";
+import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -34,8 +35,11 @@ export default function ProjectsPage() {
                     alt={project.title}
                     fill
                     brandOverlay
+                    objectPosition={getImageObjectPosition(
+                      siteImages.cases[i] ?? siteImages.cases[0],
+                    )}
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    sizes={imageSizes.projectCard}
                   />
                 </div>
                 <div className="p-6">

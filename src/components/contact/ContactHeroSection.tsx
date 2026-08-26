@@ -7,7 +7,8 @@ import { ContactIntentPaths } from "@/components/contact/ContactIntentPaths";
 import { ContactTrustPanel } from "@/components/contact/ContactTrustPanel";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { contactPage } from "@/lib/site-data";
-import { siteImages } from "@/lib/site-images";
+import { imageSizes } from "@/lib/image-sizes";
+import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 
 export function ContactHeroSection() {
   const heroImage = contactPage.hero.imageSrc || siteImages.contactHero;
@@ -23,8 +24,9 @@ export function ContactHeroSection() {
             alt=""
             fill
             brandOverlay
+            objectPosition={getImageObjectPosition(heroImage)}
             className="object-cover"
-            sizes="50vw"
+            sizes={imageSizes.contactHero}
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-pelagic-sky/25 to-pelagic-sky/75" />
         </div>

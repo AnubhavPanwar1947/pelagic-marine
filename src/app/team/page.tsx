@@ -4,6 +4,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { teamMembers } from "@/lib/site-data";
+import { imageSizes } from "@/lib/image-sizes";
 import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
@@ -30,18 +31,18 @@ export default function TeamPage() {
                 key={member.name}
                 className="card-maritime overflow-hidden rounded-3xl border shadow-sm"
               >
-                <div className="grid sm:grid-cols-[11.5rem_1fr]">
-                  <div className="relative h-64 w-full shrink-0 overflow-hidden bg-pelagic-sand sm:h-full sm:min-h-[17rem]">
+                <div className="grid min-w-0 sm:grid-cols-[minmax(0,11.5rem)_minmax(0,1fr)]">
+                  <div className="relative aspect-[3/4] w-full min-w-0 shrink-0 overflow-hidden bg-pelagic-sand sm:aspect-auto sm:h-full sm:min-h-[17rem] sm:max-w-[11.5rem]">
                     <SiteImage
                       src={member.photo}
                       alt={member.name}
                       fill
                       className="object-cover object-top"
-                      sizes="(max-width: 640px) 100vw, 184px"
+                      sizes={imageSizes.teamPortrait}
                     />
                   </div>
-                  <div className="p-6 sm:p-8">
-                    <h2 className="font-display text-2xl font-semibold text-pelagic-ink">
+                  <div className="min-w-0 p-6 sm:p-8">
+                    <h2 className="font-display min-w-0 break-words text-2xl font-semibold text-pelagic-ink">
                       {member.name}
                     </h2>
                     <p className="mt-1 text-sm font-bold uppercase tracking-wider text-pelagic-accent">
