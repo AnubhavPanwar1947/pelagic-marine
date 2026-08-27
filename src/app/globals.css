@@ -276,7 +276,14 @@ html {
   .site-header-bar > div:first-of-type {
     container-type: normal;
     container-name: none;
-    max-width: none;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: min(100%, calc(100vw - 6.5rem));
+  }
+
+  .site-header-bar .brand-logo-lockup--header {
+    max-width: 100%;
+    min-width: 0;
   }
 
   .site-header-bar .brand-logo-home-link {
@@ -343,6 +350,25 @@ html {
     margin-top: 0.25rem;
     font-size: 9px;
     letter-spacing: 0.18em;
+  }
+}
+
+/* Header dropdowns — viewport-safe widths; flip nested flyout on tight desktop */
+.site-header-dropdown-panel {
+  width: min(20rem, calc(100vw - 2rem));
+  max-width: calc(100vw - 2rem);
+}
+
+.site-header-dropdown-panel--wide {
+  width: min(22rem, calc(100vw - 2rem));
+}
+
+@media (min-width: 60rem) and (max-width: 90rem) {
+  .site-header-submenu-flyout {
+    left: auto;
+    right: 100%;
+    padding-left: 0;
+    padding-right: 0.5rem;
   }
 }
 
@@ -798,10 +824,136 @@ html {
   word-break: normal;
 }
 
+/* Fluid heading scale — size only; weight/font-family from .type-display or .font-display */
+.type-page-title,
+.type-section-title,
+.type-section-title--lg,
+.type-subsection-title,
+.type-subsection-title--lg,
+.type-hero-title,
+.type-hero-brand,
+.type-card-title {
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.type-page-title,
+.type-section-title {
+  font-size: clamp(1.875rem, 1.25rem + 2vw, 3rem);
+  line-height: 1.08;
+}
+
+.type-section-title--lg {
+  font-size: clamp(1.875rem, 1.25rem + 2.2vw, 3.25rem);
+  line-height: 1.08;
+}
+
+/* text-2xl → sm/lg:text-3xl */
+.type-subsection-title {
+  font-size: clamp(1.5rem, 1.2rem + 1.25vw, 1.875rem);
+  line-height: 1.15;
+}
+
+/* text-3xl → sm:text-4xl */
+.type-subsection-title--lg {
+  font-size: clamp(1.875rem, 1.5rem + 1.25vw, 2.25rem);
+  line-height: 1.15;
+}
+
+.type-hero-title {
+  font-size: clamp(1.75rem, 1.15rem + 2.5vw, 2.85rem);
+  line-height: 1.12;
+}
+
+.type-hero-brand {
+  font-size: clamp(2.4rem, 6vw, 4.25rem);
+  line-height: 0.95;
+}
+
+/* text-xl → sm:text-[1.35rem] */
+.type-card-title {
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.35rem);
+  line-height: 1.375;
+}
+
+/* Fluid section spacing */
+.section-py {
+  padding-top: clamp(5rem, 3rem + 5vw, 7rem);
+  padding-bottom: clamp(5rem, 3rem + 5vw, 7rem);
+}
+
+/* py-20 → lg:py-24 */
+.section-py-md {
+  padding-top: clamp(5rem, 4rem + 2.5vw, 6rem);
+  padding-bottom: clamp(5rem, 4rem + 2.5vw, 6rem);
+}
+
+.section-py-lg {
+  padding-top: clamp(7rem, 4rem + 6vw, 9rem);
+  padding-bottom: clamp(7rem, 4rem + 6vw, 9rem);
+}
+
+.page-hero-py {
+  padding-top: clamp(4rem, 2.5rem + 4vw, 5rem);
+  padding-bottom: clamp(4rem, 2.5rem + 4vw, 5rem);
+}
+
+.gap-section {
+  gap: clamp(3.5rem, 1.9rem + 3.5vw, 5rem);
+}
+
+/* gap-12 → lg:gap-16 */
+.gap-content {
+  gap: clamp(3rem, 2rem + 2.5vw, 4rem);
+}
+
+/* mt-16 → lg:mt-20 */
+.mt-section {
+  margin-top: clamp(4rem, 3rem + 2.5vw, 5rem);
+}
+
+/* mt-14 → sm:mt-16 */
+.mt-section-sm {
+  margin-top: clamp(3.5rem, 3rem + 1.5vw, 4rem);
+}
+
+.cta-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  gap: clamp(1rem, 0.75rem + 1vw, 1.25rem);
+}
+
+.cta-stack > * {
+  max-width: 100%;
+}
+
+.cta-link {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-align: center;
+  white-space: normal;
+}
+
 @media (max-width: 279.99px) {
-  .type-display {
+  .type-page-title,
+  .type-section-title,
+  .type-section-title--lg,
+  .type-subsection-title,
+  .type-subsection-title--lg,
+  .type-hero-title,
+  .type-card-title {
     font-size: clamp(1.375rem, 7vw, 1.75rem);
     letter-spacing: -0.01em;
+  }
+
+  .type-hero-brand {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
   }
 
   .btn-responsive {
@@ -3114,6 +3266,7 @@ textarea::placeholder {
   position: relative;
   z-index: 2;
   width: 100%;
+  min-height: 120px;
   line-height: 0;
   margin-top: -1px;
   overflow: hidden;
@@ -3123,7 +3276,10 @@ textarea::placeholder {
 
 .footer-wave-bridge-svg {
   display: block;
+  position: relative;
+  left: -25%;
   width: 200%;
+  max-width: none;
   height: 120px;
 }
 

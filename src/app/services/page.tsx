@@ -33,7 +33,7 @@ export default function ServicesPage() {
             >
               <div className="grid lg:grid-cols-12">
                 <div className="bg-pelagic-charcoal p-10 text-white lg:col-span-4">
-                  <h2 className="font-display text-2xl font-semibold lg:text-3xl">
+                  <h2 className="font-display type-subsection-title font-semibold">
                     <Link
                       href={getServiceCategoryHref(service.slug)}
                       className="transition hover:text-pelagic-accent"
@@ -68,7 +68,7 @@ export default function ServicesPage() {
 
       <section className="bg-pelagic-charcoal py-24 text-white">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl font-semibold sm:text-4xl">
+          <h2 className="font-display type-subsection-title--lg font-semibold">
             Need a tailored scope of work?
           </h2>
           <p className="mx-auto mt-5 text-lg text-slate-300">

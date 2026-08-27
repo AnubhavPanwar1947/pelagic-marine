@@ -80,11 +80,11 @@ function ProjectCounterPanel() {
 
 export function ProjectsCapabilitiesCard() {
   return (
-    <div className="grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_auto] lg:items-end lg:gap-16">
+    <div className="grid gap-content lg:grid-cols-[minmax(0,1.5fr)_auto] lg:items-end">
       <Reveal variant="text">
         <div className="max-w-3xl">
           <p className="type-eyebrow">Delivery & capability</p>
-          <h2 className="type-display mt-4 text-3xl leading-[1.06] text-pelagic-ink sm:text-4xl lg:text-[2.85rem]">
+          <h2 className="type-display type-section-title mt-4 text-pelagic-ink">
             Proven on projects.
             <span className="mt-1.5 block text-heading-accent">
               Ready with the right tools.

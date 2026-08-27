@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function ContactFaqSection() {
   return (
-    <SectionMaritime variant="sand" className="border-t border-pelagic-sand py-20 lg:py-24" gridOpacity={52}>
+    <SectionMaritime variant="sand" className="section-py-md border-t border-pelagic-sand" gridOpacity={52}>
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading

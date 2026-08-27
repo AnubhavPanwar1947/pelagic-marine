@@ -24,7 +24,7 @@ export function ContactOfficesSection({
   }
 
   return (
-    <SectionMaritime variant="sky" className="py-20 lg:py-24" gridOpacity={55}>
+    <SectionMaritime variant="sky" className="section-py-md" gridOpacity={55}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
@@ -47,7 +47,7 @@ export function ContactOfficesSection({
           <Reveal delay={120}>
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <h3 className="font-display text-2xl font-semibold text-pelagic-ink sm:text-3xl">
+                <h3 className="font-display type-subsection-title font-semibold text-pelagic-ink">
                   {contactPage.networkHub.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-pelagic-steel sm:text-base">

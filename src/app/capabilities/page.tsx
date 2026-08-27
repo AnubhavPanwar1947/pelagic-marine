@@ -72,13 +72,13 @@ export default function CapabilitiesPage() {
 
       <section className="bg-pelagic-charcoal py-20 text-white">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl font-semibold sm:text-4xl">
+          <h2 className="font-display type-subsection-title--lg font-semibold">
             Need the right tool applied to your problem?
           </h2>
           <p className="mx-auto mt-5 text-lg text-slate-300">
             Tell us the vessel, structure or operation — we will scope the analysis and assign the right engineer.
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <div className="cta-stack mt-10">
             <Button href="/contact" variant="primary">
               Contact the team
             </Button>

@@ -29,7 +29,7 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="min-w-0 lg:col-span-2">
           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-pelagic-light">
             Links
           </p>
@@ -44,7 +44,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="min-w-0 lg:col-span-2">
           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-pelagic-light">
             Legal
           </p>
@@ -62,7 +62,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="min-w-0 lg:col-span-2">
           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-pelagic-light">
             Our offices
           </p>
@@ -73,7 +73,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="lg:col-span-2">
+        <div className="min-w-0 lg:col-span-2">
           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-pelagic-light">
             Contact
           </p>

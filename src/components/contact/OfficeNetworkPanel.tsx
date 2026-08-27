@@ -89,7 +89,7 @@ export function OfficeNetworkPanel({
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-pelagic-accent">
           Global presence
         </p>
-        <h2 className="font-display mt-2 text-2xl font-semibold text-pelagic-ink sm:text-3xl">
+        <h2 className="font-display type-subsection-title mt-2 font-semibold text-pelagic-ink">
           {title}
         </h2>
         <p className="mt-3 text-sm leading-7 text-pelagic-steel">{description}</p>

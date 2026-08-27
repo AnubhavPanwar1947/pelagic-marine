@@ -70,7 +70,7 @@ export default function ProjectsPage() {
         <Reveal className="mt-12 text-center">
           <Link
             href="/contact"
-            className="inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-light"
+            className="cta-link inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-light"
           >
             Discuss your project
           </Link>

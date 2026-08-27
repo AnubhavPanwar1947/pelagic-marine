@@ -12,677 +12,760 @@ export type ImageManifestEntry = {
 };
 
 export const imageManifest: Record<string, ImageManifestEntry> = {
-  "/images/decarbonization.jpg": {
-    "src": "/images/decarbonization.jpg",
-    "width": 1920,
-    "height": 1280,
-    "fallback": [
-      {
-        "width": 320,
-        "path": "/images/decarbonization-320w.jpg"
-      },
-      {
-        "width": 480,
-        "path": "/images/decarbonization-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/decarbonization-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/decarbonization-960w.jpg"
-      },
-      {
-        "width": 1280,
-        "path": "/images/decarbonization-1280w.jpg"
-      },
-      {
-        "width": 1920,
-        "path": "/images/decarbonization-1920w.jpg"
-      }
-    ],
-    "webp": [
-      {
-        "width": 320,
-        "path": "/images/decarbonization-320w.webp"
-      },
-      {
-        "width": 480,
-        "path": "/images/decarbonization-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/decarbonization-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/decarbonization-960w.webp"
-      },
-      {
-        "width": 1280,
-        "path": "/images/decarbonization-1280w.webp"
-      },
-      {
-        "width": 1920,
-        "path": "/images/decarbonization-1920w.webp"
-      }
-    ],
-    "avif": [
-      {
-        "width": 320,
-        "path": "/images/decarbonization-320w.avif"
-      },
-      {
-        "width": 480,
-        "path": "/images/decarbonization-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/decarbonization-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/decarbonization-960w.avif"
-      },
-      {
-        "width": 1280,
-        "path": "/images/decarbonization-1280w.avif"
-      },
-      {
-        "width": 1920,
-        "path": "/images/decarbonization-1920w.avif"
-      }
-    ]
-  },
-  "/images/hero-port.jpg": {
-    "src": "/images/hero-port.jpg",
-    "width": 2560,
-    "height": 1440,
-    "fallback": [
-      {
-        "width": 320,
-        "path": "/images/hero-port-320w.jpg"
-      },
-      {
-        "width": 480,
-        "path": "/images/hero-port-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/hero-port-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/hero-port-960w.jpg"
-      },
-      {
-        "width": 1280,
-        "path": "/images/hero-port-1280w.jpg"
-      },
-      {
-        "width": 1920,
-        "path": "/images/hero-port-1920w.jpg"
-      }
-    ],
-    "webp": [
-      {
-        "width": 320,
-        "path": "/images/hero-port-320w.webp"
-      },
-      {
-        "width": 480,
-        "path": "/images/hero-port-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/hero-port-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/hero-port-960w.webp"
-      },
-      {
-        "width": 1280,
-        "path": "/images/hero-port-1280w.webp"
-      },
-      {
-        "width": 1920,
-        "path": "/images/hero-port-1920w.webp"
-      }
-    ],
-    "avif": [
-      {
-        "width": 320,
-        "path": "/images/hero-port-320w.avif"
-      },
-      {
-        "width": 480,
-        "path": "/images/hero-port-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/hero-port-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/hero-port-960w.avif"
-      },
-      {
-        "width": 1280,
-        "path": "/images/hero-port-1280w.avif"
-      },
-      {
-        "width": 1920,
-        "path": "/images/hero-port-1920w.avif"
-      }
-    ]
-  },
-  "/images/hero.jpg": {
-    "src": "/images/hero.jpg",
-    "width": 2560,
-    "height": 1440,
-    "fallback": [
-      {
-        "width": 320,
-        "path": "/images/hero-320w.jpg"
-      },
-      {
-        "width": 480,
-        "path": "/images/hero-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/hero-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/hero-960w.jpg"
-      },
-      {
-        "width": 1280,
-        "path": "/images/hero-1280w.jpg"
-      },
-      {
-        "width": 1920,
-        "path": "/images/hero-1920w.jpg"
-      }
-    ],
-    "webp": [
-      {
-        "width": 320,
-        "path": "/images/hero-320w.webp"
-      },
-      {
-        "width": 480,
-        "path": "/images/hero-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/hero-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/hero-960w.webp"
-      },
-      {
-        "width": 1280,
-        "path": "/images/hero-1280w.webp"
-      },
-      {
-        "width": 1920,
-        "path": "/images/hero-1920w.webp"
-      }
-    ],
-    "avif": [
-      {
-        "width": 320,
-        "path": "/images/hero-320w.avif"
-      },
-      {
-        "width": 480,
-        "path": "/images/hero-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/hero-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/hero-960w.avif"
-      },
-      {
-        "width": 1280,
-        "path": "/images/hero-1280w.avif"
-      },
-      {
-        "width": 1920,
-        "path": "/images/hero-1920w.avif"
-      }
-    ]
-  },
-  "/images/home-page-hero-.jpg": {
-    "src": "/images/home-page-hero-.jpg",
+  "/images/owned/home-page-hero-.jpg": {
+    "src": "/images/owned/home-page-hero-.jpg",
     "width": 2559,
     "height": 1440,
     "fallback": [
       {
         "width": 320,
-        "path": "/images/home-page-hero--320w.jpg"
+        "path": "/images/owned/home-page-hero--320w.jpg"
       },
       {
         "width": 480,
-        "path": "/images/home-page-hero--480w.jpg"
+        "path": "/images/owned/home-page-hero--480w.jpg"
       },
       {
         "width": 640,
-        "path": "/images/home-page-hero--640w.jpg"
+        "path": "/images/owned/home-page-hero--640w.jpg"
       },
       {
         "width": 960,
-        "path": "/images/home-page-hero--960w.jpg"
+        "path": "/images/owned/home-page-hero--960w.jpg"
       },
       {
         "width": 1280,
-        "path": "/images/home-page-hero--1280w.jpg"
+        "path": "/images/owned/home-page-hero--1280w.jpg"
       },
       {
         "width": 1920,
-        "path": "/images/home-page-hero--1920w.jpg"
+        "path": "/images/owned/home-page-hero--1920w.jpg"
       }
     ],
     "webp": [
       {
         "width": 320,
-        "path": "/images/home-page-hero--320w.webp"
+        "path": "/images/owned/home-page-hero--320w.webp"
       },
       {
         "width": 480,
-        "path": "/images/home-page-hero--480w.webp"
+        "path": "/images/owned/home-page-hero--480w.webp"
       },
       {
         "width": 640,
-        "path": "/images/home-page-hero--640w.webp"
+        "path": "/images/owned/home-page-hero--640w.webp"
       },
       {
         "width": 960,
-        "path": "/images/home-page-hero--960w.webp"
+        "path": "/images/owned/home-page-hero--960w.webp"
       },
       {
         "width": 1280,
-        "path": "/images/home-page-hero--1280w.webp"
+        "path": "/images/owned/home-page-hero--1280w.webp"
       },
       {
         "width": 1920,
-        "path": "/images/home-page-hero--1920w.webp"
+        "path": "/images/owned/home-page-hero--1920w.webp"
       }
     ],
     "avif": [
       {
         "width": 320,
-        "path": "/images/home-page-hero--320w.avif"
+        "path": "/images/owned/home-page-hero--320w.avif"
       },
       {
         "width": 480,
-        "path": "/images/home-page-hero--480w.avif"
+        "path": "/images/owned/home-page-hero--480w.avif"
       },
       {
         "width": 640,
-        "path": "/images/home-page-hero--640w.avif"
+        "path": "/images/owned/home-page-hero--640w.avif"
       },
       {
         "width": 960,
-        "path": "/images/home-page-hero--960w.avif"
+        "path": "/images/owned/home-page-hero--960w.avif"
       },
       {
         "width": 1280,
-        "path": "/images/home-page-hero--1280w.avif"
+        "path": "/images/owned/home-page-hero--1280w.avif"
       },
       {
         "width": 1920,
-        "path": "/images/home-page-hero--1920w.avif"
+        "path": "/images/owned/home-page-hero--1920w.avif"
       }
     ]
   },
-  "/images/port-test.jpg": {
-    "src": "/images/port-test.jpg",
-    "width": 2400,
-    "height": 1400,
-    "fallback": [
-      {
-        "width": 320,
-        "path": "/images/port-test-320w.jpg"
-      },
-      {
-        "width": 480,
-        "path": "/images/port-test-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/port-test-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/port-test-960w.jpg"
-      },
-      {
-        "width": 1280,
-        "path": "/images/port-test-1280w.jpg"
-      },
-      {
-        "width": 1920,
-        "path": "/images/port-test-1920w.jpg"
-      }
-    ],
-    "webp": [
-      {
-        "width": 320,
-        "path": "/images/port-test-320w.webp"
-      },
-      {
-        "width": 480,
-        "path": "/images/port-test-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/port-test-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/port-test-960w.webp"
-      },
-      {
-        "width": 1280,
-        "path": "/images/port-test-1280w.webp"
-      },
-      {
-        "width": 1920,
-        "path": "/images/port-test-1920w.webp"
-      }
-    ],
-    "avif": [
-      {
-        "width": 320,
-        "path": "/images/port-test-320w.avif"
-      },
-      {
-        "width": 480,
-        "path": "/images/port-test-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/port-test-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/port-test-960w.avif"
-      },
-      {
-        "width": 1280,
-        "path": "/images/port-test-1280w.avif"
-      },
-      {
-        "width": 1920,
-        "path": "/images/port-test-1920w.avif"
-      }
-    ]
-  },
-  "/images/team/abhinav.png": {
-    "src": "/images/team/abhinav.png",
+  "/images/owned/team/abhinav.png": {
+    "src": "/images/owned/team/abhinav.png",
     "width": 1024,
     "height": 1024,
     "fallback": [
       {
         "width": 320,
-        "path": "/images/team/abhinav-320w.jpg"
+        "path": "/images/owned/team/abhinav-320w.jpg"
       },
       {
         "width": 480,
-        "path": "/images/team/abhinav-480w.jpg"
+        "path": "/images/owned/team/abhinav-480w.jpg"
       },
       {
         "width": 640,
-        "path": "/images/team/abhinav-640w.jpg"
+        "path": "/images/owned/team/abhinav-640w.jpg"
       },
       {
         "width": 960,
-        "path": "/images/team/abhinav-960w.jpg"
+        "path": "/images/owned/team/abhinav-960w.jpg"
       }
     ],
     "webp": [
       {
         "width": 320,
-        "path": "/images/team/abhinav-320w.webp"
+        "path": "/images/owned/team/abhinav-320w.webp"
       },
       {
         "width": 480,
-        "path": "/images/team/abhinav-480w.webp"
+        "path": "/images/owned/team/abhinav-480w.webp"
       },
       {
         "width": 640,
-        "path": "/images/team/abhinav-640w.webp"
+        "path": "/images/owned/team/abhinav-640w.webp"
       },
       {
         "width": 960,
-        "path": "/images/team/abhinav-960w.webp"
+        "path": "/images/owned/team/abhinav-960w.webp"
       }
     ],
     "avif": [
       {
         "width": 320,
-        "path": "/images/team/abhinav-320w.avif"
+        "path": "/images/owned/team/abhinav-320w.avif"
       },
       {
         "width": 480,
-        "path": "/images/team/abhinav-480w.avif"
+        "path": "/images/owned/team/abhinav-480w.avif"
       },
       {
         "width": 640,
-        "path": "/images/team/abhinav-640w.avif"
+        "path": "/images/owned/team/abhinav-640w.avif"
       },
       {
         "width": 960,
-        "path": "/images/team/abhinav-960w.avif"
+        "path": "/images/owned/team/abhinav-960w.avif"
       }
     ]
   },
-  "/images/team/bhanu.png": {
-    "src": "/images/team/bhanu.png",
+  "/images/owned/team/bhanu.png": {
+    "src": "/images/owned/team/bhanu.png",
     "width": 957,
     "height": 1024,
     "fallback": [
       {
         "width": 320,
-        "path": "/images/team/bhanu-320w.jpg"
+        "path": "/images/owned/team/bhanu-320w.jpg"
       },
       {
         "width": 480,
-        "path": "/images/team/bhanu-480w.jpg"
+        "path": "/images/owned/team/bhanu-480w.jpg"
       },
       {
         "width": 640,
-        "path": "/images/team/bhanu-640w.jpg"
+        "path": "/images/owned/team/bhanu-640w.jpg"
       }
     ],
     "webp": [
       {
         "width": 320,
-        "path": "/images/team/bhanu-320w.webp"
+        "path": "/images/owned/team/bhanu-320w.webp"
       },
       {
         "width": 480,
-        "path": "/images/team/bhanu-480w.webp"
+        "path": "/images/owned/team/bhanu-480w.webp"
       },
       {
         "width": 640,
-        "path": "/images/team/bhanu-640w.webp"
+        "path": "/images/owned/team/bhanu-640w.webp"
       }
     ],
     "avif": [
       {
         "width": 320,
-        "path": "/images/team/bhanu-320w.avif"
+        "path": "/images/owned/team/bhanu-320w.avif"
       },
       {
         "width": 480,
-        "path": "/images/team/bhanu-480w.avif"
+        "path": "/images/owned/team/bhanu-480w.avif"
       },
       {
         "width": 640,
-        "path": "/images/team/bhanu-640w.avif"
+        "path": "/images/owned/team/bhanu-640w.avif"
       }
     ]
   },
-  "/images/team/harjit.png": {
-    "src": "/images/team/harjit.png",
+  "/images/owned/team/harjit.png": {
+    "src": "/images/owned/team/harjit.png",
     "width": 1024,
     "height": 1024,
     "fallback": [
       {
         "width": 320,
-        "path": "/images/team/harjit-320w.jpg"
+        "path": "/images/owned/team/harjit-320w.jpg"
       },
       {
         "width": 480,
-        "path": "/images/team/harjit-480w.jpg"
+        "path": "/images/owned/team/harjit-480w.jpg"
       },
       {
         "width": 640,
-        "path": "/images/team/harjit-640w.jpg"
+        "path": "/images/owned/team/harjit-640w.jpg"
       },
       {
         "width": 960,
-        "path": "/images/team/harjit-960w.jpg"
+        "path": "/images/owned/team/harjit-960w.jpg"
       }
     ],
     "webp": [
       {
         "width": 320,
-        "path": "/images/team/harjit-320w.webp"
+        "path": "/images/owned/team/harjit-320w.webp"
       },
       {
         "width": 480,
-        "path": "/images/team/harjit-480w.webp"
+        "path": "/images/owned/team/harjit-480w.webp"
       },
       {
         "width": 640,
-        "path": "/images/team/harjit-640w.webp"
+        "path": "/images/owned/team/harjit-640w.webp"
       },
       {
         "width": 960,
-        "path": "/images/team/harjit-960w.webp"
+        "path": "/images/owned/team/harjit-960w.webp"
       }
     ],
     "avif": [
       {
         "width": 320,
-        "path": "/images/team/harjit-320w.avif"
+        "path": "/images/owned/team/harjit-320w.avif"
       },
       {
         "width": 480,
-        "path": "/images/team/harjit-480w.avif"
+        "path": "/images/owned/team/harjit-480w.avif"
       },
       {
         "width": 640,
-        "path": "/images/team/harjit-640w.avif"
+        "path": "/images/owned/team/harjit-640w.avif"
       },
       {
         "width": 960,
-        "path": "/images/team/harjit-960w.avif"
+        "path": "/images/owned/team/harjit-960w.avif"
       }
     ]
   },
-  "/images/team/nishchay.png": {
-    "src": "/images/team/nishchay.png",
+  "/images/owned/team/nishchay.png": {
+    "src": "/images/owned/team/nishchay.png",
     "width": 731,
     "height": 1024,
     "fallback": [
       {
         "width": 320,
-        "path": "/images/team/nishchay-320w.jpg"
+        "path": "/images/owned/team/nishchay-320w.jpg"
       },
       {
         "width": 480,
-        "path": "/images/team/nishchay-480w.jpg"
+        "path": "/images/owned/team/nishchay-480w.jpg"
       },
       {
         "width": 640,
-        "path": "/images/team/nishchay-640w.jpg"
+        "path": "/images/owned/team/nishchay-640w.jpg"
       }
     ],
     "webp": [
       {
         "width": 320,
-        "path": "/images/team/nishchay-320w.webp"
+        "path": "/images/owned/team/nishchay-320w.webp"
       },
       {
         "width": 480,
-        "path": "/images/team/nishchay-480w.webp"
+        "path": "/images/owned/team/nishchay-480w.webp"
       },
       {
         "width": 640,
-        "path": "/images/team/nishchay-640w.webp"
+        "path": "/images/owned/team/nishchay-640w.webp"
       }
     ],
     "avif": [
       {
         "width": 320,
-        "path": "/images/team/nishchay-320w.avif"
+        "path": "/images/owned/team/nishchay-320w.avif"
       },
       {
         "width": 480,
-        "path": "/images/team/nishchay-480w.avif"
+        "path": "/images/owned/team/nishchay-480w.avif"
       },
       {
         "width": 640,
-        "path": "/images/team/nishchay-640w.avif"
+        "path": "/images/owned/team/nishchay-640w.avif"
       }
     ]
   },
-  "/images/team/vipul.png": {
-    "src": "/images/team/vipul.png",
+  "/images/owned/team/vipul.png": {
+    "src": "/images/owned/team/vipul.png",
     "width": 731,
     "height": 1024,
     "fallback": [
       {
         "width": 320,
-        "path": "/images/team/vipul-320w.jpg"
+        "path": "/images/owned/team/vipul-320w.jpg"
       },
       {
         "width": 480,
-        "path": "/images/team/vipul-480w.jpg"
+        "path": "/images/owned/team/vipul-480w.jpg"
       },
       {
         "width": 640,
-        "path": "/images/team/vipul-640w.jpg"
+        "path": "/images/owned/team/vipul-640w.jpg"
       }
     ],
     "webp": [
       {
         "width": 320,
-        "path": "/images/team/vipul-320w.webp"
+        "path": "/images/owned/team/vipul-320w.webp"
       },
       {
         "width": 480,
-        "path": "/images/team/vipul-480w.webp"
+        "path": "/images/owned/team/vipul-480w.webp"
       },
       {
         "width": 640,
-        "path": "/images/team/vipul-640w.webp"
+        "path": "/images/owned/team/vipul-640w.webp"
       }
     ],
     "avif": [
       {
         "width": 320,
-        "path": "/images/team/vipul-320w.avif"
+        "path": "/images/owned/team/vipul-320w.avif"
       },
       {
         "width": 480,
-        "path": "/images/team/vipul-480w.avif"
+        "path": "/images/owned/team/vipul-480w.avif"
       },
       {
         "width": 640,
-        "path": "/images/team/vipul-640w.avif"
+        "path": "/images/owned/team/vipul-640w.avif"
+      }
+    ]
+  },
+  "/images/stock/about-paper-collaboration.jpg": {
+    "src": "/images/stock/about-paper-collaboration.jpg",
+    "width": 6000,
+    "height": 4000,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/about-paper-collaboration-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/about-paper-collaboration-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/about-paper-collaboration-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/about-paper-collaboration-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/about-paper-collaboration-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/about-paper-collaboration-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/about-paper-collaboration-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/about-paper-collaboration-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/about-paper-collaboration-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/about-paper-collaboration-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/about-paper-collaboration-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/about-paper-collaboration-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/about-paper-collaboration-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/about-paper-collaboration-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/about-paper-collaboration-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/about-paper-collaboration-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/about-paper-collaboration-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/about-paper-collaboration-1920w.avif"
+      }
+    ]
+  },
+  "/images/stock/decarbonization.jpg": {
+    "src": "/images/stock/decarbonization.jpg",
+    "width": 1920,
+    "height": 1280,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/decarbonization-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/decarbonization-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/decarbonization-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/decarbonization-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/decarbonization-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/decarbonization-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/decarbonization-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/decarbonization-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/decarbonization-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/decarbonization-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/decarbonization-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/decarbonization-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/decarbonization-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/decarbonization-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/decarbonization-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/decarbonization-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/decarbonization-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/decarbonization-1920w.avif"
+      }
+    ]
+  },
+  "/images/stock/hero-port.jpg": {
+    "src": "/images/stock/hero-port.jpg",
+    "width": 2560,
+    "height": 1440,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/hero-port-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/hero-port-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/hero-port-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/hero-port-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/hero-port-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/hero-port-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/hero-port-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/hero-port-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/hero-port-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/hero-port-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/hero-port-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/hero-port-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/hero-port-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/hero-port-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/hero-port-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/hero-port-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/hero-port-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/hero-port-1920w.avif"
+      }
+    ]
+  },
+  "/images/stock/hero.jpg": {
+    "src": "/images/stock/hero.jpg",
+    "width": 2560,
+    "height": 1440,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/hero-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/hero-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/hero-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/hero-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/hero-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/hero-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/hero-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/hero-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/hero-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/hero-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/hero-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/hero-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/hero-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/hero-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/hero-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/hero-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/hero-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/hero-1920w.avif"
+      }
+    ]
+  },
+  "/images/stock/port-test.jpg": {
+    "src": "/images/stock/port-test.jpg",
+    "width": 2400,
+    "height": 1400,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/port-test-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/port-test-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/port-test-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/port-test-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/port-test-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/port-test-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/port-test-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/port-test-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/port-test-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/port-test-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/port-test-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/port-test-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/port-test-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/port-test-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/port-test-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/port-test-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/port-test-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/port-test-1920w.avif"
       }
     ]
   }

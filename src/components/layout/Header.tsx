@@ -123,8 +123,8 @@ function DesktopServiceChild({
         <Chevron open={subOpen} />
       </div>
       {subOpen && (
-        <div className="absolute top-0 left-full z-50 pl-2">
-          <ul className="max-h-[70vh] w-72 space-y-0.5 overflow-y-auto overscroll-contain rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5">
+        <div className="site-header-submenu-flyout absolute top-0 left-full z-50 pl-2">
+          <ul className="max-h-[70vh] w-[min(18rem,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] space-y-0.5 overflow-y-auto overscroll-contain rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5">
             {child.children!.map((sub) => (
               <li key={`${sub.href}-${sub.label}`}>
                 <Link
@@ -220,8 +220,8 @@ function DesktopNavItem({
         >
           {/* No overflow on this panel — overflow would clip the nested flyout (same as live Vercel). */}
           <div
-            className={`rounded-2xl border border-pelagic-sand bg-white p-3 shadow-xl ring-1 ring-black/5 ${
-              wide ? "w-[min(90vw,22rem)]" : "w-80"
+            className={`site-header-dropdown-panel rounded-2xl border border-pelagic-sand bg-white p-3 shadow-xl ring-1 ring-black/5 ${
+              wide ? "site-header-dropdown-panel--wide" : ""
             }`}
           >
             <Link
@@ -469,10 +469,10 @@ export function Header() {
           ? ({ "--site-header-height": `${headerHeight}px` } as React.CSSProperties)
           : undefined
       }
-      className={`sticky top-0 z-50 transition-[box-shadow,background-color,border-color] duration-300 ease-out motion-reduce:transition-none ${
+      className={`sticky top-0 z-50 bg-white transition-[box-shadow,border-color] duration-300 ease-out motion-reduce:transition-none ${
         scrolled || menuOpen || searchOpen
-          ? "border-b border-pelagic-sand bg-white shadow-[0_12px_40px_rgba(20,48,110,0.14)] backdrop-blur-lg"
-          : "border-b border-transparent bg-white/90 backdrop-blur-md"
+          ? "border-b border-pelagic-sand shadow-[0_12px_40px_rgba(20,48,110,0.14)]"
+          : "border-b border-transparent"
       }`}
       data-scrolled={scrolled ? "true" : "false"}
       data-mobile-nav-open={menuOpen ? "true" : "false"}

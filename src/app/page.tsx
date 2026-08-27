@@ -36,7 +36,7 @@ export default function HomePage() {
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pb-20 pt-28 sm:px-6 sm:pb-24 lg:px-8 lg:pb-28 lg:pt-32">
           <div className="home-hero-copy w-full max-w-3xl">
             <p
-              className="home-hero-line home-hero-line--1 text-[clamp(2.4rem,6vw,4.25rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-white"
+              className="home-hero-line home-hero-line--1 type-hero-brand font-semibold text-white"
               style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
             >
               Pelagic Marine
@@ -44,7 +44,7 @@ export default function HomePage() {
             <p className="home-hero-line home-hero-line--2 mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-pelagic-accent sm:text-xs">
               Solutions · India & Dubai
             </p>
-            <h1 className="home-hero-line home-hero-line--3 type-display mt-8 w-full max-w-2xl text-[clamp(1.75rem,5.5vw,2.85rem)] leading-[1.12] text-white sm:text-4xl lg:leading-[1.08]">
+            <h1 className="home-hero-line home-hero-line--3 type-display type-hero-title mt-8 w-full max-w-2xl text-white">
               Serving the shipping industry,{" "}
               <span className="text-heading-accent">round the clock.</span>
             </h1>
@@ -61,14 +61,14 @@ export default function HomePage() {
       </section>
 
       {/* ── Section 2 · Delivery: text + card ── */}
-      <SectionMaritime variant="delivery" className="relative z-10 py-20 lg:py-28">
+      <SectionMaritime variant="delivery" className="section-py relative z-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ProjectsCapabilitiesCard />
         </div>
       </SectionMaritime>
 
       {/* ── Section 3 · Services: text + card grid ── */}
-      <SectionMaritime variant="services" className="py-20 lg:py-28">
+      <SectionMaritime variant="services" className="section-py">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal variant="text">
             <SectionHeading
@@ -91,7 +91,7 @@ export default function HomePage() {
                   <span className="type-eyebrow text-pelagic-accent/80">
                     0{i + 1}
                   </span>
-                  <h3 className="type-display mt-5 text-xl leading-snug text-pelagic-ink transition group-hover:text-pelagic-navy sm:text-[1.35rem]">
+                  <h3 className="type-display type-card-title mt-5 leading-snug text-pelagic-ink transition group-hover:text-pelagic-navy">
                     {service.title}
                   </h3>
                   <p className="type-caption mt-3 flex-1 leading-relaxed">
@@ -123,9 +123,9 @@ export default function HomePage() {
       </SectionMaritime>
 
       {/* ── Section 4 · Why Pelagic: text + image ── */}
-      <SectionMaritime variant="why" className="py-20 lg:py-28">
+      <SectionMaritime variant="why" className="section-py">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-14 lg:grid-cols-2 lg:items-start lg:gap-20">
+          <div className="grid gap-section lg:grid-cols-2 lg:items-start">
             <Reveal variant="text">
               <SectionHeading
                 eyebrow="Why Pelagic"
@@ -168,16 +168,16 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          <div className="mt-16 lg:mt-20">
+          <div className="mt-section">
             <StatsBand stats={stats} />
           </div>
         </div>
       </SectionMaritime>
 
       {/* ── Section 5 · Decarbonization: image + text ── */}
-      <SectionMaritime variant="decarb" className="py-20 lg:py-28">
+      <SectionMaritime variant="decarb" className="section-py">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
+          <div className="grid gap-section lg:grid-cols-2 lg:items-center">
             <Reveal variant="image">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[1.85rem] shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:aspect-[5/4]">
                 <SiteImage
@@ -215,7 +215,7 @@ export default function HomePage() {
               </ol>
               <Link
                 href="/capabilities/clean-fuel/"
-                className="mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-pelagic-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
+                className="cta-link mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-pelagic-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
               >
                 LNG bunkering & compatibility
                 <span aria-hidden>→</span>
@@ -226,7 +226,7 @@ export default function HomePage() {
       </SectionMaritime>
 
       {/* ── Section 6 · Clients: text + marquee card ── */}
-      <section className="relative z-10 overflow-hidden bg-transparent py-20 lg:py-28">
+      <section className="section-py relative z-10 overflow-hidden bg-transparent">
         <HeroSectionFill />
         <div
           className="pointer-events-none absolute inset-0 hidden bg-[#071a33]/38 lg:block"
@@ -235,7 +235,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <Reveal variant="text">
             <p className="type-eyebrow text-pelagic-accent">Clients</p>
-            <h2 className="type-display mt-4 text-3xl text-white sm:text-4xl lg:text-5xl">
+            <h2 className="type-display type-section-title mt-4 text-white">
               Trusted across{" "}
               <span className="text-heading-accent">the fleet</span>
             </h2>
@@ -245,18 +245,18 @@ export default function HomePage() {
             </p>
           </Reveal>
         </div>
-        <Reveal variant="card" delay={80} className="relative mt-14 sm:mt-16">
+        <Reveal variant="card" delay={80} className="relative mt-section-sm">
           <ClientMarquee />
         </Reveal>
       </section>
 
       {/* ── Section 7 · CTA: fade-up on scroll ── */}
-      <section className="relative z-10 overflow-hidden bg-[#071a33] py-28 text-white lg:py-36">
+      <section className="section-py-lg relative z-10 overflow-hidden bg-[#071a33] text-white">
         <Reveal variant="text" className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-pelagic-accent">
             Next step
           </p>
-          <h2 className="type-display mt-5 text-3xl text-white sm:text-4xl lg:text-[3.25rem] lg:leading-[1.08]">
+          <h2 className="type-display type-section-title--lg mt-5 text-white">
             Let&apos;s move your{" "}
             <span className="text-heading-accent">project forward</span>
           </h2>
@@ -264,7 +264,7 @@ export default function HomePage() {
             Naval architecture, surveys, engineering and clean-fuel advisory —
             from India and Dubai.
           </p>
-          <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
+          <div className="cta-stack mt-11">
             <Button href="/contact" variant="primary">
               Get in touch
             </Button>

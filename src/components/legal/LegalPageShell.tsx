@@ -12,9 +12,9 @@ export function LegalPageShell({ eyebrow, title, updated, children }: LegalPageS
   return (
     <div className="bg-pelagic-cream">
       <section className="border-b border-pelagic-sand bg-gradient-to-br from-pelagic-sky/80 via-white to-pelagic-mist/40">
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto max-w-3xl px-4 page-hero-py sm:px-6 lg:px-8">
           <p className="type-eyebrow">{eyebrow}</p>
-          <h1 className="type-display mt-4 text-3xl text-pelagic-ink sm:text-4xl">{title}</h1>
+          <h1 className="type-display type-page-title mt-4 text-pelagic-ink">{title}</h1>
           <p className="mt-3 text-sm text-pelagic-steel">Last updated: {updated}</p>
         </div>
       </section>

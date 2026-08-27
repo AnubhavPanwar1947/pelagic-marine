@@ -10,11 +10,11 @@ function u(id: string, w: number, h: number, q = 88) {
 /** Homepage hero — Pelagic Marine consultant on the bridge at golden hour */
 export const heroSlides = [
   {
-    src: "/images/home-page-hero-.jpg",
+    src: "/images/owned/home-page-hero-.jpg",
     alt: "Pelagic Marine Solutions consultant on the bridge overlooking port operations at golden hour",
   },
   {
-    src: "/images/hero-port.jpg",
+    src: "/images/stock/hero-port.jpg",
     alt: "Container vessel assisted by tugs in harbour at golden hour",
   },
 ] as const;
@@ -24,10 +24,11 @@ export const heroImage = heroSlides[0];
 
 /** Per-image focal points for object-position (local paths and remote fallbacks). */
 export const imageObjectPositions: Record<string, string> = {
-  "/images/home-page-hero-.jpg": "62% 34%",
-  "/images/hero-port.jpg": "50% 42%",
-  "/images/decarbonization.jpg": "50% 45%",
-  "/images/hero.jpg": "50% center",
+  "/images/owned/home-page-hero-.jpg": "62% 34%",
+  "/images/stock/hero-port.jpg": "50% 42%",
+  "/images/stock/decarbonization.jpg": "50% 45%",
+  "/images/stock/about-paper-collaboration.jpg": "52% 42%",
+  "/images/stock/hero.jpg": "50% center",
   [u("photo-1578645024771-21df5e60af96", 1200, 1500)]: "50% 30%",
   [u("photo-1529107386315-5eafae266a63", 2400, 1000)]: "50% 35%",
   [u("photo-1544551763-5cf5a5c5e61d", 2400, 1400)]: "50% 40%",
@@ -57,12 +58,13 @@ export function getImageObjectPosition(src: string): string | undefined {
 
 export const siteImages = {
   hero: heroImage.src,
-  heroBridge: "/images/home-page-hero-.jpg",
-  contactHero: "/images/hero-port.jpg",
+  heroBridge: "/images/owned/home-page-hero-.jpg",
+  contactHero: "/images/stock/hero-port.jpg",
   expertise: u("photo-1578645024771-21df5e60af96", 1200, 1500),
   team: u("photo-1529107386315-5eafae266a63", 2400, 1000),
   cta: u("photo-1544551763-5cf5a5c5e61d", 2400, 1400),
-  decarbonization: "/images/decarbonization.jpg",
+  decarbonization: "/images/stock/decarbonization.jpg",
+  aboutCollaboration: "/images/stock/about-paper-collaboration.jpg",
   cases: [
     u("photo-1611270627529-a18006394599", 1200, 750),
     u("photo-1494412578317-4c933aa5369f", 1200, 750),
@@ -72,13 +74,13 @@ export const siteImages = {
     "maritime-shipping": u("photo-1494412578317-4c933aa5369f", 900, 600),
     "offshore-oil-gas": u("photo-1544551763-46a013bb70d5", 900, 600),
     renewables: u("photo-1532601228370-a1c69299fc04", 900, 600),
-    "ports-infrastructure": "/images/hero-port.jpg",
+    "ports-infrastructure": "/images/stock/hero-port.jpg",
   },
   pageHeroes: {
     about: u("photo-1529107386315-5eafae266a63", 2400, 1200),
     services: u("photo-1578645024771-21df5e60af96", 2400, 1200),
     sectors: u("photo-1544551763-46a013bb70d5", 2400, 1200),
-    projects: "/images/hero-port.jpg",
+    projects: "/images/stock/hero-port.jpg",
     decarbonization: u("photo-1473341303090-7cfada5af405", 2400, 1200),
     news: u("photo-1497366216548-37526070297c", 2400, 1200),
     careers: u("photo-1521737711862-ece3dec7f191", 2400, 1200),

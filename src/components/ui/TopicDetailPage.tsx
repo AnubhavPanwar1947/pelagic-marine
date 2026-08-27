@@ -34,7 +34,7 @@ export function TopicDetailPage({
         imageSrc={imageSrc}
       />
 
-      <SectionMaritime variant="plain" className="py-20 lg:py-24" gridOpacity={40}>
+      <SectionMaritime variant="plain" className="section-py-md" gridOpacity={40}>
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <p className="text-base leading-8 text-pelagic-steel">{getTopicBody(topic)}</p>
 

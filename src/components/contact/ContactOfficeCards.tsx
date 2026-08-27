@@ -87,7 +87,7 @@ function OfficeCard({
                   {office.region}
                 </p>
               </div>
-              <h3 className="font-display mt-2 break-words text-2xl font-bold tracking-wide sm:text-3xl">
+              <h3 className="font-display type-subsection-title mt-2 break-words font-bold tracking-wide">
                 {cityUpper}
               </h3>
             </div>
