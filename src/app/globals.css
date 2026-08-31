@@ -353,7 +353,7 @@ html {
   }
 }
 
-/* Header dropdowns — viewport-safe widths; flip nested flyout on tight desktop */
+/* Header dropdowns — viewport-safe widths */
 .site-header-dropdown-panel {
   width: min(20rem, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
@@ -365,11 +365,15 @@ html {
 
 @media (min-width: 60rem) and (max-width: 90rem) {
   .site-header-submenu-flyout {
-    left: auto;
-    right: 100%;
-    padding-left: 0;
-    padding-right: 0.5rem;
+    left: 100%;
+    right: auto;
+    padding-left: 0.5rem;
+    padding-right: 0;
   }
+}
+
+.site-header-submenu-flyout-list--inspection {
+  padding-bottom: 0.25rem;
 }
 
 .site-header-search-panel {

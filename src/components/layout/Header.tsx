@@ -124,7 +124,11 @@ function DesktopServiceChild({
       </div>
       {subOpen && (
         <div className="site-header-submenu-flyout absolute top-0 left-full z-50 pl-2">
-          <ul className="max-h-[70vh] w-[min(18rem,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] space-y-0.5 overflow-y-auto overscroll-contain rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5">
+          <ul
+            className={`max-h-[70vh] w-[min(18rem,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] space-y-0.5 overflow-y-auto overscroll-contain rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5 ${
+              child.label === "Inspection" ? "site-header-submenu-flyout-list--inspection" : ""
+            }`}
+          >
             {child.children!.map((sub) => (
               <li key={`${sub.href}-${sub.label}`}>
                 <Link
@@ -229,7 +233,8 @@ function DesktopNavItem({
               className="mb-2 block rounded-lg bg-pelagic-sky/50 px-3 py-2.5 text-xs font-bold uppercase tracking-wider text-pelagic-navy hover:bg-pelagic-sky"
               onClick={() => setOpen(false)}
             >
-              View all {item.label === "Decarb" ? "Decarbonization" : item.label} →
+              View all {item.label === "Decarb" ? "Decarbonization" : item.label}
+              {item.label === "Services" ? "" : " →"}
             </Link>
             <ul className="space-y-1">
               {item.children.map((child) => (
@@ -493,7 +498,7 @@ export function Header() {
           <BrandLogo variant="header" />
         </div>
 
-        <nav className="site-header-nav hidden min-w-0 flex-1 items-center justify-center nav:flex nav:gap-0 xl:gap-0.5">
+        <nav className="site-header-nav hidden min-w-0 flex-1 items-center justify-center nav:flex nav:gap-0.5 xl:gap-1">
           {navMenu.map((item) => (
             <DesktopNavItem key={item.label} item={item} pathname={pathname} />
           ))}
