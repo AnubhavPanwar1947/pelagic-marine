@@ -1,0 +1,103 @@
+/* Contact page — three-color surface palette (scoped to /contact only) */
+
+.contact-surface-icy {
+  background-color: #e6f4fc;
+}
+
+.contact-surface-white {
+  background-color: #ffffff;
+}
+
+.contact-surface-soft {
+  background-color: #f4fafd;
+}
+
+/* Enquiry form card — page-scoped shell styling only */
+.contact-page .contact-enquiry-shell > div.min-w-0.rounded-xl {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 4px 24px rgba(7, 26, 51, 0.05);
+  transition: box-shadow 300ms ease-out;
+}
+
+.contact-page .contact-enquiry-shell > div.min-w-0.rounded-xl > .type-eyebrow {
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f4fafd;
+}
+
+.contact-page .contact-enquiry-shell form {
+  margin-top: 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page .contact-enquiry-shell > div.min-w-0.rounded-xl {
+    transition: none;
+  }
+}
+
+/* Office cards */
+.contact-office-card {
+  box-shadow: 0 4px 24px rgba(7, 26, 51, 0.05);
+  transition:
+    border-color 300ms ease-out,
+    background-color 300ms ease-out,
+    transform 300ms ease-out,
+    box-shadow 300ms ease-out;
+}
+
+.contact-office-card-top-accent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background-color: #e6f4fc;
+}
+
+.contact-office-card:hover {
+  border-color: #e6f4fc;
+  background-color: #f4fafd;
+  box-shadow: 0 10px 32px rgba(7, 26, 51, 0.07);
+  transform: translateY(-2px);
+}
+
+.contact-office-card-header {
+  border-bottom: 1px solid #f4fafd;
+  padding-bottom: 1rem;
+}
+
+.contact-office-card:hover .contact-office-card-header {
+  border-bottom-color: #e6f4fc;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-office-card {
+    transition: none;
+  }
+
+  .contact-office-card:hover {
+    transform: none;
+  }
+}
+
+.contact-office-card-accent {
+  background-color: #e6f4fc;
+  transition:
+    width 300ms ease-out,
+    background-color 300ms ease-out;
+}
+
+.contact-office-card:hover .contact-office-card-accent {
+  width: 0.25rem;
+  background-color: #f4fafd;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-office-card-accent,
+  .contact-office-card:hover .contact-office-card-accent {
+    transition: none;
+  }
+}

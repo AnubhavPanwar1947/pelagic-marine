@@ -6,6 +6,7 @@ import { SiteImage } from "@/components/ui/SiteImage";
 import { company } from "@/lib/site-data";
 import { imageSizes } from "@/lib/image-sizes";
 import { getImageObjectPosition, siteImages } from "@/lib/site-images";
+import "./about-theme.css";
 
 export const metadata: Metadata = {
   title: "About",
@@ -63,7 +64,7 @@ const builtAround = [
 export default function AboutPage() {
   return (
     <div>
-      <section className="border-b border-pelagic-sand bg-[#f3f9fb]">
+      <section className="about-surface-icy border-b border-pelagic-sand">
         <div className="mx-auto min-w-0 max-w-7xl px-4 page-hero-py sm:px-6 lg:px-8">
           <div className="grid gap-section lg:grid-cols-2 lg:items-center">
             <Reveal variant="text">
@@ -80,7 +81,7 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal variant="image" delay={80}>
-              <div className="group relative min-w-0 aspect-[3/2] overflow-hidden rounded-xl border border-[#c8d8e8] bg-[#eef6fc]/15 transition-[border-color,background-color] duration-300 ease-out lg:hover:border-[#1e7fd0]/55 lg:hover:bg-[#eef6fc]/35">
+              <div className="group relative min-w-0 aspect-[3/2] overflow-hidden rounded-xl border border-pelagic-sand bg-white transition-[border-color,background-color] duration-300 ease-out lg:hover:border-[#e6f4fc] lg:hover:bg-[#f4fafd]">
                 <SiteImage
                   src={siteImages.aboutCollaboration}
                   alt="Person holding printed plans and documents for review"
@@ -96,7 +97,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-b border-pelagic-sand bg-white section-py-md">
+      <section className="about-surface-white border-b border-pelagic-sand section-py-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-section lg:grid-cols-2 lg:items-start">
             <Reveal variant="text">
@@ -104,7 +105,7 @@ export default function AboutPage() {
                 <p className="type-eyebrow">Who we are</p>
                 <div className="group/who mt-5 flex gap-5 sm:gap-6">
                   <div
-                    className="w-0.5 shrink-0 self-stretch rounded-full bg-[#1e7fd0]/75 transition-colors duration-300 ease-out group-hover/who:bg-[#1e7fd0] motion-reduce:transition-none"
+                    className="w-0.5 shrink-0 self-stretch rounded-full bg-[#e6f4fc] transition-colors duration-300 ease-out group-hover/who:bg-[#f4fafd] motion-reduce:transition-none"
                     aria-hidden
                   />
                   <p className="type-lead max-w-[64ch] min-w-0 font-normal text-[#364b5e]">
@@ -126,14 +127,14 @@ export default function AboutPage() {
                   {builtAround.map((item, index) => (
                     <li
                       key={item}
-                      className={`group/row flex gap-3 py-4 text-base leading-7 text-[#364b5e] transition-[background-color,border-color,color] duration-300 ease-out hover:bg-[#f3f9fb] hover:text-[#0e235e] motion-reduce:transition-none motion-reduce:hover:text-[#364b5e] ${
+                      className={`group/row flex gap-3 py-4 text-base leading-7 text-[#364b5e] transition-[background-color,border-color,color] duration-300 ease-out hover:bg-[#f4fafd] hover:text-[#0e235e] motion-reduce:transition-none motion-reduce:hover:text-[#364b5e] ${
                         index < builtAround.length - 1
-                          ? "border-b border-pelagic-sand hover:border-[#c8d8e8]"
+                          ? "border-b border-pelagic-sand"
                           : ""
                       }`}
                     >
                       <span
-                        className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1e7fd0]"
+                        className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0e235e]"
                         aria-hidden
                       />
                       <span className="transition-transform duration-300 ease-out group-hover/row:translate-x-0.5 motion-reduce:transform-none">
@@ -148,12 +149,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-b border-pelagic-sand bg-[#eef6fc] section-py-md">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[url('/images/patterns/topo-contours.svg')] bg-[length:42rem_42rem] bg-center opacity-[0.03]"
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="about-surface-soft border-b border-pelagic-sand section-py-md">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal variant="text">
             <div className="max-w-3xl min-w-0">
               <h2 className="type-display type-subsection-title--lg min-w-0 break-words font-medium text-[#0e235e]">
@@ -165,20 +162,20 @@ export default function AboutPage() {
           <div className="mt-12 grid gap-4 sm:mt-14 sm:gap-5 lg:grid-cols-3">
             {principles.map((principle, index) => (
               <Reveal key={principle.title} variant="card" delay={index * 80} className="h-full">
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-[#c8d8e8] bg-[#f8fbfd] px-6 py-7 transition-[border-color,background-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-[#1e7fd0]/60 hover:bg-[#eef6fc]/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:px-7 sm:py-8">
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-pelagic-sand bg-white px-6 py-7 shadow-[0_4px_24px_rgba(7,26,51,0.04)] transition-[border-color,background-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-[#e6f4fc] motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:px-7 sm:py-8">
                   <div
-                    className="absolute bottom-7 left-0 top-7 w-0.5 rounded-full bg-[#1e7fd0]/70 transition-[width,background-color] duration-300 ease-out group-hover:w-1 group-hover:bg-[#1e7fd0] motion-reduce:transition-none sm:bottom-8 sm:top-8"
+                    className="absolute bottom-7 left-0 top-7 w-0.5 rounded-full bg-[#e6f4fc] transition-[width,background-color] duration-300 ease-out group-hover:w-1 group-hover:bg-[#f4fafd] motion-reduce:transition-none sm:bottom-8 sm:top-8"
                     aria-hidden
                   />
                   <div className="relative flex h-full flex-col pl-5 sm:pl-6">
                     <h3 className="type-display type-card-title font-medium text-[#0e235e]">
                       {principle.title}
                     </h3>
-                    <ul className="mt-3 flex-1 space-y-2.5 text-sm leading-7 text-[#364b5e] transition-colors duration-300 ease-out group-hover:text-[#2a4060] sm:text-base motion-reduce:transition-none motion-reduce:group-hover:text-[#364b5e]">
+                    <ul className="mt-3 flex-1 space-y-2.5 text-sm leading-7 text-[#364b5e] sm:text-base">
                       {principle.points.map((point) => (
                         <li key={point} className="flex gap-3">
                           <span
-                            className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1e7fd0]/75 transition-colors duration-300 ease-out group-hover:bg-[#1e7fd0] motion-reduce:transition-none"
+                            className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0e235e]"
                             aria-hidden
                           />
                           <span>{point}</span>
@@ -193,29 +190,27 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-pelagic-sand bg-[#0e235e] py-12 text-center sm:py-14">
+      <section className="about-surface-icy border-b border-pelagic-sand py-12 text-center sm:py-14">
         <Reveal variant="fade">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <p className="type-eyebrow text-[#1e7fd0]">Our principle</p>
-            <h2 className="type-display type-subsection-title--lg mx-auto mt-4 max-w-[24ch] font-medium text-white">
+            <p className="type-eyebrow">Our principle</p>
+            <h2 className="type-display type-subsection-title--lg mx-auto mt-4 max-w-[24ch] font-medium text-[#0e235e]">
               Sustainable development through innovation and integrity.
             </h2>
           </div>
         </Reveal>
-      </section>
 
-      <section className="border-y border-pelagic-sand bg-[#e8f2fa]">
-        <Reveal variant="fade">
-          <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
+        <Reveal variant="fade" delay={80}>
+          <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 sm:pt-10 lg:px-8">
             <ul className="flex flex-col items-center justify-center gap-6 text-center sm:flex-row sm:gap-0">
               {proofItems.map((item, index) => (
                 <li
                   key={item.label}
-                  className={`group/proof min-w-0 rounded-md px-4 py-2 transition-colors duration-300 ease-out hover:bg-[#eef6fc]/70 motion-reduce:transition-none sm:flex-1 ${
+                  className={`group/proof min-w-0 rounded-md px-4 py-2 transition-colors duration-300 ease-out hover:bg-[#f4fafd] motion-reduce:transition-none sm:flex-1 ${
                     index > 0 ? "sm:border-l sm:border-pelagic-sand" : ""
                   }`}
                 >
-                  <p className="text-sm font-medium tracking-wide text-[#0e235e] transition-colors duration-300 ease-out group-hover/proof:text-[#0e235e] sm:text-[0.9375rem]">
+                  <p className="text-sm font-medium tracking-wide text-[#0e235e] sm:text-[0.9375rem]">
                     {item.label}
                   </p>
                 </li>
@@ -225,7 +220,7 @@ export default function AboutPage() {
         </Reveal>
       </section>
 
-      <section className="overflow-x-hidden bg-[#f3f9fb] section-py-md">
+      <section className="about-surface-soft overflow-x-hidden section-py-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal variant="text">
             <div className="max-w-[54ch] min-w-0">
@@ -241,8 +236,8 @@ export default function AboutPage() {
           </Reveal>
         </div>
 
-        <div className="mt-8 min-w-0 w-full border-y border-pelagic-sand bg-[#f3f9fb] py-6 sm:py-7">
-          <div className="mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 lg:px-8 [&_.pelagic-client-marquee-track>span]:!shadow-none [&_ul>li>span]:!shadow-none">
+        <div className="about-surface-soft about-client-marquee-strip mt-8 min-w-0 w-full overflow-hidden border-y border-pelagic-sand py-6 sm:py-7">
+          <div className="w-full min-w-0 max-w-none [&_.pelagic-client-marquee-track>span]:!shadow-none [&_ul>li>span]:!shadow-none">
             <ClientMarquee fullWidth whiteGaps items={industryCategories} />
           </div>
         </div>
@@ -252,7 +247,7 @@ export default function AboutPage() {
             <Button
               href="/team"
               variant="primary"
-              className="transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-pelagic-accent-hover active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pelagic-accent motion-reduce:hover:translate-y-0 motion-reduce:active:translate-y-0"
+              className="transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pelagic-accent motion-reduce:hover:translate-y-0 motion-reduce:active:translate-y-0"
             >
               Meet the team
             </Button>

@@ -108,7 +108,7 @@ function MarqueeRow({
   variant,
   whiteGaps,
 }: {
-  names: string[];
+  names: readonly string[];
   direction: "left" | "right";
   variant: ClientMarqueeVariant;
   whiteGaps: boolean;

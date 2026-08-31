@@ -1,0 +1,49 @@
+/* Team page — Contact-aligned surface palette (scoped to /team only) */
+
+.team-surface-icy {
+  background-color: #e6f4fc;
+}
+
+.team-surface-soft {
+  background-color: #f4fafd;
+}
+
+/* Hero — solid icy blue while PageHero image/scrim remain in place */
+.team-page .team-hero-shell {
+  background-color: #e6f4fc;
+}
+
+.team-page .team-hero-shell > section {
+  background-color: #e6f4fc;
+  border-bottom-color: transparent;
+}
+
+.team-page .team-hero-shell .page-hero-scrim {
+  background: #e6f4fc;
+}
+
+/* Team member cards */.team-page .team-member-card {
+  background-color: #ffffff;
+  border-color: #e6f4fc;
+  box-shadow: 0 4px 24px rgba(7, 26, 51, 0.05);
+  transition:
+    border-color 300ms ease-out,
+    box-shadow 300ms ease-out,
+    transform 300ms ease-out;
+}
+
+.team-page .team-member-card:hover {
+  border-color: #e6f4fc;
+  box-shadow: 0 10px 32px rgba(7, 26, 51, 0.07);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-page .team-member-card {
+    transition: none;
+  }
+
+  .team-page .team-member-card:hover {
+    transform: none;
+  }
+}

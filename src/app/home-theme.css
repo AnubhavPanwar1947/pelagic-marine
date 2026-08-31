@@ -1,0 +1,106 @@
+/* Homepage — three-color surfaces below hero only (scoped to .home-page) */
+
+.home-surface-icy {
+  background: #e6f4fc;
+}
+
+.home-surface-white {
+  background: #ffffff;
+}
+
+.home-surface-soft {
+  background: #f4fafd;
+}
+
+/* Override SectionMaritime gradient washes and shade overlay */
+.home-page .home-surface-icy,
+.home-page .home-surface-white,
+.home-page .home-surface-soft {
+  background-image: none;
+}
+
+.home-page .section-shade {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Service tiles on themed sections */
+.home-page .home-service-tile {
+  background-color: #ffffff;
+  backdrop-filter: none;
+  border: 1px solid #e6f4fc;
+  box-shadow: 0 4px 24px rgba(7, 26, 51, 0.05);
+  transition:
+    border-color 300ms ease-out,
+    background-color 300ms ease-out,
+    transform 300ms ease-out,
+    box-shadow 300ms ease-out;
+}
+
+.home-page .home-service-tile:hover {
+  border-color: #e6f4fc;
+  background-color: #f4fafd;
+  box-shadow: 0 10px 32px rgba(7, 26, 51, 0.07);
+  transform: translateY(-2px);
+}
+
+.home-page .home-service-tile-accent {
+  background-color: #e6f4fc;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page .home-service-tile {
+    transition: none;
+  }
+
+  .home-page .home-service-tile:hover {
+    transform: none;
+  }
+}
+
+/* Stats band on themed sections */
+.home-page .home-stats-band {
+  border-color: #e6f4fc;
+  background-color: #e6f4fc;
+}
+
+.home-page .home-stats-band > div {
+  background-color: #ffffff;
+}
+
+.home-page .home-stats-band > div:hover {
+  background-color: #f4fafd;
+}
+
+/* Image cards */
+.home-page .home-image-card {
+  border: 1px solid #e6f4fc;
+}
+
+/* Clients, CTA — solid surfaces only, no parallax bleed-through */
+.home-page .home-section-clients,
+.home-page .home-section-cta {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  background-image: none;
+}
+
+/* Next step CTA — light icy blue */
+.home-page .home-section-cta {
+  background-color: #f4fafd;
+}
+
+/* Clients — icy blue */
+.home-page .home-section-clients {
+  background-color: #e6f4fc;
+}
+
+/* Clients marquee on icy blue section */
+.home-page .home-client-marquee-strip {
+  background-color: #e6f4fc;
+}
+
+.home-page .home-client-marquee-strip [class*="pelagic-client-marquee"] ul li span {
+  box-shadow: none;
+}

@@ -1,0 +1,13 @@
+/* About page — three-color surface palette (scoped to /about only) */
+
+.about-surface-icy {
+  background-color: #e6f4fc;
+}
+
+.about-surface-white {
+  background-color: #ffffff;
+}
+
+.about-surface-soft {
+  background-color: #f4fafd;
+}
