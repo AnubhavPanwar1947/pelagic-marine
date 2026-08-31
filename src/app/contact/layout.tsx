@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ContactLocalBusinessSchema } from "@/components/contact/ContactLocalBusinessSchema";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: { absolute: "Contact — Pelagic Marine Solutions" },
   description:
-    "Contact Pelagic Marine — offices in India and Dubai. Marine surveying, engineering, and legal consultancy across India and the UAE.",
+    "Contact Pelagic Marine Solutions LLC, Dubai. Office No. 104, Almas Business Center, Al Raffa. info@pelagic-marine.com, +971 50 394 1049.",
 };
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {

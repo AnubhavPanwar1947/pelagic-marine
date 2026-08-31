@@ -1,283 +1,63 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getGoogleMapsSearchUrl } from "@/lib/maps";
-import { getOfficeLocalTime } from "@/lib/office-time";
-import { getHubOffices, getOfficeIndex, mapHubs, type Office } from "@/lib/offices";
-import { SiteImage } from "@/components/ui/SiteImage";
-import { imageSizes } from "@/lib/image-sizes";
-import { getImageObjectPosition, siteImages } from "@/lib/site-images";
+import { contactPage } from "@/lib/site-data";
+import type { Office } from "@/lib/site-data";
 
-type ContactOfficeCardsProps = {
-  offices: Office[];
-  selectedIndex: number;
-  onSelectOffice: (index: number) => void;
-  onViewMap: () => void;
+export type ContactRegionId = "india" | "dubai";
+
+type ContactRegionalCardsProps = {
+  selectedRegion: ContactRegionId;
+  onSelectRegion: (region: ContactRegionId) => void;
+  dubaiOffice: Office;
 };
-
-const regionTheme: Record<Office["region"], { badge: string }> = {
-  India: { badge: "🇮🇳" },
-  UAE: { badge: "🇦🇪" },
-};
-
-const officeTopAccent = [
-  {
-    bar: "bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light",
-    overlay: "from-pelagic-navy/85 via-pelagic-blue/45 to-transparent",
-  },
-  {
-    bar: "bg-gradient-to-r from-pelagic-blue via-pelagic-accent to-pelagic-water",
-    overlay: "from-pelagic-deep/85 via-pelagic-navy/45 to-transparent",
-  },
-  {
-    bar: "bg-gradient-to-r from-pelagic-accent via-pelagic-light to-pelagic-water",
-    overlay: "from-pelagic-navy/85 via-pelagic-accent/45 to-transparent",
-  },
-] as const;
-
-function OfficeCard({
-  office,
-  index,
-  isSelected,
-  onSelectOffice,
-  onViewMap,
-  localTime,
-}: {
-  office: Office;
-  index: number;
-  isSelected: boolean;
-  onSelectOffice: (index: number) => void;
-  onViewMap: () => void;
-  localTime?: string;
-}) {
-  const city = office.label;
-  const cityUpper = city.toUpperCase();
-  const region = regionTheme[office.region];
-  const imageSrc = siteImages.offices[index] ?? siteImages.contactHero;
-  const accent = officeTopAccent[index % officeTopAccent.length];
-
-  return (
-    <article
-      className={`card-premium group relative flex flex-col overflow-hidden rounded-3xl border bg-white shadow-lg transition duration-300 hover:-translate-y-2 hover:shadow-2xl ${
-        isSelected
-          ? "border-pelagic-accent ring-2 ring-pelagic-accent/35"
-          : "border-pelagic-sand hover:border-pelagic-accent/30"
-      }`}
-    >
-      <div className={`h-2.5 w-full ${accent.bar}`} aria-hidden />
-      <div className="relative aspect-[21/9] overflow-hidden">
-        <SiteImage
-          src={imageSrc}
-          alt={`${city} office`}
-          fill
-          brandOverlay
-          objectPosition={getImageObjectPosition(imageSrc)}
-          className="object-cover transition duration-500 group-hover:scale-105"
-          sizes={imageSizes.officeCard}
-        />
-        <div className={`absolute inset-0 bg-gradient-to-t ${accent.overlay}`} />
-        <div className="absolute inset-x-0 bottom-0 px-6 pb-5 pt-10 text-white">
-          <div className="flex min-w-0 items-start justify-between gap-3">
-            <div className="min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="text-lg" aria-hidden>
-                  {region.badge}
-                </span>
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/80">
-                  {office.region}
-                </p>
-              </div>
-              <h3 className="font-display type-subsection-title mt-2 break-words font-bold tracking-wide">
-                {cityUpper}
-              </h3>
-            </div>
-            <span
-              className={`flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-sm font-bold tabular-nums backdrop-blur-sm ${
-                isSelected ? "bg-pelagic-accent/90 text-pelagic-charcoal" : ""
-              }`}
-            >
-              0{index + 1}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-1 flex-col p-6">
-        {office.tagline && (
-          <p className="text-sm font-semibold leading-6 text-pelagic-accent">{office.tagline}</p>
-        )}
-
-        {office.services && office.services.length > 0 && (
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {office.services.map((service) => (
-              <li
-                key={service}
-                className="rounded-lg bg-gradient-to-r from-pelagic-sky to-pelagic-mist px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-pelagic-navy"
-              >
-                {service}
-              </li>
-            ))}
-          </ul>
-        )}
-
-        <address className="mt-5 flex-1 not-italic text-sm leading-6 text-pelagic-slate">
-          {office.address}
-        </address>
-
-        {office.hours && (
-          <p className="mt-3 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full bg-pelagic-sky px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-pelagic-navy">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pelagic-accent opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-pelagic-accent" />
-            </span>
-            {office.hours}
-            {localTime && (
-              <span className="normal-case text-pelagic-blue">· Local {localTime}</span>
-            )}
-          </p>
-        )}
-
-        <div className="mt-5 grid gap-2 sm:grid-cols-2">
-          <a
-            href={`tel:${office.phone.replace(/\s/g, "")}`}
-            className="flex items-center justify-center gap-2 rounded-xl bg-pelagic-charcoal px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-pelagic-ink"
-          >
-            <PhoneIcon />
-            Call office
-          </a>
-          <button
-            type="button"
-            onClick={() => {
-              onSelectOffice(index);
-              onViewMap();
-            }}
-            className={`rounded-xl px-4 py-3 text-xs font-bold uppercase tracking-wider transition ${
-              isSelected
-                ? "bg-pelagic-accent text-pelagic-charcoal shadow-md hover:bg-pelagic-light"
-                : "border-2 border-pelagic-sand text-pelagic-charcoal hover:border-pelagic-accent hover:text-pelagic-accent"
-            }`}
-          >
-            {isSelected ? "Selected · Map" : "View on map"}
-          </button>
-        </div>
-        <a
-          href={getGoogleMapsSearchUrl(office)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-2 block text-center text-xs font-semibold text-pelagic-accent underline-offset-4 hover:text-pelagic-accent hover:underline"
-        >
-          Open directions
-        </a>
-      </div>
-
-      <button type="button" onClick={() => onSelectOffice(index)} className="sr-only">
-        Select {office.label} office
-      </button>
-
-      <div
-        className={`h-1.5 w-full transition-all duration-300 ${
-          isSelected ? "bg-gradient-to-r from-pelagic-accent via-pelagic-light to-pelagic-accent" : "bg-transparent"
-        }`}
-        aria-hidden
-      />
-    </article>
-  );
-}
 
 export function ContactOfficeCards({
-  offices,
-  selectedIndex,
-  onSelectOffice,
-  onViewMap,
-}: ContactOfficeCardsProps) {
-  const [localTimes, setLocalTimes] = useState<string[]>([]);
-  const [indiaExpanded, setIndiaExpanded] = useState(true);
-
-  const indiaHub = mapHubs.find((h) => h.id === "india")!;
-  const indiaOffices = getHubOffices("india");
-  const dubaiOffice = offices.find((o) => o.id === "dubai");
-
-  useEffect(() => {
-    function tick() {
-      setLocalTimes(offices.map((office) => getOfficeLocalTime(office)));
-    }
-    tick();
-    const id = window.setInterval(tick, 60_000);
-    return () => window.clearInterval(id);
-  }, [offices]);
+  selectedRegion,
+  onSelectRegion,
+  dubaiOffice,
+}: ContactRegionalCardsProps) {
+  const { india, dubai } = contactPage.regions;
 
   return (
-    <div className="space-y-8">
-      <div className="grid gap-8 lg:grid-cols-2">
-        <button
-          type="button"
-          onClick={() => {
-            setIndiaExpanded((open) => !open);
-            if (!indiaExpanded) {
-              onSelectOffice(getOfficeIndex(indiaOffices[0].id));
-            }
-          }}
-          className={`rounded-3xl border p-6 text-left transition ${
-            indiaOffices.some((o) => getOfficeIndex(o.id) === selectedIndex)
-              ? "border-pelagic-accent bg-pelagic-accent/5 ring-2 ring-pelagic-accent/20"
-              : "border-pelagic-sand bg-white hover:border-pelagic-accent/30"
-          }`}
-        >
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-pelagic-accent">Region</p>
-              <h3 className="font-display mt-1 text-2xl font-semibold text-pelagic-ink">
-                {indiaHub.label}
-              </h3>
-              <p className="mt-2 text-sm text-pelagic-steel">Mumbai · Dehradun</p>
-            </div>
-            <span className="text-2xl" aria-hidden>
-              🇮🇳
+    <div className="grid gap-4 sm:grid-cols-2">
+      <button
+        type="button"
+        onClick={() => onSelectRegion("india")}
+        aria-pressed={selectedRegion === "india"}
+        className={`rounded-xl border p-5 text-left transition-[border-color,background-color] duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e7fd0] motion-reduce:transition-none ${
+          selectedRegion === "india"
+            ? "border-[#1e7fd0] bg-white ring-1 ring-[#1e7fd0]/25"
+            : "border-[#d7e6f0] bg-white hover:border-[#1e7fd0]/40 hover:bg-[#f3f9fb]"
+        }`}
+      >
+        <p className="text-sm font-semibold text-[#0e235e]">{india.label}</p>
+        <p className="mt-2 text-sm leading-6 text-[#364b5e]">{india.description}</p>
+        <p className="mt-3 text-sm font-medium text-[#1e7fd0]">{india.phone}</p>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => onSelectRegion("dubai")}
+        aria-pressed={selectedRegion === "dubai"}
+        className={`rounded-xl border p-5 text-left transition-[border-color,background-color] duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e7fd0] motion-reduce:transition-none ${
+          selectedRegion === "dubai"
+            ? "border-[#1e7fd0] bg-white ring-1 ring-[#1e7fd0]/25"
+            : "border-[#d7e6f0] bg-white hover:border-[#1e7fd0]/40 hover:bg-[#f3f9fb]"
+        }`}
+      >
+        <p className="text-sm font-semibold text-[#0e235e]">{dubai.label}</p>
+        <p className="mt-2 text-sm leading-6 text-[#364b5e]">
+          {dubaiOffice.tagline ?? "Middle East shipping and offshore advisory"}
+        </p>
+        <address className="mt-3 not-italic text-sm leading-6 text-[#364b5e]">
+          {dubai.addressLines.map((line) => (
+            <span key={line} className="block">
+              {line}
             </span>
-          </div>
-          <p className="mt-4 text-sm font-semibold text-pelagic-accent">
-            {indiaExpanded ? "Hide offices ↑" : "View 2 offices →"}
-          </p>
-        </button>
-
-        {dubaiOffice && (
-          <OfficeCard
-            office={dubaiOffice}
-            index={getOfficeIndex(dubaiOffice.id)}
-            isSelected={selectedIndex === getOfficeIndex(dubaiOffice.id)}
-            onSelectOffice={onSelectOffice}
-            onViewMap={onViewMap}
-            localTime={localTimes[getOfficeIndex(dubaiOffice.id)]}
-          />
-        )}
-      </div>
-
-      {indiaExpanded && (
-        <div className="grid gap-8 lg:grid-cols-2">
-          {indiaOffices.map((office) => {
-            const index = getOfficeIndex(office.id);
-            return (
-              <OfficeCard
-                key={office.id}
-                office={office}
-                index={index}
-                isSelected={selectedIndex === index}
-                onSelectOffice={onSelectOffice}
-                onViewMap={onViewMap}
-                localTime={localTimes[index]}
-              />
-            );
-          })}
-        </div>
-      )}
+          ))}
+        </address>
+        <p className="mt-2 text-sm font-medium text-[#1e7fd0]">{dubai.phone}</p>
+      </button>
     </div>
-  );
-}
-
-function PhoneIcon() {
-  return (
-    <svg className="h-3.5 w-3.5 shrink-0 text-pelagic-accent" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
-      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-    </svg>
   );
 }

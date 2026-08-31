@@ -51,9 +51,9 @@ export const company = {
 export const contactPage = {
   hero: {
     eyebrow: "Contact",
-    headline: "Tell us the vessel — we'll assign the expert",
+    headline: "Start a conversation",
     subline:
-      "Surveying, engineering, LNG support, and maritime legal — one qualified team across India and the UAE. Tell us your vessel, port, or project scope and we will route you to the right consultant.",
+      "Tell us the problem — a vessel, a structure, a survey or a decision — and we'll tell you what the engineering says.",
     fitStatement:
       "Strong fit: pre-purchase surveys, warranty attendance, LNG bunkering supervision, remote compass adjustment, casualty response, and fleet technical advisory.",
     imageSrc: "/images/stock/hero-port.jpg",
@@ -69,6 +69,18 @@ export const contactPage = {
       "Naval architects & engineers",
       "India · UAE mobilisation",
     ],
+  },
+  companyInfo: {
+    eyebrow: "Our office",
+    officeLines: [
+      "Office No. 104, Almas Business Center,",
+      "Aghaadir Building, Al Raffa,",
+      "Dubai, U.A.E.",
+    ],
+    email: company.emails.info,
+    phone: company.phones.uae,
+    website: "pelagic-marine.com",
+    websiteUrl: "https://pelagic-marine.com",
   },
   emergency: {
     label: "Urgent line",
@@ -121,6 +133,20 @@ export const contactPage = {
     { label: "6 disciplines", detail: "Survey to legal" },
   ],
   form: {
+    eyebrow: "Send an enquiry",
+    labels: {
+      name: "Your name",
+      email: "Email",
+      company: "Company",
+      message: "How can we help?",
+    },
+    submit: "Send enquiry",
+    successMessage:
+      "Thank you — your enquiry has been sent. We will be in touch shortly.",
+    errorMessage:
+      "Sorry — the message could not be sent. Please email info@pelagic-marine.com directly.",
+    defaultService: "General enquiry",
+    defaultSubject: "General enquiry",
     privacyNotice:
       "Your enquiry is stored securely and used only to respond to your request. We do not sell contact details. Protected by rate limits, bot checks and encryption in transit.",
     privacyConsent:
@@ -205,10 +231,36 @@ export const contactPage = {
     },
   ],
   networkHub: {
-    eyebrow: "Global Network Hub",
-    title: "Find your nearest expert",
+    eyebrow: "Regional map",
+    title: "India and Dubai",
+    description: "Select a region to view coverage and contact details.",
+  },
+  officesSection: {
+    eyebrow: "Our offices",
+    title: "India and Dubai",
     description:
-      "Search by city, filter by region, and open directions — your gateway to Pelagic offices across India and the UAE.",
+      "Direct lines, regional surveyors, and yard attendance across India and the UAE.",
+  },
+  regions: {
+    india: {
+      label: "India",
+      phone: company.phones.india,
+      description:
+        "Regional survey, engineering and project support across Indian ports and yards.",
+      coverageNote:
+        "Network coverage across India — enquire for mobilisation to your port or project location.",
+      mapsSearchUrl: "https://www.google.com/maps/search/?api=1&query=India",
+    },
+    dubai: {
+      label: "Dubai",
+      phone: company.phones.uae,
+      addressLines: [
+        "Office No. 104, Almas Business Center,",
+        "Aghaadir Building, Al Raffa,",
+        "Dubai, U.A.E.",
+      ],
+      mapsQuery: "Almas Business Center, Al Raffa, Dubai",
+    },
   },
   responseSteps: [
     {

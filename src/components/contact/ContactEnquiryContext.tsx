@@ -11,7 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import { submitEnquiryForm } from "@/lib/api";
-import { company, contactPage, serviceCategories } from "@/lib/site-data";
+import { contactPage, serviceCategories } from "@/lib/site-data";
 
 export const urgencyOptions = [
   { value: "standard", label: "Standard — within business days" },
@@ -166,13 +166,11 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
           setConfirmationEmailError(result.data?.confirmationEmailError ?? null);
           setSubmitted(true);
         } else {
-          setError(result.error ?? "Something went wrong. Please try again.");
+          setError(result.error ?? contactPage.form.errorMessage);
         }
       } catch {
         setLoading(false);
-        setError(
-          `Contact email works after the site is uploaded to DreamHost. Locally you can review the form UI; on live it sends via DreamHost to ${company.emails.info}.`
-        );
+        setError(contactPage.form.errorMessage);
       }
     },
     [privacyAccepted, resetDraft]

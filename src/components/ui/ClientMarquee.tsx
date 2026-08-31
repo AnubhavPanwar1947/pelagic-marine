@@ -70,6 +70,10 @@ type ClientMarqueeProps = {
   variant?: ClientMarqueeVariant;
   /** Use the full content-column width (About page). Homepage behavior unchanged. */
   fullWidth?: boolean;
+  /** Override default client list — e.g. industry categories on About page */
+  items?: readonly string[];
+  /** About page: solid white cards with visible borders on a white section */
+  whiteGaps?: boolean;
 };
 
 function usePrefersReducedMotion() {
@@ -86,9 +90,13 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-function chipClassName(variant: ClientMarqueeVariant) {
+function chipClassName(variant: ClientMarqueeVariant, whiteGaps = false) {
   if (variant === "quiet") {
     return "inline-flex h-[3.5rem] w-[13.5rem] shrink-0 items-center justify-center rounded-xl border border-pelagic-mist bg-pelagic-cream/50 px-4 text-center text-[12px] font-medium tracking-[0.01em] text-pelagic-steel sm:h-[3.75rem] sm:w-[14.5rem] sm:text-[13px]";
+  }
+
+  if (whiteGaps) {
+    return "inline-flex h-[4.25rem] w-[15rem] shrink-0 items-center justify-center rounded-2xl border border-[#c8d8e8] bg-white px-5 text-center text-[13px] font-semibold tracking-[0.02em] text-pelagic-ink shadow-[0_8px_28px_rgba(7,26,51,0.12)] sm:h-[4.75rem] sm:w-[16.5rem] sm:text-sm";
   }
 
   return "inline-flex h-[4.25rem] w-[15rem] shrink-0 items-center justify-center rounded-2xl border border-white/55 bg-white/90 px-5 text-center text-[13px] font-semibold tracking-[0.02em] text-pelagic-ink shadow-[0_8px_28px_rgba(7,26,51,0.12)] backdrop-blur-md sm:h-[4.75rem] sm:w-[16.5rem] sm:text-sm";
@@ -98,13 +106,15 @@ function MarqueeRow({
   names,
   direction,
   variant,
+  whiteGaps,
 }: {
   names: string[];
   direction: "left" | "right";
   variant: ClientMarqueeVariant;
+  whiteGaps: boolean;
 }) {
   const row = [...names, ...names];
-  const chip = chipClassName(variant);
+  const chip = chipClassName(variant, whiteGaps);
 
   return (
     <div className="pelagic-client-marquee-row">
@@ -121,12 +131,20 @@ function MarqueeRow({
   );
 }
 
-function StaticClientList({ variant }: { variant: ClientMarqueeVariant }) {
-  const chip = chipClassName(variant);
+function StaticClientList({
+  variant,
+  items,
+  whiteGaps,
+}: {
+  variant: ClientMarqueeVariant;
+  items: readonly string[];
+  whiteGaps: boolean;
+}) {
+  const chip = chipClassName(variant, whiteGaps);
 
   return (
     <ul className="flex flex-wrap justify-center gap-2 sm:gap-3">
-      {clientCompanies.map((name) => (
+      {items.map((name) => (
         <li key={name}>
           <span className={chip}>{name}</span>
         </li>
@@ -138,14 +156,16 @@ function StaticClientList({ variant }: { variant: ClientMarqueeVariant }) {
 export function ClientMarquee({
   variant = "default",
   fullWidth = false,
+  items = clientCompanies,
+  whiteGaps = false,
 }: ClientMarqueeProps) {
   const reducedMotion = usePrefersReducedMotion();
-  const midpoint = Math.ceil(clientCompanies.length / 2);
-  const rowOne = clientCompanies.slice(0, midpoint);
-  const rowTwo = clientCompanies.slice(midpoint);
+  const midpoint = Math.ceil(items.length / 2);
+  const rowOne = items.slice(0, midpoint);
+  const rowTwo = items.slice(midpoint);
 
-  const top = rowOne.length >= 4 ? rowOne : clientCompanies;
-  const bottom = rowTwo.length >= 4 ? rowTwo : [...clientCompanies].reverse();
+  const top = rowOne.length >= 4 ? rowOne : items;
+  const bottom = rowTwo.length >= 4 ? rowTwo : [...items].reverse();
 
   const rootClass = [
     "pelagic-client-marquee relative w-full min-w-0 max-w-full overflow-hidden",
@@ -155,10 +175,14 @@ export function ClientMarquee({
     .filter(Boolean)
     .join(" ");
 
+  const surfaceClass = "relative z-[1] flex flex-col gap-3.5 sm:gap-4";
+
   if (reducedMotion) {
     return (
       <div className={rootClass} aria-label="Client companies">
-        <StaticClientList variant={variant} />
+        <div className={surfaceClass}>
+          <StaticClientList variant={variant} items={items} whiteGaps={whiteGaps} />
+        </div>
       </div>
     );
   }
@@ -166,9 +190,9 @@ export function ClientMarquee({
   return (
     <div className={rootClass} aria-label="Client companies">
       <style dangerouslySetInnerHTML={{ __html: MARQUEE_CSS }} />
-      <div className="relative z-[1] flex flex-col gap-3.5 sm:gap-4">
-        <MarqueeRow names={top} direction="left" variant={variant} />
-        <MarqueeRow names={bottom} direction="right" variant={variant} />
+      <div className={surfaceClass}>
+        <MarqueeRow names={top} direction="left" variant={variant} whiteGaps={whiteGaps} />
+        <MarqueeRow names={bottom} direction="right" variant={variant} whiteGaps={whiteGaps} />
       </div>
     </div>
   );

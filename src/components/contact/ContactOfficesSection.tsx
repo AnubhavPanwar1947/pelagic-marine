@@ -2,72 +2,62 @@
 
 import { ContactOfficeCards } from "@/components/contact/ContactOfficeCards";
 import { OfficeLocator } from "@/components/contact/OfficeLocator";
+import type { ContactRegionId } from "@/components/contact/ContactOfficeCards";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { contactPage } from "@/lib/site-data";
 import type { Office } from "@/lib/site-data";
 
 type ContactOfficesSectionProps = {
-  offices: Office[];
-  selectedIndex: number;
-  onSelectOffice: (index: number) => void;
+  dubaiOffice: Office;
+  selectedRegion: ContactRegionId;
+  onSelectRegion: (region: ContactRegionId) => void;
 };
 
 export function ContactOfficesSection({
-  offices,
-  selectedIndex,
-  onSelectOffice,
+  dubaiOffice,
+  selectedRegion,
+  onSelectRegion,
 }: ContactOfficesSectionProps) {
-  function scrollToMap() {
-    document.getElementById("offices-map")?.scrollIntoView({ behavior: "smooth" });
-  }
-
   return (
-    <SectionMaritime variant="sky" className="section-py-md" gridOpacity={55}>
+    <section className="border-y border-[#d7e6f0] bg-[#eef8fd] section-py-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
-            eyebrow="Global footprint"
-            title="Our offices"
-            description="Mumbai · Dehradun · Dubai — direct lines, regional surveyors, and yard attendance."
+            eyebrow={contactPage.officesSection.eyebrow}
+            title={contactPage.officesSection.title}
+            description={contactPage.officesSection.description}
           />
         </Reveal>
 
-        <Reveal delay={80} className="mt-12">
+        <Reveal delay={80} className="mt-10">
           <ContactOfficeCards
-            offices={offices}
-            selectedIndex={selectedIndex}
-            onSelectOffice={onSelectOffice}
-            onViewMap={scrollToMap}
+            selectedRegion={selectedRegion}
+            onSelectRegion={onSelectRegion}
+            dubaiOffice={dubaiOffice}
           />
         </Reveal>
 
-        <div id="offices-map" className="scroll-mt-28 mt-16">
+        <div id="offices-map" className="mt-12 scroll-mt-28">
           <Reveal delay={120}>
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h3 className="font-display type-subsection-title font-semibold text-pelagic-ink">
-                  {contactPage.networkHub.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-pelagic-steel sm:text-base">
-                  {contactPage.networkHub.description}
-                </p>
-              </div>
-              <p className="text-xs font-bold uppercase tracking-wider text-pelagic-accent">
-                Select a card to focus the map
+            <div className="rounded-xl border border-[#d7e6f0] bg-white p-5 transition-[border-color,background-color] duration-300 ease-out motion-reduce:transition-none sm:p-6">
+              <h3 className="font-display type-subsection-title font-semibold text-[#0e235e]">
+                {contactPage.networkHub.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#364b5e] sm:text-base">
+                {contactPage.networkHub.description}
               </p>
-            </div>
-            <div className="card-premium card-maritime contact-map-panel mt-6 overflow-hidden rounded-3xl border p-4 shadow-lg sm:p-6">
-              <OfficeLocator
-                offices={offices}
-                selectedIndex={selectedIndex}
-                onSelectOffice={onSelectOffice}
-              />
+              <div className="mt-6">
+                <OfficeLocator
+                  selectedRegion={selectedRegion}
+                  onSelectRegion={onSelectRegion}
+                  dubaiOffice={dubaiOffice}
+                />
+              </div>
             </div>
           </Reveal>
         </div>
       </div>
-    </SectionMaritime>
+    </section>
   );
 }

@@ -2,47 +2,41 @@
 
 import { ContactEnquiryForm } from "@/components/contact/ContactEnquiryForm";
 import { ContactEnquiryProvider } from "@/components/contact/ContactEnquiryContext";
-import { ContactHeroAmbience } from "@/components/contact/ContactHeroAmbience";
-import { ContactIntentPaths } from "@/components/contact/ContactIntentPaths";
 import { ContactTrustPanel } from "@/components/contact/ContactTrustPanel";
-import { SiteImage } from "@/components/ui/SiteImage";
+import { Reveal } from "@/components/ui/Reveal";
 import { contactPage } from "@/lib/site-data";
-import { imageSizes } from "@/lib/image-sizes";
-import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 
 export function ContactHeroSection() {
-  const heroImage = contactPage.hero.imageSrc || siteImages.contactHero;
-
   return (
     <ContactEnquiryProvider>
-      <section className="contact-hero-body relative overflow-hidden border-b border-pelagic-accent/20">
-        <div className="contact-hero-gradient absolute inset-0" aria-hidden />
-        <ContactHeroAmbience />
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 lg:block" aria-hidden>
-          <SiteImage
-            src={heroImage}
-            alt=""
-            fill
-            brandOverlay
-            objectPosition={getImageObjectPosition(heroImage)}
-            className="object-cover"
-            sizes={imageSizes.contactHero}
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-pelagic-sky/25 to-pelagic-sky/75" />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8 lg:pt-8">
-          <ContactIntentPaths />
-        </div>
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:items-start lg:gap-8">
-            <div id="enquiry-form" className="order-1 flex scroll-mt-28 lg:order-2">
-              <ContactEnquiryForm />
+      <section className="border-b border-[#d7e6f0] bg-[#eaf6fc]">
+        <div className="mx-auto max-w-7xl px-4 page-hero-py sm:px-6 lg:px-8">
+          <Reveal variant="text">
+            <div className="max-w-3xl min-w-0">
+              <p className="type-eyebrow">{contactPage.hero.eyebrow}</p>
+              <h1 className="type-display type-page-title mt-4 font-medium text-[#0e235e]">
+                {contactPage.hero.headline}
+              </h1>
+              <p className="type-lead mt-5 max-w-2xl font-normal text-[#364b5e]">
+                {contactPage.hero.subline}
+              </p>
             </div>
+          </Reveal>
+        </div>
+      </section>
 
-            <div className="order-2 flex lg:order-1">
+      <section className="border-b border-[#d7e6f0] bg-[#f7fbfd] section-py-md">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-2 md:gap-8 lg:gap-12">
+            <Reveal variant="text" className="min-w-0 md:order-1">
+              <div id="enquiry-form" className="scroll-mt-28">
+                <ContactEnquiryForm />
+              </div>
+            </Reveal>
+
+            <Reveal variant="text" delay={80} className="min-w-0 md:order-2">
               <ContactTrustPanel />
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
