@@ -81,7 +81,7 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal variant="image" delay={80}>
-              <div className="group relative min-w-0 aspect-[3/2] overflow-hidden rounded-xl border border-pelagic-sand bg-white transition-[border-color,background-color] duration-300 ease-out lg:hover:border-[#e6f4fc] lg:hover:bg-[#f4fafd]">
+              <div className="group relative min-w-0 aspect-[3/2] overflow-hidden rounded-xl border border-pelagic-sand bg-white transition-[border-color,background-color] duration-300 ease-out lg:hover:border-[#E6F4FC] lg:hover:bg-[#F4FAFD]">
                 <SiteImage
                   src={siteImages.aboutCollaboration}
                   alt="Person holding printed plans and documents for review"
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 <p className="type-eyebrow">Who we are</p>
                 <div className="group/who mt-5 flex gap-5 sm:gap-6">
                   <div
-                    className="w-0.5 shrink-0 self-stretch rounded-full bg-[#e6f4fc] transition-colors duration-300 ease-out group-hover/who:bg-[#f4fafd] motion-reduce:transition-none"
+                    className="w-0.5 shrink-0 self-stretch rounded-full bg-[#E6F4FC] transition-colors duration-300 ease-out group-hover/who:bg-[#F4FAFD] motion-reduce:transition-none"
                     aria-hidden
                   />
                   <p className="type-lead max-w-[64ch] min-w-0 font-normal text-[#364b5e]">
@@ -127,7 +127,7 @@ export default function AboutPage() {
                   {builtAround.map((item, index) => (
                     <li
                       key={item}
-                      className={`group/row flex gap-3 py-4 text-base leading-7 text-[#364b5e] transition-[background-color,border-color,color] duration-300 ease-out hover:bg-[#f4fafd] hover:text-[#0e235e] motion-reduce:transition-none motion-reduce:hover:text-[#364b5e] ${
+                      className={`group/row flex gap-3 py-4 text-base leading-7 text-[#364b5e] transition-[background-color,border-color,color] duration-300 ease-out hover:bg-[#F4FAFD] hover:text-[#0e235e] motion-reduce:transition-none motion-reduce:hover:text-[#364b5e] ${
                         index < builtAround.length - 1
                           ? "border-b border-pelagic-sand"
                           : ""
@@ -162,9 +162,9 @@ export default function AboutPage() {
           <div className="mt-12 grid gap-4 sm:mt-14 sm:gap-5 lg:grid-cols-3">
             {principles.map((principle, index) => (
               <Reveal key={principle.title} variant="card" delay={index * 80} className="h-full">
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-pelagic-sand bg-white px-6 py-7 shadow-[0_4px_24px_rgba(7,26,51,0.04)] transition-[border-color,background-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-[#e6f4fc] motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:px-7 sm:py-8">
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-pelagic-sand bg-white px-6 py-7 shadow-[0_4px_24px_rgba(7,26,51,0.04)] transition-[border-color,background-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-[#E6F4FC] motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:px-7 sm:py-8">
                   <div
-                    className="absolute bottom-7 left-0 top-7 w-0.5 rounded-full bg-[#e6f4fc] transition-[width,background-color] duration-300 ease-out group-hover:w-1 group-hover:bg-[#f4fafd] motion-reduce:transition-none sm:bottom-8 sm:top-8"
+                    className="absolute bottom-7 left-0 top-7 w-0.5 rounded-full bg-[#E6F4FC] transition-[width,background-color] duration-300 ease-out group-hover:w-1 group-hover:bg-[#F4FAFD] motion-reduce:transition-none sm:bottom-8 sm:top-8"
                     aria-hidden
                   />
                   <div className="relative flex h-full flex-col pl-5 sm:pl-6">
@@ -206,7 +206,7 @@ export default function AboutPage() {
               {proofItems.map((item, index) => (
                 <li
                   key={item.label}
-                  className={`group/proof min-w-0 rounded-md px-4 py-2 transition-colors duration-300 ease-out hover:bg-[#f4fafd] motion-reduce:transition-none sm:flex-1 ${
+                  className={`group/proof min-w-0 rounded-md px-4 py-2 transition-colors duration-300 ease-out hover:bg-[#F4FAFD] motion-reduce:transition-none sm:flex-1 ${
                     index > 0 ? "sm:border-l sm:border-pelagic-sand" : ""
                   }`}
                 >
