@@ -59,7 +59,7 @@ export default function HomePage() {
         {/* ── Section 2 · Delivery: light icy blue ── */}
         <SectionMaritime
           variant="delivery"
-          className="home-surface-soft relative z-10 border-b border-pelagic-sand section-py"
+          className="home-theme-delivery relative z-10 border-b border-pelagic-sand section-py"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <ProjectsCapabilitiesCard />
@@ -69,7 +69,7 @@ export default function HomePage() {
         {/* ── Section 3 · Services: white ── */}
         <SectionMaritime
           variant="services"
-          className="home-surface-white border-b border-pelagic-sand section-py"
+          className="home-theme-services border-b border-pelagic-sand section-py"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Reveal variant="text">
@@ -127,7 +127,7 @@ export default function HomePage() {
         {/* ── Section 4 · Why Pelagic: icy blue ── */}
         <SectionMaritime
           variant="why"
-          className="home-surface-icy border-b border-pelagic-sand section-py"
+          className="home-theme-why border-b border-pelagic-sand section-py"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-section lg:grid-cols-2 lg:items-start">
@@ -178,7 +178,7 @@ export default function HomePage() {
         {/* ── Section 5 · Decarbonization: white ── */}
         <SectionMaritime
           variant="decarb"
-          className="home-surface-white border-b border-pelagic-sand section-py"
+          className="home-theme-decarb border-b border-pelagic-sand section-py"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-section lg:grid-cols-2 lg:items-center">
@@ -254,7 +254,7 @@ export default function HomePage() {
         </section>
 
         {/* ── Section 7 · CTA: light icy blue ── */}
-        <section className="home-section-cta home-surface-soft section-py-lg">
+        <section className="home-section-cta section-py-lg">
           <Reveal variant="text" className="mx-auto max-w-3xl px-4 text-center sm:px-6">
             <p className="type-eyebrow">Next step</p>
             <h2 className="type-display type-section-title--lg mt-5 text-[#0e235e]">

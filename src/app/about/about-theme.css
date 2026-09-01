@@ -1,11 +1,21 @@
-/* About page — three-color surface palette (scoped to /about only) */
+/* About page — surface palette (scoped to /about only) */
 
-.about-surface-icy {
-  background-color: #e6f4fc;
+/* Sections 1–3: icy-blue sequence */
+.about-theme-hero {
+  background-color: #f6fcff;
 }
 
-.about-surface-white {
-  background-color: #ffffff;
+.about-theme-who {
+  background-color: #e7f4fb;
+}
+
+.about-theme-principles {
+  background-color: #f1f9fd;
+}
+
+/* Sections 4+ */
+.about-surface-icy {
+  background-color: #e6f4fc;
 }
 
 .about-surface-soft {

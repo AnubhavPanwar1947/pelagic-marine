@@ -64,7 +64,7 @@ const builtAround = [
 export default function AboutPage() {
   return (
     <div>
-      <section className="about-surface-icy border-b border-pelagic-sand">
+      <section className="about-theme-hero border-b border-pelagic-sand">
         <div className="mx-auto min-w-0 max-w-7xl px-4 page-hero-py sm:px-6 lg:px-8">
           <div className="grid gap-section lg:grid-cols-2 lg:items-center">
             <Reveal variant="text">
@@ -97,7 +97,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-surface-white border-b border-pelagic-sand section-py-md">
+      <section className="about-theme-who border-b border-pelagic-sand section-py-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-section lg:grid-cols-2 lg:items-start">
             <Reveal variant="text">
@@ -149,7 +149,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-surface-soft border-b border-pelagic-sand section-py-md">
+      <section className="about-theme-principles border-b border-pelagic-sand section-py-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal variant="text">
             <div className="max-w-3xl min-w-0">

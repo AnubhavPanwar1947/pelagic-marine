@@ -1,21 +1,22 @@
-/* Homepage — three-color surfaces below hero only (scoped to .home-page) */
+/* Homepage — section surfaces below hero only (scoped to .home-page) */
 
-.home-surface-icy {
-  background: #e6f4fc;
-}
-
-.home-surface-white {
-  background: #ffffff;
-}
-
-.home-surface-soft {
+/* Solid section backgrounds — override SectionMaritime gradient washes */
+.home-page .home-theme-delivery {
   background: #f4fafd;
 }
 
-/* Override SectionMaritime gradient washes and shade overlay */
-.home-page .home-surface-icy,
-.home-page .home-surface-white,
-.home-page .home-surface-soft {
+.home-page .home-theme-services {
+  background-color: #e6f4fc;
+  background-image: none;
+}
+
+.home-page .home-theme-why {
+  background-color: #f4fafd;
+  background-image: none;
+}
+
+.home-page .home-theme-decarb {
+  background-color: #e6f4fc;
   background-image: none;
 }
 
@@ -77,7 +78,7 @@
   border: 1px solid #e6f4fc;
 }
 
-/* Clients, CTA — solid surfaces only, no parallax bleed-through */
+/* Clients, CTA — solid surfaces only */
 .home-page .home-section-clients,
 .home-page .home-section-cta {
   position: relative;
@@ -86,19 +87,16 @@
   background-image: none;
 }
 
-/* Next step CTA — light icy blue */
-.home-page .home-section-cta {
+.home-page .home-section-clients {
   background-color: #f4fafd;
 }
 
-/* Clients — icy blue */
-.home-page .home-section-clients {
+.home-page .home-section-cta {
   background-color: #e6f4fc;
 }
 
-/* Clients marquee on icy blue section */
 .home-page .home-client-marquee-strip {
-  background-color: #e6f4fc;
+  background-color: #f4fafd;
 }
 
 .home-page .home-client-marquee-strip [class*="pelagic-client-marquee"] ul li span {
