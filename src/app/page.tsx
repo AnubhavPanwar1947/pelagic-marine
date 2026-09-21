@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ClientMarquee } from "@/components/ui/ClientMarquee";
@@ -16,7 +17,11 @@ import {
   stats,
 } from "@/lib/site-data";
 import { imageSizes } from "@/lib/image-sizes";
-import { getImageObjectPosition, siteImages } from "@/lib/site-images";
+import {
+  getImageObjectPosition,
+  homeServiceIcons,
+  siteImages,
+} from "@/lib/site-images";
 import "./home-theme.css";
 
 const homeServices = serviceCategories.filter((service) => service.home !== false);
@@ -84,28 +89,24 @@ export default function HomePage() {
 
             <Reveal variant="card" delay={80} className="mt-16">
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
-                {homeServices.map((service, i) => (
+                {homeServices.map((service) => (
                   <Link
                     key={service.slug}
                     href={`/services/${service.slug}/`}
-                    className="home-service-tile group relative flex h-full min-h-[17rem] flex-col rounded-xl p-7 motion-reduce:transition-none sm:p-8"
+                    className="home-service-tile group relative flex h-full min-h-[17rem] flex-col items-center justify-center rounded-xl p-7 motion-reduce:transition-none sm:p-8"
                   >
-                    <span className="type-eyebrow text-pelagic-accent/80">
-                      0{i + 1}
-                    </span>
-                    <h3 className="type-display type-card-title mt-5 leading-snug text-pelagic-ink transition group-hover:text-pelagic-navy">
-                      {service.title}
-                    </h3>
-                    <p className="type-caption mt-3 flex-1 leading-relaxed">
-                      {service.summary}
-                    </p>
-                    <span className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-pelagic-accent transition group-hover:gap-2.5">
-                      Explore
-                      <span aria-hidden>→</span>
-                    </span>
-                    <span
-                      className="home-service-tile-accent absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 transition duration-300 group-hover:scale-x-100 motion-reduce:transition-none"
-                      aria-hidden
+                    <span className="sr-only">{service.title}</span>
+                    <Image
+                      src={
+                        homeServiceIcons[
+                          service.slug as keyof typeof homeServiceIcons
+                        ]
+                      }
+                      alt=""
+                      width={112}
+                      height={112}
+                      className="mx-auto h-auto w-[min(7rem,calc(100%-0.5rem))] max-w-full object-contain sm:w-[min(7rem,75%)]"
+                      sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 25vw"
                     />
                   </Link>
                 ))}

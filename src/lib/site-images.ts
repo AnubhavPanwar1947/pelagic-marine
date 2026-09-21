@@ -98,6 +98,20 @@ export const siteImages = {
   ],
 } as const;
 
+/** Homepage service card icons (SVG) keyed by service slug. */
+export const homeServiceIcons: Record<
+  | "naval-architecture-design"
+  | "engineering"
+  | "inspection-audits-surveying"
+  | "legal-consultancy",
+  string
+> = {
+  "naval-architecture-design": "/images/icons/naval-architecture.svg",
+  engineering: "/images/icons/engineering.svg",
+  "inspection-audits-surveying": "/images/icons/inspection-audits-surveying.svg",
+  "legal-consultancy": "/images/icons/legal-consultancy.svg",
+};
+
 /** Optional hero background video — add public/videos/hero.mp4 (keep under ~8 MB) */
 export const siteVideos = {
   hero: "/videos/hero.mp4",
