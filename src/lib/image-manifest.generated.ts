@@ -686,6 +686,65 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
+  "/images/stock/lng-carrier-two-ships-centered.jpg": {
+    "src": "/images/stock/lng-carrier-two-ships-centered.jpg",
+    "width": 1024,
+    "height": 553,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/lng-carrier-two-ships-centered-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/lng-carrier-two-ships-centered-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/lng-carrier-two-ships-centered-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/lng-carrier-two-ships-centered-960w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/lng-carrier-two-ships-centered-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/lng-carrier-two-ships-centered-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/lng-carrier-two-ships-centered-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/lng-carrier-two-ships-centered-960w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/lng-carrier-two-ships-centered-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/lng-carrier-two-ships-centered-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/lng-carrier-two-ships-centered-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/lng-carrier-two-ships-centered-960w.avif"
+      }
+    ]
+  },
   "/images/stock/port-test.jpg": {
     "src": "/images/stock/port-test.jpg",
     "width": 2400,
