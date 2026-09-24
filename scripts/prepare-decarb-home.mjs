@@ -27,12 +27,13 @@ if (cropH > h) {
 }
 
 const left = Math.max(0, Math.round((w - cropW) / 2));
-const top = Math.max(0, Math.min(Math.round(h * 0.22), h - cropH));
+// Bias crop slightly upward so LNG tank, bridge, and hull stay in frame (4:3 card).
+const top = Math.max(0, Math.min(Math.round((h - cropH) * 0.12), h - cropH));
 
 await sharp(rotated)
   .extract({ left, top, width: cropW, height: cropH })
   .resize(TARGET_W, TARGET_H, { fit: "inside", withoutEnlargement: true })
-  .jpeg({ quality: 88, mozjpeg: true })
+  .jpeg({ quality: 92, mozjpeg: true })
   .toFile(output);
 
 const outMeta = await sharp(output).metadata();

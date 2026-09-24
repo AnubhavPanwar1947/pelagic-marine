@@ -1,0 +1,79 @@
+/* Services page — solid white cards (scoped; global .card-maritime unchanged) */
+
+.services-page .card-maritime,
+.services-page .card-maritime:hover {
+  background-color: #ffffff;
+  background-image: none;
+}
+
+.services-page .services-category-panel {
+  background-color: #ffffff;
+  background-image: none;
+}
+
+.services-page .services-category-panel p {
+  color: #364b5e;
+}
+
+.services-page .services-practice-section {
+  background-color: #eef1f4;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .services-page .services-practice-section {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-page .services-practice-section {
+    padding: 2.5rem;
+  }
+}
+
+.services-page .services-practice-section__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.services-page .services-practice-section__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  line-height: 1;
+}
+
+.services-page .services-practice-section__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.services-page .services-practice-section__topics-heading {
+  color: #64748b;
+}
+
+.services-page .services-practice-section__figure,
+.services-page .services-category-panel__figure {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.services-page .services-practice-section__figure img,
+.services-page .services-category-panel__figure img {
+  object-fit: contain;
+}

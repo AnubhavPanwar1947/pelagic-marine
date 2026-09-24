@@ -180,7 +180,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-section lg:grid-cols-2 lg:items-center">
               <Reveal variant="image">
-                <div className="home-image-card relative aspect-[4/3] overflow-hidden rounded-[1.85rem] bg-white shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:aspect-[5/4]">
+                <div className="home-image-card home-decarb-image-card relative aspect-[4/3] overflow-hidden rounded-[1.85rem] bg-white shadow-[0_28px_60px_rgba(14,35,94,0.14)]">
                   <SiteImage
                     src={siteImages.decarbonizationHome}
                     alt="LNG carrier at sea — maritime decarbonization and clean fuels"

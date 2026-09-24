@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="1080" viewBox="0 0 480 1080">
+  <defs>
+    <linearGradient id="studioGray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c7cbd0"/>
+      <stop offset="100%" stop-color="#bec2c7"/>
+    </linearGradient>
+    <clipPath id="subjectClip" clipPathUnits="userSpaceOnUse">
+      <!-- Manually refined silhouette: head, ears, hair, beard, neck, collar, shirt, shoulders -->
+      <path d="
+        M 238 0
+        C 198 0 168 18 148 52
+        C 128 86 118 128 118 168
+        C 108 168 98 176 92 188
+        C 84 204 80 224 78 248
+        C 72 248 66 256 62 268
+        C 56 286 52 308 50 332
+        C 44 332 38 340 34 352
+        C 28 370 24 396 22 422
+        C 18 422 12 432 8 448
+        C 2 472 0 500 0 528
+        L 0 1080
+        L 480 1080
+        L 480 528
+        C 478 500 476 472 472 448
+        C 468 432 462 422 458 422
+        C 456 396 452 370 446 352
+        C 442 340 436 332 430 332
+        C 428 308 424 286 418 268
+        C 414 256 408 248 402 248
+        C 400 224 396 204 388 188
+        C 382 176 372 168 362 168
+        C 362 128 352 86 332 52
+        C 312 18 282 0 242 0
+        Z
+        M 238 188
+        C 214 188 196 206 188 228
+        C 180 250 178 276 182 300
+        C 186 324 198 344 216 356
+        C 234 368 256 368 274 356
+        C 292 344 304 324 308 300
+        C 312 276 310 250 302 228
+        C 294 206 276 188 252 188
+        C 248 188 242 188 238 188
+        Z
+      " fill-rule="evenodd"/>
+    </clipPath>
+  </defs>
+  <rect width="480" height="1080" fill="url(#studioGray)"/>
+  <image href="_abhinav-480-centre.png" x="0" y="0" width="480" height="1080" clip-path="url(#subjectClip)" preserveAspectRatio="none"/>
+</svg>

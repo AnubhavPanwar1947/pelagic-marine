@@ -53,3 +53,35 @@
     transform: none;
   }
 }
+
+/* Portrait column: fluid 3:4 below 640px; full card height from 640px up */
+.team-page .team-member-card__portrait {
+  background-color: #ffffff;
+}
+
+.team-page .team-member-card__portrait img {
+  object-fit: cover;
+}
+
+@media (min-width: 640px) {
+  .team-page .team-member-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .team-page .team-member-card__layout {
+    flex: 1 1 auto;
+    align-items: stretch;
+    min-height: 0;
+    height: 100%;
+  }
+
+  .team-page .team-member-card__portrait {
+    width: 184px;
+    max-width: 184px;
+    height: 100%;
+    min-height: 100%;
+    align-self: stretch;
+    aspect-ratio: auto;
+  }
+}

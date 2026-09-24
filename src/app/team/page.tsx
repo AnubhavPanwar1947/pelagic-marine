@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { imageSizes } from "@/lib/image-sizes";
+import { getImageObjectPosition } from "@/lib/site-images";
 import { teamMembers } from "@/lib/site-data";
 import "./team-theme.css";
 
@@ -29,15 +30,18 @@ export default function TeamPage() {
             {teamMembers.map((member) => (
               <article
                 key={member.name}
-                className="team-member-card overflow-hidden rounded-3xl border shadow-sm motion-reduce:transition-none"
+                className="team-member-card w-full min-w-0 overflow-hidden rounded-3xl border shadow-sm motion-reduce:transition-none"
               >
-                <div className="grid min-w-0 sm:grid-cols-[minmax(0,11.5rem)_minmax(0,1fr)]">
-                  <div className="relative aspect-[3/4] w-full min-w-0 shrink-0 overflow-hidden bg-white sm:aspect-auto sm:h-full sm:min-h-[17rem] sm:max-w-[11.5rem]">
+                <div className="team-member-card__layout grid min-w-0 sm:grid-cols-[11.5rem_minmax(0,1fr)] sm:items-stretch">
+                  <div className="team-member-card__portrait relative aspect-[3/4] w-full min-w-0 shrink-0 overflow-hidden bg-white sm:aspect-auto sm:h-full sm:w-[11.5rem] sm:max-w-[11.5rem]">
                     <SiteImage
                       src={member.photo}
                       alt={member.name}
                       fill
-                      className="object-cover object-top"
+                      className="object-cover"
+                      objectPosition={
+                        getImageObjectPosition(member.photo) ?? "50% 20%"
+                      }
                       sizes={imageSizes.teamPortrait}
                     />
                   </div>

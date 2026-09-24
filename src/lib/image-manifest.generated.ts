@@ -261,10 +261,69 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
+  "/images/owned/naval-architecture-blueprint.jpg": {
+    "src": "/images/owned/naval-architecture-blueprint.jpg",
+    "width": 1024,
+    "height": 602,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/owned/naval-architecture-blueprint-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/naval-architecture-blueprint-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/naval-architecture-blueprint-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/naval-architecture-blueprint-960w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/owned/naval-architecture-blueprint-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/naval-architecture-blueprint-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/naval-architecture-blueprint-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/naval-architecture-blueprint-960w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/owned/naval-architecture-blueprint-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/naval-architecture-blueprint-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/naval-architecture-blueprint-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/naval-architecture-blueprint-960w.avif"
+      }
+    ]
+  },
   "/images/owned/team/abhinav.png": {
     "src": "/images/owned/team/abhinav.png",
-    "width": 1024,
-    "height": 1024,
+    "width": 480,
+    "height": 1080,
     "fallback": [
       {
         "width": 320,
@@ -273,14 +332,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/abhinav-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/abhinav-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/team/abhinav-960w.jpg"
       }
     ],
     "webp": [
@@ -291,14 +342,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/abhinav-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/abhinav-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/team/abhinav-960w.webp"
       }
     ],
     "avif": [
@@ -309,21 +352,13 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/abhinav-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/abhinav-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/team/abhinav-960w.avif"
       }
     ]
   },
   "/images/owned/team/bhanu.png": {
     "src": "/images/owned/team/bhanu.png",
-    "width": 957,
-    "height": 1024,
+    "width": 480,
+    "height": 1080,
     "fallback": [
       {
         "width": 320,
@@ -332,10 +367,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/bhanu-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/bhanu-640w.jpg"
       }
     ],
     "webp": [
@@ -346,10 +377,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/bhanu-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/bhanu-640w.webp"
       }
     ],
     "avif": [
@@ -360,17 +387,13 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/bhanu-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/bhanu-640w.avif"
       }
     ]
   },
   "/images/owned/team/harjit.png": {
     "src": "/images/owned/team/harjit.png",
-    "width": 1024,
-    "height": 1024,
+    "width": 480,
+    "height": 1080,
     "fallback": [
       {
         "width": 320,
@@ -379,14 +402,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/harjit-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/harjit-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/team/harjit-960w.jpg"
       }
     ],
     "webp": [
@@ -397,14 +412,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/harjit-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/harjit-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/team/harjit-960w.webp"
       }
     ],
     "avif": [
@@ -415,21 +422,13 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/harjit-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/harjit-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/team/harjit-960w.avif"
       }
     ]
   },
   "/images/owned/team/nishchay.png": {
     "src": "/images/owned/team/nishchay.png",
-    "width": 731,
-    "height": 1024,
+    "width": 480,
+    "height": 1080,
     "fallback": [
       {
         "width": 320,
@@ -438,10 +437,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/nishchay-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/nishchay-640w.jpg"
       }
     ],
     "webp": [
@@ -452,10 +447,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/nishchay-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/nishchay-640w.webp"
       }
     ],
     "avif": [
@@ -466,17 +457,13 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/nishchay-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/nishchay-640w.avif"
       }
     ]
   },
   "/images/owned/team/vipul.png": {
     "src": "/images/owned/team/vipul.png",
-    "width": 731,
-    "height": 1024,
+    "width": 480,
+    "height": 1080,
     "fallback": [
       {
         "width": 320,
@@ -485,10 +472,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/vipul-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/vipul-640w.jpg"
       }
     ],
     "webp": [
@@ -499,10 +482,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/vipul-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/vipul-640w.webp"
       }
     ],
     "avif": [
@@ -513,10 +492,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 480,
         "path": "/images/owned/team/vipul-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/team/vipul-640w.avif"
       }
     ]
   },
