@@ -1,5 +1,33 @@
 /* Homepage — section surfaces below hero only (scoped to .home-page) */
 
+/* Section eyebrows — responsive scale; 25px at 1024px+ (hero remains outside .home-page) */
+.home-page .type-eyebrow {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+  font-size: 18px; /* 50–279px */
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 17.5rem) {
+  .home-page .type-eyebrow {
+    font-size: 20px; /* 280–639px */
+  }
+}
+
+@media (min-width: 40rem) {
+  .home-page .type-eyebrow {
+    font-size: 22px; /* 640–1023px */
+  }
+}
+
+@media (min-width: 64rem) {
+  .home-page .type-eyebrow {
+    font-size: 25px;
+  }
+}
+
 /* Solid section backgrounds — override SectionMaritime gradient washes */
 .home-page .home-theme-delivery {
   background: #f4fafd;
@@ -56,6 +84,78 @@
 
   .home-page .home-service-tile:hover {
     transform: none;
+  }
+}
+
+/* Service tile icons — 167×171 box, 163×169 artwork (~2px L/R, ~1px T/B inset) */
+.home-page .home-service-tile-icon {
+  --home-service-icon-box-w: min(167px, 100%);
+  --home-service-icon-box-h: calc(var(--home-service-icon-box-w) * 171 / 167);
+  --home-service-icon-inner-w: calc(var(--home-service-icon-box-w) * 163 / 167);
+  --home-service-icon-inner-h: calc(var(--home-service-icon-box-h) * 169 / 171);
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--home-service-icon-box-w);
+  height: var(--home-service-icon-box-h);
+  max-width: 100%;
+}
+
+.home-page .home-service-tile-icon__img {
+  width: var(--home-service-icon-inner-w);
+  height: var(--home-service-icon-inner-h);
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@media (min-width: 17.5rem) {
+  .home-page .home-service-tile-icon {
+    --home-service-icon-box-w: min(167px, calc(100% - 0.5rem));
+  }
+}
+
+@media (min-width: 40rem) {
+  .home-page .home-service-tile-icon {
+    --home-service-icon-box-w: 167px;
+    --home-service-icon-box-h: 171px;
+    --home-service-icon-inner-w: 163px;
+    --home-service-icon-inner-h: 169px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page .home-service-tile-icon__img {
+    transition: none;
+  }
+}
+
+.home-page .home-service-tile-label {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 0.875rem;
+  padding-inline: 0.25rem;
+  text-align: center;
+  font-size: 16px; /* 50–279px */
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--pelagic-navy);
+  text-wrap: balance;
+}
+
+@media (min-width: 17.5rem) {
+  .home-page .home-service-tile-label {
+    font-size: 18px; /* 280–639px */
+  }
+}
+
+@media (min-width: 40rem) {
+  .home-page .home-service-tile-label {
+    margin-top: 1rem;
+    font-size: 22px;
   }
 }
 

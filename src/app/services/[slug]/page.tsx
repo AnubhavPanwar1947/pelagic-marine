@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { TopicDetailPage } from "@/components/ui/TopicDetailPage";
 import { getAllServiceTopics, getServiceTopic } from "@/lib/topic-pages";
-import { siteImages } from "@/lib/site-images";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -27,5 +26,5 @@ export default async function ServiceTopicPage({ params }: PageProps) {
   const topic = getServiceTopic(slug);
   if (!topic) notFound();
 
-  return <TopicDetailPage topic={topic} imageSrc={siteImages.pageHeroes.services} />;
+  return <TopicDetailPage topic={topic} />;
 }

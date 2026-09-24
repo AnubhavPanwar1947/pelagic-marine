@@ -9,17 +9,12 @@ import {
 } from "@/lib/topic-pages";
 import { serviceCategories } from "@/lib/site-data";
 import { getServiceItemHref } from "@/lib/service-slugs";
-import { siteImages } from "@/lib/site-images";
 
 type TopicDetailPageProps = {
   topic: TopicPage;
-  imageSrc?: string;
 };
 
-export function TopicDetailPage({
-  topic,
-  imageSrc = siteImages.pageHeroes.services,
-}: TopicDetailPageProps) {
+export function TopicDetailPage({ topic }: TopicDetailPageProps) {
   const category =
     topic.kind === "service-category"
       ? serviceCategories.find((c) => c.slug === topic.slug)
@@ -31,7 +26,6 @@ export function TopicDetailPage({
         eyebrow={topic.eyebrow}
         title={topic.title}
         description={getTopicHeroDescription(topic)}
-        imageSrc={imageSrc}
       />
 
       <SectionMaritime variant="plain" className="section-py-md" gridOpacity={40}>

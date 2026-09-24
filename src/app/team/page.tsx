@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
 import { SiteImage } from "@/components/ui/SiteImage";
-import { teamMembers } from "@/lib/site-data";
 import { imageSizes } from "@/lib/image-sizes";
-import { siteImages } from "@/lib/site-images";
+import { teamMembers } from "@/lib/site-data";
 import "./team-theme.css";
 
 export const metadata: Metadata = {
@@ -21,7 +20,6 @@ export default function TeamPage() {
           eyebrow="Team"
           title="Naval architects and Master Mariners"
           description="A team that has designed structure and stood on deck — so the advice you receive is grounded in both the analysis and the operation."
-          imageSrc={siteImages.team}
         />
       </div>
 

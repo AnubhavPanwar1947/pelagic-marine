@@ -20,7 +20,6 @@ export default function CareersPage() {
         eyebrow="Careers"
         title={careers.headline}
         description={careers.summary}
-        imageSrc={siteImages.pageHeroes.careers}
       />
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="relative mb-12 aspect-[21/7] overflow-hidden rounded-3xl border border-pelagic-sand shadow-sm">

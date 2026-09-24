@@ -20,7 +20,6 @@ export default function DecarbonizationPage() {
         eyebrow="Decarbonization"
         title={decarbonization.headline}
         description={decarbonization.summary}
-        imageSrc={siteImages.pageHeroes.decarbonization}
       />
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal>

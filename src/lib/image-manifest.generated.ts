@@ -12,6 +12,172 @@ export type ImageManifestEntry = {
 };
 
 export const imageManifest: Record<string, ImageManifestEntry> = {
+  "/images/owned/decarb-home.jpg": {
+    "src": "/images/owned/decarb-home.jpg",
+    "width": 2400,
+    "height": 1800,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/owned/decarb-home-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/decarb-home-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/decarb-home-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/decarb-home-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/owned/decarb-home-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/owned/decarb-home-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/owned/decarb-home-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/decarb-home-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/decarb-home-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/decarb-home-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/owned/decarb-home-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/owned/decarb-home-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/owned/decarb-home-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/decarb-home-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/decarb-home-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/decarb-home-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/owned/decarb-home-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/owned/decarb-home-1920w.avif"
+      }
+    ]
+  },
+  "/images/owned/decarb.jpg": {
+    "src": "/images/owned/decarb.jpg",
+    "width": 4000,
+    "height": 3000,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/owned/decarb-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/decarb-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/decarb-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/decarb-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/owned/decarb-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/owned/decarb-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/owned/decarb-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/decarb-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/decarb-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/decarb-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/owned/decarb-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/owned/decarb-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/owned/decarb-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/decarb-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/decarb-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/decarb-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/owned/decarb-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/owned/decarb-1920w.avif"
+      }
+    ]
+  },
   "/images/owned/home-page-hero-.jpg": {
     "src": "/images/owned/home-page-hero-.jpg",
     "width": 2559,

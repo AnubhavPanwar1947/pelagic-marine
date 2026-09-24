@@ -22,7 +22,13 @@
   background: #e6f4fc;
 }
 
-/* Team member cards */.team-page .team-member-card {
+.team-page .team-hero-shell > section > .absolute.inset-0 {
+  background: #e6f4fc;
+  background-image: none;
+}
+
+/* Team member cards */
+.team-page .team-member-card {
   background-color: #ffffff;
   border-color: #e6f4fc;
   box-shadow: 0 4px 24px rgba(7, 26, 51, 0.05);

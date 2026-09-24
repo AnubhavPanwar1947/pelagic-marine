@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { TopicDetailPage } from "@/components/ui/TopicDetailPage";
 import { getAllCapabilityTopics, getCapabilityTopic } from "@/lib/topic-pages";
-import { siteImages } from "@/lib/site-images";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -27,5 +26,5 @@ export default async function CapabilityTopicPage({ params }: PageProps) {
   const topic = getCapabilityTopic(slug);
   if (!topic) notFound();
 
-  return <TopicDetailPage topic={topic} imageSrc={siteImages.expertise} />;
+  return <TopicDetailPage topic={topic} />;
 }

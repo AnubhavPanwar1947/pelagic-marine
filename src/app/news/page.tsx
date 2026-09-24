@@ -28,7 +28,6 @@ export default function NewsPage() {
         eyebrow="Blog"
         title="Latest from Pelagic"
         description="Company updates, project highlights, and industry insights."
-        imageSrc={siteImages.pageHeroes.news}
       />
       <SectionMaritime variant="mist" className="py-20" gridOpacity={48}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

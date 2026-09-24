@@ -65,8 +65,9 @@ export function HeroSlideshow({
 
       {showGradients ? (
         <>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#071a33]/75 via-[#071a33]/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#071a33]/55 via-transparent to-[#071a33]/20" />
+          <div className="home-hero-scrim-left absolute inset-0" aria-hidden />
+          <div className="home-hero-scrim-top absolute inset-0" aria-hidden />
+          <div className="home-hero-scrim-bottom absolute inset-0" aria-hidden />
         </>
       ) : null}
     </div>

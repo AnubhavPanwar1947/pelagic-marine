@@ -1,3 +1,6 @@
+"use client";
+
+import { useCallback, useState } from "react";
 import type { CSSProperties } from "react";
 import { buildPictureSources } from "@/lib/responsive-image";
 
@@ -26,8 +29,18 @@ export function ResponsiveImage({
   draggable,
   onError,
 }: ResponsiveImageProps) {
+  const [usePlainFallback, setUsePlainFallback] = useState(false);
   const picture = buildPictureSources(src);
   const hasModernSources = Boolean(picture.avifSrcSet || picture.webpSrcSet);
+  const useSimpleImage = usePlainFallback || !hasModernSources;
+
+  const handleError = useCallback(() => {
+    if (!usePlainFallback && hasModernSources) {
+      setUsePlainFallback(true);
+      return;
+    }
+    onError?.();
+  }, [usePlainFallback, hasModernSources, onError]);
 
   const imgClassName = fill ? `absolute inset-0 h-full w-full ${className}` : className;
   const imgStyle: CSSProperties = {
@@ -36,21 +49,21 @@ export function ResponsiveImage({
   };
 
   const imgElementProps = {
-    src: picture.fallbackSrc,
-    srcSet: picture.fallbackSrcSet,
+    src: usePlainFallback ? src : picture.fallbackSrc,
+    srcSet: usePlainFallback ? undefined : picture.fallbackSrcSet,
     sizes,
     draggable,
     loading: priority ? ("eager" as const) : ("lazy" as const),
     fetchPriority: priority ? ("high" as const) : undefined,
     decoding: "async" as const,
-    onError,
+    onError: handleError,
     className: imgClassName,
     style: imgStyle,
     width: !fill ? picture.intrinsicWidth : undefined,
     height: !fill ? picture.intrinsicHeight : undefined,
   };
 
-  if (!hasModernSources) {
+  if (useSimpleImage) {
     // eslint-disable-next-line @next/next/no-img-element -- static export uses pre-generated srcset
     return <img alt={alt} {...imgElementProps} />;
   }

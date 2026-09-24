@@ -7,15 +7,11 @@ function u(id: string, w: number, h: number, q = 88) {
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=${q}`;
 }
 
-/** Homepage hero — Pelagic Marine consultant on the bridge at golden hour */
+/** Homepage hero — single owned photo (no slideshow) */
 export const heroSlides = [
   {
     src: "/images/owned/home-page-hero-.jpg",
     alt: "Pelagic Marine Solutions consultant on the bridge overlooking port operations at golden hour",
-  },
-  {
-    src: "/images/stock/hero-port.jpg",
-    alt: "Container vessel assisted by tugs in harbour at golden hour",
   },
 ] as const;
 
@@ -24,9 +20,10 @@ export const heroImage = heroSlides[0];
 
 /** Per-image focal points for object-position (local paths and remote fallbacks). */
 export const imageObjectPositions: Record<string, string> = {
-  "/images/owned/home-page-hero-.jpg": "62% 34%",
+  "/images/owned/home-page-hero-.jpg": "74% 36%",
   "/images/stock/hero-port.jpg": "50% 42%",
   "/images/stock/decarbonization.jpg": "50% 45%",
+  "/images/owned/decarb-home.jpg": "52% 38%",
   "/images/stock/about-paper-collaboration.jpg": "52% 42%",
   "/images/stock/hero.jpg": "50% center",
   [u("photo-1578645024771-21df5e60af96", 1200, 1500)]: "50% 30%",
@@ -64,6 +61,8 @@ export const siteImages = {
   team: u("photo-1529107386315-5eafae266a63", 2400, 1000),
   cta: u("photo-1544551763-5cf5a5c5e61d", 2400, 1400),
   decarbonization: "/images/stock/decarbonization.jpg",
+  /** Homepage Decarbonization section — owned LNG carrier (4:3 crop) */
+  decarbonizationHome: "/images/owned/decarb-home.jpg",
   aboutCollaboration: "/images/stock/about-paper-collaboration.jpg",
   cases: [
     u("photo-1611270627529-a18006394599", 1200, 750),

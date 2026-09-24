@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { ClientMarquee } from "@/components/ui/ClientMarquee";
 import { Reveal } from "@/components/ui/Reveal";
-import { SiteImage } from "@/components/ui/SiteImage";
 import { company } from "@/lib/site-data";
-import { imageSizes } from "@/lib/image-sizes";
-import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 import "./about-theme.css";
 
 export const metadata: Metadata = {
@@ -66,34 +63,18 @@ export default function AboutPage() {
     <div>
       <section className="about-theme-hero border-b border-pelagic-sand">
         <div className="mx-auto min-w-0 max-w-7xl px-4 page-hero-py sm:px-6 lg:px-8">
-          <div className="grid gap-section lg:grid-cols-2 lg:items-center">
-            <Reveal variant="text">
-              <div className="min-w-0">
-                <p className="type-eyebrow">About</p>
-                <h1 className="type-display type-page-title mt-4 max-w-4xl min-w-0 break-words font-medium text-[#0e235e]">
-                  Engineering depth, data and design — from Dubai to fleets worldwide
-                </h1>
-                <p className="type-lead mt-5 max-w-2xl font-normal text-[#364b5e]">
-                  Pelagic Marine Solutions is a naval architecture and marine engineering consultancy.
-                  We exist to solve the problems most firms only survey.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal variant="image" delay={80}>
-              <div className="group relative min-w-0 aspect-[3/2] overflow-hidden rounded-xl border border-pelagic-sand bg-white transition-[border-color,background-color] duration-300 ease-out lg:hover:border-[#E6F4FC] lg:hover:bg-[#F4FAFD]">
-                <SiteImage
-                  src={siteImages.aboutCollaboration}
-                  alt="Person holding printed plans and documents for review"
-                  fill
-                  priority
-                  objectPosition={getImageObjectPosition(siteImages.aboutCollaboration)}
-                  className="object-cover transition-transform duration-300 ease-out motion-reduce:transform-none motion-reduce:transition-none lg:group-hover:scale-[1.01]"
-                  sizes={imageSizes.contentHalf}
-                />
-              </div>
-            </Reveal>
-          </div>
+          <Reveal variant="text">
+            <div className="min-w-0">
+              <p className="type-eyebrow">About</p>
+              <h1 className="type-display type-page-title mt-4 max-w-4xl min-w-0 break-words font-medium text-[#0e235e]">
+                Engineering depth, data and design — from Dubai to fleets worldwide
+              </h1>
+              <p className="type-lead mt-5 max-w-2xl font-normal text-[#364b5e]">
+                Pelagic Marine Solutions is a naval architecture and marine engineering consultancy.
+                We exist to solve the problems most firms only survey.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 

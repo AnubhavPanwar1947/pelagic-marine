@@ -21,7 +21,6 @@ export default function SectorsPage() {
         eyebrow="Sectors"
         title="Cross-sector marine expertise"
         description="The same technical excellence applied across shipping, offshore energy, renewables, and port infrastructure."
-        imageSrc={siteImages.pageHeroes.sectors}
       />
       <SectionMaritime className="py-20" gridOpacity={50}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

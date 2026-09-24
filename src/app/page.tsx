@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { ClientMarquee } from "@/components/ui/ClientMarquee";
 import { HeroMedia } from "@/components/ui/HeroMedia";
+import { ClientMarquee } from "@/components/ui/ClientMarquee";
 import { ProjectsCapabilitiesCard } from "@/components/ui/ProjectsCapabilitiesCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -30,9 +30,8 @@ export default function HomePage() {
   return (
     <>
       {/* ── Section 1 · Hero: staggered entrance on page load ── */}
-      <section className="home-hero-section relative z-10 flex min-h-[100svh] min-h-[100dvh] flex-col overflow-hidden bg-[#071a33] lg:min-h-[100dvh]">
-        <HeroMedia />
-
+      <section className="home-hero-section relative z-0 flex min-h-[100svh] min-h-[100dvh] flex-col overflow-hidden bg-[#071a33] lg:min-h-[100dvh]">
+        <HeroMedia className="pointer-events-none" />
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pb-20 pt-28 sm:px-6 sm:pb-24 lg:px-8 lg:pb-28 lg:pt-32">
           <div className="home-hero-copy w-full max-w-3xl">
             <p
@@ -82,7 +81,6 @@ export default function HomePage() {
                 eyebrow="Services"
                 title="Four practices, one"
                 titleAccent="engineering standard"
-                description="From concept design and structural analysis to surveys, audits and clean-fuel advisory — delivered by naval architects and Master Mariners."
                 align="center"
               />
             </Reveal>
@@ -93,33 +91,31 @@ export default function HomePage() {
                   <Link
                     key={service.slug}
                     href={`/services/${service.slug}/`}
-                    className="home-service-tile group relative flex h-full min-h-[17rem] flex-col items-center justify-center rounded-xl p-7 motion-reduce:transition-none sm:p-8"
+                    className="home-service-tile group relative flex h-full min-h-[17rem] flex-col items-center justify-start rounded-xl p-7 motion-reduce:transition-none sm:p-8"
                   >
-                    <span className="sr-only">{service.title}</span>
-                    <Image
-                      src={
-                        homeServiceIcons[
-                          service.slug as keyof typeof homeServiceIcons
-                        ]
-                      }
-                      alt=""
-                      width={112}
-                      height={112}
-                      className="mx-auto h-auto w-[min(7rem,calc(100%-0.5rem))] max-w-full object-contain sm:w-[min(7rem,75%)]"
-                      sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 25vw"
-                    />
+                    <span className="home-service-tile-icon">
+                      <Image
+                        src={
+                          homeServiceIcons[
+                            service.slug as keyof typeof homeServiceIcons
+                          ]
+                        }
+                        alt=""
+                        width={163}
+                        height={169}
+                        className="home-service-tile-icon__img object-contain"
+                        sizes="167px"
+                      />
+                    </span>
+                    <span className="home-service-tile-label">{service.title}</span>
                   </Link>
                 ))}
               </div>
 
               <div className="mt-12 text-center">
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-pelagic-accent transition hover:gap-3"
-                >
+                <Button href="/services" variant="primary">
                   Explore all services
-                  <span aria-hidden>→</span>
-                </Link>
+                </Button>
               </div>
             </Reveal>
           </div>
@@ -186,10 +182,10 @@ export default function HomePage() {
               <Reveal variant="image">
                 <div className="home-image-card relative aspect-[4/3] overflow-hidden rounded-[1.85rem] bg-white shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:aspect-[5/4]">
                   <SiteImage
-                    src={siteImages.decarbonization}
-                    alt="Clean energy turbines — maritime decarbonization"
+                    src={siteImages.decarbonizationHome}
+                    alt="LNG carrier at sea — maritime decarbonization and clean fuels"
                     fill
-                    objectPosition={getImageObjectPosition(siteImages.decarbonization)}
+                    objectPosition={getImageObjectPosition(siteImages.decarbonizationHome)}
                     className="object-cover transition duration-700 hover:scale-[1.03] motion-reduce:transition-none motion-reduce:hover:scale-100"
                     sizes={imageSizes.contentHalf}
                   />
@@ -223,7 +219,6 @@ export default function HomePage() {
                   className="cta-link mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-pelagic-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
                 >
                   LNG bunkering & compatibility
-                  <span aria-hidden>→</span>
                 </Link>
               </Reveal>
             </div>

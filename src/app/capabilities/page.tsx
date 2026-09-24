@@ -5,7 +5,6 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { capabilitiesSections } from "@/lib/site-data";
-import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Capabilities",
@@ -27,7 +26,6 @@ export default function CapabilitiesPage() {
         eyebrow="Capabilities"
         title="The tools and methods behind the work"
         description="Licensed analysis suites and proprietary tools — applied by engineers and Master Mariners who understand both the physics and the operation."
-        imageSrc={siteImages.expertise}
       />
 
       <SectionMaritime variant="mist" className="py-24" gridOpacity={48}>

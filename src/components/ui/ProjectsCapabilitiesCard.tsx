@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { useInView } from "@/hooks/useInView";
 
@@ -67,13 +67,9 @@ function ProjectCounterPanel() {
           style={{ transform: `scaleX(${progress})` }}
         />
       </div>
-      <Link
-        href="/capabilities"
-        className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-pelagic-accent transition hover:gap-2.5"
-      >
+      <Button href="/capabilities" variant="primary" className="mt-6">
         All capabilities
-        <span aria-hidden>→</span>
-      </Link>
+      </Button>
     </div>
   );
 }

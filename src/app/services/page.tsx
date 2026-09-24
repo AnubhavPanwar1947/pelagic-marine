@@ -5,7 +5,6 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { serviceCategories } from "@/lib/site-data";
 import { getServiceCategoryHref, getServiceItemHref } from "@/lib/service-slugs";
-import { siteImages } from "@/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -20,7 +19,6 @@ export default function ServicesPage() {
         eyebrow="Services"
         title="Practices built for the full vessel lifecycle"
         description="Concept design, structural analysis, surveys, audits, mooring studies and loading tools — the same engineering rigour, whichever practice you need."
-        imageSrc={siteImages.pageHeroes.services}
       />
 
       <SectionMaritime className="py-24" gridOpacity={46}>

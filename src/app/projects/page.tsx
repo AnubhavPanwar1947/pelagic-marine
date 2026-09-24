@@ -21,7 +21,6 @@ export default function ProjectsPage() {
         eyebrow="Projects"
         title="Track record across oceans and ports"
         description="Selected assignments in surveying, LNG operations, engineering, and fleet support."
-        imageSrc={siteImages.pageHeroes.projects}
       />
       <SectionMaritime className="py-20" gridOpacity={50}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

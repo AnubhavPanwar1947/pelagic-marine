@@ -466,6 +466,10 @@ export function Header() {
     return () => mq.removeEventListener("change", onChange);
   }, [menuOpen, closeMenu]);
 
+  const isHomepage = pathname === "/";
+  const isSolidHeader = !isHomepage || scrolled || menuOpen || searchOpen;
+  const isOverlay = isHomepage && !isSolidHeader;
+
   return (
     <header
       ref={headerRef}
@@ -474,24 +478,30 @@ export function Header() {
           ? ({ "--site-header-height": `${headerHeight}px` } as React.CSSProperties)
           : undefined
       }
-      className={`sticky top-0 z-50 bg-white transition-[box-shadow,border-color] duration-300 ease-out motion-reduce:transition-none ${
-        scrolled || menuOpen || searchOpen
-          ? "border-b border-pelagic-sand shadow-[0_12px_40px_rgba(20,48,110,0.14)]"
-          : "border-b border-transparent"
+      className={`site-header top-0 z-50 transition-[background-color,box-shadow,border-color] duration-300 ease-out motion-reduce:transition-none ${
+        isHomepage ? "fixed inset-x-0" : "sticky"
+      } ${
+        isSolidHeader
+          ? "bg-white border-b border-pelagic-sand shadow-[0_12px_40px_rgba(20,48,110,0.14)]"
+          : "border-b border-transparent bg-transparent"
       }`}
+      data-homepage={isHomepage ? "true" : "false"}
+      data-overlay={isOverlay ? "true" : "false"}
       data-scrolled={scrolled ? "true" : "false"}
       data-mobile-nav-open={menuOpen ? "true" : "false"}
       data-search-open={searchOpen ? "true" : "false"}
     >
       <div
         className={`site-header-accent h-0.5 bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light transition-all duration-300 motion-reduce:transition-none ${
-          scrolled ? "opacity-100 shadow-[0_1px_8px_rgba(47,168,238,0.35)]" : "opacity-90"
+          isSolidHeader
+            ? "opacity-100 shadow-[0_1px_8px_rgba(47,168,238,0.35)]"
+            : "opacity-90"
         }`}
         aria-hidden
       />
       <div
         className={`site-header-bar mx-auto flex max-w-7xl min-w-0 items-center justify-between gap-1 px-3 sm:gap-1.5 sm:px-4 nav:gap-1.5 nav:px-4 xl:gap-2 xl:px-8 ${
-          scrolled ? "py-1.5" : "py-2"
+          isSolidHeader ? "py-1 nav:py-0" : "py-2"
         }`}
       >
         <div className="min-w-0 shrink">
@@ -519,7 +529,7 @@ export function Header() {
           <button
             ref={menuButtonRef}
             type="button"
-            className={`inline-flex h-11 w-11 shrink-0 items-center justify-center bg-transparent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent focus-visible:ring-offset-2 nav:hidden ${
+            className={`site-header-menu-toggle inline-flex h-11 w-11 shrink-0 items-center justify-center bg-transparent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent focus-visible:ring-offset-2 nav:hidden ${
               menuOpen ? "text-pelagic-accent" : "text-pelagic-navy hover:text-pelagic-accent"
             }`}
             onClick={toggleMenu}
