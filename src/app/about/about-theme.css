@@ -2,6 +2,25 @@
 
 .about-theme-hero {
   background-color: #F4FAFD;
+  overflow-x: clip;
+}
+
+.about-theme-hero__grid {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.about-theme-hero__media {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 3.125rem) {
+  .about-theme-hero__inner {
+    padding-inline: max(0.25rem, 2vw);
+  }
 }
 
 .about-theme-who {
@@ -9,7 +28,7 @@
 }
 
 .about-theme-principles {
-  background-color: #F4FAFD;
+  background-color: #E6F4FC;
 }
 
 .about-surface-icy {
