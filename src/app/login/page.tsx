@@ -22,7 +22,7 @@ export default function LoginPage() {
         <h1 className="font-display text-center text-2xl font-semibold text-pelagic-ink">
           Client Login
         </h1>
-        <p className="mt-3 text-center text-sm text-pelagic-copy">
+        <p className="type-copy mt-3 text-center">
           Maritime Advisory Platform · coming soon
         </p>
 
@@ -41,7 +41,7 @@ export default function LoginPage() {
           <button
             type="button"
             disabled
-            className="w-full rounded-full bg-pelagic-sand py-3 text-sm font-semibold text-pelagic-slate"
+            className="w-full rounded-full bg-pelagic-sand py-3 text-[15px] font-semibold text-pelagic-slate"
           >
             Sign in (coming soon)
           </button>

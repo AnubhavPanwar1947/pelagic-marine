@@ -14,6 +14,7 @@ type ResponsiveImageProps = {
   style?: CSSProperties;
   objectPosition?: string;
   draggable?: boolean;
+  loading?: "eager" | "lazy";
   onError?: () => void;
 };
 
@@ -27,6 +28,7 @@ export function ResponsiveImage({
   style,
   objectPosition,
   draggable,
+  loading: loadingProp,
   onError,
 }: ResponsiveImageProps) {
   const [usePlainFallback, setUsePlainFallback] = useState(false);
@@ -53,7 +55,7 @@ export function ResponsiveImage({
     srcSet: usePlainFallback ? undefined : picture.fallbackSrcSet,
     sizes,
     draggable,
-    loading: priority ? ("eager" as const) : ("lazy" as const),
+    loading: loadingProp ?? (priority ? ("eager" as const) : ("lazy" as const)),
     fetchPriority: priority ? ("high" as const) : undefined,
     decoding: "async" as const,
     onError: handleError,

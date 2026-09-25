@@ -99,12 +99,12 @@ export default function NewsPage() {
                   <>
                 <div className="flex min-w-0 flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-wider">
                   <span className="text-pelagic-accent">{item.category}</span>
-                  <span className="text-pelagic-slate">{formatDate(item.date)}</span>
+                  <span className="text-pelagic-copy-muted">{formatDate(item.date)}</span>
                 </div>
                     <h2 className="font-display mt-3 min-w-0 break-words text-xl font-semibold text-pelagic-ink">
                       {item.title}
                     </h2>
-                    <p className="mt-3 max-w-3xl min-w-0 break-words text-sm leading-relaxed text-pelagic-copy">
+                    <p className="type-copy mt-3 max-w-3xl min-w-0 break-words">
                       {item.excerpt}
                     </p>
                   </>
@@ -116,7 +116,7 @@ export default function NewsPage() {
             );
           })}
         </div>
-        <Reveal className="mt-10 text-center text-sm text-pelagic-copy">
+        <Reveal className="type-copy mt-10 text-center">
           More articles coming soon.{" "}
           <Link href="/contact" className="font-semibold text-pelagic-accent hover:underline">
             Contact us

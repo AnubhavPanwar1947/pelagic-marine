@@ -13,6 +13,12 @@
 
 .services-page .services-category-panel p {
   color: var(--pelagic-copy);
+  font-size: var(--pelagic-copy-size);
+  line-height: var(--pelagic-copy-leading);
+  font-weight: 400;
+  letter-spacing: var(--pelagic-copy-tracking);
+  text-wrap: pretty;
+  text-align: left;
 }
 
 .services-page .services-practice-section {

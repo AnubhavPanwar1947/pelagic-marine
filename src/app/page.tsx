@@ -3,18 +3,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { HeroMedia } from "@/components/ui/HeroMedia";
 import { ClientMarquee } from "@/components/ui/ClientMarquee";
-import { ProjectsCapabilitiesCard } from "@/components/ui/ProjectsCapabilitiesCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SiteImage } from "@/components/ui/SiteImage";
-import { StatsBand } from "@/components/ui/StatsBand";
 import {
   company,
   decarbonization,
-  highlights,
   serviceCategories,
-  stats,
 } from "@/lib/site-data";
 import { imageSizes } from "@/lib/image-sizes";
 import {
@@ -26,22 +22,26 @@ import "./home-theme.css";
 
 const homeServices = serviceCategories.filter((service) => service.home !== false);
 
+const homeAboutHeroImageSrc = "/images/stock/about.png";
+const homeAboutHeroImageAlt =
+  "Marine office desk with a ship model, technical blueprint, and harbor view.";
+
+const homeAboutWhoWeAre =
+  "Pelagic Marine Solutions brings naval architects and Master Mariners together to deliver engineering, analysis and design grounded in real marine operations. Across maritime, offshore, oil & gas and renewables, we combine licensed analysis tools with decades of sea-going and project experience.";
+
 export default function HomePage() {
   return (
     <>
       {/* ── Section 1 · Hero: staggered entrance on page load ── */}
-      <section className="home-hero-section relative z-0 flex min-h-[100svh] min-h-[100dvh] flex-col overflow-hidden bg-[#071a33] lg:min-h-[100dvh]">
+      <section className="home-hero-section home-hero-section--parallax relative z-0 flex min-h-[100svh] min-h-[100dvh] flex-col overflow-hidden bg-[#071a33] lg:min-h-[100dvh]">
         <HeroMedia className="pointer-events-none" />
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pb-20 pt-28 sm:px-6 sm:pb-24 lg:px-8 lg:pb-28 lg:pt-32">
           <div className="home-hero-copy w-full max-w-3xl">
-            <p
-              className="home-hero-line home-hero-line--1 type-hero-brand font-semibold text-white"
-              style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
-            >
+            <p className="home-hero-line home-hero-line--1 home-hero-brand-name text-white">
               Pelagic Marine
             </p>
-            <p className="home-hero-line home-hero-line--2 mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-pelagic-accent sm:text-xs">
-              Solutions · India & Dubai
+            <p className="home-hero-line home-hero-line--2 home-hero-brand-tagline">
+              SOLUTIONS · INDIA &amp; DUBAI
             </p>
             <h1 className="home-hero-line home-hero-line--3 type-display type-hero-title mt-8 w-full max-w-2xl text-white">
               Serving the shipping industry,{" "}
@@ -60,17 +60,7 @@ export default function HomePage() {
       </section>
 
       <div className="home-page">
-        {/* ── Section 2 · Delivery: light icy blue ── */}
-        <SectionMaritime
-          variant="delivery"
-          className="home-theme-delivery relative z-10 border-b border-pelagic-sand section-py"
-        >
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <ProjectsCapabilitiesCard />
-          </div>
-        </SectionMaritime>
-
-        {/* ── Section 3 · Services: white ── */}
+        {/* ── Section 2 · Services: white ── */}
         <SectionMaritime
           variant="services"
           className="home-theme-services border-b border-pelagic-sand section-py"
@@ -121,7 +111,7 @@ export default function HomePage() {
           </div>
         </SectionMaritime>
 
-        {/* ── Section 4 · Why Pelagic: icy blue ── */}
+        {/* ── Section 4 · About us: icy blue ── */}
         <SectionMaritime
           variant="why"
           className="home-theme-why border-b border-pelagic-sand section-py"
@@ -130,44 +120,29 @@ export default function HomePage() {
             <div className="grid gap-section lg:grid-cols-2 lg:items-start">
               <Reveal variant="text">
                 <SectionHeading
-                  eyebrow="Why Pelagic"
-                  title="Expertise forged"
-                  titleAccent="at sea and ashore"
-                  description="Master Mariners, engineers, naval architects, and maritime lawyers — practical advice, not desk theory."
+                  eyebrow="About us"
+                  title="Who we are"
+                  description={homeAboutWhoWeAre}
                 />
-                <ul className="mt-10">
-                  {highlights.map((item) => (
-                    <li
-                      key={item.title}
-                      className="border-t border-pelagic-sand py-5 first:border-t-0 first:pt-0"
-                    >
-                      <h3 className="text-base font-semibold text-pelagic-ink sm:text-lg">
-                        {item.title}
-                      </h3>
-                      <p className="type-caption mt-1.5 max-w-lg leading-relaxed">
-                        {item.description}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
+                <div className="mt-10">
+                  <Button href="/about" variant="outline">
+                    About us
+                  </Button>
+                </div>
               </Reveal>
 
-              <Reveal variant="image" delay={80}>
-                <div className="home-image-card relative aspect-[4/5] overflow-hidden rounded-[1.85rem] bg-white shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:aspect-[4/3] lg:sticky lg:top-28">
+              <Reveal variant="image" delay={80} className="min-w-0 w-full max-w-full">
+                <div className="relative aspect-[16/9] w-full min-w-0 max-w-full overflow-hidden rounded-[1.25rem] bg-white shadow-[0_28px_60px_rgba(14,35,94,0.14)] sm:rounded-[1.85rem]">
                   <SiteImage
-                    src={siteImages.heroBridge}
-                    alt="Pelagic Marine operations on the bridge"
+                    src={homeAboutHeroImageSrc}
+                    alt={homeAboutHeroImageAlt}
                     fill
-                    objectPosition={getImageObjectPosition(siteImages.heroBridge)}
+                    objectPosition="42% center"
                     className="object-cover"
                     sizes={imageSizes.contentHalf}
                   />
                 </div>
               </Reveal>
-            </div>
-
-            <div className="mt-section">
-              <StatsBand stats={stats} />
             </div>
           </div>
         </SectionMaritime>
@@ -208,7 +183,7 @@ export default function HomePage() {
                       <span className="type-display shrink-0 text-sm text-pelagic-accent tabular-nums">
                         0{i + 1}
                       </span>
-                      <span className="text-[0.95rem] leading-relaxed text-pelagic-copy">
+                      <span className="type-copy">
                         {point}
                       </span>
                     </li>
@@ -216,7 +191,7 @@ export default function HomePage() {
                 </ol>
                 <Link
                   href="/capabilities/clean-fuel/"
-                  className="cta-link mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-pelagic-accent px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
+                  className="cta-link mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-pelagic-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-lg shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
                 >
                   LNG bunkering & compatibility
                 </Link>
@@ -234,7 +209,7 @@ export default function HomePage() {
                 Trusted across{" "}
                 <span className="text-heading-accent">the fleet</span>
               </h2>
-              <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-pelagic-copy">
+              <p className="type-copy mx-auto mt-5 max-w-xl">
                 Owners, managers and operators who rely on Pelagic for surveys,
                 engineering and clean-fuel advisory.
               </p>
@@ -257,7 +232,7 @@ export default function HomePage() {
               Let&apos;s move your{" "}
               <span className="text-heading-accent">project forward</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-pelagic-copy sm:text-lg">
+            <p className="type-lead mx-auto mt-6 max-w-xl">
               Naval architecture, surveys, engineering and clean-fuel advisory —
               from India and Dubai.
             </p>

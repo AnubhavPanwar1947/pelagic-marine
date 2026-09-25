@@ -44,7 +44,7 @@ export function ContactOfficesSection({
               <h3 className="font-display type-subsection-title font-semibold text-[#0e235e]">
                 {contactPage.networkHub.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-pelagic-copy sm:text-base">
+              <p className="type-copy mt-2">
                 {contactPage.networkHub.description}
               </p>
               <div className="mt-6">

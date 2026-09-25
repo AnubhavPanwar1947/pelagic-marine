@@ -42,7 +42,7 @@ export default function CareersPage() {
               {careers.perks.map((perk) => (
                 <li
                   key={perk}
-                  className="flex gap-3 rounded-2xl border border-pelagic-sand bg-white p-4 text-sm text-pelagic-copy"
+                  className="flex gap-3 rounded-2xl border border-pelagic-sand bg-white p-4 type-copy"
                 >
                   <span className="text-pelagic-accent">✓</span>
                   {perk}
@@ -55,13 +55,13 @@ export default function CareersPage() {
               <h2 className="font-display text-xl font-semibold text-pelagic-ink">
                 Apply now
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-pelagic-copy">
+              <p className="type-copy mt-3">
                 Send your CV and a brief cover note. We review applications on a
                 rolling basis for surveying, engineering, and advisory roles.
               </p>
               <a
                 href={`mailto:${careers.applyEmail}?subject=Career%20application%20-%20Pelagic%20Marine`}
-                className="cta-link mt-6 inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-light"
+                className="cta-link mt-6 inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-[15px] font-bold text-white shadow-md hover:bg-pelagic-light"
               >
                 Email {careers.applyEmail}
               </a>

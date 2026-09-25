@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { ConsentAwareAnalytics } from "@/components/ui/ConsentAwareAnalytics";
 import { SplashScreen } from "@/components/ui/SplashScreen";
-import { cormorant, montserrat } from "@/lib/fonts";
+import { heroBrandSerif, inter } from "@/lib/fonts";
 import { company } from "@/lib/site-data";
 import "./globals.css";
 
@@ -61,7 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${inter.variable} ${heroBrandSerif.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://maps.google.com" />

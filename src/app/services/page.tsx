@@ -32,11 +32,11 @@ function ServiceCategoryLinks({
           <li key={item.slug} id={item.slug} className="scroll-mt-32">
             <Link
               href={getServiceItemHref(item)}
-              className="card-maritime flex h-full flex-col gap-1 rounded-2xl border px-5 py-4 text-sm text-pelagic-copy transition hover:border-pelagic-accent/40 hover:shadow-sm"
+              className="card-maritime flex h-full flex-col gap-1 rounded-2xl border px-5 py-4 type-copy transition hover:border-pelagic-accent/40 hover:shadow-sm"
             >
               <span className="font-semibold text-pelagic-ink">{item.label}</span>
               {item.teaser && (
-                <span className="text-xs text-pelagic-steel">{item.teaser}</span>
+                <span className="text-xs text-pelagic-copy-muted">{item.teaser}</span>
               )}
             </Link>
           </li>
@@ -79,7 +79,7 @@ function NavalArchitecturePracticeSection({
               {service.title}
             </Link>
           </h2>
-          <p className="mt-4 text-sm leading-7 text-pelagic-copy">{service.summary}</p>
+          <p className="type-copy mt-4">{service.summary}</p>
           <div
             className="services-practice-section__figure services-category-panel__figure relative mt-6 w-full max-w-full overflow-hidden aspect-[1024/602]"
           >
@@ -103,11 +103,11 @@ function NavalArchitecturePracticeSection({
               <li key={item.slug} id={item.slug} className="scroll-mt-32">
                 <Link
                   href={getServiceItemHref(item)}
-                  className="card-maritime flex h-full flex-col gap-1 rounded-2xl border px-5 py-4 text-sm text-pelagic-copy transition hover:border-pelagic-accent/40 hover:shadow-sm"
+                  className="card-maritime flex h-full flex-col gap-1 rounded-2xl border px-5 py-4 type-copy transition hover:border-pelagic-accent/40 hover:shadow-sm"
                 >
                   <span className="font-semibold text-pelagic-ink">{item.label}</span>
                   {item.teaser && (
-                    <span className="text-xs text-pelagic-steel">{item.teaser}</span>
+                    <span className="text-xs text-pelagic-copy-muted">{item.teaser}</span>
                   )}
                 </Link>
               </li>
@@ -153,7 +153,7 @@ export default function ServicesPage() {
                         {service.title}
                       </Link>
                     </h2>
-                    <p className="mt-4 text-sm leading-7 text-pelagic-copy">
+                    <p className="type-copy mt-4">
                       {service.summary}
                     </p>
                   </div>

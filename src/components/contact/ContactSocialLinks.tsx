@@ -15,7 +15,7 @@ export function ContactSocialLinks({ variant = "hero" }: ContactSocialLinksProps
             href={link.href}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noopener noreferrer" : undefined}
-            className="inline-flex items-center gap-2.5 rounded-lg border border-white/25 bg-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/25"
+            className="inline-flex items-center gap-2.5 rounded-lg border border-white/25 bg-white/15 px-4 py-2.5 text-[15px] font-semibold text-white transition hover:border-white/40 hover:bg-white/25"
           >
             <SocialBrandIcon brand={link.brand} size={18} />
             {link.label}

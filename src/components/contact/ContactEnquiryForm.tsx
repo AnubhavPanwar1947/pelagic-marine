@@ -6,7 +6,7 @@ import { contactPage } from "@/lib/site-data";
 const inputClass =
   "mt-1 w-full min-w-0 rounded-lg border border-[#d7e6f0] bg-white px-4 py-3 text-base text-[#0e235e] placeholder:text-pelagic-copy/60 outline-none transition-[border-color,box-shadow] duration-300 ease-out focus:border-[#1e7fd0] focus:ring-2 focus:ring-[#1e7fd0]/15 motion-reduce:transition-none md:text-sm";
 
-const labelClass = "text-sm font-semibold text-[#0e235e]";
+const labelClass = "text-sm font-semibold text-pelagic-ink";
 
 function RequiredMark() {
   return <span className="font-semibold text-[#1e7fd0]"> *</span>;
@@ -48,7 +48,7 @@ export function ContactEnquiryForm() {
 
   return (
     <div className="min-w-0">
-      <h2 className="type-display text-center text-[28px] font-semibold normal-case leading-tight text-[#0e235e] sm:text-[30px] lg:text-[32px]">
+      <h2 className="type-display text-center text-[28px] font-semibold normal-case leading-tight text-pelagic-ink sm:text-[30px] lg:text-[32px]">
         {form.eyebrow}
       </h2>
       <form
@@ -75,7 +75,7 @@ export function ContactEnquiryForm() {
           </p>
           <div className="mt-2 grid min-w-0 grid-cols-1 gap-4 min-[480px]:grid-cols-2">
             <div className="min-w-0">
-              <label className="text-xs text-pelagic-copy/80" htmlFor="first_name">
+              <label className="text-xs text-pelagic-copy-muted" htmlFor="first_name">
                 First
               </label>
               <input
@@ -88,7 +88,7 @@ export function ContactEnquiryForm() {
               />
             </div>
             <div className="min-w-0">
-              <label className="text-xs text-pelagic-copy/80" htmlFor="last_name">
+              <label className="text-xs text-pelagic-copy-muted" htmlFor="last_name">
                 Last
               </label>
               <input

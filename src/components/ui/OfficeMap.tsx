@@ -29,7 +29,7 @@ export function OfficeMap({ office, className = "", tall = false, dark = false }
           frameClassName="grayscale-[0.15] contrast-[1.02]"
         />
       </div>
-      <p className={`mt-3 text-sm leading-6 ${dark ? "text-slate-300" : "text-pelagic-copy"}`}>
+      <p className={`mt-3 ${dark ? "text-sm leading-6 text-slate-300" : "type-copy"}`}>
         {office.address}
       </p>
       <a

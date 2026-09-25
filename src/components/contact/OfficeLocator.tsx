@@ -44,7 +44,7 @@ export function OfficeLocator({
             role="tab"
             aria-selected={selectedRegion === region}
             onClick={() => onSelectRegion(region)}
-            className={`min-h-11 rounded-lg border px-5 py-2.5 text-sm font-semibold transition-[border-color,background-color,color] duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e7fd0] motion-reduce:transition-none ${
+            className={`min-h-11 rounded-lg border px-5 py-2.5 text-[15px] font-semibold transition-[border-color,background-color,color] duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e7fd0] motion-reduce:transition-none ${
               selectedRegion === region
                 ? "border-[#1e7fd0] bg-[#1e7fd0] text-white"
                 : "border-[#d7e6f0] bg-[#f8fbfd] text-pelagic-copy hover:border-[#1e7fd0]/50 hover:bg-[#f3f9fb]"
@@ -60,9 +60,9 @@ export function OfficeLocator({
           {selectedRegion === "india" ? india.label : dubai.label}
         </p>
         {selectedRegion === "india" ? (
-          <p className="mt-1 text-sm leading-6 text-pelagic-copy">{india.coverageNote}</p>
+          <p className="type-copy mt-1">{india.coverageNote}</p>
         ) : (
-          <address className="mt-1 not-italic text-sm leading-6 text-pelagic-copy">
+          <address className="type-copy mt-1 not-italic">
             {dubai.addressLines.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -70,7 +70,7 @@ export function OfficeLocator({
             ))}
           </address>
         )}
-        <p className="mt-2 text-sm text-pelagic-copy">
+        <p className="type-copy mt-2">
           <a
             href={`tel:${(selectedRegion === "india" ? india.phone : dubai.phone).replace(/\s/g, "")}`}
             className="font-medium text-[#1e7fd0] underline-offset-2 transition-colors duration-300 ease-out hover:text-pelagic-accent-hover hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e7fd0] motion-reduce:transition-none"

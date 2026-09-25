@@ -54,9 +54,10 @@
   }
 }
 
-/* Portrait column: fluid 3:4 below 640px; full card height from 640px up */
+/* Portrait column: shared 4:9 (228×513) frame at every viewport */
 .team-page .team-member-card__portrait {
   background-color: #ffffff;
+  aspect-ratio: 4 / 9;
 }
 
 .team-page .team-member-card__portrait img {
@@ -64,24 +65,84 @@
 }
 
 @media (min-width: 640px) {
-  .team-page .team-member-card {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .team-page .team-member-card__layout {
-    flex: 1 1 auto;
-    align-items: stretch;
-    min-height: 0;
-    height: 100%;
-  }
-
   .team-page .team-member-card__portrait {
-    width: 184px;
-    max-width: 184px;
-    height: 100%;
-    min-height: 100%;
-    align-self: stretch;
-    aspect-ratio: auto;
+    width: 228px;
+    max-width: 228px;
+    height: auto;
+    align-self: start;
+  }
+}
+
+/* Team member card — text column */
+.team-page .team-member-card__body {
+  padding: 20px;
+}
+
+@media (min-width: 640px) {
+  .team-page .team-member-card__body {
+    padding: 28px;
+  }
+}
+
+.team-page .team-member-card__heading-name {
+  font-size: 22px;
+}
+
+.team-page .team-member-card__bio {
+  margin-top: 12px;
+  font-size: 15.7px;
+  line-height: 1.75;
+  font-weight: 400;
+  letter-spacing: var(--pelagic-copy-tracking);
+  color: var(--pelagic-copy);
+  text-align: left;
+  text-wrap: pretty;
+}
+
+/* Capt. Abhinav Upadhyay — 4:9 portrait (matches 480×1080 source) */
+.team-page .team-member-card--abhinav .team-member-card__portrait {
+  aspect-ratio: 4 / 9;
+}
+
+/* Capt. Abhinav Upadhyay — name line 1, role line 2 */
+.team-page .team-member-card--abhinav .team-member-card__heading-name,
+.team-page .team-member-card--abhinav .team-member-card__heading-role {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .team-page .team-member-card--abhinav .team-member-card__heading-name,
+  .team-page .team-member-card--abhinav .team-member-card__heading-role {
+    white-space: nowrap;
+  }
+
+  /* Card height follows portrait (228×4:9); bio scrolls inside text column when taller */
+  .team-page .team-member-card--abhinav {
+    align-self: start;
+  }
+
+  .team-page .team-member-card--abhinav .team-member-card__layout {
+    min-height: calc(14.25rem * 9 / 4);
+  }
+
+  .team-page .team-member-card--abhinav .team-member-card__body {
+    max-height: calc(14.25rem * 9 / 4);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Other team cards — same height as Abhinav’s portrait card */
+  .team-page .team-member-card--uniform-portrait {
+    align-self: start;
+  }
+
+  .team-page .team-member-card--uniform-portrait .team-member-card__layout {
+    min-height: calc(14.25rem * 9 / 4);
+  }
+
+  .team-page .team-member-card--uniform-portrait .team-member-card__body {
+    max-height: calc(14.25rem * 9 / 4);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }

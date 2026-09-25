@@ -47,7 +47,7 @@ export function OfficeNetworkSearch({
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.length === 0 ? (
-          <p className="text-sm text-pelagic-copy sm:col-span-2 lg:col-span-3">
+          <p className="type-copy sm:col-span-2 lg:col-span-3">
             No offices match your search. Try India or Dubai.
           </p>
         ) : (
@@ -68,7 +68,7 @@ export function OfficeNetworkSearch({
                   {index + 1}
                 </span>
                 <h3 className="mt-3 font-semibold text-pelagic-charcoal">{office.label}</h3>
-                <p className="mt-2 text-sm leading-6 text-pelagic-copy">{office.address}</p>
+                <p className="type-copy mt-2">{office.address}</p>
                 <span
                   className="mt-3 inline-flex text-sm font-semibold text-pelagic-steel"
                   onClick={(e) => {

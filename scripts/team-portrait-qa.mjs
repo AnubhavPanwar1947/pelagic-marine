@@ -28,13 +28,11 @@ for (const w of widths) {
       const pr = portrait?.getBoundingClientRect();
       const ir = img?.getBoundingClientRect();
       const cr = card.getBoundingClientRect();
-      const bottomAligned =
-        vw >= sm && pr
-          ? Math.abs(pr.bottom - cr.bottom) <= 2
-          : null;
+      const portraitAspect = pr && pr.width > 0 ? pr.height / pr.width : 0;
       const src = img
         ? (img.currentSrc || img.src).split("?")[0].replace(location.origin, "")
         : "";
+      const targetAspect = 9 / 4;
       const missing = img?.hasAttribute("data-missing-image");
       const fit = img ? getComputedStyle(img).objectFit : "";
       const pos = img ? getComputedStyle(img).objectPosition : "";
@@ -46,7 +44,6 @@ for (const w of widths) {
         ir.right <= pr.right + 1 &&
         ir.top >= pr.top - 1 &&
         ir.bottom <= pr.bottom + 1;
-      const aspectPortrait = pr && pr.width > 0 ? pr.height / pr.width : 0;
       return {
         src,
         pathOk: src.includes("/images/owned/team/"),
@@ -56,11 +53,11 @@ for (const w of widths) {
         objectPosition: pos,
         portraitW: pr ? Math.round(pr.width) : 0,
         portraitH: pr ? Math.round(pr.height) : 0,
-        aspect34Ok:
-          vw < sm
-            ? Math.abs(aspectPortrait - 4 / 3) < 0.08
-            : Math.round(pr?.width ?? 0) === 184,
-        bottomAligned,
+        portraitAspect: Math.round(portraitAspect * 100) / 100,
+        aspectFrameOk:
+          Math.abs(portraitAspect - targetAspect) < 0.08 &&
+          (vw >= sm ? Math.round(pr?.width ?? 0) === 228 : true),
+        fullWidthMobile: vw < sm ? Math.abs(pr.width - cr.width) <= 2 : null,
         insidePortrait: inside,
         inCard:
           ir &&
@@ -95,8 +92,9 @@ for (const w of widths) {
       allPathsOk: imgs.every((i) => i.pathOk && !i.missing),
       allCover: imgs.every((i) => i.objectFit === "cover"),
       allInPortrait: imgs.every((i) => i.insidePortrait),
-      allBottomAligned:
-        vw >= sm ? imgs.every((i) => i.bottomAligned === true) : null,
+      allAspectFrameOk: imgs.every((i) => i.aspectFrameOk),
+      abhinavAspect49:
+        abhinav && Math.abs(abhinav.portraitAspect - 9 / 4) < 0.08,
       cardTransition: cardMotion,
       reducedMotionQuery: reducedMotion,
     };

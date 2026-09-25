@@ -43,7 +43,7 @@ export default function DecarbonizationPage() {
               {decarbonization.points.map((point) => (
                 <li
                   key={point}
-                  className="flex gap-3 rounded-2xl bg-white/80 p-5 text-sm text-pelagic-copy"
+                  className="flex gap-3 rounded-2xl bg-white/80 p-5 type-copy"
                 >
                   <span className="font-bold text-pelagic-accent">→</span>
                   {point}
@@ -52,7 +52,7 @@ export default function DecarbonizationPage() {
             </ul>
             <Link
               href="/contact"
-              className="cta-link mt-10 inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-light"
+              className="cta-link mt-10 inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-[15px] font-bold text-white shadow-md hover:bg-pelagic-light"
             >
               Talk to our LNG & clean fuels team
             </Link>

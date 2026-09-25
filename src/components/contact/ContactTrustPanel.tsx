@@ -6,7 +6,7 @@ export function ContactTrustPanel() {
   return (
     <div className="min-w-0 rounded-xl border border-[#d7e6f0] bg-white p-6 transition-[border-color,background-color] duration-300 ease-out motion-reduce:transition-none sm:p-8">
       <p className="type-eyebrow">{companyInfo.eyebrow}</p>
-      <dl className="mt-5 space-y-5 text-base leading-7 text-pelagic-copy">
+      <dl className="type-copy mt-5 space-y-5">
         <div>
           <dt className="text-sm font-semibold text-[#0e235e]">Office</dt>
           <dd className="mt-1">

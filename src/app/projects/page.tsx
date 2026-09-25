@@ -48,7 +48,7 @@ export default function ProjectsPage() {
                   <h2 className="font-display mt-2 text-lg font-semibold text-pelagic-ink">
                     {project.title}
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-pelagic-copy">
+                  <p className="type-copy mt-2">
                     {project.description}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
@@ -69,7 +69,7 @@ export default function ProjectsPage() {
         <Reveal className="mt-12 text-center">
           <Link
             href="/contact"
-            className="cta-link inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-sm font-bold text-white shadow-md hover:bg-pelagic-light"
+            className="cta-link inline-flex rounded-full bg-pelagic-accent px-8 py-3 text-[15px] font-bold text-white shadow-md hover:bg-pelagic-light"
           >
             Discuss your project
           </Link>

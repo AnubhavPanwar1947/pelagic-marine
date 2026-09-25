@@ -46,7 +46,7 @@ export function OfficeMapPanel({
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveIndex(index)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+              className={`rounded-full px-4 py-2 text-[15px] font-semibold transition ${
                 isActive
                   ? "bg-pelagic-charcoal text-white shadow-md"
                   : "border border-pelagic-mist bg-white text-pelagic-steel hover:border-pelagic-accent hover:text-pelagic-charcoal"

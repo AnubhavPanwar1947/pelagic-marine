@@ -51,9 +51,15 @@ export default function ContactPage() {
         <section className="contact-surface-white border-b border-pelagic-sand">
           <div className="mx-auto max-w-7xl px-4 pt-8 pb-10 sm:px-6 sm:pt-10 sm:pb-12 lg:px-8">
             <Reveal variant="text">
-              <h1 className="type-display min-w-0 whitespace-nowrap text-[28px] font-semibold normal-case leading-tight text-[#0e235e] sm:text-[30px] lg:text-[32px]">
-                {contactPage.hero.eyebrow}
-              </h1>
+              <div className="max-w-3xl min-w-0">
+                <p className="type-eyebrow">{contactPage.hero.eyebrow}</p>
+                <h1 className="type-display type-page-title mt-4 min-w-0 break-words font-semibold normal-case text-pelagic-ink">
+                  {contactPage.hero.headline}
+                </h1>
+                <p className="contact-hero-lead type-lead mt-5 max-w-2xl">
+                  {contactPage.hero.subline}
+                </p>
+              </div>
               <ul className="mt-10 flex min-w-0 flex-col gap-10 md:mt-12 md:grid md:grid-cols-3 md:gap-8 lg:gap-10">
                 {contactHeroChannels.map((channel) => (
                   <li key={channel.label} className="min-w-0">
@@ -74,7 +80,7 @@ export default function ContactPage() {
                       <span className="mt-4 text-base font-bold text-[#0e235e] sm:text-lg">
                         {channel.label}
                       </span>
-                      <span className="mt-2 max-w-full break-words text-sm leading-relaxed text-pelagic-copy sm:text-[0.9375rem]">
+                      <span className="contact-channel-detail mt-2 max-w-full break-words text-sm leading-relaxed sm:text-[0.9375rem]">
                         {channel.detail}
                       </span>
                     </a>

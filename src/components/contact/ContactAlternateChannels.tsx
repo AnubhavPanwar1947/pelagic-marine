@@ -30,7 +30,7 @@ export function ContactAlternateChannels({ variant = "compact" }: ContactAlterna
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noopener noreferrer" : undefined}
             className={`inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-pelagic-mist bg-white font-semibold text-pelagic-charcoal shadow-sm transition hover:border-pelagic-accent hover:text-pelagic-accent sm:flex-none ${
-              isFit ? "min-w-[calc(50%-0.25rem)] px-3 py-2 text-xs" : isPromo ? "px-4 py-3 text-sm" : "px-2.5 py-1.5 text-[11px]"
+              isFit ? "min-w-[calc(50%-0.25rem)] px-3 py-2 text-[13px]" : isPromo ? "px-4 py-3 text-[15px]" : "px-2.5 py-1.5 text-[12px]"
             }`}
           >
             <SocialBrandIcon brand={link.brand} size={isFit ? 16 : isPromo ? 20 : 14} />

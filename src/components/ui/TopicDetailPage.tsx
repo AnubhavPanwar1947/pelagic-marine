@@ -30,7 +30,7 @@ export function TopicDetailPage({ topic }: TopicDetailPageProps) {
 
       <SectionMaritime variant="plain" className="section-py-md" gridOpacity={40}>
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <p className="text-base leading-8 text-pelagic-copy">{getTopicBody(topic)}</p>
+          <p className="type-copy">{getTopicBody(topic)}</p>
 
           {category && category.items.length > 0 ? (
             <ul className="mt-10 grid gap-3 sm:grid-cols-2">
@@ -42,7 +42,7 @@ export function TopicDetailPage({ topic }: TopicDetailPageProps) {
                   >
                     <span className="font-semibold text-pelagic-ink">{item.label}</span>
                     {item.teaser ? (
-                      <span className="text-xs text-pelagic-steel">{item.teaser}</span>
+                      <span className="text-xs text-pelagic-copy-muted">{item.teaser}</span>
                     ) : null}
                   </Link>
                 </li>

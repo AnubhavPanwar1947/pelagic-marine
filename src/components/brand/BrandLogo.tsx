@@ -29,7 +29,7 @@ function BrandLogoWordmark({
       }`}
     >
       <span
-        className={`brand-logo-wordmark-pelagic font-display block font-bold leading-none tracking-[0.05em] ${
+        className={`brand-logo-wordmark-pelagic block font-bold uppercase leading-none ${
           promo
             ? "text-3xl sm:text-4xl"
             : footer
@@ -42,7 +42,7 @@ function BrandLogoWordmark({
         PELAGIC
       </span>
       <span
-        className={`brand-logo-wordmark-tagline mt-1 block font-semibold uppercase leading-none tracking-[0.24em] ${
+        className={`brand-logo-wordmark-tagline mt-0.5 block font-normal uppercase leading-none ${
           promo
             ? "text-xs sm:text-sm"
             : footer
@@ -52,7 +52,7 @@ function BrandLogoWordmark({
                 : "text-[10px] lg:text-[11px]"
         }`}
       >
-        Marine Solutions
+        MARINE SOLUTIONS
       </span>
     </div>
   );

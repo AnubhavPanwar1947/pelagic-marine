@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { HeroSlideshow } from "@/components/ui/HeroSlideshow";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
 import { imageSizes } from "@/lib/image-sizes";
@@ -29,9 +32,58 @@ export function HeroParallaxBackdrop() {
   );
 }
 
-/** Hero slideshow — always section-local so crop matches the hero box at every breakpoint */
+function supportsFixedBackground() {
+  if (typeof document === "undefined") return true;
+  const probe = document.createElement("div");
+  probe.style.backgroundAttachment = "fixed";
+  return probe.style.backgroundAttachment === "fixed";
+}
+
+/** Hero slideshow with homepage-only fixed parallax (image layer, not copy). */
 export function HeroMedia({ className = "" }: { className?: string }) {
-  return <HeroSlideshow className={className} priority />;
+  const layerRef = useRef<HTMLDivElement>(null);
+  const [parallaxMode, setParallaxMode] = useState<"fixed" | "scroll">("scroll");
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !supportsFixedBackground()) {
+      setParallaxMode("scroll");
+      return;
+    }
+    setParallaxMode("fixed");
+  }, []);
+
+  useEffect(() => {
+    if (parallaxMode !== "fixed") return;
+
+    const layer = layerRef.current;
+    const section = layer?.closest(".home-hero-section");
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        layer?.classList.toggle(
+          "home-hero-parallax-layer--hidden",
+          !entry.isIntersecting,
+        );
+      },
+      { threshold: 0 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [parallaxMode]);
+
+  const layerClass =
+    parallaxMode === "fixed"
+      ? "home-hero-parallax-layer home-hero-parallax-layer--fixed"
+      : "home-hero-parallax-layer home-hero-parallax-layer--scroll";
+
+  return (
+    <div ref={layerRef} className={`${layerClass} ${className}`} aria-hidden>
+      <HeroSlideshow priority className="home-hero-parallax-slideshow" />
+    </div>
+  );
 }
 
 /** Same photo as hero — used on Clients for mobile */

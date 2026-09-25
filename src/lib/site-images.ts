@@ -7,11 +7,15 @@ function u(id: string, w: number, h: number, q = 88) {
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=${q}`;
 }
 
-/** Homepage hero — single owned photo (no slideshow) */
+/** Homepage hero slideshow — owned lead frame, stock second frame */
 export const heroSlides = [
   {
     src: "/images/owned/home-page-hero-.jpg",
     alt: "Pelagic Marine Solutions consultant on the bridge overlooking port operations at golden hour",
+  },
+  {
+    src: "/images/stock/hero-2.jpeg",
+    alt: "Aerial view of a vessel with a green deck underway in open ocean, leaving a white wake",
   },
 ] as const;
 
@@ -21,6 +25,7 @@ export const heroImage = heroSlides[0];
 /** Per-image focal points for object-position (local paths and remote fallbacks). */
 export const imageObjectPositions: Record<string, string> = {
   "/images/owned/home-page-hero-.jpg": "74% 36%",
+  "/images/stock/hero-2.jpeg": "50% 50%",
   "/images/stock/hero-port.jpg": "50% 42%",
   "/images/stock/decarbonization.jpg": "50% 45%",
   "/images/owned/decarb-home.jpg": "50% 42%",

@@ -65,7 +65,7 @@ function SearchResults({
               key={suggestion}
               type="button"
               onClick={() => onSuggestion(suggestion)}
-              className="flex min-h-11 w-full items-center truncate rounded-xl border border-pelagic-warm bg-white px-2.5 text-left text-sm font-semibold text-pelagic-navy transition hover:border-pelagic-accent hover:bg-pelagic-sky focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent focus-visible:ring-offset-2"
+              className="flex min-h-11 w-full items-center truncate rounded-xl border border-pelagic-warm bg-white px-2.5 text-left text-[15px] font-semibold text-pelagic-navy transition hover:border-pelagic-accent hover:bg-pelagic-sky focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent focus-visible:ring-offset-2"
             >
               {suggestion}
             </button>

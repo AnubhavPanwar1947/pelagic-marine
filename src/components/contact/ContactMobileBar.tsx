@@ -12,7 +12,7 @@ export function ContactMobileBar() {
         </div>
         <a
           href={`tel:${company.phones.india.replace(/\s/g, "")}`}
-          className="shrink-0 rounded-full bg-pelagic-accent px-4 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-pelagic-light"
+          className="shrink-0 rounded-full bg-pelagic-accent px-4 py-2.5 text-[13px] font-bold text-white shadow-md transition hover:bg-pelagic-light"
         >
           Call now
         </a>

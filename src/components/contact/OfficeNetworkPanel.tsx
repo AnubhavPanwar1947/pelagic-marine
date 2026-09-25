@@ -92,7 +92,7 @@ export function OfficeNetworkPanel({
         <h2 className="font-display type-subsection-title mt-2 font-semibold text-pelagic-ink">
           {title}
         </h2>
-        <p className="mt-3 text-sm leading-7 text-pelagic-copy">{description}</p>
+        <p className="type-copy mt-3">{description}</p>
 
         <div className="mt-6 inline-flex rounded-full border border-pelagic-mist bg-pelagic-cream/50 p-1">
           <button
@@ -101,7 +101,7 @@ export function OfficeNetworkPanel({
               setViewMode("network");
               setExpandedHub(null);
             }}
-            className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
+            className={`rounded-full px-4 py-2 text-[13px] font-bold uppercase tracking-wider transition ${
               viewMode === "network"
                 ? "bg-pelagic-charcoal text-white"
                 : "text-pelagic-steel hover:text-pelagic-charcoal"
@@ -112,7 +112,7 @@ export function OfficeNetworkPanel({
           <button
             type="button"
             onClick={() => setViewMode("office")}
-            className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
+            className={`rounded-full px-4 py-2 text-[13px] font-bold uppercase tracking-wider transition ${
               viewMode === "office"
                 ? "bg-pelagic-charcoal text-white"
                 : "text-pelagic-steel hover:text-pelagic-charcoal"
@@ -302,7 +302,7 @@ export function OfficeNetworkPanel({
                 className="absolute inset-0 h-full w-full"
               />
             </div>
-            <p className="mt-3 text-sm text-pelagic-copy">
+            <p className="type-copy mt-3">
               Tap India to see Mumbai and Dehradun, or select Dubai for UAE directions.
             </p>
           </div>
@@ -315,7 +315,7 @@ export function OfficeNetworkPanel({
             href={getGoogleMapsSearchUrl(activeOffice)}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex rounded-lg border border-pelagic-mist px-4 py-2 text-sm font-semibold text-pelagic-charcoal hover:border-pelagic-accent/50"
+            className="mt-4 inline-flex rounded-lg border border-pelagic-mist px-4 py-2 text-[15px] font-semibold text-pelagic-charcoal hover:border-pelagic-accent/50"
           >
             Open {activeOffice.label} in Google Maps
           </a>

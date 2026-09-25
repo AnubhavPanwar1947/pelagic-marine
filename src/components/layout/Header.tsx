@@ -483,7 +483,7 @@ export function Header() {
       } ${
         isSolidHeader
           ? "bg-white border-b border-pelagic-sand shadow-[0_12px_40px_rgba(20,48,110,0.14)]"
-          : "border-b border-transparent bg-transparent"
+          : "bg-transparent"
       }`}
       data-homepage={isHomepage ? "true" : "false"}
       data-overlay={isOverlay ? "true" : "false"}
@@ -492,17 +492,7 @@ export function Header() {
       data-search-open={searchOpen ? "true" : "false"}
     >
       <div
-        className={`site-header-accent h-0.5 bg-gradient-to-r from-pelagic-navy via-pelagic-accent to-pelagic-light transition-all duration-300 motion-reduce:transition-none ${
-          isSolidHeader
-            ? "opacity-100 shadow-[0_1px_8px_rgba(47,168,238,0.35)]"
-            : "opacity-90"
-        }`}
-        aria-hidden
-      />
-      <div
-        className={`site-header-bar mx-auto flex max-w-7xl min-w-0 items-center justify-between gap-1 px-3 sm:gap-1.5 sm:px-4 nav:gap-1.5 nav:px-4 xl:gap-2 xl:px-8 ${
-          isSolidHeader ? "py-1 nav:py-0" : "py-2"
-        }`}
+        className="site-header-bar mx-auto flex max-w-7xl min-w-0 items-center justify-between gap-1 px-3 sm:gap-1.5 sm:px-4 nav:gap-1.5 nav:px-4 xl:gap-2 xl:px-8"
       >
         <div className="min-w-0 shrink">
           <BrandLogo variant="header" />
@@ -521,9 +511,9 @@ export function Header() {
 
           <Link
             href="/contact"
-            className="hidden shrink-0 whitespace-nowrap rounded-full bg-pelagic-accent px-2.5 py-2 text-[10px] font-bold uppercase tracking-wide text-white shadow-md shadow-pelagic-accent/35 transition hover:bg-pelagic-accent-hover nav:inline-flex nav:px-3.5 nav:py-2 nav:text-[11px] xl:px-4 xl:py-2.5 xl:text-sm"
+            className="site-header-contact-cta hidden shrink-0 whitespace-nowrap rounded-full bg-pelagic-accent px-2.5 py-2 font-medium tracking-[0.02em] text-white shadow-md shadow-pelagic-accent/35 transition hover:bg-pelagic-accent-hover nav:inline-flex nav:px-3.5 nav:py-2 nav:text-[16px] xl:px-4 xl:py-2.5"
           >
-            Contact us
+            Contact Us
           </Link>
 
           <button
@@ -549,7 +539,7 @@ export function Header() {
           style={{
             top: headerHeight > 0 ? `${headerHeight}px` : undefined,
             height:
-              headerHeight > 0 ? `calc(100svh - ${headerHeight}px)` : "calc(100svh - 4.5rem)",
+              headerHeight > 0 ? `calc(100svh - ${headerHeight}px)` : "calc(100svh - 75px)",
           }}
           role="dialog"
           aria-modal="true"
@@ -573,9 +563,9 @@ export function Header() {
               <Link
                 href="/contact"
                 onClick={() => closeMenu()}
-                className="site-mobile-nav-panel__cta block min-h-11 rounded-full bg-pelagic-accent py-3 text-center text-sm font-bold text-white transition hover:bg-pelagic-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent focus-visible:ring-offset-2"
+                className="site-mobile-nav-panel__cta block min-h-11 rounded-full bg-pelagic-accent py-3 text-center text-[16px] font-medium text-white transition hover:bg-pelagic-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent focus-visible:ring-offset-2"
               >
-                Contact us
+                Contact Us
               </Link>
             </div>
           </div>

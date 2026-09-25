@@ -1,5 +1,10 @@
 /* Contact page — three-color surface palette (scoped to /contact only) */
 
+.contact-page .contact-hero-lead.type-lead,
+.contact-page .contact-channel-detail {
+  color: #2f4a63;
+}
+
 .contact-surface-icy {
   background-color: #e6f4fc;
 }

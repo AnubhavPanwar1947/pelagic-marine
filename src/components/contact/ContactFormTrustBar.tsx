@@ -52,7 +52,7 @@ export function ContactFormTrustBar({ compact = false }: ContactFormTrustBarProp
         ))}
       </div>
 
-      <div className="card-maritime rounded-xl border px-4 py-3 text-sm text-pelagic-copy">
+      <div className="type-copy card-maritime rounded-xl border px-4 py-3">
         <span className="font-semibold text-pelagic-accent">{contactPage.sla.avgLabel}:</span>{" "}
         {contactPage.sla.avgValue} · {contactPage.sla.standard}
       </div>

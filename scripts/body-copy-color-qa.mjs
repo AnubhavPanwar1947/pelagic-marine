@@ -2,7 +2,8 @@ import { chromium } from "playwright";
 
 const widths = [50, 190, 320, 375, 480, 640, 768, 960, 1024, 1280, 1440];
 const paths = ["/", "/about/", "/services/", "/team/", "/contact/", "/news/", "/capabilities/"];
-const COPY_RGB = "rgb(77, 97, 119)";
+const COPY_RGB = "rgb(47, 74, 99)";
+const COPY_MUTED_RGB = "rgb(77, 97, 119)";
 const base = process.env.QA_BASE_URL ?? "http://localhost:3000";
 
 const browser = await chromium.launch({ headless: true });
