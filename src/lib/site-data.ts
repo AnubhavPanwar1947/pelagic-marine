@@ -133,14 +133,14 @@ export const contactPage = {
     { label: "6 disciplines", detail: "Survey to legal" },
   ],
   form: {
-    eyebrow: "Send an enquiry",
+    eyebrow: "Reach out to us!",
     labels: {
       name: "Your name",
       email: "Email",
       company: "Company",
-      message: "How can we help?",
+      message: "Message",
     },
-    submit: "Send enquiry",
+    submit: "Submit",
     successMessage:
       "Thank you — your enquiry has been sent. We will be in touch shortly.",
     errorMessage:

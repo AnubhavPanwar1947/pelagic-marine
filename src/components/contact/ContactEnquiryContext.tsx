@@ -41,8 +41,6 @@ type ContactEnquiryContextValue = {
   setUrgency: (value: string) => void;
   message: string;
   setMessage: (value: string) => void;
-  privacyAccepted: boolean;
-  setPrivacyAccepted: (value: boolean) => void;
   activeIntake: string | null;
   highlightFields: boolean;
   applyQuickIntake: (id: string) => void;
@@ -79,7 +77,6 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
   const [preferredOffice, setPreferredOffice] = useState("auto");
   const [urgency, setUrgency] = useState("standard");
   const [message, setMessage] = useState("");
-  const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [activeIntake, setActiveIntake] = useState<string | null>(null);
   const [highlightFields, setHighlightFields] = useState(false);
 
@@ -107,7 +104,6 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
     setPreferredOffice("auto");
     setUrgency("standard");
     setMessage("");
-    setPrivacyAccepted(false);
     setActiveIntake(null);
     setHighlightFields(false);
     setError(null);
@@ -122,11 +118,17 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       const form = event.currentTarget;
       const formData = new FormData(form);
 
-      if (!privacyAccepted) {
+      const firstName = String(formData.get("first_name") ?? "").trim();
+      const lastName = String(formData.get("last_name") ?? "").trim();
+      if (!firstName) {
         setLoading(false);
-        setError("Please confirm you agree to be contacted about this enquiry.");
+        setError("Please enter your first name.");
         return;
       }
+      const fullName = lastName ? `${firstName} ${lastName}` : firstName;
+      formData.set("name", fullName);
+      formData.delete("first_name");
+      formData.delete("last_name");
 
       const vessel = String(formData.get("vessel") ?? "").trim();
       const imo = String(formData.get("imo") ?? "").trim();
@@ -173,7 +175,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
         setError(contactPage.form.errorMessage);
       }
     },
-    [privacyAccepted, resetDraft]
+    [resetDraft]
   );
 
   const resetSubmission = useCallback(() => {
@@ -198,8 +200,6 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       setUrgency,
       message,
       setMessage,
-      privacyAccepted,
-      setPrivacyAccepted,
       activeIntake,
       highlightFields,
       applyQuickIntake,
@@ -220,7 +220,6 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       preferredOffice,
       urgency,
       message,
-      privacyAccepted,
       activeIntake,
       highlightFields,
       applyQuickIntake,
