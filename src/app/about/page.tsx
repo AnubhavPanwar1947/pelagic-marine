@@ -69,7 +69,7 @@ export default function AboutPage() {
               <h1 className="type-display type-page-title mt-4 max-w-4xl min-w-0 break-words font-medium text-[#0e235e]">
                 Engineering depth, data and design — from Dubai to fleets worldwide
               </h1>
-              <p className="type-lead mt-5 max-w-2xl font-normal text-[#364b5e]">
+              <p className="type-lead mt-5 max-w-2xl font-normal text-pelagic-copy">
                 Pelagic Marine Solutions is a naval architecture and marine engineering consultancy.
                 We exist to solve the problems most firms only survey.
               </p>
@@ -89,7 +89,7 @@ export default function AboutPage() {
                     className="w-0.5 shrink-0 self-stretch rounded-full bg-[#E6F4FC] transition-colors duration-300 ease-out group-hover/who:bg-[#F4FAFD] motion-reduce:transition-none"
                     aria-hidden
                   />
-                  <p className="type-lead max-w-[64ch] min-w-0 font-normal text-[#364b5e]">
+                  <p className="type-lead max-w-[64ch] min-w-0 font-normal text-pelagic-copy">
                     Pelagic Marine Solutions brings naval architects and Master Mariners together to
                     deliver engineering, analysis and design grounded in real marine operations.
                     Across maritime, offshore, oil &amp; gas and renewables, we combine licensed
@@ -108,7 +108,7 @@ export default function AboutPage() {
                   {builtAround.map((item, index) => (
                     <li
                       key={item}
-                      className={`group/row flex gap-3 py-4 text-base leading-7 text-[#364b5e] transition-[background-color,border-color,color] duration-300 ease-out hover:bg-[#F4FAFD] hover:text-[#0e235e] motion-reduce:transition-none motion-reduce:hover:text-[#364b5e] ${
+                      className={`group/row flex gap-3 py-4 text-base leading-7 text-pelagic-copy transition-[background-color,border-color,color] duration-300 ease-out hover:bg-[#F4FAFD] hover:text-[#0e235e] motion-reduce:transition-none motion-reduce:hover:text-pelagic-copy ${
                         index < builtAround.length - 1
                           ? "border-b border-pelagic-sand"
                           : ""
@@ -152,7 +152,7 @@ export default function AboutPage() {
                     <h3 className="type-display type-card-title font-medium text-[#0e235e]">
                       {principle.title}
                     </h3>
-                    <ul className="mt-3 flex-1 space-y-2.5 text-sm leading-7 text-[#364b5e] sm:text-base">
+                    <ul className="mt-3 flex-1 space-y-2.5 text-sm leading-7 text-pelagic-copy sm:text-base">
                       {principle.points.map((point) => (
                         <li key={point} className="flex gap-3">
                           <span
@@ -209,7 +209,7 @@ export default function AboutPage() {
               <h2 className="type-display type-subsection-title mt-4 font-medium text-[#0e235e]">
                 Who we work with
               </h2>
-              <p className="mt-5 text-base font-normal leading-7 text-[#364b5e]">
+              <p className="mt-5 text-base font-normal leading-7 text-pelagic-copy">
                 Owners, operators, charterers, P&amp;I interests, insurers and offshore developers
                 across the industry.
               </p>

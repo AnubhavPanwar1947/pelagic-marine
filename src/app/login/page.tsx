@@ -22,7 +22,7 @@ export default function LoginPage() {
         <h1 className="font-display text-center text-2xl font-semibold text-pelagic-ink">
           Client Login
         </h1>
-        <p className="mt-3 text-center text-sm text-pelagic-slate">
+        <p className="mt-3 text-center text-sm text-pelagic-copy">
           Maritime Advisory Platform · coming soon
         </p>
 

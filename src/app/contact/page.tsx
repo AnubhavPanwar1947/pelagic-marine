@@ -33,7 +33,7 @@ export default function ContactPage() {
                 <h1 className="type-display type-page-title mt-4 font-medium text-[#0e235e]">
                   {contactPage.hero.headline}
                 </h1>
-                <p className="type-lead mt-5 max-w-2xl font-normal text-[#364b5e]">
+                <p className="type-lead mt-5 max-w-2xl font-normal text-pelagic-copy">
                   {contactPage.hero.subline}
                 </p>
               </div>
@@ -79,7 +79,7 @@ export default function ContactPage() {
                       </h3>
                     </div>
                     {office.bullets.length > 0 ? (
-                      <ul className="mt-4 flex-1 space-y-3 text-sm leading-7 text-[#364b5e] sm:text-base">
+                      <ul className="mt-4 flex-1 space-y-3 text-sm leading-7 text-pelagic-copy sm:text-base">
                         {office.bullets.map((bullet) => (
                           <li key={bullet} className="flex gap-3">
                             <span

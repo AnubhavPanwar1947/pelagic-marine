@@ -57,7 +57,7 @@ export default function NewsPage() {
                 <h2 className="font-display mt-3 min-w-0 break-words text-xl font-semibold text-pelagic-ink">
                   {item.title}
                 </h2>
-                <p className="mt-3 max-w-3xl text-sm leading-relaxed text-pelagic-slate">
+                <p className="mt-3 max-w-3xl text-sm leading-relaxed text-pelagic-copy">
                   {item.excerpt}
                 </p>
                   </div>
@@ -66,7 +66,7 @@ export default function NewsPage() {
             </Reveal>
           ))}
         </div>
-        <Reveal className="mt-10 text-center text-sm text-pelagic-slate">
+        <Reveal className="mt-10 text-center text-sm text-pelagic-copy">
           More articles coming soon.{" "}
           <Link href="/contact" className="font-semibold text-pelagic-accent hover:underline">
             Contact us

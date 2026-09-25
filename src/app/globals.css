@@ -29,6 +29,7 @@
   --pelagic-deep: #0e235e;
   --pelagic-charcoal: #1d3070;
   --pelagic-body: #243848;
+  --pelagic-copy: #4d6177;
   --pelagic-steel: #364b5e;
   --pelagic-slate: #4a5f72;
   --pelagic-muted: #5c7082;
@@ -57,6 +58,7 @@
   --color-pelagic-deep: var(--pelagic-deep);
   --color-pelagic-charcoal: var(--pelagic-charcoal);
   --color-pelagic-body: var(--pelagic-body);
+  --color-pelagic-copy: var(--pelagic-copy);
   --color-pelagic-steel: var(--pelagic-steel);
   --color-pelagic-slate: var(--pelagic-slate);
   --color-pelagic-muted: var(--pelagic-muted);
@@ -87,7 +89,7 @@ body {
     radial-gradient(rgba(30, 127, 208, 0.08) 1.25px, transparent 1.25px);
   background-size: 100% 100%, 100% 100%, 100% 100%, 44px 44px;
   background-attachment: fixed;
-  color: var(--pelagic-body);
+  color: var(--pelagic-copy);
   font-family: var(--font-montserrat), Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.65;
@@ -703,7 +705,7 @@ header.site-header[data-overlay="false"] .site-header-bar .brand-logo-home-link 
 }
 
 .legal-prose {
-  color: var(--pelagic-steel);
+  color: var(--pelagic-copy);
   font-size: 0.975rem;
   line-height: 1.75;
 }
@@ -977,7 +979,7 @@ header.site-header[data-overlay="false"] .site-header-bar .brand-logo-home-link 
 .type-lead {
   font-size: 1.0625rem;
   line-height: 1.7;
-  color: var(--pelagic-body);
+  color: var(--pelagic-copy);
   min-width: 0;
   overflow-wrap: break-word;
   word-break: normal;
@@ -992,7 +994,7 @@ header.site-header[data-overlay="false"] .site-header-bar .brand-logo-home-link 
 .type-body {
   font-size: 1rem;
   line-height: 1.65;
-  color: var(--pelagic-body);
+  color: var(--pelagic-copy);
 }
 
 .type-caption {

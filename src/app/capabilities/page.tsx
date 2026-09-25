@@ -33,7 +33,7 @@ export default function CapabilitiesPage() {
           {capabilitiesSections.map((section) => (
             <article key={section.id} id={section.id} className="scroll-mt-28">
               <SectionHeading eyebrow={section.eyebrow} title={section.title} />
-              <p className="mt-6 max-w-3xl text-base leading-8 text-pelagic-steel">
+              <p className="mt-6 max-w-3xl text-base leading-8 text-pelagic-copy">
                 {section.summary}
               </p>
               {"tags" in section && section.tags && (

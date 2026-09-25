@@ -16,7 +16,7 @@ export function ContactFormIntro() {
       <h2 className="font-display mt-1 text-lg font-semibold text-pelagic-ink">
         Request expert attendance
       </h2>
-      <p className="mt-1.5 text-sm leading-relaxed text-pelagic-body">
+      <p className="mt-1.5 text-sm leading-relaxed text-pelagic-copy">
         Vessel, port &amp; urgency first — routed to India or UAE.
       </p>
     </div>
@@ -63,7 +63,7 @@ export function ContactFormQuickIntake({
                 {item.label}
               </span>
               {fill && (
-                <span className="mt-2 line-clamp-2 text-sm leading-snug text-pelagic-body">
+                <span className="mt-2 line-clamp-2 text-sm leading-snug text-pelagic-copy">
                   {hint}
                 </span>
               )}
@@ -108,7 +108,7 @@ export function ContactResponseSteps({ compact = false }: { compact?: boolean })
         >
           <p className="text-xs font-bold text-pelagic-accent">{step.step}</p>
           <p className="mt-1 text-sm font-semibold text-pelagic-ink">{step.title}</p>
-          <p className="mt-1 text-xs leading-5 text-pelagic-steel">{step.text}</p>
+          <p className="mt-1 text-xs leading-5 text-pelagic-copy">{step.text}</p>
         </div>
       ))}
     </div>

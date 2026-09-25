@@ -12,7 +12,7 @@
 }
 
 .services-page .services-category-panel p {
-  color: #364b5e;
+  color: var(--pelagic-copy);
 }
 
 .services-page .services-practice-section {

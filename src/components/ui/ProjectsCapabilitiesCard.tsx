@@ -86,7 +86,7 @@ export function ProjectsCapabilitiesCard() {
               Ready with the right tools.
             </span>
           </h2>
-          <p className="type-lead mt-5 max-w-2xl text-pelagic-steel">
+          <p className="type-lead mt-5 max-w-2xl">
             From survey scopes to structural analysis and class-approved loading
             tools — work backed by licensed suites and sea-proven judgement.
           </p>

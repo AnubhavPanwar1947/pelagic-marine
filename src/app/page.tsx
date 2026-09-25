@@ -208,7 +208,7 @@ export default function HomePage() {
                       <span className="type-display shrink-0 text-sm text-pelagic-accent tabular-nums">
                         0{i + 1}
                       </span>
-                      <span className="text-[0.95rem] leading-relaxed text-pelagic-steel">
+                      <span className="text-[0.95rem] leading-relaxed text-pelagic-copy">
                         {point}
                       </span>
                     </li>
@@ -234,7 +234,7 @@ export default function HomePage() {
                 Trusted across{" "}
                 <span className="text-heading-accent">the fleet</span>
               </h2>
-              <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-[#364b5e]">
+              <p className="mx-auto mt-5 max-w-xl text-base leading-8 text-pelagic-copy">
                 Owners, managers and operators who rely on Pelagic for surveys,
                 engineering and clean-fuel advisory.
               </p>
@@ -257,7 +257,7 @@ export default function HomePage() {
               Let&apos;s move your{" "}
               <span className="text-heading-accent">project forward</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-[#364b5e] sm:text-lg">
+            <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-pelagic-copy sm:text-lg">
               Naval architecture, surveys, engineering and clean-fuel advisory —
               from India and Dubai.
             </p>

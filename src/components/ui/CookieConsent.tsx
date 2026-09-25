@@ -166,7 +166,7 @@ export function CookieConsent() {
                   <p id={titleId} className="text-base font-bold text-pelagic-ink">
                     We value your privacy
                   </p>
-                  <p id={descId} className="mt-2 text-sm leading-relaxed text-pelagic-steel">
+                  <p id={descId} className="mt-2 text-sm leading-relaxed text-pelagic-copy">
                     We use essential cookies and local storage so the site works (forms, security, your
                     choices). Optional analytics help us improve — only with your consent.{" "}
                     <Link href="/cookies" className="font-semibold text-pelagic-accent underline-offset-2 hover:underline">
@@ -209,7 +209,7 @@ export function CookieConsent() {
               <p id={titleId} className="text-base font-bold text-pelagic-ink">
                 Cookie preferences
               </p>
-              <p id={descId} className="mt-2 text-sm leading-relaxed text-pelagic-steel">
+              <p id={descId} className="mt-2 text-sm leading-relaxed text-pelagic-copy">
                 Choose what we may store. Essential items cannot be turned off. You can change this anytime
                 from the footer or the cookie button.
               </p>
@@ -218,7 +218,7 @@ export function CookieConsent() {
                 <li className="flex items-start justify-between gap-4 rounded-xl border border-pelagic-sand bg-pelagic-cream/40 px-4 py-3">
                   <div>
                     <p className="text-sm font-semibold text-pelagic-ink">Essential</p>
-                    <p className="mt-1 text-xs leading-5 text-pelagic-steel">
+                    <p className="mt-1 text-xs leading-5 text-pelagic-copy">
                       Security, form protection, consent memory, and core site function. Always on.
                     </p>
                   </div>
@@ -227,7 +227,7 @@ export function CookieConsent() {
                 <li className="flex items-start justify-between gap-4 rounded-xl border border-pelagic-sand px-4 py-3">
                   <div>
                     <p className="text-sm font-semibold text-pelagic-ink">Preferences</p>
-                    <p className="mt-1 text-xs leading-5 text-pelagic-steel">
+                    <p className="mt-1 text-xs leading-5 text-pelagic-copy">
                       Remember UI choices such as splash preference and display settings.
                     </p>
                   </div>
@@ -241,7 +241,7 @@ export function CookieConsent() {
                 <li className="flex items-start justify-between gap-4 rounded-xl border border-pelagic-sand px-4 py-3">
                   <div>
                     <p className="text-sm font-semibold text-pelagic-ink">Analytics</p>
-                    <p className="mt-1 text-xs leading-5 text-pelagic-steel">
+                    <p className="mt-1 text-xs leading-5 text-pelagic-copy">
                       Anonymous usage stats to improve the site. Off until you opt in. No sale of data.
                     </p>
                   </div>

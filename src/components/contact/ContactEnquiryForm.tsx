@@ -6,7 +6,7 @@ import { useContactEnquiry } from "@/components/contact/ContactEnquiryContext";
 import { contactPage } from "@/lib/site-data";
 
 const fieldClass =
-  "mt-1.5 w-full min-w-0 rounded-lg border border-[#d7e6f0] bg-[#f8fbfd] px-4 py-3 text-base text-[#0e235e] placeholder:text-[#364b5e]/60 outline-none transition-[border-color,background-color,box-shadow] duration-300 ease-out hover:border-[#c8d8e8] hover:bg-white focus:border-[#1e7fd0] focus:ring-2 focus:ring-[#1e7fd0]/15 motion-reduce:transition-none md:text-sm";
+  "mt-1.5 w-full min-w-0 rounded-lg border border-[#d7e6f0] bg-[#f8fbfd] px-4 py-3 text-base text-[#0e235e] placeholder:text-pelagic-copy/60 outline-none transition-[border-color,background-color,box-shadow] duration-300 ease-out hover:border-[#c8d8e8] hover:bg-white focus:border-[#1e7fd0] focus:ring-2 focus:ring-[#1e7fd0]/15 motion-reduce:transition-none md:text-sm";
 
 export function ContactEnquiryForm() {
   const {
@@ -53,7 +53,7 @@ export function ContactEnquiryForm() {
       <div className="min-w-0 rounded-xl border border-[#d7e6f0] bg-white p-6 transition-[border-color,background-color] duration-300 ease-out motion-reduce:transition-none sm:p-8">
         <p className="text-base leading-7 text-[#2e6b3e]">{form.successMessage}</p>
         {reference && (
-          <p className="mt-3 text-sm text-pelagic-steel">
+          <p className="mt-3 text-sm text-pelagic-copy">
             Reference: <span className="font-mono tracking-wide">{reference}</span>
           </p>
         )}
@@ -127,7 +127,7 @@ export function ContactEnquiryForm() {
             </p>
           )}
 
-          <label className="flex items-start gap-3 rounded-xl border border-[#d7e6f0] bg-[#f7fbfd] px-4 py-3 text-sm text-[#364b5e] transition-[border-color,background-color] duration-300 ease-out hover:border-[#c8d8e8] hover:bg-[#f3f9fb] motion-reduce:transition-none">
+          <label className="flex items-start gap-3 rounded-xl border border-[#d7e6f0] bg-[#f7fbfd] px-4 py-3 text-sm text-pelagic-copy transition-[border-color,background-color] duration-300 ease-out hover:border-[#c8d8e8] hover:bg-[#f3f9fb] motion-reduce:transition-none">
             <input
               type="checkbox"
               name="privacy"

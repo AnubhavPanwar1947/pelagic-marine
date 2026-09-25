@@ -48,7 +48,7 @@ export default function ProjectsPage() {
                   <h2 className="font-display mt-2 text-lg font-semibold text-pelagic-ink">
                     {project.title}
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-pelagic-slate">
+                  <p className="mt-2 text-sm leading-relaxed text-pelagic-copy">
                     {project.description}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">

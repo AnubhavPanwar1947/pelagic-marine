@@ -43,7 +43,7 @@ export default function DecarbonizationPage() {
               {decarbonization.points.map((point) => (
                 <li
                   key={point}
-                  className="flex gap-3 rounded-2xl bg-white/80 p-5 text-sm text-pelagic-steel"
+                  className="flex gap-3 rounded-2xl bg-white/80 p-5 text-sm text-pelagic-copy"
                 >
                   <span className="font-bold text-pelagic-accent">→</span>
                   {point}

@@ -42,7 +42,7 @@ export default function CareersPage() {
               {careers.perks.map((perk) => (
                 <li
                   key={perk}
-                  className="flex gap-3 rounded-2xl border border-pelagic-sand bg-white p-4 text-sm text-pelagic-steel"
+                  className="flex gap-3 rounded-2xl border border-pelagic-sand bg-white p-4 text-sm text-pelagic-copy"
                 >
                   <span className="text-pelagic-accent">✓</span>
                   {perk}
@@ -55,7 +55,7 @@ export default function CareersPage() {
               <h2 className="font-display text-xl font-semibold text-pelagic-ink">
                 Apply now
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-pelagic-steel">
+              <p className="mt-3 text-sm leading-relaxed text-pelagic-copy">
                 Send your CV and a brief cover note. We review applications on a
                 rolling basis for surveying, engineering, and advisory roles.
               </p>

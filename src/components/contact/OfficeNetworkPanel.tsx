@@ -92,7 +92,7 @@ export function OfficeNetworkPanel({
         <h2 className="font-display type-subsection-title mt-2 font-semibold text-pelagic-ink">
           {title}
         </h2>
-        <p className="mt-3 text-sm leading-7 text-pelagic-steel">{description}</p>
+        <p className="mt-3 text-sm leading-7 text-pelagic-copy">{description}</p>
 
         <div className="mt-6 inline-flex rounded-full border border-pelagic-mist bg-pelagic-cream/50 p-1">
           <button
@@ -302,7 +302,7 @@ export function OfficeNetworkPanel({
                 className="absolute inset-0 h-full w-full"
               />
             </div>
-            <p className="mt-3 text-sm text-pelagic-steel">
+            <p className="mt-3 text-sm text-pelagic-copy">
               Tap India to see Mumbai and Dehradun, or select Dubai for UAE directions.
             </p>
           </div>

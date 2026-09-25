@@ -67,7 +67,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://maps.google.com" />
         <link rel="dns-prefetch" href="https://maps.google.com" />
       </head>
-      <body className="flex min-h-full flex-col bg-background font-sans text-pelagic-body">
+      <body className="flex min-h-full flex-col bg-background font-sans text-pelagic-copy">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-pelagic-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"

@@ -52,7 +52,7 @@ export default function TeamPage() {
                     <p className="mt-1 text-sm font-bold uppercase tracking-wider text-pelagic-accent">
                       {member.role}
                     </p>
-                    <p className="mt-4 text-sm leading-7 text-[#364b5e]">
+                    <p className="mt-4 text-sm leading-7 text-pelagic-copy">
                       {member.bio}
                     </p>
                   </div>
@@ -68,7 +68,7 @@ export default function TeamPage() {
           <h2 className="font-display text-3xl font-semibold text-[#0e235e]">
             Work with the people behind the work
           </h2>
-          <p className="mt-4 text-[#364b5e]">
+          <p className="mt-4 text-pelagic-copy">
             Tell us what you are facing and we will point it to the right person.
           </p>
           <div className="mt-8">

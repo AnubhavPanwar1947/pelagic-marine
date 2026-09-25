@@ -17,7 +17,7 @@ export function ContactHeroSection() {
               <h1 className="type-display type-page-title mt-4 font-medium text-[#0e235e]">
                 {contactPage.hero.headline}
               </h1>
-              <p className="type-lead mt-5 max-w-2xl font-normal text-[#364b5e]">
+              <p className="type-lead mt-5 max-w-2xl font-normal">
                 {contactPage.hero.subline}
               </p>
             </div>

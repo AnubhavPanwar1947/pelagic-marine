@@ -30,7 +30,7 @@ export function ContactFaqSection() {
                     </span>
                   </span>
                 </summary>
-                <p className="border-t border-[#d7e6f0] px-5 pb-5 pt-3 text-sm leading-relaxed text-[#364b5e] sm:px-6">
+                <p className="border-t border-[#d7e6f0] px-5 pb-5 pt-3 text-sm leading-relaxed text-pelagic-copy sm:px-6">
                   {item.answer}
                 </p>
               </details>

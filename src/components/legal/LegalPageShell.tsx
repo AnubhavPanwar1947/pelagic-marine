@@ -15,7 +15,7 @@ export function LegalPageShell({ eyebrow, title, updated, children }: LegalPageS
         <div className="mx-auto max-w-3xl px-4 page-hero-py sm:px-6 lg:px-8">
           <p className="type-eyebrow">{eyebrow}</p>
           <h1 className="type-display type-page-title mt-4 text-pelagic-ink">{title}</h1>
-          <p className="mt-3 text-sm text-pelagic-steel">Last updated: {updated}</p>
+          <p className="mt-3 text-sm text-pelagic-copy">Last updated: {updated}</p>
         </div>
       </section>
 

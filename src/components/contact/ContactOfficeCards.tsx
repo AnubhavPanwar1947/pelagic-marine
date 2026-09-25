@@ -31,7 +31,7 @@ export function ContactOfficeCards({
         }`}
       >
         <p className="text-sm font-semibold text-[#0e235e]">{india.label}</p>
-        <p className="mt-2 text-sm leading-6 text-[#364b5e]">{india.description}</p>
+        <p className="mt-2 text-sm leading-6 text-pelagic-copy">{india.description}</p>
         <p className="mt-3 text-sm font-medium text-[#1e7fd0]">{india.phone}</p>
       </button>
 
@@ -46,10 +46,10 @@ export function ContactOfficeCards({
         }`}
       >
         <p className="text-sm font-semibold text-[#0e235e]">{dubai.label}</p>
-        <p className="mt-2 text-sm leading-6 text-[#364b5e]">
+        <p className="mt-2 text-sm leading-6 text-pelagic-copy">
           {dubaiOffice.tagline ?? "Middle East shipping and offshore advisory"}
         </p>
-        <address className="mt-3 not-italic text-sm leading-6 text-[#364b5e]">
+        <address className="mt-3 not-italic text-sm leading-6 text-pelagic-copy">
           {dubai.addressLines.map((line) => (
             <span key={line} className="block">
               {line}

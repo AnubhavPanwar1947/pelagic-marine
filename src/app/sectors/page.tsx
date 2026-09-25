@@ -48,7 +48,7 @@ export default function SectorsPage() {
                 <h2 className="font-display text-xl font-semibold text-pelagic-ink">
                   {sector.title}
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-pelagic-slate">
+                <p className="mt-3 text-sm leading-relaxed text-pelagic-copy">
                   {sector.summary}
                 </p>
                 <Link
