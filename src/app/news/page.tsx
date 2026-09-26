@@ -19,8 +19,9 @@ function getNewsCardImageSrc(slug: string, index: number) {
 }
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Latest articles and insights from Pelagic Marine Solutions.",
+  title: "Marine Insights",
+  description:
+    "Articles on marine engineering, inspections, surveying, offshore operations, and maritime advisory topics.",
 };
 
 function formatDate(iso: string) {
@@ -35,11 +36,11 @@ export default function NewsPage() {
   return (
     <div>
       <PageHero
-        eyebrow="Blog"
-        title="Latest from Pelagic"
-        description="Company updates, project highlights, and industry insights."
+        compact
+        title="Marine Insights"
+        description="Articles on marine engineering, inspections, surveying, offshore operations, and maritime advisory topics."
       />
-      <SectionMaritime variant="mist" className="py-20" gridOpacity={48}>
+      <SectionMaritime variant="mist" className="pb-20 pt-8 sm:pt-10" gridOpacity={48}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="space-y-6">
           {newsItems.map((item, i) => {
