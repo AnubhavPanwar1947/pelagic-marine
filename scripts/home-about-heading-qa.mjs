@@ -9,7 +9,6 @@ async function dismiss(page) {
   });
 }
 
-const LINE = "Connect with us for your varied needs!";
 const widths = [50, 190, 320, 375, 480, 640, 768, 960, 1024, 1280, 1440];
 const browser = await chromium.launch({ headless: true });
 const issues = [];
@@ -20,49 +19,35 @@ for (const w of widths) {
   await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
   await dismiss(page);
 
-  const r = await page.evaluate((lineText) => {
-    const section = document.querySelector(".home-section-cta");
+  const r = await page.evaluate(() => {
+    const section = document.querySelector(".home-theme-why");
+    const text = section?.innerText ?? "";
     const h2 = section?.querySelector("h2");
-    const lead = section?.querySelector(".type-lead");
-    const btn = section?.querySelector('a[href="/contact/"], a[href="/contact"]');
-    const sr = section?.getBoundingClientRect();
+    const grid = section?.querySelector(".grid");
     const hr = h2?.getBoundingClientRect();
-    const lr = lead?.getBoundingClientRect();
-    const br = btn?.getBoundingClientRect();
-    const vw = document.documentElement.clientWidth;
-    const sectionOverflow = sr && (sr.right > vw + 2 || sr.left < -2);
-    const leadCentered =
-      lr &&
-      hr &&
-      Math.abs(lr.left + lr.width / 2 - (hr.left + hr.width / 2)) < 3;
-    const textAlign = lead ? getComputedStyle(lead).textAlign : "";
-    const marginTop = lead ? getComputedStyle(lead).marginTop : "";
+    const gr = grid?.getBoundingClientRect();
+    const overflowH2 =
+      hr && gr && (hr.right > gr.right + 4 || hr.left < gr.left - 4);
+    const btn = section?.querySelector('a[href="/about/"], a[href="/about"]');
     return {
-      line: lead?.textContent?.trim(),
-      textAlign,
-      leadCentered,
-      marginTop,
-      btnHref: btn?.getAttribute("href"),
-      btnCentered:
-        lr &&
-        br &&
-        Math.abs(br.left + br.width / 2 - (lr.left + lr.width / 2)) < 24,
+      hasOurPractice: text.includes("Our practice"),
+      noWhoWeAre: !text.includes("Who we are"),
+      hasAboutEyebrow: /about us/i.test(text),
+      hasAboutBtn: btn?.textContent?.trim() === "About us",
+      overflowH2,
       cw: document.documentElement.clientWidth,
       sw: document.documentElement.scrollWidth,
       docOverflow:
         document.documentElement.scrollWidth >
         document.documentElement.clientWidth,
-      sectionOverflow,
-      okLine: lead?.textContent?.includes(lineText),
     };
-  }, LINE);
+  });
 
-  if (!r.okLine) issues.push(`${w}: missing supporting line`);
-  if (r.textAlign !== "center") issues.push(`${w}: lead not text-align center`);
-  if (!r.leadCentered) issues.push(`${w}: lead not centered under heading`);
-  if (r.btnHref !== "/contact/" && r.btnHref !== "/contact")
-    issues.push(`${w}: wrong btn href`);
-  if (r.sectionOverflow) issues.push(`${w}: section overflows`);
+  if (!r.hasOurPractice) issues.push(`${w}: missing Our practice`);
+  if (!r.noWhoWeAre) issues.push(`${w}: Who we are still on homepage`);
+  if (!r.hasAboutEyebrow) issues.push(`${w}: About us eyebrow missing`);
+  if (!r.hasAboutBtn) issues.push(`${w}: About us button missing`);
+  if (r.overflowH2) issues.push(`${w}: heading outside column`);
   if (r.docOverflow && w > 50) issues.push(`${w}: doc overflow`);
 
   console.log(`${w}px`, r);

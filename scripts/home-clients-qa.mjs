@@ -9,7 +9,8 @@ async function dismiss(page) {
   });
 }
 
-const LINE = "Connect with us for your varied needs!";
+const REMOVED =
+  "Owners, managers and operators who rely on Pelagic for surveys";
 const widths = [50, 190, 320, 375, 480, 640, 768, 960, 1024, 1280, 1440];
 const browser = await chromium.launch({ headless: true });
 const issues = [];
@@ -20,49 +21,38 @@ for (const w of widths) {
   await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
   await dismiss(page);
 
-  const r = await page.evaluate((lineText) => {
-    const section = document.querySelector(".home-section-cta");
+  const r = await page.evaluate((snippet) => {
+    const section = document.querySelector(".home-section-clients");
+    const text = section?.innerText ?? "";
     const h2 = section?.querySelector("h2");
-    const lead = section?.querySelector(".type-lead");
-    const btn = section?.querySelector('a[href="/contact/"], a[href="/contact"]');
-    const sr = section?.getBoundingClientRect();
+    const marquee = section?.querySelector(".home-client-marquee-strip");
     const hr = h2?.getBoundingClientRect();
-    const lr = lead?.getBoundingClientRect();
-    const br = btn?.getBoundingClientRect();
+    const mr = marquee?.getBoundingClientRect();
+    const sr = section?.getBoundingClientRect();
     const vw = document.documentElement.clientWidth;
+    const marqueeBelowHeading = hr && mr && mr.top >= hr.bottom - 2;
     const sectionOverflow = sr && (sr.right > vw + 2 || sr.left < -2);
-    const leadCentered =
-      lr &&
-      hr &&
-      Math.abs(lr.left + lr.width / 2 - (hr.left + hr.width / 2)) < 3;
-    const textAlign = lead ? getComputedStyle(lead).textAlign : "";
-    const marginTop = lead ? getComputedStyle(lead).marginTop : "";
     return {
-      line: lead?.textContent?.trim(),
-      textAlign,
-      leadCentered,
-      marginTop,
-      btnHref: btn?.getAttribute("href"),
-      btnCentered:
-        lr &&
-        br &&
-        Math.abs(br.left + br.width / 2 - (lr.left + lr.width / 2)) < 24,
+      sentenceGone: !text.includes(snippet),
+      hasClients: text.includes("Clients"),
+      hasHeading: text.includes("Trusted across") && text.includes("the fleet"),
+      hasMarquee: !!marquee,
+      marqueeBelowHeading,
       cw: document.documentElement.clientWidth,
       sw: document.documentElement.scrollWidth,
       docOverflow:
         document.documentElement.scrollWidth >
         document.documentElement.clientWidth,
       sectionOverflow,
-      okLine: lead?.textContent?.includes(lineText),
     };
-  }, LINE);
+  }, REMOVED);
 
-  if (!r.okLine) issues.push(`${w}: missing supporting line`);
-  if (r.textAlign !== "center") issues.push(`${w}: lead not text-align center`);
-  if (!r.leadCentered) issues.push(`${w}: lead not centered under heading`);
-  if (r.btnHref !== "/contact/" && r.btnHref !== "/contact")
-    issues.push(`${w}: wrong btn href`);
-  if (r.sectionOverflow) issues.push(`${w}: section overflows`);
+  if (!r.sentenceGone) issues.push(`${w}: sentence still present`);
+  if (!r.hasClients) issues.push(`${w}: Clients eyebrow missing`);
+  if (!r.hasHeading) issues.push(`${w}: heading missing`);
+  if (!r.hasMarquee) issues.push(`${w}: marquee missing`);
+  if (!r.marqueeBelowHeading) issues.push(`${w}: marquee not under heading`);
+  if (r.sectionOverflow) issues.push(`${w}: clients section overflows`);
   if (r.docOverflow && w > 50) issues.push(`${w}: doc overflow`);
 
   console.log(`${w}px`, r);

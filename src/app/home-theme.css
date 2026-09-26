@@ -195,6 +195,10 @@
   background-color: #e6f4fc;
 }
 
+.home-page .home-section-cta .type-lead {
+  text-align: center;
+}
+
 .home-page .home-client-marquee-strip {
   background-color: #f4fafd;
 }

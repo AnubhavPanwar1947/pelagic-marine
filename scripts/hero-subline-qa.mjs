@@ -9,7 +9,9 @@ async function dismiss(page) {
   });
 }
 
-const LINE = "Connect with us for your varied needs!";
+const SUBLINE =
+  "Naval architecture, stability, structures and clean-fuel advisory for owners, operators and charterers worldwide.";
+
 const widths = [50, 190, 320, 375, 480, 640, 768, 960, 1024, 1280, 1440];
 const browser = await chromium.launch({ headless: true });
 const issues = [];
@@ -20,49 +22,41 @@ for (const w of widths) {
   await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
   await dismiss(page);
 
-  const r = await page.evaluate((lineText) => {
-    const section = document.querySelector(".home-section-cta");
-    const h2 = section?.querySelector("h2");
-    const lead = section?.querySelector(".type-lead");
-    const btn = section?.querySelector('a[href="/contact/"], a[href="/contact"]');
-    const sr = section?.getBoundingClientRect();
-    const hr = h2?.getBoundingClientRect();
-    const lr = lead?.getBoundingClientRect();
+  const r = await page.evaluate((subline) => {
+    const bodyText = document.body.innerText;
+    const h1 = document.querySelector(".home-hero-line--3.type-hero-title");
+    const copy = document.querySelector(".home-hero-copy");
+    const btn = document.querySelector(".home-hero-line--5 a, .home-hero-line--5 button");
+    const spans = h1?.querySelectorAll("span") ?? [];
+    const first = spans[0];
+    const second = spans[1];
+    const hr = h1?.getBoundingClientRect();
     const br = btn?.getBoundingClientRect();
-    const vw = document.documentElement.clientWidth;
-    const sectionOverflow = sr && (sr.right > vw + 2 || sr.left < -2);
-    const leadCentered =
-      lr &&
-      hr &&
-      Math.abs(lr.left + lr.width / 2 - (hr.left + hr.width / 2)) < 3;
-    const textAlign = lead ? getComputedStyle(lead).textAlign : "";
-    const marginTop = lead ? getComputedStyle(lead).marginTop : "";
+    const cr = copy?.getBoundingClientRect();
+    const overflowHero =
+      (hr && cr && (hr.right > cr.right + 2 || hr.left < cr.left - 2)) ||
+      (br && cr && (br.right > cr.right + 2 || br.left < cr.left - 2));
     return {
-      line: lead?.textContent?.trim(),
-      textAlign,
-      leadCentered,
-      marginTop,
-      btnHref: btn?.getAttribute("href"),
-      btnCentered:
-        lr &&
-        br &&
-        Math.abs(br.left + br.width / 2 - (lr.left + lr.width / 2)) < 24,
+      sublineGone: !bodyText.includes(subline),
+      okBlue:
+        first && getComputedStyle(first).color === "rgb(47, 168, 238)",
+      okWhite:
+        second && getComputedStyle(second).color === "rgb(255, 255, 255)",
+      hasCta: !!btn && /consultation/i.test(btn.textContent || ""),
       cw: document.documentElement.clientWidth,
       sw: document.documentElement.scrollWidth,
       docOverflow:
         document.documentElement.scrollWidth >
         document.documentElement.clientWidth,
-      sectionOverflow,
-      okLine: lead?.textContent?.includes(lineText),
+      overflowHero,
     };
-  }, LINE);
+  }, SUBLINE);
 
-  if (!r.okLine) issues.push(`${w}: missing supporting line`);
-  if (r.textAlign !== "center") issues.push(`${w}: lead not text-align center`);
-  if (!r.leadCentered) issues.push(`${w}: lead not centered under heading`);
-  if (r.btnHref !== "/contact/" && r.btnHref !== "/contact")
-    issues.push(`${w}: wrong btn href`);
-  if (r.sectionOverflow) issues.push(`${w}: section overflows`);
+  if (!r.sublineGone) issues.push(`${w}: subline still visible`);
+  if (!r.okBlue) issues.push(`${w}: headline first phrase not blue`);
+  if (!r.okWhite) issues.push(`${w}: headline second phrase not white`);
+  if (!r.hasCta) issues.push(`${w}: CTA missing`);
+  if (r.overflowHero) issues.push(`${w}: hero content outside column`);
   if (r.docOverflow && w > 50) issues.push(`${w}: doc overflow`);
 
   console.log(`${w}px`, r);

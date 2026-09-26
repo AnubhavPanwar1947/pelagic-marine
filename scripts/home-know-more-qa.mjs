@@ -9,7 +9,6 @@ async function dismiss(page) {
   });
 }
 
-const LINE = "Connect with us for your varied needs!";
 const widths = [50, 190, 320, 375, 480, 640, 768, 960, 1024, 1280, 1440];
 const browser = await chromium.launch({ headless: true });
 const issues = [];
@@ -20,49 +19,39 @@ for (const w of widths) {
   await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
   await dismiss(page);
 
-  const r = await page.evaluate((lineText) => {
-    const section = document.querySelector(".home-section-cta");
-    const h2 = section?.querySelector("h2");
-    const lead = section?.querySelector(".type-lead");
-    const btn = section?.querySelector('a[href="/contact/"], a[href="/contact"]');
-    const sr = section?.getBoundingClientRect();
-    const hr = h2?.getBoundingClientRect();
-    const lr = lead?.getBoundingClientRect();
+  const r = await page.evaluate(() => {
+    const section = document.querySelector(".home-theme-why");
+    const btn = section?.querySelector('a[href="/about/"], a[href="/about"]');
+    const bg = btn ? getComputedStyle(btn).backgroundColor : "";
+    const color = btn ? getComputedStyle(btn).color : "";
+    const grid = section?.querySelector(".grid");
     const br = btn?.getBoundingClientRect();
-    const vw = document.documentElement.clientWidth;
-    const sectionOverflow = sr && (sr.right > vw + 2 || sr.left < -2);
-    const leadCentered =
-      lr &&
-      hr &&
-      Math.abs(lr.left + lr.width / 2 - (hr.left + hr.width / 2)) < 3;
-    const textAlign = lead ? getComputedStyle(lead).textAlign : "";
-    const marginTop = lead ? getComputedStyle(lead).marginTop : "";
+    const gr = grid?.getBoundingClientRect();
+    const overflowBtn =
+      br && gr && (br.right > gr.right + 4 || br.left < gr.left - 4);
+    const eyebrow = section?.querySelector(".type-eyebrow");
     return {
-      line: lead?.textContent?.trim(),
-      textAlign,
-      leadCentered,
-      marginTop,
+      label: btn?.textContent?.trim(),
+      okLabel: btn?.textContent?.trim() === "Know more",
+      okPrimary:
+        bg === "rgb(47, 168, 238)" && color === "rgb(255, 255, 255)",
       btnHref: btn?.getAttribute("href"),
-      btnCentered:
-        lr &&
-        br &&
-        Math.abs(br.left + br.width / 2 - (lr.left + lr.width / 2)) < 24,
+      eyebrow: eyebrow?.textContent?.trim(),
+      overflowBtn,
       cw: document.documentElement.clientWidth,
       sw: document.documentElement.scrollWidth,
       docOverflow:
         document.documentElement.scrollWidth >
         document.documentElement.clientWidth,
-      sectionOverflow,
-      okLine: lead?.textContent?.includes(lineText),
     };
-  }, LINE);
+  });
 
-  if (!r.okLine) issues.push(`${w}: missing supporting line`);
-  if (r.textAlign !== "center") issues.push(`${w}: lead not text-align center`);
-  if (!r.leadCentered) issues.push(`${w}: lead not centered under heading`);
-  if (r.btnHref !== "/contact/" && r.btnHref !== "/contact")
-    issues.push(`${w}: wrong btn href`);
-  if (r.sectionOverflow) issues.push(`${w}: section overflows`);
+  if (!r.okLabel) issues.push(`${w}: button label wrong`);
+  if (!r.okPrimary) issues.push(`${w}: not primary style`);
+  if (r.btnHref !== "/about/" && r.btnHref !== "/about")
+    issues.push(`${w}: wrong href`);
+  if (!/about us/i.test(r.eyebrow || "")) issues.push(`${w}: eyebrow missing`);
+  if (r.overflowBtn) issues.push(`${w}: button outside column`);
   if (r.docOverflow && w > 50) issues.push(`${w}: doc overflow`);
 
   console.log(`${w}px`, r);

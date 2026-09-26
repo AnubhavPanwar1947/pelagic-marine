@@ -567,18 +567,14 @@ export const trustBadges = [
  * Keep names short so the running strip stays readable.
  */
 export const clientCompanies = [
-  "Gulf Star Shipping",
-  "Horizon Tankers",
-  "Eastern Bulk Carriers",
-  "Blue Anchor Marine",
-  "Sapphire Gas Carriers",
-  "Indigo Fleet Management",
-  "Pacific Harbour Lines",
-  "Coral Offshore Services",
-  "Meridian Ship Managers",
-  "Atlas Marine Operators",
-  "Silver Tide Shipping",
-  "Nautilus Energy Marine",
+  "KOTUG",
+  "ISHIMA",
+  "VIRIDIAN MARITIME",
+  "OSM Thome",
+  "GOLDEN OCEAN",
+  "BSM",
+  "Shipside Brokers",
+  "SYNERGY GROUP",
 ];
 
 /** Client testimonials — replace with real quotes when approved by boss */

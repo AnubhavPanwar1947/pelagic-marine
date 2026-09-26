@@ -7,17 +7,9 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SiteImage } from "@/components/ui/SiteImage";
-import {
-  company,
-  decarbonization,
-  serviceCategories,
-} from "@/lib/site-data";
+import { company, serviceCategories } from "@/lib/site-data";
 import { imageSizes } from "@/lib/image-sizes";
-import {
-  getImageObjectPosition,
-  homeServiceIcons,
-  siteImages,
-} from "@/lib/site-images";
+import { homeServiceIcons } from "@/lib/site-images";
 import "./home-theme.css";
 
 const homeServices = serviceCategories.filter((service) => service.home !== false);
@@ -27,7 +19,7 @@ const homeAboutHeroImageAlt =
   "Marine office desk with a ship model, technical blueprint, and harbor view.";
 
 const homeAboutWhoWeAre =
-  "Pelagic Marine Solutions brings naval architects and Master Mariners together to deliver engineering, analysis and design grounded in real marine operations. Across maritime, offshore, oil & gas and renewables, we combine licensed analysis tools with decades of sea-going and project experience.";
+  "Pelagic Marine Solutions brings naval architects and Master Mariners together to deliver engineering, analysis, design, audit, and inspection grounded in real marine operations. Across maritime, offshore, oil and gas, and renewables, we combine licensed analysis tools with decades of sea-going and project experience.";
 
 export default function HomePage() {
   return (
@@ -41,11 +33,11 @@ export default function HomePage() {
               Pelagic Marine
             </p>
             <p className="home-hero-line home-hero-line--2 home-hero-brand-tagline">
-              SOLUTIONS · INDIA &amp; DUBAI
+              SOLUTIONS · DUBAI, SINGAPORE &amp; INDIA
             </p>
-            <h1 className="home-hero-line home-hero-line--3 type-display type-hero-title mt-8 w-full max-w-2xl text-white">
-              Serving the shipping industry,{" "}
-              <span className="text-heading-accent">round the clock.</span>
+            <h1 className="home-hero-line home-hero-line--3 type-display type-hero-title mt-8 w-full max-w-2xl">
+              <span className="text-heading-accent">Serving the shipping industry,</span>{" "}
+              <span className="text-white">round the clock.</span>
             </h1>
             <p className="home-hero-line home-hero-line--4 mt-5 w-full max-w-xl text-base leading-7 text-blue-50/88 sm:text-lg sm:leading-8">
               {company.heroSubline}
@@ -121,12 +113,11 @@ export default function HomePage() {
               <Reveal variant="text">
                 <SectionHeading
                   eyebrow="About us"
-                  title="Who we are"
                   description={homeAboutWhoWeAre}
                 />
-                <div className="mt-10">
-                  <Button href="/about" variant="outline">
-                    About us
+                <div className="mt-8">
+                  <Button href="/about" variant="primary">
+                    Know more
                   </Button>
                 </div>
               </Reveal>
@@ -147,61 +138,8 @@ export default function HomePage() {
           </div>
         </SectionMaritime>
 
-        {/* ── Section 5 · Decarbonization: white ── */}
-        <SectionMaritime
-          variant="decarb"
-          className="home-theme-decarb border-b border-pelagic-sand section-py"
-        >
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-section lg:grid-cols-2 lg:items-center">
-              <Reveal variant="image">
-                <div className="home-image-card home-decarb-image-card relative aspect-[4/3] overflow-hidden rounded-[1.85rem] bg-white shadow-[0_28px_60px_rgba(14,35,94,0.14)]">
-                  <SiteImage
-                    src={siteImages.decarbonizationHome}
-                    alt="LNG carrier at sea — maritime decarbonization and clean fuels"
-                    fill
-                    objectPosition={getImageObjectPosition(siteImages.decarbonizationHome)}
-                    className="object-cover transition duration-700 hover:scale-[1.03] motion-reduce:transition-none motion-reduce:hover:scale-100"
-                    sizes={imageSizes.contentHalf}
-                  />
-                </div>
-              </Reveal>
-
-              <Reveal variant="text" delay={80}>
-                <SectionHeading
-                  eyebrow="Decarbonization"
-                  title="Supporting the voyage to"
-                  titleAccent="cleaner seas"
-                  description={decarbonization.summary}
-                />
-                <ol className="mt-10 space-y-0">
-                  {decarbonization.points.slice(0, 4).map((point, i) => (
-                    <li
-                      key={point}
-                      className="flex gap-4 border-t border-pelagic-sand py-4 first:border-t-0 first:pt-0"
-                    >
-                      <span className="type-display shrink-0 text-sm text-pelagic-accent tabular-nums">
-                        0{i + 1}
-                      </span>
-                      <span className="type-copy">
-                        {point}
-                      </span>
-                    </li>
-                  ))}
-                </ol>
-                <Link
-                  href="/capabilities/clean-fuel/"
-                  className="cta-link mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-pelagic-accent px-7 py-3.5 text-[15px] font-semibold text-white shadow-lg shadow-pelagic-accent/25 transition hover:bg-pelagic-accent-hover"
-                >
-                  LNG bunkering & compatibility
-                </Link>
-              </Reveal>
-            </div>
-          </div>
-        </SectionMaritime>
-
         {/* ── Section 6 · Clients: icy blue ── */}
-        <section className="home-section-clients overflow-x-hidden border-b border-pelagic-sand section-py">
+        <section className="home-section-clients overflow-x-hidden border-b border-pelagic-sand section-py-md">
           <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
             <Reveal variant="text">
               <p className="type-eyebrow">Clients</p>
@@ -209,13 +147,9 @@ export default function HomePage() {
                 Trusted across{" "}
                 <span className="text-heading-accent">the fleet</span>
               </h2>
-              <p className="type-copy mx-auto mt-5 max-w-xl">
-                Owners, managers and operators who rely on Pelagic for surveys,
-                engineering and clean-fuel advisory.
-              </p>
             </Reveal>
           </div>
-          <Reveal variant="card" delay={80} className="relative mt-section-sm">
+          <Reveal variant="card" delay={80} className="relative mt-8">
             <div className="home-client-marquee-strip w-full min-w-0 overflow-hidden border-y border-pelagic-sand py-6 sm:py-7">
               <div className="w-full min-w-0 max-w-none [&_.pelagic-client-marquee-track>span]:!shadow-none [&_ul>li>span]:!shadow-none">
                 <ClientMarquee fullWidth whiteGaps />
@@ -225,27 +159,17 @@ export default function HomePage() {
         </section>
 
         {/* ── Section 7 · CTA: light icy blue ── */}
-        <section className="home-section-cta section-py-lg">
+        <section className="home-section-cta section-py">
           <Reveal variant="text" className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-            <p className="type-eyebrow">Next step</p>
-            <h2 className="type-display type-section-title--lg mt-5 text-[#0e235e]">
-              Let&apos;s move your{" "}
-              <span className="text-heading-accent">project forward</span>
+            <h2 className="type-display type-section-title--lg text-[#0e235e]">
+              Let&apos;s Talk
             </h2>
-            <p className="type-lead mx-auto mt-6 max-w-xl">
-              Naval architecture, surveys, engineering and clean-fuel advisory —
-              from India and Dubai.
+            <p className="type-lead mx-auto mt-3 max-w-xl">
+              Connect with us for your varied needs!
             </p>
-            <div className="cta-stack mt-11">
+            <div className="cta-stack mt-8">
               <Button href="/contact" variant="primary">
-                Get in touch
-              </Button>
-              <Button
-                href={`tel:${company.phones.india.replace(/\s/g, "")}`}
-                variant="outline"
-                external
-              >
-                Call {company.phones.india}
+                Connect now
               </Button>
             </div>
           </Reveal>
