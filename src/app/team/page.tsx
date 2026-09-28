@@ -10,7 +10,7 @@ import "./team-theme.css";
 export const metadata: Metadata = {
   title: "Team",
   description:
-    "Meet the Pelagic Marine Solutions team: naval architects and Master Mariners across design, engineering, surveys, clean fuels and operations.",
+    "Meet the Pelagic Marine team: naval architects and Master Mariners across design, engineering, surveys, clean fuels and operations.",
 };
 
 export default function TeamPage() {

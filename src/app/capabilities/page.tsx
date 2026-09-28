@@ -9,7 +9,7 @@ import { capabilitiesSections } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Capabilities",
   description:
-    "ANSYS, NAPA, AutoHydro, Optimoor and SACS; mooring and LNG compatibility analysis; and UMISTAB-X from Pelagic Marine Solutions.",
+    "ANSYS, NAPA, AutoHydro, Optimoor and SACS; mooring and LNG compatibility analysis; and UMISTAB-X from Pelagic Marine.",
 };
 
 const sectionHrefs: Record<string, string> = {

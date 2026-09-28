@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
@@ -117,13 +116,6 @@ export default function NewsPage() {
             );
           })}
         </div>
-        <Reveal className="type-copy mt-10 text-center">
-          More articles coming soon.{" "}
-          <Link href="/contact" className="font-semibold text-pelagic-accent hover:underline">
-            Contact us
-          </Link>{" "}
-          for press enquiries.
-        </Reveal>
         </div>
       </SectionMaritime>
     </div>

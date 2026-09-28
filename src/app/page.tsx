@@ -19,7 +19,7 @@ const homeAboutHeroImageAlt =
   "Marine office desk with a ship model, technical blueprint, and harbor view.";
 
 const homeAboutWhoWeAre =
-  "Pelagic Marine Solutions brings naval architects and Master Mariners together to deliver engineering, analysis, design, audit, and inspection grounded in real marine operations. Across maritime, offshore, oil and gas, and renewables, we combine licensed analysis tools with decades of sea-going and project experience.";
+  "Pelagic Marine brings naval architects and Master Mariners together to deliver design, engineering, naval architecture, and quality assurance in real marine operations. Across maritime, offshore, oil and gas, and renewables, we combine licensed analysis tools with decades of sea-going and project experience.";
 
 export default function HomePage() {
   return (
@@ -33,7 +33,7 @@ export default function HomePage() {
               Pelagic Marine
             </p>
             <p className="home-hero-line home-hero-line--2 home-hero-brand-tagline">
-              SOLUTIONS · DUBAI, SINGAPORE &amp; INDIA
+              Dubai, India, and Singapore
             </p>
             <h1 className="home-hero-line home-hero-line--3 type-display type-hero-title mt-8 w-full max-w-2xl">
               <span className="text-heading-accent">Serving the shipping industry,</span>{" "}
@@ -73,23 +73,37 @@ export default function HomePage() {
                   <Link
                     key={service.slug}
                     href={`/services/${service.slug}/`}
-                    className="home-service-tile group relative flex h-full min-h-[17rem] flex-col items-center justify-start rounded-xl p-7 motion-reduce:transition-none sm:p-8"
+                    aria-label={service.title}
+                    className="home-service-tile group relative flex h-full min-h-[17rem] w-full min-w-0 flex-col items-center justify-start rounded-xl p-4 motion-reduce:transition-none min-[17.5rem]:p-7 sm:p-8"
                   >
-                    <span className="home-service-tile-icon">
-                      <Image
-                        src={
-                          homeServiceIcons[
-                            service.slug as keyof typeof homeServiceIcons
-                          ]
-                        }
-                        alt=""
-                        width={163}
-                        height={169}
-                        className="home-service-tile-icon__img object-contain"
-                        sizes="167px"
-                      />
+                    <span className="home-service-tile-face flex w-full min-w-0 flex-col items-center">
+                      <span className="home-service-tile-icon">
+                        <Image
+                          src={
+                            homeServiceIcons[
+                              service.slug as keyof typeof homeServiceIcons
+                            ]
+                          }
+                          alt=""
+                          width={163}
+                          height={169}
+                          className="home-service-tile-icon__img object-contain"
+                          sizes="167px"
+                        />
+                      </span>
+                      <span className="home-service-tile-label">{service.title}</span>
                     </span>
-                    <span className="home-service-tile-label">{service.title}</span>
+                    <span className="home-service-tile-hover" aria-hidden="true">
+                      <span className="home-service-tile-hover-title">{service.title}</span>
+                      <ul className="home-service-tile-pills">
+                        {service.items.slice(0, 4).map((item) => (
+                          <li key={item.slug}>
+                            <span className="home-service-tile-pill">{item.label}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <span className="home-service-tile-readmore">Read more →</span>
+                    </span>
                   </Link>
                 ))}
               </div>

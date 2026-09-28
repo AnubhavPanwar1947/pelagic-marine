@@ -52,15 +52,11 @@ export default function ContactPage() {
           <div className="mx-auto max-w-7xl px-4 pt-8 pb-10 sm:px-6 sm:pt-10 sm:pb-12 lg:px-8">
             <Reveal variant="text">
               <div className="max-w-3xl min-w-0">
-                <p className="type-eyebrow">{contactPage.hero.eyebrow}</p>
-                <h1 className="type-display type-page-title mt-4 min-w-0 break-words font-semibold normal-case text-pelagic-ink">
-                  {contactPage.hero.headline}
-                </h1>
-                <p className="contact-hero-lead type-lead mt-5 max-w-2xl">
-                  {contactPage.hero.subline}
+                <p className="type-eyebrow contact-hero-eyebrow">
+                  {contactPage.hero.eyebrow}
                 </p>
               </div>
-              <ul className="mt-10 flex min-w-0 flex-col gap-10 md:mt-12 md:grid md:grid-cols-3 md:gap-8 lg:gap-10">
+              <ul className="mt-8 flex min-w-0 flex-col gap-10 md:mt-10 md:grid md:grid-cols-3 md:gap-8 lg:gap-10">
                 {contactHeroChannels.map((channel) => (
                   <li key={channel.label} className="min-w-0">
                     <a

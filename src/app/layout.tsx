@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: `%s | ${company.name}`,
   },
   description:
-    "Pelagic Marine Solutions delivers round-the-clock marine surveying, naval architecture, engineering, LNG advisory, and maritime legal consultancy across India and Dubai.",
+    "Pelagic Marine delivers round-the-clock marine surveying, naval architecture, engineering, and LNG advisory across India and Dubai.",
   keywords: [
     "marine consultancy",
     "ship surveying",

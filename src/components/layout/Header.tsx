@@ -233,7 +233,7 @@ function DesktopNavItem({
               className="mb-2 block rounded-lg bg-pelagic-sky/50 px-3 py-2.5 text-xs font-bold uppercase tracking-wider text-pelagic-navy hover:bg-pelagic-sky"
               onClick={() => setOpen(false)}
             >
-              View all {item.label === "Decarb" ? "Decarbonization" : item.label}
+              View all {item.label}
               {item.label === "Services" ? "" : " →"}
             </Link>
             <ul className="space-y-1">
@@ -355,7 +355,7 @@ function MobileNavItem({
             onClick={onNavigate}
             className="mb-2 block min-h-11 rounded-lg px-3 py-2.5 text-xs font-bold uppercase tracking-wider text-pelagic-accent transition hover:bg-pelagic-sky/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent"
           >
-            All {item.label === "Decarb" ? "Decarbonization" : item.label} →
+            All {item.label} →
           </Link>
           <div className="space-y-1.5">
             {item.children.map((child) => (

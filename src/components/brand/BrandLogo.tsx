@@ -52,7 +52,7 @@ function BrandLogoWordmark({
                 : "text-[10px] lg:text-[11px]"
         }`}
       >
-        MARINE SOLUTIONS
+        MARINE
       </span>
     </div>
   );
@@ -138,7 +138,7 @@ export function BrandLogo({
         className={`group inline-flex rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent${
           isHeader ? " brand-logo-home-link" : ""
         }`}
-        aria-label="Pelagic Marine Solutions — home"
+        aria-label="Pelagic Marine — home"
       >
         {content}
       </Link>

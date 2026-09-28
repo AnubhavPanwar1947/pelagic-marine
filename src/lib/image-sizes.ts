@@ -23,7 +23,7 @@ export const imageSizes = {
   /** Full-width banner inside max-w-7xl section. */
   sectionBanner:
     "(max-width: 639px) calc(100vw - 2rem), min(72rem, calc(100vw - 4rem))",
-  /** Naval Architecture blueprint — full bleed in panel / card (max-w-7xl gutters). */
+  /** Practice visual in services left column (1fr of 1fr + 1.15fr inside max-w-7xl). */
   serviceCategoryBlueprint:
-    "(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 3rem), min(20rem, calc((min(100vw, 80rem) - 4rem) * 4 / 12))",
+    "(max-width: 639px) calc(100vw - 2rem), min(37.5rem, max(30rem, calc((min(100vw, 80rem) - 4rem) / 2.15)))",
 } as const;

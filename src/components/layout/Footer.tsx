@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { FooterCookieLink } from "@/components/layout/FooterCookieLink";
-import { FooterWave } from "@/components/layout/FooterWave";
 import { SocialBrandIcon } from "@/components/ui/SocialBrandIcon";
 import { company, navLinks } from "@/lib/site-data";
 import { socialLinks } from "@/lib/social-links";
@@ -12,21 +11,22 @@ const legalLinks = [
   { href: "/terms", label: "Terms of use" },
 ];
 
-const officeLocations = ["Singapore", "India", "Dubai"];
+const footerLinkExclude = new Set(["Decarbonization", "Capabilities", "Contact"]);
+
+const footerNavLinks = navLinks.filter((link) => !footerLinkExclude.has(link.label));
+
+const officeLocations = [
+  { label: "Dubai", href: "/contact/" },
+  { label: "India", href: "/contact/" },
+  { label: "Singapore", href: "/contact/" },
+];
 
 export function Footer() {
   return (
     <footer className="relative z-30 isolate overflow-x-clip bg-pelagic-navy text-blue-100">
-      {/* Tall single-color wave behind content (~half footer height) */}
-      <FooterWave />
-
       <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 py-14 pb-[max(3.5rem,env(safe-area-inset-bottom))] sm:px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-8">
         <div className="site-footer-brand min-w-0 lg:col-span-4">
           <BrandLogo variant="footer" />
-          <p className="mt-4 max-w-sm pl-[var(--logo-lockup-anchor-x)] text-sm leading-7 text-blue-50">
-            Naval architecture and marine engineering consultancy — stability, structures,
-            hydrodynamics and clean-fuel advisory, from Dubai to fleets worldwide.
-          </p>
         </div>
 
         <div className="min-w-0 lg:col-span-2">
@@ -34,7 +34,7 @@ export function Footer() {
             Links
           </p>
           <ul className="mt-4 space-y-2 text-sm">
-            {navLinks.map((link) => (
+            {footerNavLinks.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="text-blue-100 hover:text-white">
                   {link.label}
@@ -68,7 +68,11 @@ export function Footer() {
           </p>
           <ul className="mt-4 space-y-2 text-sm text-blue-100">
             {officeLocations.map((location) => (
-              <li key={location}>{location}</li>
+              <li key={location.label}>
+                <Link href={location.href} className="text-blue-100 hover:text-white">
+                  {location.label}
+                </Link>
+              </li>
             ))}
           </ul>
         </div>

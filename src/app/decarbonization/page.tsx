@@ -10,7 +10,7 @@ import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 export const metadata: Metadata = {
   title: "Decarbonization",
   description:
-    "LNG, clean fuels, FuelEU, and decarbonisation advisory from Pelagic Marine Solutions.",
+    "LNG, clean fuels, FuelEU, and decarbonisation advisory from Pelagic Marine.",
 };
 
 export default function DecarbonizationPage() {

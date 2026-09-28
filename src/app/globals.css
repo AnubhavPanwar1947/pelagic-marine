@@ -541,8 +541,9 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   right: 0;
   left: auto;
   z-index: 60;
-  width: min(18rem, calc(100vw - 2rem));
-  max-width: calc(100vw - 2rem);
+  width: min(18rem, calc(100vw - 1rem));
+  max-width: calc(100vw - 1rem);
+  box-sizing: border-box;
   max-height: min(68svh, 24rem);
   padding: 0.4375rem;
   overflow-x: hidden;
@@ -580,6 +581,71 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   appearance: none;
 }
 
+.site-header-search-escape-hint {
+  margin: 0.375rem 0.125rem 0;
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  color: var(--pelagic-slate, #5a6f8c);
+}
+
+.site-header-search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+  padding: 0 0.125rem;
+}
+
+.site-header-search-filter-chip {
+  min-height: 2rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--pelagic-warm, #e8edf2);
+  border-radius: 9999px;
+  background: #fff;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--pelagic-navy, #0e235e);
+  white-space: normal;
+  text-align: left;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.site-header-search-filter-chip--active {
+  border-color: var(--pelagic-accent, #2fa8ee);
+  background: var(--pelagic-sky, #e6f4fc);
+  color: var(--pelagic-ink, #143868);
+}
+
+.site-header-search-filter-chip--disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.site-header-search-filter-chip:not(.site-header-search-filter-chip--disabled):hover {
+  border-color: var(--pelagic-accent, #2fa8ee);
+}
+
+.site-header-search-filter-chip:focus-visible {
+  outline: 2px solid var(--pelagic-accent, #2fa8ee);
+  outline-offset: 2px;
+}
+
+.site-header-search-highlight {
+  border-radius: 0.125rem;
+  background: rgba(47, 168, 238, 0.28);
+  color: inherit;
+  font-weight: inherit;
+}
+
+.site-header-search-result[data-active="true"] {
+  border-color: var(--pelagic-accent, #2fa8ee);
+  background: var(--pelagic-sky, #e6f4fc);
+}
+
 @keyframes site-header-search-panel-in {
   from {
     opacity: 0;
@@ -595,13 +661,41 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   .site-header-search-panel {
     position: fixed;
     top: var(--site-header-search-panel-top, calc(var(--site-header-height, 75px) + 0.5rem));
-    right: 1rem;
-    left: auto;
+    right: 0.25rem;
+    left: 0.25rem;
+    width: auto;
+    max-width: none;
     max-height: min(
       calc(100dvh - var(--site-header-search-panel-top, var(--site-header-height, 75px)) - 1rem),
       24rem
     );
     margin-top: 0;
+  }
+}
+
+@media (max-width: 22.5rem) {
+  .site-header-search-input > svg {
+    display: none;
+  }
+
+  .site-header-search-input {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding-inline: 0.375rem;
+  }
+
+  .site-header-search-input input[type="search"] {
+    flex: 1 1 100%;
+    width: 100%;
+    font-size: 0.875rem;
+    min-width: 0;
+  }
+
+  .site-header-search-input button[aria-label="Clear search"] {
+    margin-left: auto;
+    width: 1.25rem;
+    height: 1.25rem;
+    min-width: 1.25rem;
   }
 }
 
@@ -3598,57 +3692,6 @@ textarea::placeholder {
 }
 
 /* Homepage client strip — animation lives in ClientMarquee.tsx */
-
-/* Footer wave — 3 soft layers, slow, behind copy (~half footer) */
-.footer-wave {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: auto;
-  width: 100%;
-  height: 55%;
-  min-height: 200px;
-  line-height: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.footer-wave-svg {
-  display: block;
-  position: absolute;
-  left: -25%;
-  bottom: 0;
-  width: 200%;
-  height: 100%;
-  min-height: 200px;
-}
-
-.footer-wave-bridge {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  min-height: 120px;
-  line-height: 0;
-  margin-top: -1px;
-  overflow: hidden;
-  pointer-events: none;
-  background: transparent;
-}
-
-.footer-wave-bridge-svg {
-  display: block;
-  position: relative;
-  left: -25%;
-  width: 200%;
-  max-width: none;
-  height: 120px;
-}
-
-.footer-wave-parallax > use {
-  animation: none;
-}
 
 /* Homepage section washes — logo navy / azure mixtures (no graph) */
 .section-wash-delivery {

@@ -6,7 +6,8 @@ import { contactPage } from "@/lib/site-data";
 const inputClass =
   "mt-1 w-full min-w-0 rounded-lg border border-[#d7e6f0] bg-white px-4 py-3 text-base text-[#0e235e] placeholder:text-pelagic-copy/60 outline-none transition-[border-color,box-shadow] duration-300 ease-out focus:border-[#1e7fd0] focus:ring-2 focus:ring-[#1e7fd0]/15 motion-reduce:transition-none md:text-sm";
 
-const labelClass = "text-sm font-semibold text-pelagic-ink";
+const labelClass = "text-[18px] font-semibold text-pelagic-ink";
+const subLabelClass = "text-[14px] text-pelagic-copy-muted";
 
 function RequiredMark() {
   return <span className="font-semibold text-[#1e7fd0]"> *</span>;
@@ -48,7 +49,7 @@ export function ContactEnquiryForm() {
 
   return (
     <div className="min-w-0">
-      <h2 className="type-display text-center text-[28px] font-semibold normal-case leading-tight text-pelagic-ink sm:text-[30px] lg:text-[32px]">
+      <h2 className="contact-enquiry-heading type-display text-center font-semibold normal-case leading-tight text-pelagic-ink">
         {form.eyebrow}
       </h2>
       <form
@@ -75,7 +76,7 @@ export function ContactEnquiryForm() {
           </p>
           <div className="mt-2 grid min-w-0 grid-cols-1 gap-4 min-[480px]:grid-cols-2">
             <div className="min-w-0">
-              <label className="text-xs text-pelagic-copy-muted" htmlFor="first_name">
+              <label className={subLabelClass} htmlFor="first_name">
                 First
               </label>
               <input
@@ -88,7 +89,7 @@ export function ContactEnquiryForm() {
               />
             </div>
             <div className="min-w-0">
-              <label className="text-xs text-pelagic-copy-muted" htmlFor="last_name">
+              <label className={subLabelClass} htmlFor="last_name">
                 Last
               </label>
               <input
@@ -142,7 +143,7 @@ export function ContactEnquiryForm() {
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-[#0e235e] px-10 py-3 text-sm font-semibold text-white transition-colors duration-300 ease-out hover:bg-[#0a1a45] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0e235e] disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none"
+            className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-[#2fa8ee] px-10 py-3 text-sm font-semibold text-white transition-colors duration-300 ease-out hover:bg-[#1e96d6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2fa8ee] disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none"
           >
             {loading ? "Sending..." : form.submit}
           </button>

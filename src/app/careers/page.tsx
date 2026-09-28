@@ -10,7 +10,7 @@ import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join Pelagic Marine Solutions — careers for Master Mariners, marine engineers, and naval architects.",
+    "Join Pelagic Marine — careers for Master Mariners, marine engineers, and naval architects.",
 };
 
 export default function CareersPage() {

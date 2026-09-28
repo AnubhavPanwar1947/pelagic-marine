@@ -11,7 +11,7 @@ const aboutHeroImageAlt =
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Pelagic Marine Solutions is a naval architecture and marine engineering consultancy in Dubai, serving maritime, offshore, oil & gas and renewables clients worldwide.",
+    "Pelagic Marine is a naval architecture and marine engineering consultancy in Dubai, serving maritime, offshore, oil & gas and renewables clients worldwide.",
 };
 
 const principles = [
@@ -21,14 +21,14 @@ const principles = [
     iconAlt: "Our mission",
     points: [
       "Our mission is to transform the shipping industry into a sustainable and progressive industry.",
-      "We do this by innovation and technology.",
+      "We do this by the application of engineering principles, innovation, and technology.",
     ],
   },
   {
     title: "Our vision",
     iconSrc: "/images/icons/vision.svg",
     iconAlt: "Our vision",
-    body: "Our vision is to be the leaders in the field of Marine, Surveying, Engineering and Design",
+    body: "Our vision is to be a leader in marine surveying, engineering, and design.",
   },
   {
     title: "Values",
@@ -55,10 +55,10 @@ export default function AboutPage() {
                   Pelagic marine consultants and surveyors was formed in year 2021 by young
                   entrepreneurs from the shipping and engineering fraternity with wide range of
                   experience in vessel operations, ship surveying, Engineering, offshore operations,
-                  dry &amp; wet cargo handling and maritime legal solutions. The company was formed
+                  dry &amp; wet cargo handling. The company was formed
                   to act as a one stop shop for various shipping industry centric solution. The core
-                  team consists of experienced Master Mariners, Marine engineers, naval architects and
-                  Lawyers. We provide professional services to our clients from mainline shipping, oil
+                  team consists of experienced Master Mariners, Marine engineers, naval architects.
+                  We provide professional services to our clients from mainline shipping, oil
                   &amp; gas industry, offshore industry and renewable energy sector.
                 </p>
               </div>

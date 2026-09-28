@@ -11,7 +11,7 @@ function u(id: string, w: number, h: number, q = 88) {
 export const heroSlides = [
   {
     src: "/images/owned/home-page-hero-.jpg",
-    alt: "Pelagic Marine Solutions consultant on the bridge overlooking port operations at golden hour",
+    alt: "Pelagic Marine consultant on the bridge overlooking port operations at golden hour",
   },
   {
     src: "/images/stock/hero-2.jpeg",
@@ -112,13 +112,13 @@ export const homeServiceIcons: Record<
   | "naval-architecture-design"
   | "engineering"
   | "inspection-audits-surveying"
-  | "legal-consultancy",
+  | "loadicator",
   string
 > = {
   "naval-architecture-design": "/images/icons/naval-architecture.svg",
   engineering: "/images/icons/engineering.svg",
   "inspection-audits-surveying": "/images/icons/inspection-audits-surveying.svg",
-  "legal-consultancy": "/images/icons/legal-consultancy.svg",
+  loadicator: "/images/icons/loadicator.svg",
 };
 
 /** Optional hero background video — add public/videos/hero.mp4 (keep under ~8 MB) */

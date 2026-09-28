@@ -66,24 +66,119 @@
     box-shadow 300ms ease-out;
 }
 
-.home-page .home-service-tile:hover {
-  border-color: #e6f4fc;
-  background-color: #f4fafd;
-  box-shadow: 0 10px 32px rgba(7, 26, 51, 0.07);
-  transform: translateY(-2px);
-}
-
 .home-page .home-service-tile-accent {
   background-color: #e6f4fc;
+}
+
+.home-page .home-service-tile-hover {
+  display: none;
+}
+
+.home-page .home-service-tile-hover-title {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #ffffff;
+  text-align: left;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+@media (min-width: 17.5rem) {
+  .home-page .home-service-tile-hover-title {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 40rem) {
+  .home-page .home-service-tile-hover-title {
+    font-size: 20px;
+  }
+}
+
+.home-page .home-service-tile-pills {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0.875rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-page .home-service-tile-pills > li {
+  margin-top: 0.5rem;
+}
+
+.home-page .home-service-tile-pills > li:first-child {
+  margin-top: 0;
+}
+
+.home-page .home-service-tile-pill {
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #ffffff;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 40rem) {
+  .home-page .home-service-tile-pill {
+    font-size: 14px;
+  }
+}
+
+.home-page .home-service-tile-readmore {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-page .home-service-tile:hover,
+  .home-page .home-service-tile:focus-visible {
+    z-index: 2;
+    align-items: stretch;
+    justify-content: flex-start;
+    border-color: #0e235e;
+    background-color: #0e235e;
+    box-shadow: 0 12px 36px rgba(7, 26, 51, 0.22);
+    transform: none;
+  }
+
+  .home-page .home-service-tile:hover .home-service-tile-face,
+  .home-page .home-service-tile:focus-visible .home-service-tile-face {
+    display: none;
+  }
+
+  .home-page .home-service-tile:hover .home-service-tile-hover,
+  .home-page .home-service-tile:focus-visible .home-service-tile-hover {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .home-page .home-service-tile {
     transition: none;
-  }
-
-  .home-page .home-service-tile:hover {
-    transform: none;
   }
 }
 
@@ -188,11 +283,11 @@
 }
 
 .home-page .home-section-clients {
-  background-color: #f4fafd;
+  background-color: #e6f4fc;
 }
 
 .home-page .home-section-cta {
-  background-color: #e6f4fc;
+  background-color: #f4fafd;
 }
 
 .home-page .home-section-cta .type-lead {
@@ -200,7 +295,7 @@
 }
 
 .home-page .home-client-marquee-strip {
-  background-color: #f4fafd;
+  background-color: #e6f4fc;
 }
 
 .home-page .home-client-marquee-strip [class*="pelagic-client-marquee"] ul li span {

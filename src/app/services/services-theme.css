@@ -1,4 +1,8 @@
-/* Services page — solid white cards (scoped; global .card-maritime unchanged) */
+/* Services page — practice bands and topic chips */
+
+.services-page {
+  background-color: #ffffff;
+}
 
 .services-page .card-maritime,
 .services-page .card-maritime:hover {
@@ -6,80 +10,98 @@
   background-image: none;
 }
 
-.services-page .services-category-panel {
-  background-color: #ffffff;
-  background-image: none;
-}
-
-.services-page .services-category-panel p {
-  color: var(--pelagic-copy);
-  font-size: var(--pelagic-copy-size);
-  line-height: var(--pelagic-copy-leading);
-  font-weight: 400;
-  letter-spacing: var(--pelagic-copy-tracking);
-  text-wrap: pretty;
-  text-align: left;
-}
-
-.services-page .services-practice-section {
-  background-color: #eef1f4;
-  border: 1px solid #e2e8f0;
-  border-radius: 1.5rem;
-  padding: 1.5rem;
-}
-
-@media (min-width: 640px) {
-  .services-page .services-practice-section {
-    padding: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .services-page .services-practice-section {
-    padding: 2.5rem;
-  }
-}
-
-.services-page .services-practice-section__eyebrow {
+.services-practice-stack {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
 }
 
-.services-page .services-practice-section__badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 9999px;
-  background-color: #ffffff;
-  border: 1px solid #cbd5e1;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #64748b;
-  line-height: 1;
+.services-page .services-practice-band {
+  background-color: #e6f4fc;
 }
 
-.services-page .services-practice-section__label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #64748b;
-}
-
-.services-page .services-practice-section__topics-heading {
-  color: #64748b;
-}
-
-.services-page .services-practice-section__figure,
-.services-page .services-category-panel__figure {
-  margin: 0;
-  padding: 0;
+.services-page .services-practice-band.services-practice-band--white {
   background-color: #ffffff;
 }
 
-.services-page .services-practice-section__figure img,
-.services-page .services-category-panel__figure img {
+.services-practice-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 40rem) {
+  .services-practice-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+  }
+
+  .services-practice-layout__header {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .services-practice-layout__visual {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .services-practice-topic-grid {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+  }
+}
+
+.services-practice-topic-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 40rem) {
+  .services-practice-topic-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.services-page .services-practice-topic-chip {
+  background-color: #ffffff;
+  border-radius: 0.875rem;
+  padding: 0.875rem 1.125rem;
+  box-shadow: 0 4px 24px rgba(7, 26, 51, 0.06);
+  transition:
+    box-shadow 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.services-page .services-practice-topic-chip__label {
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+.services-page .services-practice-topic-chip:hover {
+  box-shadow: 0 8px 28px rgba(7, 26, 51, 0.09);
+  transform: translateY(-1px);
+}
+
+.services-page .services-practice-topic-chip:hover .services-practice-topic-chip__label {
+  color: var(--pelagic-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-page .services-practice-topic-chip {
+    transition: none;
+  }
+
+  .services-page .services-practice-topic-chip:hover {
+    transform: none;
+  }
+}
+
+.services-page .services-practice-visual--photo.services-practice-visual--contain img {
   object-fit: contain;
+}
+
+.services-page .services-practice-visual--photo.services-practice-visual--cover img {
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
 }

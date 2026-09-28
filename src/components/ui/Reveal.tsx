@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import { useInView } from "@/hooks/useInView";
 
 export type RevealVariant = "text" | "image" | "card" | "fade";
@@ -26,19 +26,13 @@ export function Reveal({
   delay = 0,
   variant = "text",
 }: RevealProps) {
-  const { ref, inView } = useInView<HTMLDivElement>();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(frame);
-  }, []);
+  const { ref, inView, armed } = useInView<HTMLDivElement>();
 
   return (
     <div
       ref={ref}
       className={`reveal-on-scroll ${VARIANT_CLASS[variant]} ${
-        mounted && !inView ? "is-pending" : ""
+        armed && !inView ? "is-pending" : ""
       } ${inView ? "is-visible" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >

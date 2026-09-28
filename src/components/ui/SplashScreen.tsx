@@ -47,7 +47,7 @@ export function SplashScreen() {
         <div className="splash-logo-wrap relative inline-block">
           <Image
             src={SPLASH_LOGO_SRC}
-            alt="Pelagic Marine Solutions"
+            alt="Pelagic Marine"
             width={280}
             height={409}
             priority

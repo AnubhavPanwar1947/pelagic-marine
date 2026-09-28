@@ -1,5 +1,42 @@
 /* Contact page — three-color surface palette (scoped to /contact only) */
 
+.contact-page .contact-hero-eyebrow.type-eyebrow {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0e235e;
+}
+
+@media (min-width: 17.5rem) {
+  .contact-page .contact-hero-eyebrow.type-eyebrow {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 40rem) {
+  .contact-page .contact-hero-eyebrow.type-eyebrow {
+    font-size: 25px;
+  }
+}
+
+.contact-page .contact-enquiry-heading {
+  font-size: 24px;
+  text-wrap: balance;
+}
+
+@media (min-width: 17.5rem) {
+  .contact-page .contact-enquiry-heading {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 40rem) {
+  .contact-page .contact-enquiry-heading {
+    font-size: 44px;
+  }
+}
+
 .contact-page .contact-hero-lead.type-lead,
 .contact-page .contact-channel-detail {
   color: #2f4a63;

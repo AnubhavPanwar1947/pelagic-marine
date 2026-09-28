@@ -24,8 +24,8 @@ export type ServiceItem = {
 };
 
 export const company = {
-  name: "Pelagic Marine Solutions",
-  legalName: "Pelagic Marine Solutions LLC",
+  name: "Pelagic Marine",
+  legalName: "Pelagic Marine LLC",
   tagline: "Delivering marine and engineering consultancy worldwide.",
   heroHeadline: "Serving the shipping industry, round the clock.",
   heroSubline:
@@ -51,9 +51,6 @@ export const company = {
 export const contactPage = {
   hero: {
     eyebrow: "Contact",
-    headline: "Start a conversation",
-    subline:
-      "Tell us the problem — a vessel, a structure, a survey or a decision — and we'll tell you what the engineering says.",
     fitStatement:
       "Strong fit: pre-purchase surveys, warranty attendance, LNG bunkering supervision, remote compass adjustment, casualty response, and fleet technical advisory.",
     imageSrc: "/images/stock/hero-port.jpg",
@@ -370,22 +367,6 @@ export const newsItems = [
       "Our Master Mariners and engineers provide surveying and technical support from India and Dubai.",
     slug: "advisory-expansion-india-uae",
   },
-  {
-    title: "Remote magnetic compass adjustment — 100+ vessels served",
-    category: "Projects",
-    date: "2026-05-20",
-    excerpt:
-      "Cost-effective, compliant compass deviation adjustments delivered remotely for fleets worldwide — no onboard attendance required.",
-    slug: "remote-compass-milestone",
-  },
-  {
-    title: "LNG bunkering supervision at Singapore Anchorage",
-    category: "LNG",
-    date: "2026-04-08",
-    excerpt:
-      "Full operational oversight for maiden LNG bunkering of a dual-fuel tanker, including compatibility review and joint operations meetings.",
-    slug: "lng-bunkering-singapore",
-  },
 ];
 
 export const careers = {
@@ -447,19 +428,6 @@ export const serviceCategories = [
       { label: "Marine Surveys", slug: "service-survey", teaser: "Condition, pre-purchase and valuation." },
       { label: "Audits & Inspections", slug: "service-audits", teaser: "ISM, ISPS, MLC and operational audits." },
       { label: "Marine Warranty Surveys", slug: "service-mws", teaser: "Loadout, tow and offshore operations." },
-      { label: "Loss Prevention & Damage Surveys", slug: "service-loss", teaser: "Casualty, P&I and claims support." },
-      { label: "Risk Assessment & Management", slug: "service-risk", teaser: "Operational and project risk frameworks." },
-      { label: "Chemical Cargo Handling", slug: "service-chem", teaser: "Tank cleaning, carriage and compliance." },
-      { label: "Magnetic Compass Remote Adjustment", slug: "service-compass", teaser: "Fleet-wide deviation adjustment." },
-    ],
-  },
-  {
-    title: "Legal Consultancy",
-    slug: "legal-consultancy",
-    summary:
-      "Pre-legal, technical decision-support that makes the engineering picture defensible.",
-    items: [
-      { label: "Legal Consultancy", slug: "service-legal", teaser: "Contracts, disputes and maritime law." },
     ],
   },
   {
@@ -478,7 +446,6 @@ export const serviceCategories = [
     slug: "loadicator",
     summary:
       "Class-approved loading and stability tools for crews and fleet technical teams.",
-    home: false,
     items: [
       { label: "UMISTAB-X", slug: "umistab-x", teaser: "Proprietary class-approved loadicator." },
     ],
@@ -635,15 +602,6 @@ export const navMenu: NavMenuItem[] = [
         })),
       },
       {
-        href: getServiceCategoryHref("legal-consultancy"),
-        label: "Legal Consultancy",
-        description: "Contracts, disputes and maritime law.",
-        children: serviceCategories[3].items.map((item) => ({
-          href: getServiceItemHref(item),
-          label: item.label,
-        })),
-      },
-      {
         href: getServiceCategoryHref("mooring-compatibility"),
         label: "Mooring & compatibility",
         description: "Static and dynamic mooring analysis and ship-shore studies.",
@@ -664,23 +622,6 @@ export const navMenu: NavMenuItem[] = [
   },
   { type: "link", href: "/projects", label: "Projects" },
   { type: "link", href: "/team", label: "Team" },
-  {
-    type: "dropdown",
-    label: "Decarb",
-    href: "/decarbonization",
-    children: [
-      {
-        href: "/decarbonization",
-        label: "Energy transition overview",
-        description: decarbonization.summary,
-      },
-      {
-        href: "/capabilities/clean-fuel/",
-        label: "LNG bunkering & compatibility",
-        description: "Mooring, transfer compatibility, procedures and attendance.",
-      },
-    ],
-  },
   { type: "link", href: "/news", label: "Blog" },
 ];
 

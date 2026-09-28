@@ -1,6 +1,6 @@
 <?php
 /**
- * Pelagic Marine Solutions — DreamHost contact form handler
+ * Pelagic Marine — DreamHost contact form handler
  * - No third-party APIs (no Supabase / Resend / Vercel)
  * - Uses DreamHost PHP mail()
  * - Notifies Pelagic + auto-replies to the visitor
@@ -17,8 +17,8 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
 
 const ADMIN_EMAIL = 'info@pelagic-marine.com';
 const FROM_EMAIL = 'info@pelagic-marine.com';
-const FROM_NAME = 'Pelagic Marine Solutions';
-const SITE_NAME = 'Pelagic Marine Solutions';
+const FROM_NAME = 'Pelagic Marine';
+const SITE_NAME = 'Pelagic Marine';
 const SITE_URL = 'https://pelagic-marine.com';
 const MAX_PER_HOUR = 8;
 

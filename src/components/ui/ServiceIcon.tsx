@@ -31,12 +31,6 @@ export function ServiceIcon({ slug, className = "h-7 w-7" }: ServiceIconProps) {
         <path d="M12 3c-4 6-6 9-6 12a6 6 0 1012 0c0-3-2-6-6-12z" strokeLinejoin="round" />
       </svg>
     ),
-    "legal-consultancy": (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
-        <path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z" strokeLinejoin="round" />
-        <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
     "vessel-operations": (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
         <path d="M3 18h18" strokeLinecap="round" />

@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject, useEffect, useRef, useState } from "react";
+import { RefObject, useLayoutEffect, useRef, useState } from "react";
 
 export const REVEAL_OBSERVER_OPTIONS: IntersectionObserverInit = {
   threshold: 0.12,
@@ -14,20 +14,33 @@ type UseInViewOptions = {
 
 export function useInView<T extends Element>(
   options: UseInViewOptions = {}
-): { ref: RefObject<T | null>; inView: boolean } {
+): { ref: RefObject<T | null>; inView: boolean; armed: boolean } {
   const { once = true, observerOptions = REVEAL_OBSERVER_OPTIONS } = options;
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
+  const [armed, setArmed] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduced) {
-      const frame = requestAnimationFrame(() => setInView(true));
-      return () => cancelAnimationFrame(frame);
+      setInView(true);
+      setArmed(true);
+      return;
+    }
+
+    const rect = el.getBoundingClientRect();
+    const initiallyVisible =
+      rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
+    if (initiallyVisible) {
+      setInView(true);
+      setArmed(true);
+      if (once) return;
+    } else {
+      setArmed(true);
     }
 
     const observer = new IntersectionObserver(
@@ -46,5 +59,5 @@ export function useInView<T extends Element>(
     return () => observer.disconnect();
   }, [once, observerOptions]);
 
-  return { ref, inView };
+  return { ref, inView, armed };
 }

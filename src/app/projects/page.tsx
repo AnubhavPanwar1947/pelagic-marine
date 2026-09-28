@@ -11,7 +11,7 @@ import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Marine surveying, LNG bunkering, engineering, and remote compass projects delivered by Pelagic Marine Solutions.",
+    "Marine surveying, LNG bunkering, engineering, and remote compass projects delivered by Pelagic Marine.",
 };
 
 export default function ProjectsPage() {

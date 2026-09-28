@@ -14,12 +14,6 @@ export function ContactHeroSection() {
           <Reveal variant="text">
             <div className="max-w-3xl min-w-0">
               <p className="type-eyebrow">{contactPage.hero.eyebrow}</p>
-              <h1 className="type-display type-page-title mt-4 font-medium text-[#0e235e]">
-                {contactPage.hero.headline}
-              </h1>
-              <p className="type-lead mt-5 max-w-2xl font-normal">
-                {contactPage.hero.subline}
-              </p>
             </div>
           </Reveal>
         </div>

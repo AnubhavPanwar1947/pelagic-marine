@@ -11,7 +11,7 @@ import { getImageObjectPosition, siteImages } from "@/lib/site-images";
 export const metadata: Metadata = {
   title: "Sectors",
   description:
-    "Maritime, offshore, renewables, and ports — sector expertise from Pelagic Marine Solutions.",
+    "Maritime, offshore, renewables, and ports — sector expertise from Pelagic Marine.",
 };
 
 export default function SectorsPage() {
