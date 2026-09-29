@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { SearchLandingController } from "@/components/search/SearchLandingController";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { ConsentAwareAnalytics } from "@/components/ui/ConsentAwareAnalytics";
 import { SplashScreen } from "@/components/ui/SplashScreen";
@@ -78,6 +80,9 @@ export default function RootLayout({
         <Header />
         <main id="main-content" className="flex-1">
           {children}
+          <Suspense fallback={null}>
+            <SearchLandingController />
+          </Suspense>
         </main>
         <Footer />
         <CookieConsent />

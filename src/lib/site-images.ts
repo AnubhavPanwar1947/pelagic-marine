@@ -105,7 +105,13 @@ export const siteImages = {
     u("photo-1512453979798-5ea266f8880c", 900, 500),
     u("photo-1518684079-3c830dcef090", 900, 500),
   ],
+  engineering: {
+    stabilitySoftware: "/images/owned/loadicator.png",
+  },
 } as const;
+
+export const STABILITY_SOFTWARE_SCREENSHOT_ALT =
+  "UMISTAB stability software screenshot showing validation plots and vessel arrangement";
 
 /** Homepage service card icons (SVG) keyed by service slug. */
 export const homeServiceIcons: Record<

@@ -12,6 +12,347 @@ export type ImageManifestEntry = {
 };
 
 export const imageManifest: Record<string, ImageManifestEntry> = {
+  "/images/blog-hero.png": {
+    "src": "/images/blog-hero.png",
+    "width": 802,
+    "height": 380,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/blog-hero-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/blog-hero-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/blog-hero-640w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/blog-hero-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/blog-hero-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/blog-hero-640w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/blog-hero-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/blog-hero-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/blog-hero-640w.avif"
+      }
+    ]
+  },
+  "/images/cfd/domain-mesh.png": {
+    "src": "/images/cfd/domain-mesh.png",
+    "width": 901,
+    "height": 351,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/cfd/domain-mesh-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/domain-mesh-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/domain-mesh-640w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/cfd/domain-mesh-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/domain-mesh-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/domain-mesh-640w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/cfd/domain-mesh-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/domain-mesh-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/domain-mesh-640w.avif"
+      }
+    ]
+  },
+  "/images/cfd/industry-perspective.png": {
+    "src": "/images/cfd/industry-perspective.png",
+    "width": 976,
+    "height": 660,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/cfd/industry-perspective-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/industry-perspective-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/industry-perspective-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/cfd/industry-perspective-960w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/cfd/industry-perspective-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/industry-perspective-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/industry-perspective-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/cfd/industry-perspective-960w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/cfd/industry-perspective-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/industry-perspective-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/industry-perspective-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/cfd/industry-perspective-960w.avif"
+      }
+    ]
+  },
+  "/images/cfd/propeller-contours.png": {
+    "src": "/images/cfd/propeller-contours.png",
+    "width": 901,
+    "height": 559,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/cfd/propeller-contours-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/propeller-contours-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/propeller-contours-640w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/cfd/propeller-contours-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/propeller-contours-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/propeller-contours-640w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/cfd/propeller-contours-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/propeller-contours-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/propeller-contours-640w.avif"
+      }
+    ]
+  },
+  "/images/cfd/resistance-velocity-contours.png": {
+    "src": "/images/cfd/resistance-velocity-contours.png",
+    "width": 901,
+    "height": 183,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/cfd/resistance-velocity-contours-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/resistance-velocity-contours-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/resistance-velocity-contours-640w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/cfd/resistance-velocity-contours-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/resistance-velocity-contours-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/resistance-velocity-contours-640w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/cfd/resistance-velocity-contours-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/resistance-velocity-contours-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/resistance-velocity-contours-640w.avif"
+      }
+    ]
+  },
+  "/images/cfd/streamlines-waps.png": {
+    "src": "/images/cfd/streamlines-waps.png",
+    "width": 850,
+    "height": 307,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/cfd/streamlines-waps-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/streamlines-waps-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/streamlines-waps-640w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/cfd/streamlines-waps-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/streamlines-waps-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/streamlines-waps-640w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/cfd/streamlines-waps-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/streamlines-waps-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/streamlines-waps-640w.avif"
+      }
+    ]
+  },
+  "/images/cfd/vof-drag-force.png": {
+    "src": "/images/cfd/vof-drag-force.png",
+    "width": 901,
+    "height": 190,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/cfd/vof-drag-force-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/vof-drag-force-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/vof-drag-force-640w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/cfd/vof-drag-force-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/vof-drag-force-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/vof-drag-force-640w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/cfd/vof-drag-force-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/cfd/vof-drag-force-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/cfd/vof-drag-force-640w.avif"
+      }
+    ]
+  },
   "/images/owned/decarb-home.jpg": {
     "src": "/images/owned/decarb-home.jpg",
     "width": 2400,
@@ -258,6 +599,100 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 1920,
         "path": "/images/owned/home-page-hero--1920w.avif"
+      }
+    ]
+  },
+  "/images/owned/loadicator.png": {
+    "src": "/images/owned/loadicator.png",
+    "width": 1919,
+    "height": 1033,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/owned/loadicator-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/loadicator-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/loadicator-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/loadicator-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/owned/loadicator-1280w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/owned/loadicator-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/loadicator-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/loadicator-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/loadicator-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/owned/loadicator-1280w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/owned/loadicator-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/loadicator-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/owned/loadicator-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/owned/loadicator-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/owned/loadicator-1280w.avif"
+      }
+    ]
+  },
+  "/images/owned/logo-png.png": {
+    "src": "/images/owned/logo-png.png",
+    "width": 450,
+    "height": 150,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/owned/logo-png-320w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/owned/logo-png-320w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/owned/logo-png-320w.avif"
       }
     ]
   },
@@ -578,6 +1013,77 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
+  "/images/stock/about.png": {
+    "src": "/images/stock/about.png",
+    "width": 1280,
+    "height": 720,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/about-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/about-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/about-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/about-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/about-1280w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/about-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/about-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/about-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/about-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/about-1280w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/about-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/about-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/about-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/about-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/about-1280w.avif"
+      }
+    ]
+  },
   "/images/stock/decarbonization.jpg": {
     "src": "/images/stock/decarbonization.jpg",
     "width": 1920,
@@ -661,86 +1167,169 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
-  "/images/stock/hero-port.jpg": {
-    "src": "/images/stock/hero-port.jpg",
-    "width": 2560,
-    "height": 1440,
+  "/images/stock/engineer.jpeg": {
+    "src": "/images/stock/engineer.jpeg",
+    "width": 5184,
+    "height": 3456,
     "fallback": [
       {
         "width": 320,
-        "path": "/images/stock/hero-port-320w.jpg"
+        "path": "/images/stock/engineer-320w.jpg"
       },
       {
         "width": 480,
-        "path": "/images/stock/hero-port-480w.jpg"
+        "path": "/images/stock/engineer-480w.jpg"
       },
       {
         "width": 640,
-        "path": "/images/stock/hero-port-640w.jpg"
+        "path": "/images/stock/engineer-640w.jpg"
       },
       {
         "width": 960,
-        "path": "/images/stock/hero-port-960w.jpg"
+        "path": "/images/stock/engineer-960w.jpg"
       },
       {
         "width": 1280,
-        "path": "/images/stock/hero-port-1280w.jpg"
+        "path": "/images/stock/engineer-1280w.jpg"
       },
       {
         "width": 1920,
-        "path": "/images/stock/hero-port-1920w.jpg"
+        "path": "/images/stock/engineer-1920w.jpg"
       }
     ],
     "webp": [
       {
         "width": 320,
-        "path": "/images/stock/hero-port-320w.webp"
+        "path": "/images/stock/engineer-320w.webp"
       },
       {
         "width": 480,
-        "path": "/images/stock/hero-port-480w.webp"
+        "path": "/images/stock/engineer-480w.webp"
       },
       {
         "width": 640,
-        "path": "/images/stock/hero-port-640w.webp"
+        "path": "/images/stock/engineer-640w.webp"
       },
       {
         "width": 960,
-        "path": "/images/stock/hero-port-960w.webp"
+        "path": "/images/stock/engineer-960w.webp"
       },
       {
         "width": 1280,
-        "path": "/images/stock/hero-port-1280w.webp"
+        "path": "/images/stock/engineer-1280w.webp"
       },
       {
         "width": 1920,
-        "path": "/images/stock/hero-port-1920w.webp"
+        "path": "/images/stock/engineer-1920w.webp"
       }
     ],
     "avif": [
       {
         "width": 320,
-        "path": "/images/stock/hero-port-320w.avif"
+        "path": "/images/stock/engineer-320w.avif"
       },
       {
         "width": 480,
-        "path": "/images/stock/hero-port-480w.avif"
+        "path": "/images/stock/engineer-480w.avif"
       },
       {
         "width": 640,
-        "path": "/images/stock/hero-port-640w.avif"
+        "path": "/images/stock/engineer-640w.avif"
       },
       {
         "width": 960,
-        "path": "/images/stock/hero-port-960w.avif"
+        "path": "/images/stock/engineer-960w.avif"
       },
       {
         "width": 1280,
-        "path": "/images/stock/hero-port-1280w.avif"
+        "path": "/images/stock/engineer-1280w.avif"
       },
       {
         "width": 1920,
-        "path": "/images/stock/hero-port-1920w.avif"
+        "path": "/images/stock/engineer-1920w.avif"
+      }
+    ]
+  },
+  "/images/stock/hero-2.jpeg": {
+    "src": "/images/stock/hero-2.jpeg",
+    "width": 5632,
+    "height": 3072,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/hero-2-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/hero-2-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/hero-2-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/hero-2-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/hero-2-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/hero-2-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/hero-2-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/hero-2-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/hero-2-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/hero-2-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/hero-2-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/hero-2-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/hero-2-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/hero-2-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/hero-2-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/hero-2-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/hero-2-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/hero-2-1920w.avif"
       }
     ]
   },
@@ -827,6 +1416,89 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
+  "/images/stock/inspection.jpeg": {
+    "src": "/images/stock/inspection.jpeg",
+    "width": 6000,
+    "height": 4000,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/inspection-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/inspection-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/inspection-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/inspection-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/inspection-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/inspection-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/inspection-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/inspection-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/inspection-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/inspection-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/inspection-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/inspection-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/inspection-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/inspection-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/inspection-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/inspection-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/inspection-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/inspection-1920w.avif"
+      }
+    ]
+  },
   "/images/stock/lng-carrier-two-ships-centered.jpg": {
     "src": "/images/stock/lng-carrier-two-ships-centered.jpg",
     "width": 1024,
@@ -883,6 +1555,89 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 960,
         "path": "/images/stock/lng-carrier-two-ships-centered-960w.avif"
+      }
+    ]
+  },
+  "/images/stock/mooring.jpeg": {
+    "src": "/images/stock/mooring.jpeg",
+    "width": 5888,
+    "height": 3296,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/stock/mooring-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/mooring-480w.jpg"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/mooring-640w.jpg"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/mooring-960w.jpg"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/mooring-1280w.jpg"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/mooring-1920w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/stock/mooring-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/mooring-480w.webp"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/mooring-640w.webp"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/mooring-960w.webp"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/mooring-1280w.webp"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/mooring-1920w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/stock/mooring-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/stock/mooring-480w.avif"
+      },
+      {
+        "width": 640,
+        "path": "/images/stock/mooring-640w.avif"
+      },
+      {
+        "width": 960,
+        "path": "/images/stock/mooring-960w.avif"
+      },
+      {
+        "width": 1280,
+        "path": "/images/stock/mooring-1280w.avif"
+      },
+      {
+        "width": 1920,
+        "path": "/images/stock/mooring-1920w.avif"
       }
     ]
   },

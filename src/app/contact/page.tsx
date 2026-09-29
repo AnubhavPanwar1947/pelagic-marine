@@ -58,7 +58,11 @@ export default function ContactPage() {
               </div>
               <ul className="mt-8 flex min-w-0 flex-col gap-10 md:mt-10 md:grid md:grid-cols-3 md:gap-8 lg:gap-10">
                 {contactHeroChannels.map((channel) => (
-                  <li key={channel.label} className="min-w-0">
+                  <li
+                    key={channel.label}
+                    id={channel.label === "Visit Us" ? "office-dubai" : channel.label === "Call Us" ? "office-india" : undefined}
+                    className="min-w-0 scroll-mt-[calc(var(--site-header-height,75px)+1rem)]"
+                  >
                     <a
                       href={channel.href}
                       className="flex min-w-0 max-w-full flex-col items-center text-center no-underline motion-reduce:transition-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0e235e]"

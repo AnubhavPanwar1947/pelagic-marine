@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
+import { decarbPointAnchorId, SEARCH_SCROLL_MARGIN_CLASS } from "@/lib/search-slugs";
 import { decarbonization } from "@/lib/site-data";
 import { imageSizes } from "@/lib/image-sizes";
 import { getImageObjectPosition, siteImages } from "@/lib/site-images";
@@ -43,7 +44,8 @@ export default function DecarbonizationPage() {
               {decarbonization.points.map((point) => (
                 <li
                   key={point}
-                  className="flex gap-3 rounded-2xl bg-white/80 p-5 type-copy"
+                  id={decarbPointAnchorId(point)}
+                  className={`flex gap-3 rounded-2xl bg-white/80 p-5 type-copy ${SEARCH_SCROLL_MARGIN_CLASS}`}
                 >
                   <span className="font-bold text-pelagic-accent">→</span>
                   {point}

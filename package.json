@@ -10,7 +10,8 @@
     "export": "npm run build",
     "generate-images": "node scripts/generate-responsive-images.mjs",
     "prepare-logo": "node scripts/prepare-logo.mjs",
-    "prepare-logo-pdf": "node scripts/prepare-logo-from-pdf.mjs"
+    "prepare-logo-pdf": "node scripts/prepare-logo-from-pdf.mjs",
+    "validate-search": "npx --yes tsx scripts/validate-search-routes.ts"
   },
   "dependencies": {
     "next": "16.2.10",

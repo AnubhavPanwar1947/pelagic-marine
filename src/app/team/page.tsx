@@ -4,6 +4,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { imageSizes } from "@/lib/image-sizes";
 import { getImageObjectPosition } from "@/lib/site-images";
+import { teamMemberAnchorId, SEARCH_SCROLL_MARGIN_CLASS } from "@/lib/search-slugs";
 import { teamMembers } from "@/lib/site-data";
 import "./team-theme.css";
 
@@ -32,7 +33,8 @@ export default function TeamPage() {
               return (
               <article
                 key={member.name}
-                className={`team-member-card w-full min-w-0 overflow-hidden rounded-3xl border shadow-sm motion-reduce:transition-none${isAbhinav ? " team-member-card--abhinav" : " team-member-card--uniform-portrait"}`}
+                id={teamMemberAnchorId(member.name)}
+                className={`team-member-card w-full min-w-0 overflow-hidden rounded-3xl border shadow-sm motion-reduce:transition-none ${SEARCH_SCROLL_MARGIN_CLASS}${isAbhinav ? " team-member-card--abhinav" : " team-member-card--uniform-portrait"}`}
               >
                 <div className="team-member-card__layout grid min-w-0 sm:grid-cols-[14.25rem_minmax(0,1fr)] sm:items-start">
                   <div

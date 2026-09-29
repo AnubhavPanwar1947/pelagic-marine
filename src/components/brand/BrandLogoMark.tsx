@@ -2,6 +2,11 @@ import Image from "next/image";
 
 export const BRAND_LOGO_CIRCLE_SRC = "/logo-circle.png?v=35";
 
+/** Full horizontal header lockup (vector wordmark + embedded anchor raster in SVG). */
+export const BRAND_LOGO_HORIZONTAL_SRC = "/images/icons/logo.svg";
+export const BRAND_LOGO_HORIZONTAL_WIDTH = 150;
+export const BRAND_LOGO_HORIZONTAL_HEIGHT = 45;
+
 type BrandLogoMarkProps = {
   size?: number;
   className?: string;

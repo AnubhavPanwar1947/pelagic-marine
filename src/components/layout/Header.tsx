@@ -492,7 +492,7 @@ export function Header() {
       data-search-open={searchOpen ? "true" : "false"}
     >
       <div
-        className="site-header-bar mx-auto flex max-w-7xl min-w-0 items-center justify-between gap-1 px-3 sm:gap-1.5 sm:px-4 nav:gap-1.5 nav:px-4 xl:gap-2 xl:px-8"
+        className="site-header-bar mx-auto flex max-w-7xl min-w-0 items-center justify-between gap-1 px-4 sm:gap-1.5 sm:px-6 nav:gap-1.5 lg:gap-2 lg:px-8"
       >
         <div className="min-w-0 shrink">
           <BrandLogo variant="header" />

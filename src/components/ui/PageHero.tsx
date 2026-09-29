@@ -7,6 +7,7 @@ type PageHeroProps = {
   title: string;
   description?: string;
   /** Maritime hero photo — light scrim keeps text readable (peer-style) */
+  imageSrc?: string;
   /** Tighter hero for short copy (e.g. /news) — no min-height, reduced padding */
   compact?: boolean;
 };

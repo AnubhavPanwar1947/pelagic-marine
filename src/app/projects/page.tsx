@@ -4,6 +4,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
+import { caseStudyAnchorId, SEARCH_SCROLL_MARGIN_CLASS } from "@/lib/search-slugs";
 import { caseStudies } from "@/lib/site-data";
 import { imageSizes } from "@/lib/image-sizes";
 import { getImageObjectPosition, siteImages } from "@/lib/site-images";
@@ -27,7 +28,10 @@ export default function ProjectsPage() {
         <div className="grid gap-8 lg:grid-cols-3">
           {caseStudies.map((project, i) => (
             <Reveal key={project.title} delay={i * 80}>
-              <article className="card-premium card-maritime overflow-hidden rounded-3xl border shadow-sm">
+              <article
+                id={caseStudyAnchorId(project.title)}
+                className={`card-premium card-maritime overflow-hidden rounded-3xl border shadow-sm ${SEARCH_SCROLL_MARGIN_CLASS}`}
+              >
                 <div className="relative aspect-[16/10]">
                   <SiteImage
                     src={siteImages.cases[i] ?? siteImages.cases[0]}
