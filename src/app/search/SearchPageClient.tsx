@@ -71,6 +71,13 @@ export function SearchPageClient() {
   }, [paramQuery]);
 
   useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      inputRef.current?.focus({ preventScroll: true });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
     debounceRef.current = setTimeout(() => {
       setDebouncedQuery(query);
       setActiveIndex(-1);

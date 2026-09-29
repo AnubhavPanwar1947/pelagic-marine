@@ -376,7 +376,6 @@ function MobileNavItem({
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [headerHeight, setHeaderHeight] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
@@ -388,20 +387,11 @@ export function Header() {
     setMenuOpen(false);
   }, []);
 
-  const handleSearchOpenChange = useCallback((next: boolean) => {
-    if (next) {
-      shouldRestoreFocusRef.current = false;
-      setMenuOpen(false);
-    }
-    setSearchOpen(next);
-  }, []);
-
   const toggleMenu = useCallback(() => {
     if (menuOpen) {
       closeMenu(true);
       return;
     }
-    setSearchOpen(false);
     setMenuOpen(true);
   }, [menuOpen, closeMenu]);
 
@@ -414,7 +404,6 @@ export function Header() {
 
   useEffect(() => {
     closeMenu();
-    setSearchOpen(false);
   }, [pathname, closeMenu]);
 
   useEffect(() => {
@@ -467,7 +456,7 @@ export function Header() {
   }, [menuOpen, closeMenu]);
 
   const isHomepage = pathname === "/";
-  const isSolidHeader = !isHomepage || scrolled || menuOpen || searchOpen;
+  const isSolidHeader = !isHomepage || scrolled || menuOpen;
   const isOverlay = isHomepage && !isSolidHeader;
 
   return (
@@ -489,13 +478,12 @@ export function Header() {
       data-overlay={isOverlay ? "true" : "false"}
       data-scrolled={scrolled ? "true" : "false"}
       data-mobile-nav-open={menuOpen ? "true" : "false"}
-      data-search-open={searchOpen ? "true" : "false"}
     >
       <div
-        className="site-header-bar mx-auto flex max-w-7xl min-w-0 items-center justify-between gap-1 px-4 sm:gap-1.5 sm:px-6 nav:gap-1.5 lg:gap-2 lg:px-8"
+        className="site-header-bar mx-auto flex w-full max-w-7xl min-w-0 items-center justify-between gap-1 px-4 sm:gap-1.5 sm:px-6 nav:gap-1.5 lg:gap-2 lg:px-8"
       >
         <div className="min-w-0 shrink">
-          <BrandLogo variant="header" />
+          <BrandLogo variant="header" onDarkBackground={isOverlay} />
         </div>
 
         <nav className="site-header-nav hidden min-w-0 flex-1 items-center justify-center nav:flex nav:gap-0.5 xl:gap-1">
@@ -506,7 +494,7 @@ export function Header() {
 
         <div className="flex shrink-0 items-center gap-1 sm:gap-1.5 nav:gap-2">
           <div className="site-header-search">
-            <NavSearch open={searchOpen} onOpenChange={handleSearchOpenChange} />
+            <NavSearch />
           </div>
 
           <Link

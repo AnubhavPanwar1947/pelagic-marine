@@ -2,8 +2,11 @@ import Image from "next/image";
 
 export const BRAND_LOGO_CIRCLE_SRC = "/logo-circle.png?v=35";
 
-/** Full horizontal header lockup (vector wordmark + embedded anchor raster in SVG). */
+/** Full horizontal lockup on light / white backgrounds. */
 export const BRAND_LOGO_HORIZONTAL_SRC = "/images/icons/logo.svg";
+
+/** Full horizontal lockup on dark or transparent backgrounds. */
+export const BRAND_LOGO_WHITE_HORIZONTAL_SRC = "/images/icons/white-logo.svg";
 export const BRAND_LOGO_HORIZONTAL_WIDTH = 150;
 export const BRAND_LOGO_HORIZONTAL_HEIGHT = 45;
 

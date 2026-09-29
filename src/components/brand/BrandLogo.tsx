@@ -1,10 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
+import { BrandLogoHomeLink } from "@/components/brand/BrandLogoHomeLink";
 import {
   BRAND_LOGO_CIRCLE_SRC,
   BRAND_LOGO_HORIZONTAL_HEIGHT,
   BRAND_LOGO_HORIZONTAL_SRC,
   BRAND_LOGO_HORIZONTAL_WIDTH,
+  BRAND_LOGO_WHITE_HORIZONTAL_SRC,
 } from "@/components/brand/BrandLogoMark";
 
 type BrandLogoProps = {
@@ -12,6 +13,8 @@ type BrandLogoProps = {
   linked?: boolean;
   compact?: boolean;
   shine?: boolean;
+  /** Light wordmark SVG for transparent header or other dark backgrounds. */
+  onDarkBackground?: boolean;
 };
 
 function BrandLogoWordmark({
@@ -80,7 +83,11 @@ function BrandLogoCircleMark({
     <div
       className={`brand-logo-anchor-slot relative shrink-0${
         isHeader ? " brand-logo-anchor-slot--header brand-logo-anchor-slot--header-fallback" : ""
-      }${isFooter ? " brand-logo-anchor-slot--footer" : ""}`}
+      }${
+        isFooter
+          ? " brand-logo-anchor-slot--footer brand-logo-anchor-slot--footer-fallback"
+          : ""
+      }`}
       style={isHeader || isFooter ? undefined : { width: diameter, height: diameter }}
     >
       <div
@@ -120,26 +127,42 @@ export function BrandLogo({
   linked = true,
   compact = false,
   shine = false,
+  onDarkBackground = false,
 }: BrandLogoProps) {
   const isHeader = variant === "header";
   const isPromo = variant === "promo";
   const isFooter = variant === "footer";
-  const showWordmark = isFooter || isPromo;
+  const showWordmark = isPromo;
   const lockupShine = shine && showWordmark;
 
   const diameter = isPromo ? 200 : compact ? 92 : isFooter ? 88 : isHeader ? 100 : 96;
 
+  const horizontalLogoSrc =
+    isFooter || onDarkBackground
+      ? BRAND_LOGO_WHITE_HORIZONTAL_SRC
+      : BRAND_LOGO_HORIZONTAL_SRC;
+
+  const horizontalLogoImage = (
+    <Image
+      src={horizontalLogoSrc}
+      alt=""
+      width={BRAND_LOGO_HORIZONTAL_WIDTH}
+      height={BRAND_LOGO_HORIZONTAL_HEIGHT}
+      className="brand-logo-full-svg__img"
+      sizes="(min-width: 60rem) 320px, (min-width: 40rem) 280px, 200px"
+      priority={isHeader}
+    />
+  );
+
   const headerFullLogo = isHeader ? (
     <div className="brand-logo-full-svg min-h-0 min-w-0 shrink" aria-hidden>
-      <Image
-        src={BRAND_LOGO_HORIZONTAL_SRC}
-        alt=""
-        width={BRAND_LOGO_HORIZONTAL_WIDTH}
-        height={BRAND_LOGO_HORIZONTAL_HEIGHT}
-        className="brand-logo-full-svg__img"
-        sizes="(min-width: 60rem) 320px, (min-width: 40rem) 280px, 200px"
-        priority
-      />
+      {horizontalLogoImage}
+    </div>
+  ) : null;
+
+  const footerFullLogo = isFooter ? (
+    <div className="brand-logo-full-svg min-h-0 min-w-0 shrink" aria-hidden>
+      {horizontalLogoImage}
     </div>
   ) : null;
 
@@ -158,10 +181,11 @@ export function BrandLogo({
       className={`brand-logo-lockup relative inline-flex min-w-0 items-center${
         isPromo ? " brand-logo-lockup--promo" : ""
       }${isHeader ? " brand-logo-lockup--header brand-logo-lockup--header-svg" : ""}${
-        isFooter ? " brand-logo-lockup--footer" : ""
+        isFooter ? " brand-logo-lockup--footer brand-logo-lockup--footer-svg" : ""
       }${compact && isHeader ? " brand-logo-lockup--compact" : ""} ${lockupShine ? "brand-logo-lockup--shine" : ""}`}
     >
       {headerFullLogo}
+      {footerFullLogo}
       {mark}
       {showWordmark && (
         <div className="brand-logo-wordmark-group inline-flex items-stretch">
@@ -177,15 +201,13 @@ export function BrandLogo({
 
   if (linked) {
     return (
-      <Link
-        href="/"
+      <BrandLogoHomeLink
         className={`group inline-flex min-w-0 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent${
-          isHeader ? " brand-logo-home-link" : ""
+          isHeader ? " brand-logo-home-link" : isFooter ? " brand-logo-footer-link" : ""
         }`}
-        aria-label="Pelagic Marine — home"
       >
         {content}
-      </Link>
+      </BrandLogoHomeLink>
     );
   }
 
