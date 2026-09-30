@@ -36,6 +36,8 @@ export default function NewsPage() {
     <div>
       <PageHero
         compact
+        eyebrow="Blog"
+        eyebrowClassName="min-w-0 break-words !text-[#0e235e]"
         title="Marine Insights"
         description="Articles on marine engineering, inspections, surveying, offshore operations, and maritime advisory topics."
       />

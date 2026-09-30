@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPageShell eyebrow="Legal" title="Privacy policy" updated="3 August 2026">
+    <LegalPageShell title="Privacy policy" updated="3 August 2026">
       <p>
         {company.legalName} (“Pelagic”, “we”, “us”) respects your privacy. This policy explains what
         personal data we collect through our website and enquiry channels, why we use it, and your

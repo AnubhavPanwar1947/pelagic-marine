@@ -21,8 +21,10 @@ const staticRoutes = new Set<string>([
   "/contact/",
   "/login/",
   "/privacy/",
+  "/disclaimer/",
   "/cookies/",
   "/terms/",
+  "/engagement/",
   "/search/",
 ]);
 

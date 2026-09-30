@@ -1,25 +1,29 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { FooterCookieLink } from "@/components/layout/FooterCookieLink";
 import { SocialBrandIcon } from "@/components/ui/SocialBrandIcon";
 import { company, navLinks } from "@/lib/site-data";
 import { socialLinks } from "@/lib/social-links";
 
-const legalLinks = [
-  { href: "/privacy", label: "Privacy policy" },
-  { href: "/cookies", label: "Cookie policy" },
-  { href: "/terms", label: "Terms of use" },
+type LegalFooterItem = {
+  id: string;
+  label: string;
+  href?: string;
+};
+
+const legalLinks: LegalFooterItem[] = [
+  { id: "privacy", label: "Privacy policy", href: "/privacy" },
+  { id: "disclaimer", label: "Disclaimer", href: "/disclaimer" },
+  { id: "cookies", label: "Cookies policy", href: "/cookies" },
+  { id: "terms", label: "Terms & conditions", href: "/terms" },
+  { id: "engagement", label: "Standard T&C of engagement", href: "/engagement" },
 ];
+
+const legalLinkClassName = "min-w-0 break-words text-blue-100 hover:text-white";
+const legalTextClassName = "min-w-0 break-words text-blue-100";
 
 const footerLinkExclude = new Set(["Decarbonization", "Capabilities", "Contact"]);
 
 const footerNavLinks = navLinks.filter((link) => !footerLinkExclude.has(link.label));
-
-const officeLocations = [
-  { label: "Dubai", href: "/contact/" },
-  { label: "India", href: "/contact/" },
-  { label: "Singapore", href: "/contact/" },
-];
 
 export function Footer() {
   return (
@@ -44,40 +48,26 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="min-w-0 lg:col-span-2">
+        <div className="min-w-0 lg:col-span-3">
           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-pelagic-light">
             Legal
           </p>
           <ul className="mt-4 space-y-2 text-sm">
-            {legalLinks.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="text-blue-100 hover:text-white">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <FooterCookieLink />
-            </li>
-          </ul>
-        </div>
-
-        <div className="min-w-0 lg:col-span-2">
-          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-pelagic-light">
-            Our offices
-          </p>
-          <ul className="mt-4 space-y-2 text-sm text-blue-100">
-            {officeLocations.map((location) => (
-              <li key={location.label}>
-                <Link href={location.href} className="text-blue-100 hover:text-white">
-                  {location.label}
-                </Link>
+            {legalLinks.map((item) => (
+              <li key={item.id} className="min-w-0 break-words">
+                {item.href ? (
+                  <Link href={item.href} className={legalLinkClassName}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className={legalTextClassName}>{item.label}</span>
+                )}
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="min-w-0 lg:col-span-2">
+        <div className="min-w-0 lg:col-span-3">
           <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-pelagic-light">
             Contact
           </p>

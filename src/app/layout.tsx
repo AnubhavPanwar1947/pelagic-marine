@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SearchLandingController } from "@/components/search/SearchLandingController";
-import { CookieConsent } from "@/components/ui/CookieConsent";
 import { ConsentAwareAnalytics } from "@/components/ui/ConsentAwareAnalytics";
 import { SplashScreen } from "@/components/ui/SplashScreen";
 import { heroBrandSerif, inter } from "@/lib/fonts";
@@ -85,7 +84,6 @@ export default function RootLayout({
           </Suspense>
         </main>
         <Footer />
-        <CookieConsent />
         <ConsentAwareAnalytics />
       </body>
     </html>

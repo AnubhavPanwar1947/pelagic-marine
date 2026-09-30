@@ -20,6 +20,7 @@ export default function ProjectsPage() {
     <div>
       <PageHero
         eyebrow="Projects"
+        eyebrowClassName="min-w-0 break-words !text-[#0e235e]"
         title="Track record across oceans and ports"
         description="Selected assignments in surveying, LNG operations, engineering, and fleet support."
       />

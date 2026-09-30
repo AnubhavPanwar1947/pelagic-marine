@@ -20,6 +20,7 @@ export default function TeamPage() {
       <div className="team-hero-shell team-surface-icy border-b border-pelagic-sand">
         <PageHero
           eyebrow="Team"
+          eyebrowClassName="min-w-0 break-words !text-[#0e235e]"
           title="Naval architects and Master Mariners"
           description="A team that has designed structure and stood on deck — so the advice you receive is grounded in both the analysis and the operation."
         />

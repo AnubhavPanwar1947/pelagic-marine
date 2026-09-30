@@ -4,6 +4,8 @@ import { getImageObjectPosition } from "@/lib/site-images";
 
 type PageHeroProps = {
   eyebrow?: string;
+  /** Extra classes on the eyebrow (e.g. ink color on select pages) */
+  eyebrowClassName?: string;
   title: string;
   description?: string;
   /** Maritime hero photo — light scrim keeps text readable (peer-style) */
@@ -14,6 +16,7 @@ type PageHeroProps = {
 
 export function PageHero({
   eyebrow,
+  eyebrowClassName,
   title,
   description,
   imageSrc,
@@ -48,7 +51,11 @@ export function PageHero({
             : "page-hero-py"
         }`}
       >
-        {eyebrow ? <p className="type-eyebrow">{eyebrow}</p> : null}
+        {eyebrow ? (
+          <p className={`type-eyebrow${eyebrowClassName ? ` ${eyebrowClassName}` : ""}`}>
+            {eyebrow}
+          </p>
+        ) : null}
         <h1
           className={`type-display type-page-title max-w-4xl min-w-0 break-words text-pelagic-ink ${eyebrow ? "mt-4" : ""}`}
         >

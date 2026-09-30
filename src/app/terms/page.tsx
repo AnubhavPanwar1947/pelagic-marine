@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalPageShell eyebrow="Legal" title="Terms of use" updated="14 July 2026">
+    <LegalPageShell title="Terms & conditions" updated="14 July 2026">
       <p>
         By using this website you agree to these terms. They govern access to our public site only —
         professional engagements are covered by separate contracts, proposals, or engagement letters.

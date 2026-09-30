@@ -16,8 +16,10 @@ const routes = [
   "/capabilities/",
   "/contact/",
   "/privacy/",
+  "/disclaimer/",
   "/cookies/",
   "/terms/",
+  "/engagement/",
   ...getAllServiceTopics().map((topic) => `/services/${topic.slug}/`),
   ...getAllCapabilityTopics().map((topic) => `/capabilities/${topic.slug}/`),
 ];

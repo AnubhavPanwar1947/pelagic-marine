@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function CookiesPage() {
   return (
-    <LegalPageShell eyebrow="Legal" title="Cookie policy" updated="14 July 2026">
+    <LegalPageShell title="Cookies policy" updated="14 July 2026">
       <p>
         This policy explains how {company.name} uses cookies and similar technologies (such as local
         storage). It follows the category approach used on modern professional shipping and

@@ -2256,33 +2256,11 @@ textarea::placeholder {
 
 /*
  * Short viewport: hide duplicate bar notice so the measured bar height shrinks.
- * In-form privacy checkbox + footer "Cookies & cache" remain available.
+ * In-form privacy checkbox remains available.
  */
 @media (max-height: 20rem) {
   .contact-enquiry-mobile-bar__notice {
     display: none;
-  }
-}
-
-.cookie-settings-button--contact-offset {
-  bottom: calc(var(--contact-mobile-bar-height, 5.5rem) + 0.75rem + env(safe-area-inset-bottom));
-}
-
-@media (min-width: 48rem) {
-  .cookie-settings-button--contact-offset {
-    bottom: 1rem;
-  }
-}
-
-/*
- * When header + compact bar + cookie still cannot fit, hide only the floating
- * shortcut. Cookie settings stay reachable via the footer control.
- */
-@media (max-width: 47.99rem) and (max-height: 14.5625rem) {
-  .cookie-settings-button--contact-offset {
-    visibility: hidden;
-    pointer-events: none;
-    opacity: 0;
   }
 }
 
