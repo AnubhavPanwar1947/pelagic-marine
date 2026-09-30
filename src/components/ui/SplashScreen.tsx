@@ -6,7 +6,9 @@ import { usePathname } from "next/navigation";
 
 const SPLASH_KEY = "pelagic-splash-seen";
 const DURATION_MS = 2400;
-const SPLASH_LOGO_SRC = "/logo-full.png";
+const SPLASH_LOGO_SRC = "/splash-screen.png";
+const SPLASH_LOGO_WIDTH = 500;
+const SPLASH_LOGO_HEIGHT = 500;
 
 export function SplashScreen() {
   const pathname = usePathname();
@@ -48,10 +50,10 @@ export function SplashScreen() {
           <Image
             src={SPLASH_LOGO_SRC}
             alt="Pelagic Marine"
-            width={280}
-            height={409}
+            width={SPLASH_LOGO_WIDTH}
+            height={SPLASH_LOGO_HEIGHT}
             priority
-            className="relative z-[1] h-auto w-[min(42vw,148px)] max-w-[160px] sm:w-[168px]"
+            className="splash-logo-img"
           />
           <span className="splash-logo-shine pointer-events-none" aria-hidden />
         </div>

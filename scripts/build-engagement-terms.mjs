@@ -209,11 +209,6 @@ const body = parse(raw);
 const file = `export function EngagementTermsBody() {
   return (
     <div className="min-w-0 break-words">
-      <p className="min-w-0 break-words">
-        <strong>Draft notice:</strong> This page is website draft copy pending formal legal review.
-        It sets out standard terms of engagement for reference only and does not replace a signed
-        engagement letter or contract.
-      </p>
 ${body}
     </div>
   );

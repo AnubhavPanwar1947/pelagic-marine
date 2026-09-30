@@ -10,7 +10,7 @@ const cases: { query: string; hrefIncludes: string; hashIncludes?: string }[] = 
   { query: "LNG", hrefIncludes: "/decarbonization/" },
   { query: "CFD", hrefIncludes: "/news/computational-fluid-dynamics/" },
   { query: "Master Mariners", hrefIncludes: "/team/" },
-  { query: "survying", hrefIncludes: "/services/" },
+  { query: "Surveying", hrefIncludes: "/services/" },
   { query: "privacy", hrefIncludes: "/privacy/" },
 ];
 

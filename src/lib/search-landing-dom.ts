@@ -110,7 +110,7 @@ export function findFallbackSearchTarget(query: string): HTMLElement | null {
   let current = walker.nextNode();
   while (current) {
     const text = current.textContent ?? "";
-    if (textMatchesSearchQuery(text, trimmed, "any")) {
+    if (textMatchesSearchQuery(text, trimmed, "all")) {
       const parent = current.parentElement;
       const block = parent?.closest(BLOCK_SELECTOR);
       if (block instanceof HTMLElement) {

@@ -10,9 +10,7 @@ export function teamMemberAnchorId(name: string): string {
   return `team-${toSearchAnchorId(name)}`;
 }
 
-export function caseStudyAnchorId(title: string): string {
-  return `project-${toSearchAnchorId(title)}`;
-}
+export const teamPageCtaAnchorId = "team-work-with-the-people";
 
 export function decarbPointAnchorId(point: string): string {
   return `decarb-${toSearchAnchorId(point)}`;

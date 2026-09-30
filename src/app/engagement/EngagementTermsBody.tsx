@@ -6,27 +6,7 @@ import {
 export function EngagementTermsBody() {
   return (
     <div className="min-w-0 break-words">
-      <p className="min-w-0 break-words">
-        <strong>Draft notice:</strong> This page is website draft copy pending formal legal review.
-        It sets out standard terms of engagement for reference only and does not replace a signed
-        engagement letter or contract.
-      </p>
-      <p className="min-w-0 break-words">
-        <strong>Editorial review needed:</strong> The source document includes placeholder tokens and
-        typographical items for legal confirmation, including{" "}
-        <code className="text-pelagic-charcoal">[S1.1]</code>,{" "}
-        <code className="text-pelagic-charcoal">[S2.1]</code>,{" "}
-        <code className="text-pelagic-charcoal">[S3.1]</code>, &quot;Theis&quot;, &quot;Tthe&quot;,
-        &quot;15 30 days&quot;, sub-clause labels &quot;(de)&quot; / &quot;(fe)&quot;, &quot;bythrough&quot;,
-        and duplicated words such as &quot;the the&quot; and &quot;all any&quot;.
-      </p>
-      <p className="min-w-0 break-words font-semibold text-pelagic-charcoal">
-        Pelagic Marine Solutions LLC
-      </p>
-      <p className="min-w-0 break-words font-semibold text-pelagic-charcoal">
-        STANDARD TERMS AND CONDITIONS OF ENGAGEMENT
-      </p>
-      <h2 className="min-w-0 break-words pt-2 text-pelagic-ink">1. Interpretation</h2>
+      <h2 className="min-w-0 break-words text-pelagic-ink">1. Interpretation</h2>
       <p className="min-w-0 break-words">In these Conditions, the following definitions apply:</p>
       <dl className="min-w-0 space-y-3 break-words">
         <dt className="min-w-0 break-words font-semibold text-pelagic-charcoal">“Agreement”</dt>

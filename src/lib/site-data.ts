@@ -295,7 +295,6 @@ export const contactPage = {
 export const navLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/projects", label: "Projects" },
   { href: "/team", label: "Team" },
   { href: "/decarbonization", label: "Decarbonization" },
   { href: "/news", label: "Blog" },
@@ -458,30 +457,6 @@ export const serviceCategories = [
   items: ServiceItem[];
 }[];
 
-export const caseStudies = [
-  {
-    title: "LNG bunkering — MV Arctic Tern",
-    location: "Singapore Anchorage",
-    description:
-      "Maiden LNG bunkering supervision for a dual-fuel tanker including compatibility review, joint ops meetings, and onboard operational oversight.",
-    tags: ["LNG", "Bunkering", "Operations"],
-  },
-  {
-    title: "Remote compass deviation",
-    location: "Global fleet support",
-    description:
-      "Remote magnetic compass adjustment for 100+ vessels — compliant, cost-effective, and delivered without onboard attendance.",
-    tags: ["Compliance", "Remote service"],
-  },
-  {
-    title: "Engineering & stability",
-    location: "International projects",
-    description:
-      "Structural design, mooring compatibility, CFD analysis, and stability solutions delivered for ship owners and energy operators.",
-    tags: ["Naval architecture", "CFD"],
-  },
-];
-
 export const highlights = [
   {
     title: "LNG bunkering supervision",
@@ -620,7 +595,6 @@ export const navMenu: NavMenuItem[] = [
       },
     ],
   },
-  { type: "link", href: "/projects", label: "Projects" },
   { type: "link", href: "/team", label: "Team" },
   { type: "link", href: "/news", label: "Blog" },
 ];

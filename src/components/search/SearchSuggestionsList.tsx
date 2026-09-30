@@ -12,6 +12,7 @@ type SearchSuggestionsListProps = {
   activeIndex?: number;
   onNavigate?: (href: string) => void;
   optionRefs?: MutableRefObject<(HTMLAnchorElement | null)[]>;
+  showRelatedReason?: boolean;
 };
 
 export function SearchSuggestionsList({
@@ -21,6 +22,7 @@ export function SearchSuggestionsList({
   activeIndex = -1,
   onNavigate,
   optionRefs,
+  showRelatedReason = false,
 }: SearchSuggestionsListProps) {
   return (
     <ul
@@ -33,7 +35,7 @@ export function SearchSuggestionsList({
         const isActive = activeIndex === index;
         const href = buildSearchDestinationHref(item, query);
         return (
-          <li key={`${item.href}-${item.title}`} role="none">
+          <li key={item.resultKey ?? `${item.href}-${item.title}`} role="none">
             <Link
               id={`${listboxId}-option-${index}`}
               ref={
@@ -59,9 +61,15 @@ export function SearchSuggestionsList({
             >
               <span className="site-search-suggestion-row__main">
                 <span className="site-search-result-row__category">{item.category}</span>
+                {item.breadcrumb ? (
+                  <span className="site-search-result-row__breadcrumb">{item.breadcrumb}</span>
+                ) : null}
                 <span className="site-search-suggestion-row__title">
                   <HighlightedText text={item.title} query={query} />
                 </span>
+                {showRelatedReason && item.relatedReason ? (
+                  <span className="site-search-result-row__excerpt">{item.relatedReason}</span>
+                ) : null}
                 {item.excerpt ? (
                   <span className="site-search-result-row__excerpt">
                     <HighlightedText text={item.excerpt} query={query} />

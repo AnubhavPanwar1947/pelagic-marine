@@ -100,12 +100,6 @@ export function Footer() {
           </ul>
         </div>
       </div>
-
-      <div className="relative z-10 border-t border-pelagic-blue/30 px-4 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] text-center text-xs text-blue-200/70">
-        <p>
-          © {new Date().getFullYear()} {company.legalName}. All rights reserved.
-        </p>
-      </div>
     </footer>
   );
 }

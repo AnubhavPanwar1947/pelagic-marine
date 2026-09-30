@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { imageSizes } from "@/lib/image-sizes";
 import type { serviceCategories } from "@/lib/site-data";
-import { getServiceCategoryHref, getServiceItemHref } from "@/lib/service-slugs";
+import { getServiceItemHref } from "@/lib/service-slugs";
 
 const NAVAL_ARCHITECTURE_BLUEPRINT =
   "/images/owned/naval-architecture-blueprint.jpg";
@@ -13,8 +13,9 @@ const NAVAL_ARCHITECTURE_BLUEPRINT =
 const NAVAL_ARCHITECTURE_SLUG = "naval-architecture-design";
 
 const WHITE_PRACTICE_BAND_SLUGS = new Set([
-  "engineering",
-  "mooring-compatibility",
+  NAVAL_ARCHITECTURE_SLUG,
+  "inspection-audits-surveying",
+  "loadicator",
 ]);
 
 const practiceVisuals: Record<
@@ -116,12 +117,7 @@ export function PracticeSection({
               id={headingId}
               className="font-display type-subsection-title min-w-0 break-words font-semibold text-[#0e235e]"
             >
-              <Link
-                href={getServiceCategoryHref(service.slug)}
-                className="text-[#0e235e] transition hover:text-pelagic-accent"
-              >
-                {service.title}
-              </Link>
+              {service.title}
             </h2>
             <p className="type-copy mt-3 max-w-3xl">{service.summary}</p>
           </Reveal>

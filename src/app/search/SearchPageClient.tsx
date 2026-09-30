@@ -25,6 +25,8 @@ import {
   isQueryTooShort,
   isSearchFilterTabDisabled,
   searchAllMatches,
+  searchPrefixSuggestionMatches,
+  searchRelatedMatches,
   type SearchFilterTab,
   type SearchResult,
 } from "@/lib/search-index";
@@ -57,6 +59,8 @@ export function SearchPageClient() {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const optionRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const lastSyncedUrlQueryRef = useRef<string | null>(paramQuery);
+  const isComposingRef = useRef(false);
 
   const inputId = useId();
   const statusId = useId();
@@ -64,10 +68,16 @@ export function SearchPageClient() {
   const resultsListboxId = useId();
 
   useEffect(() => {
+    const incoming = paramQuery.trim();
+    const lastWritten = (lastSyncedUrlQueryRef.current ?? "").trim();
+    if (incoming === lastWritten) {
+      return;
+    }
     setQuery(paramQuery);
     setDebouncedQuery(paramQuery);
     setFilterTab("all");
     setActiveIndex(-1);
+    lastSyncedUrlQueryRef.current = paramQuery;
   }, [paramQuery]);
 
   useEffect(() => {
@@ -94,6 +104,7 @@ export function SearchPageClient() {
   const syncUrl = useCallback(
     (nextQuery: string) => {
       const trimmed = nextQuery.trim();
+      lastSyncedUrlQueryRef.current = trimmed;
       const next = trimmed ? `/search/?q=${encodeURIComponent(trimmed)}` : "/search/";
       router.replace(next, { scroll: false });
     },
@@ -118,10 +129,21 @@ export function SearchPageClient() {
     return searchAllMatches(debouncedQuery);
   }, [debouncedQuery, trimmedDebounced.length]);
 
-  const suggestions = useMemo(
-    () => allMatches.slice(0, SEARCH_SUGGESTIONS_LIMIT),
-    [allMatches],
-  );
+  const prefixSuggestions = useMemo(() => {
+    if (trimmedDebounced.length < SEARCH_MIN_QUERY_LENGTH || allMatches.length > 0) {
+      return [];
+    }
+    return searchPrefixSuggestionMatches(debouncedQuery, SEARCH_SUGGESTIONS_LIMIT);
+  }, [debouncedQuery, trimmedDebounced.length, allMatches.length]);
+
+  const relatedMatches = useMemo(() => {
+    if (trimmedDebounced.length < SEARCH_MIN_QUERY_LENGTH || allMatches.length > 0) {
+      return [];
+    }
+    return searchRelatedMatches(debouncedQuery);
+  }, [debouncedQuery, trimmedDebounced.length, allMatches.length]);
+
+  const comboboxOptions = allMatches.length > 0 ? allMatches : prefixSuggestions;
 
   const tabCounts = useMemo(() => countResultsByTab(allMatches), [allMatches]);
   const filteredMatches = useMemo(
@@ -129,12 +151,25 @@ export function SearchPageClient() {
     [allMatches, filterTab],
   );
 
-  const showSuggestions =
-    trimmedDebounced.length >= SEARCH_MIN_QUERY_LENGTH && !isDebouncing && suggestions.length > 0;
+  const showPrefixSuggestions =
+    trimmedDebounced.length >= SEARCH_MIN_QUERY_LENGTH &&
+    !isDebouncing &&
+    allMatches.length === 0 &&
+    prefixSuggestions.length > 0;
+
+  const showRelated =
+    trimmedDebounced.length >= SEARCH_MIN_QUERY_LENGTH &&
+    !isDebouncing &&
+    allMatches.length === 0 &&
+    relatedMatches.length > 0;
 
   const showTooShort = trimmedQuery.length > 0 && isQueryTooShort(trimmedQuery);
   const showNoResults =
-    trimmedDebounced.length >= SEARCH_MIN_QUERY_LENGTH && !isDebouncing && allMatches.length === 0;
+    trimmedDebounced.length >= SEARCH_MIN_QUERY_LENGTH &&
+    !isDebouncing &&
+    allMatches.length === 0 &&
+    prefixSuggestions.length === 0 &&
+    relatedMatches.length === 0;
   const showResults =
     trimmedDebounced.length >= SEARCH_MIN_QUERY_LENGTH && !isDebouncing && filteredMatches.length > 0;
   const showFilteredEmpty =
@@ -156,8 +191,11 @@ export function SearchPageClient() {
     if (showNoResults) {
       return `No results found for ${trimmedDebounced}.`;
     }
-    if (showSuggestions) {
-      return `${suggestions.length} suggestion${suggestions.length === 1 ? "" : "s"}. ${allMatches.length} total matches.`;
+    if (showPrefixSuggestions) {
+      return `${prefixSuggestions.length} suggestion${prefixSuggestions.length === 1 ? "" : "s"}.`;
+    }
+    if (showRelated) {
+      return `${relatedMatches.length} related suggestion${relatedMatches.length === 1 ? "" : "s"}.`;
     }
     if (showResults) {
       const count = filteredMatches.length;
@@ -169,9 +207,10 @@ export function SearchPageClient() {
     showTooShort,
     isDebouncing,
     showNoResults,
-    showSuggestions,
-    suggestions.length,
-    allMatches.length,
+    showPrefixSuggestions,
+    prefixSuggestions.length,
+    showRelated,
+    relatedMatches.length,
     showResults,
     filteredMatches.length,
     trimmedDebounced,
@@ -193,10 +232,10 @@ export function SearchPageClient() {
     if (trimmedQuery.length < SEARCH_MIN_QUERY_LENGTH) {
       return null;
     }
-    if (activeIndex >= 0 && suggestions[activeIndex]) {
-      return suggestions[activeIndex];
+    if (activeIndex >= 0 && comboboxOptions[activeIndex]) {
+      return comboboxOptions[activeIndex];
     }
-    return suggestions[0] ?? allMatches[0] ?? null;
+    return null;
   };
 
   useEffect(() => {
@@ -204,23 +243,23 @@ export function SearchPageClient() {
       return;
     }
     optionRefs.current[activeIndex]?.scrollIntoView({ block: "nearest" });
-  }, [activeIndex, suggestions]);
+  }, [activeIndex, comboboxOptions]);
 
   const onInputKeyDown = (event: ReactKeyboardEvent<HTMLInputElement>) => {
     if (event.key === "ArrowDown") {
       event.preventDefault();
-      if (!suggestions.length) {
+      if (!comboboxOptions.length) {
         return;
       }
-      setActiveIndex((current) => (current < suggestions.length - 1 ? current + 1 : 0));
+      setActiveIndex((current) => (current < comboboxOptions.length - 1 ? current + 1 : 0));
       return;
     }
     if (event.key === "ArrowUp") {
       event.preventDefault();
-      if (!suggestions.length) {
+      if (!comboboxOptions.length) {
         return;
       }
-      setActiveIndex((current) => (current > 0 ? current - 1 : suggestions.length - 1));
+      setActiveIndex((current) => (current > 0 ? current - 1 : comboboxOptions.length - 1));
       return;
     }
     if (event.key === "Escape") {
@@ -235,7 +274,10 @@ export function SearchPageClient() {
       if (target) {
         event.preventDefault();
         navigateTo(buildSearchDestinationHref(target, trimmedQuery || trimmedDebounced));
+        return;
       }
+      event.preventDefault();
+      syncUrl(trimmedQuery);
     }
   };
 
@@ -251,6 +293,7 @@ export function SearchPageClient() {
     if (target && trimmedQuery.length >= SEARCH_MIN_QUERY_LENGTH) {
       navigateTo(buildSearchDestinationHref(target, trimmedQuery));
     }
+    inputRef.current?.focus();
   };
 
   const clearQuery = () => {
@@ -262,6 +305,7 @@ export function SearchPageClient() {
       clearTimeout(debounceRef.current);
       debounceRef.current = null;
     }
+    lastSyncedUrlQueryRef.current = "";
     router.replace("/search/", { scroll: false });
     inputRef.current?.focus();
   };
@@ -301,8 +345,8 @@ export function SearchPageClient() {
                 type="search"
                 name="q"
                 role="combobox"
-                aria-expanded={showSuggestions}
-                aria-controls={showSuggestions ? suggestionsListboxId : undefined}
+                aria-expanded={showPrefixSuggestions}
+                aria-controls={showPrefixSuggestions ? suggestionsListboxId : undefined}
                 aria-autocomplete="list"
                 aria-activedescendant={
                   activeIndex >= 0 ? `${suggestionsListboxId}-option-${activeIndex}` : undefined
@@ -311,6 +355,12 @@ export function SearchPageClient() {
                 onChange={(event) => {
                   setQuery(event.target.value);
                   setActiveIndex(-1);
+                }}
+                onCompositionStart={() => {
+                  isComposingRef.current = true;
+                }}
+                onCompositionEnd={() => {
+                  isComposingRef.current = false;
                 }}
                 onKeyDown={onInputKeyDown}
                 onBlur={() => {
@@ -343,16 +393,30 @@ export function SearchPageClient() {
           {statusMessage}
         </p>
 
-        {showSuggestions ? (
+        {showPrefixSuggestions ? (
           <section className="site-search-suggestions" aria-label="Top suggestions">
             <h2 className="site-search-suggestions__heading">Suggestions</h2>
             <SearchSuggestionsList
-              results={suggestions}
+              results={prefixSuggestions}
               query={debouncedQuery}
               listboxId={suggestionsListboxId}
               activeIndex={activeIndex}
               onNavigate={navigateTo}
               optionRefs={optionRefs}
+            />
+          </section>
+        ) : null}
+
+        {showRelated ? (
+          <section className="site-search-suggestions" aria-label="Did you mean">
+            <h2 className="site-search-suggestions__heading">Did you mean</h2>
+            <SearchSuggestionsList
+              results={relatedMatches}
+              query={debouncedQuery}
+              listboxId={`${suggestionsListboxId}-related`}
+              activeIndex={-1}
+              onNavigate={navigateTo}
+              showRelatedReason
             />
           </section>
         ) : null}
@@ -437,6 +501,7 @@ export function SearchPageClient() {
               query={debouncedQuery}
               listboxId={resultsListboxId}
               onNavigate={navigateTo}
+              layout="flat"
             />
           </>
         ) : null}

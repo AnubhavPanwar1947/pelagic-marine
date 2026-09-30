@@ -19,11 +19,6 @@ export default function DisclaimerPage() {
   return (
     <LegalPageShell title="Disclaimer">
       <div className={wrap}>
-        <p className={wrap}>
-          <strong>Draft notice:</strong> This page is website draft copy pending formal legal review.
-          It does not replace advice from qualified counsel or project-specific documentation.
-        </p>
-
         <h2 className={wrap}>Interpretation and Definitions</h2>
         <dl className={`${wrap} space-y-3`}>
           <dt className={`${wrap} font-semibold text-pelagic-charcoal`}>“Company”</dt>

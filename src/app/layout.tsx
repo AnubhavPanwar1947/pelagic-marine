@@ -52,6 +52,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [{ url: "/fav-icon.svg", type: "image/svg+xml" }],
+    shortcut: "/fav-icon.svg",
+  },
 };
 
 export default function RootLayout({

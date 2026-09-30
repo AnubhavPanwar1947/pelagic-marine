@@ -12,7 +12,7 @@ export type TopicPage = {
 };
 
 const PLACEHOLDER =
-  "Detailed content for this topic is being prepared. In the meantime, contact our team to discuss scope, vessel details and delivery timelines.";
+  "Detailed content for this topic is being prepared. In the meantime, contact our team to discuss scope, vessel details and delivery timelines. Enquire about capabilities.";
 
 /** Capability-only topics (not listed as service categories) */
 const capabilityTopics: TopicPage[] = [

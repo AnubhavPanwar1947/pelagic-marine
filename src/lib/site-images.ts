@@ -74,11 +74,6 @@ export const siteImages = {
   /** Homepage Decarbonization section — owned LNG carrier (4:3 crop) */
   decarbonizationHome: "/images/owned/decarb-home.jpg",
   aboutCollaboration: "/images/stock/about-paper-collaboration.jpg",
-  cases: [
-    u("photo-1611270627529-a18006394599", 1200, 750),
-    u("photo-1494412578317-4c933aa5369f", 1200, 750),
-    u("photo-1543832928-1e1c7ca855f3", 1200, 750),
-  ],
   sectors: {
     "maritime-shipping": u("photo-1494412578317-4c933aa5369f", 900, 600),
     "offshore-oil-gas": u("photo-1544551763-46a013bb70d5", 900, 600),
@@ -89,7 +84,6 @@ export const siteImages = {
     about: u("photo-1529107386315-5eafae266a63", 2400, 1200),
     services: u("photo-1578645024771-21df5e60af96", 2400, 1200),
     sectors: u("photo-1544551763-46a013bb70d5", 2400, 1200),
-    projects: "/images/stock/hero-port.jpg",
     decarbonization: u("photo-1473341303090-7cfada5af405", 2400, 1200),
     news: u("photo-1497366216548-37526070297c", 2400, 1200),
     careers: u("photo-1521737711862-ece3dec7f191", 2400, 1200),

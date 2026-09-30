@@ -4,14 +4,22 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { imageSizes } from "@/lib/image-sizes";
 import { getImageObjectPosition } from "@/lib/site-images";
-import { teamMemberAnchorId, SEARCH_SCROLL_MARGIN_CLASS } from "@/lib/search-slugs";
-import { teamMembers } from "@/lib/site-data";
+import {
+  teamMemberAnchorId,
+  SEARCH_SCROLL_MARGIN_CLASS,
+} from "@/lib/search-slugs";
+import {
+  teamMemberImageAlt,
+  teamMembers,
+  teamPageCta,
+  teamPageHero,
+  teamPageMetadata,
+} from "@/lib/team-page-content";
 import "./team-theme.css";
 
 export const metadata: Metadata = {
-  title: "Team",
-  description:
-    "Meet the Pelagic Marine team: naval architects and Master Mariners across design, engineering, surveys, clean fuels and operations.",
+  title: teamPageMetadata.title,
+  description: teamPageMetadata.description,
 };
 
 export default function TeamPage() {
@@ -19,10 +27,10 @@ export default function TeamPage() {
     <div className="team-page">
       <div className="team-hero-shell team-surface-icy border-b border-pelagic-sand">
         <PageHero
-          eyebrow="Team"
+          eyebrow={teamPageHero.eyebrow}
           eyebrowClassName="min-w-0 break-words !text-[#0e235e]"
-          title="Naval architects and Master Mariners"
-          description="A team that has designed structure and stood on deck — so the advice you receive is grounded in both the analysis and the operation."
+          title={teamPageHero.title}
+          description={teamPageHero.description}
         />
       </div>
 
@@ -43,7 +51,7 @@ export default function TeamPage() {
                   >
                     <SiteImage
                       src={member.photo}
-                      alt={member.name}
+                      alt={teamMemberImageAlt(member.name)}
                       fill
                       className="object-cover"
                       objectPosition={
@@ -77,17 +85,17 @@ export default function TeamPage() {
         </div>
       </section>
 
-      <section className="team-surface-icy py-20">
+      <section
+        id={teamPageCta.anchorId}
+        className={`team-surface-icy py-20 ${SEARCH_SCROLL_MARGIN_CLASS}`}
+      >
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl font-semibold text-[#0e235e]">
-            Work with the people behind the work
+            {teamPageCta.heading}
           </h2>
-          <p className="type-copy mt-4">
-            Tell us what you are facing and we will point it to the right person.
-          </p>
           <div className="mt-8">
-            <Button href="/contact" variant="primary">
-              Contact the team
+            <Button href={teamPageCta.buttonHref} variant="primary">
+              {teamPageCta.buttonLabel}
             </Button>
           </div>
         </div>

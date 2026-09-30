@@ -19,12 +19,6 @@ export default function TermsPage() {
   return (
     <LegalPageShell title="Terms and Conditions">
       <div className={wrap}>
-        <p className={wrap}>
-          <strong>Draft notice:</strong> This page is website draft copy pending formal legal review.
-          It does not replace advice from qualified counsel or signed contractual terms.
-        </p>
-        <p className={wrap}>Please read these Terms and Conditions carefully before using Our Services.</p>
-
         <h2 className={wrap}>Interpretation and Definitions</h2>
         <p className={wrap}>
           The words of which the initial letter is capitalised have meanings defined under the

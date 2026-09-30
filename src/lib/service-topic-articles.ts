@@ -292,28 +292,14 @@ const articles: Record<string, ArticleInput> = {
     ],
   },
   optimoor: {
-    intro:
-      "Optimoor supports static and dynamic mooring analysis for berths, fenders and vessels — helping operators understand line loads and operational windows.",
-    leadIn: "Using Optimoor we can:",
-    bullets: [
-      "Model mooring layouts for design, upgrade or incident review",
-      "Run environmental and passing-ship cases against terminal limits",
-      "Summarise results for terminal operators, pilots and ship masters",
+    paragraphs: [
+      "Optimoor supports static and dynamic mooring analysis for vessels, berths, terminals and ship-to-ship operations, helping operators assess line loads, fender response, environmental conditions and safe operating limits. Pelagic Marine combines model setup, scenario testing and engineering judgement to turn mooring results into clear recommendations for berth design, upgrade studies, incident review and day-to-day marine operations.",
     ],
-    closing:
-      "Outputs are interpreted with terminal experience so recommendations are actionable ashore and on the berth.",
   },
   orcaflex: {
-    intro:
-      "OrcaFlex models dynamic marine systems — mooring lines, risers, towed bodies and offshore layouts where time-domain behaviour matters.",
-    leadIn: "Studies may address:",
-    bullets: [
-      "Mooring and offloading systems under combined wind, wave and current",
-      "Tow and installation dynamics for marine construction",
-      "Sensitivity work to support design choices and operational limits",
+    paragraphs: [
+      "OrcaFlex is used to model the time-domain behaviour of dynamic marine systems, including mooring lines, risers, towed bodies and offshore installation arrangements. Pelagic Marine applies OrcaFlex to evaluate combined wind, wave and current conditions, installation and tow dynamics, sensitivity cases and operational limits, giving project teams a clearer basis for design decisions and safe execution.",
     ],
-    closing:
-      "OrcaFlex models are built and checked so stakeholders understand both peak responses and duration effects.",
   },
   "umistab-x": {
     paragraphs: [

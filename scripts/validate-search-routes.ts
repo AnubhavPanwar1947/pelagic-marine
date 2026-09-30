@@ -12,7 +12,6 @@ const staticRoutes = new Set<string>([
   "/services/",
   "/capabilities/",
   "/sectors/",
-  "/projects/",
   "/decarbonization/",
   "/news/",
   "/news/computational-fluid-dynamics/",

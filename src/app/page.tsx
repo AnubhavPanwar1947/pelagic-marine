@@ -9,6 +9,7 @@ import { SectionMaritime } from "@/components/ui/SectionMaritime";
 import { SiteImage } from "@/components/ui/SiteImage";
 import { company, serviceCategories } from "@/lib/site-data";
 import { imageSizes } from "@/lib/image-sizes";
+import { HomeTrackRecordSection } from "@/components/home/HomeTrackRecordSection";
 import { homeServiceIcons } from "@/lib/site-images";
 import "./home-theme.css";
 
@@ -116,6 +117,8 @@ export default function HomePage() {
             </Reveal>
           </div>
         </SectionMaritime>
+
+        <HomeTrackRecordSection />
 
         {/* ── Section 4 · About us: icy blue ── */}
         <SectionMaritime

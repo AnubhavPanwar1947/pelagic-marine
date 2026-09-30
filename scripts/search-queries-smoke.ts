@@ -13,7 +13,6 @@ const queries = [
   "Dubai",
   "careers",
   "privacy",
-  "survying",
 ];
 
 let failed = false;
@@ -31,6 +30,14 @@ for (const query of queries) {
     console.error(`FAIL ${query}: no results`);
     failed = true;
   }
+}
+
+const typoResults = searchAllMatches("survying");
+if (typoResults.length > 0) {
+  console.error("FAIL survying: fuzzy typo matches must not appear in exact results");
+  failed = true;
+} else {
+  console.log("survying: 0 exact results (expected)");
 }
 
 if (failed) {

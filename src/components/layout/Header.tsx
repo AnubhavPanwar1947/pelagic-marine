@@ -88,6 +88,7 @@ function DesktopServiceChild({
 }) {
   const [subOpen, setSubOpen] = useState(false);
   const hasChildren = Boolean(child.children?.length);
+  const subPanelId = `desktop-service-sub-${child.label.replace(/\s+/g, "-").toLowerCase()}`;
 
   if (!hasChildren) {
     return (
@@ -112,19 +113,20 @@ function DesktopServiceChild({
       onMouseEnter={() => setSubOpen(true)}
       onMouseLeave={() => setSubOpen(false)}
     >
-      <div className="flex items-center justify-between gap-2 rounded-xl px-3 py-2.5 transition hover:bg-pelagic-sky/60">
-        <Link
-          href={child.href}
-          onClick={onClose}
-          className="text-sm font-semibold text-pelagic-ink"
-        >
-          {child.label}
-        </Link>
+      <button
+        type="button"
+        onClick={() => setSubOpen((open) => !open)}
+        className="flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-left transition hover:bg-pelagic-sky/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-pelagic-accent"
+        aria-expanded={subOpen}
+        aria-controls={subPanelId}
+      >
+        <span className="text-sm font-semibold text-pelagic-ink">{child.label}</span>
         <Chevron open={subOpen} />
-      </div>
+      </button>
       {subOpen && (
         <div className="site-header-submenu-flyout absolute top-0 left-full z-50 pl-2">
           <ul
+            id={subPanelId}
             className={`max-h-[70vh] w-[min(18rem,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] space-y-0.5 overflow-y-auto overscroll-contain rounded-xl border border-pelagic-sand bg-white p-2 shadow-xl ring-1 ring-black/5 ${
               child.label === "Inspection" ? "site-header-submenu-flyout-list--inspection" : ""
             }`}

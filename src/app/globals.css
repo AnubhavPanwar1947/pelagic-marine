@@ -193,6 +193,36 @@ header.site-header .site-header-bar .brand-logo-home-link {
   max-height: calc(75px - 2px);
 }
 
+/* Shared logo scale — header horizontal lockup + footer (keep in sync) */
+:root {
+  --logo-lockup-full-max-height: clamp(2.25rem, 12vw, 3.25rem);
+  --logo-lockup-anchor-size-circle: 2.125rem;
+}
+
+@media (min-width: 22.5rem) and (max-width: 39.9375rem) {
+  :root {
+    --logo-lockup-full-max-height: clamp(2.25rem, 11vw, 2.875rem);
+  }
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --logo-lockup-full-max-height: clamp(2.25rem, 4.5vw, 3.25rem);
+  }
+}
+
+@media (min-width: 60rem) {
+  :root {
+    --logo-lockup-full-max-height: 3.125rem;
+  }
+}
+
+@media (max-width: 20rem) {
+  :root {
+    --logo-lockup-anchor-size-circle: 1.75rem;
+  }
+}
+
 /* Header — horizontal SVG + circular mark (one visible at a time) */
 header.site-header {
   overflow-x: clip;
@@ -206,25 +236,7 @@ header.site-header .site-header-bar {
   margin-inline: auto;
   box-sizing: border-box;
   --logo-header-logo-shift-x: 0px;
-  --logo-header-full-max-height: clamp(2.25rem, 12vw, 3.25rem);
-}
-
-@media (min-width: 22.5rem) and (max-width: 39.9375rem) {
-  header.site-header .site-header-bar {
-    --logo-header-full-max-height: clamp(2.25rem, 11vw, 2.875rem);
-  }
-}
-
-@media (min-width: 40rem) {
-  header.site-header .site-header-bar {
-    --logo-header-full-max-height: clamp(2.25rem, 4.5vw, 3.25rem);
-  }
-}
-
-@media (min-width: 60rem) {
-  header.site-header .site-header-bar {
-    --logo-header-full-max-height: 3.125rem;
-  }
+  --logo-header-full-max-height: var(--logo-lockup-full-max-height);
 }
 
 header.site-header .site-header-bar .brand-logo-lockup--header-svg {
@@ -256,7 +268,7 @@ header.site-header .site-header-bar .brand-logo-full-svg__img {
   min-width: 0;
   min-height: 0;
   max-width: 100%;
-  max-height: clamp(2.25rem, 12vw, 3.25rem);
+  max-height: var(--logo-lockup-full-max-height);
   object-fit: contain;
   object-position: left center;
 }
@@ -267,7 +279,7 @@ header.site-header .site-header-bar .brand-logo-full-svg > span {
   max-width: 100% !important;
   width: auto !important;
   height: auto !important;
-  max-height: clamp(2.25rem, 12vw, 3.25rem);
+  max-height: var(--logo-lockup-full-max-height);
   min-width: 0;
   min-height: 0;
   overflow: hidden;
@@ -278,7 +290,7 @@ header.site-header .site-header-bar .brand-logo-full-svg > span > img {
   width: auto !important;
   height: auto !important;
   max-width: 100% !important;
-  max-height: clamp(2.25rem, 12vw, 3.25rem) !important;
+  max-height: var(--logo-lockup-full-max-height) !important;
 }
 
 @media (min-width: 280px) {
@@ -346,29 +358,6 @@ header.site-header[data-homepage="true"] .site-header-bar .brand-logo-home-link 
   }
 }
 
-@media (min-width: 22.5rem) {
-  header.site-header .site-header-bar .brand-logo-full-svg__img,
-  header.site-header .site-header-bar .brand-logo-full-svg > span,
-  header.site-header .site-header-bar .brand-logo-full-svg > span > img {
-    max-height: clamp(2.25rem, 11vw, 2.875rem);
-  }
-}
-
-@media (min-width: 40rem) {
-  header.site-header .site-header-bar .brand-logo-full-svg__img,
-  header.site-header .site-header-bar .brand-logo-full-svg > span,
-  header.site-header .site-header-bar .brand-logo-full-svg > span > img {
-    max-height: clamp(2.25rem, 4.5vw, 3.25rem);
-  }
-}
-
-@media (min-width: 60rem) {
-  header.site-header .site-header-bar .brand-logo-full-svg__img,
-  header.site-header .site-header-bar .brand-logo-full-svg > span,
-  header.site-header .site-header-bar .brand-logo-full-svg > span > img {
-    max-height: 3.125rem;
-  }
-}
 
 @media (min-width: 22.5rem) and (max-width: 39.9375rem) {
   header.site-header .site-header-bar {
@@ -509,7 +498,7 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
 /* Below 280px: anchor-only — optically aligned with Search and menu controls */
 @media (max-width: 279.99px) {
   .site-header-bar {
-    --logo-header-anchor-size: 2.125rem;
+    --logo-header-anchor-size: var(--logo-lockup-anchor-size-circle);
     --logo-header-anchor-x: var(--logo-header-logo-shift-x, 0px);
     --logo-header-anchor-y: 5px;
     gap: 0.25rem;
@@ -571,7 +560,7 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   }
 
   .site-header-bar {
-    --logo-header-anchor-size: 1.75rem;
+    --logo-header-anchor-size: var(--logo-lockup-anchor-size-circle);
     --logo-header-anchor-y: 3px;
   }
 
@@ -1186,6 +1175,17 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   overflow-wrap: anywhere;
 }
 
+.site-search-result-row__breadcrumb {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pelagic-slate, #5a6f8c);
+  overflow-wrap: anywhere;
+}
+
 .site-search-result-row__excerpt {
   display: block;
   margin-top: 0.25rem;
@@ -1742,7 +1742,7 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
 
 .site-footer-brand {
   min-width: 0;
-  --logo-footer-full-max-height: clamp(2rem, 6.5vw, 2.75rem);
+  --logo-footer-full-max-height: var(--logo-lockup-full-max-height);
 }
 
 .site-footer-brand .brand-logo-footer-link {
@@ -1826,8 +1826,8 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
 }
 
 .site-footer-brand .brand-logo-anchor-slot--footer-fallback {
-  width: var(--logo-footer-anchor-size, 5.5rem) !important;
-  height: var(--logo-footer-anchor-size, 5.5rem) !important;
+  width: var(--logo-lockup-anchor-size-circle) !important;
+  height: var(--logo-lockup-anchor-size-circle) !important;
 }
 
 .site-footer-brand
@@ -1838,33 +1838,8 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
 }
 
 .site-footer-brand .brand-logo-anchor-slot--footer:not(.brand-logo-anchor-slot--footer-fallback) {
-  width: var(--logo-footer-anchor-size, 5.5rem) !important;
-  height: var(--logo-footer-anchor-size, 5.5rem) !important;
-}
-
-@media (max-width: 22.4375rem) {
-  .site-footer-brand {
-    --logo-footer-anchor-size: 4.5rem;
-    --logo-footer-anchor-x: 8px;
-    --logo-footer-anchor-y: 12px;
-  }
-
-  .site-footer-brand .brand-logo-wordmark-pelagic {
-    font-size: 0.9375rem;
-  }
-
-  .site-footer-brand .brand-logo-wordmark-tagline {
-    font-size: 8px;
-    letter-spacing: 0.14em;
-  }
-}
-
-@media (min-width: 22.5rem) and (max-width: 39.9375rem) {
-  .site-footer-brand {
-    --logo-footer-anchor-size: 5rem;
-    --logo-footer-anchor-x: 10px;
-    --logo-footer-anchor-y: 14px;
-  }
+  width: var(--logo-lockup-anchor-size-circle) !important;
+  height: var(--logo-lockup-anchor-size-circle) !important;
 }
 
 .brand-logo-lockup--footer .brand-logo-lockup-divider {
@@ -4647,21 +4622,62 @@ textarea::placeholder {
   background: var(--background);
 }
 
+/* Splash logo — splash-screen.png (500×500), intrinsic aspect ratio */
+.splash-logo-wrap {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  max-width: calc(100vw - 2rem);
+  line-height: 0;
+}
+
+.splash-logo-wrap > span {
+  display: block !important;
+  position: static !important;
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+  transform: none !important;
+  line-height: 0;
+}
+
+.splash-logo-wrap .splash-logo-img {
+  display: block;
+  box-sizing: border-box;
+  width: min(calc(100vw - 2rem), 100%);
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+@media (min-width: 120px) and (max-width: 279.98px) {
+  .splash-logo-wrap .splash-logo-img {
+    width: min(calc(100vw - 2rem), clamp(13.125rem, 35vw, 15.625rem));
+  }
+}
+
+@media (min-width: 280px) {
+  .splash-logo-wrap .splash-logo-img {
+    width: min(calc(100vw - 2rem), clamp(13.75rem, 36vw, 17.5rem));
+  }
+}
+
+@media (min-width: 48rem) {
+  .splash-logo-wrap .splash-logo-img {
+    width: min(calc(100vw - 2rem), clamp(17.5rem, 20vw, 22.5rem));
+  }
+}
+
 @media (max-height: 400px) {
-  .splash-screen .splash-logo-wrap img {
-    width: min(32vw, 100px) !important;
-    max-width: 100px;
+  .splash-logo-wrap .splash-logo-img {
+    width: min(calc(100vw - 2rem), 8.75rem, calc(100svh - 6.5rem));
+    max-height: calc(100svh - 6.5rem);
   }
 
   .splash-screen .mt-8 {
     margin-top: 1rem;
   }
-}
-
-.splash-logo-wrap {
-  isolation: isolate;
-  overflow: hidden;
-  border-radius: 0.35rem;
 }
 
 .splash-logo-shine {
