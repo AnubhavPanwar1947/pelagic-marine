@@ -130,11 +130,11 @@ export function SearchPageClient() {
   }, [debouncedQuery, trimmedDebounced.length]);
 
   const prefixSuggestions = useMemo(() => {
-    if (trimmedDebounced.length < SEARCH_MIN_QUERY_LENGTH || allMatches.length > 0) {
+    if (trimmedDebounced.length < SEARCH_MIN_QUERY_LENGTH) {
       return [];
     }
     return searchPrefixSuggestionMatches(debouncedQuery, SEARCH_SUGGESTIONS_LIMIT);
-  }, [debouncedQuery, trimmedDebounced.length, allMatches.length]);
+  }, [debouncedQuery, trimmedDebounced.length]);
 
   const relatedMatches = useMemo(() => {
     if (trimmedDebounced.length < SEARCH_MIN_QUERY_LENGTH || allMatches.length > 0) {
@@ -143,19 +143,19 @@ export function SearchPageClient() {
     return searchRelatedMatches(debouncedQuery);
   }, [debouncedQuery, trimmedDebounced.length, allMatches.length]);
 
-  const comboboxOptions = allMatches.length > 0 ? allMatches : prefixSuggestions;
+  const comboboxOptions =
+    allMatches.length > 0 ? allMatches : prefixSuggestions.length > 0 ? prefixSuggestions : [];
+
+  const showPrefixSuggestions =
+    trimmedDebounced.length >= SEARCH_MIN_QUERY_LENGTH &&
+    !isDebouncing &&
+    prefixSuggestions.length > 0;
 
   const tabCounts = useMemo(() => countResultsByTab(allMatches), [allMatches]);
   const filteredMatches = useMemo(
     () => filterResultsByTab(allMatches, filterTab),
     [allMatches, filterTab],
   );
-
-  const showPrefixSuggestions =
-    trimmedDebounced.length >= SEARCH_MIN_QUERY_LENGTH &&
-    !isDebouncing &&
-    allMatches.length === 0 &&
-    prefixSuggestions.length > 0;
 
   const showRelated =
     trimmedDebounced.length >= SEARCH_MIN_QUERY_LENGTH &&
@@ -180,7 +180,7 @@ export function SearchPageClient() {
 
   const statusMessage = useMemo(() => {
     if (!trimmedQuery) {
-      return "Enter a search term to find services, articles, and pages.";
+      return "";
     }
     if (showTooShort) {
       return "Type at least two characters.";
@@ -199,7 +199,9 @@ export function SearchPageClient() {
     }
     if (showResults) {
       const count = filteredMatches.length;
-      return `${count} result${count === 1 ? "" : "s"} found`;
+      return `${count} result${count === 1 ? "" : "s"} found${
+        showPrefixSuggestions ? `; ${prefixSuggestions.length} suggestion${prefixSuggestions.length === 1 ? "" : "s"}.` : ""
+      }`;
     }
     return "";
   }, [
@@ -327,9 +329,6 @@ export function SearchPageClient() {
       <div className="site-search-page__inner">
         <header className="site-search-page__header">
           <h1 className="site-search-page__title">Search</h1>
-          <p className="site-search-page__lede">
-            Find services, articles, and pages across Pelagic Marine.
-          </p>
         </header>
 
         <form className="site-search-page__form" onSubmit={onSubmit}>
@@ -345,8 +344,14 @@ export function SearchPageClient() {
                 type="search"
                 name="q"
                 role="combobox"
-                aria-expanded={showPrefixSuggestions}
-                aria-controls={showPrefixSuggestions ? suggestionsListboxId : undefined}
+                aria-expanded={showPrefixSuggestions || showResults}
+                aria-controls={
+                  showPrefixSuggestions
+                    ? suggestionsListboxId
+                    : showResults
+                      ? resultsListboxId
+                      : undefined
+                }
                 aria-autocomplete="list"
                 aria-activedescendant={
                   activeIndex >= 0 ? `${suggestionsListboxId}-option-${activeIndex}` : undefined

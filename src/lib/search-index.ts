@@ -33,6 +33,7 @@ import {
   parseSearchQuery,
   splitTextByHighlights,
 } from "./search-matching";
+import { SEARCH_LAND_TARGET_ID } from "./search-types";
 import {
   buildAboutPageSearchBody,
   buildCapabilitiesHubSearchBody,
@@ -41,6 +42,13 @@ import {
   buildHomePageSearchBody,
   buildLoginPageSearchBody,
 } from "./page-search-content";
+import {
+  buildCookiesPageSearchBody,
+  buildDisclaimerPageSearchBody,
+  buildEngagementPageSearchBody,
+  buildPrivacyPageSearchBody,
+  buildTermsPageSearchBody,
+} from "./legal-page-search-content";
 import {
   SEARCH_DEBOUNCE_MS,
   SEARCH_FILTER_TABS,
@@ -457,6 +465,8 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     category: "Legal",
     excerpt: "How Pelagic Marine collects, uses, and protects your information.",
     group: "pages",
+    body: buildPrivacyPageSearchBody(),
+    keywords: "Personal Data PDPL GDPR privacy cookies consent",
   });
 
   addIndexEntry(map, {
@@ -465,6 +475,8 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     category: "Legal",
     excerpt: "How we use cookies on this website.",
     group: "pages",
+    body: buildCookiesPageSearchBody(),
+    keywords: "cookies tracking analytics preferences",
   });
 
   addIndexEntry(map, {
@@ -473,6 +485,8 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     category: "Legal",
     excerpt: "Terms governing use of our website and services.",
     group: "pages",
+    body: buildTermsPageSearchBody(),
+    keywords: "sanctions export control trade restrictions website terms",
   });
 
   addIndexEntry(map, {
@@ -481,8 +495,9 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     category: "Legal",
     excerpt: "General information only — not project-specific professional advice.",
     group: "pages",
-    body:
-      "legal review general information marine consultancy surveying engineering no professional advice naval architecture regulatory accuracy updates case studies illustrative Standard Terms engagement",
+    body: buildDisclaimerPageSearchBody(),
+    keywords:
+      "legal review general information marine consultancy surveying engineering no professional advice naval architecture regulatory accuracy updates case studies illustrative Standard Terms engagement Aghaadir",
   });
 
   addIndexEntry(map, {
@@ -491,8 +506,9 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     category: "Legal",
     excerpt: "Standard terms of engagement for Pelagic Marine consultancy services.",
     group: "pages",
-    body:
-      "Engagement Letter Agreement Client Company Services Warranty Survey Pre-purchase Survey interpretation basis of contract fees liability marine warranty surveyor recommendations",
+    body: buildEngagementPageSearchBody(),
+    keywords:
+      "Engagement Letter Agreement Client Company Services Warranty Survey Pre-purchase Survey interpretation basis of contract fees liability marine warranty surveyor recommendations engagement sanctions",
   });
 
   addIndexEntry(map, {
@@ -569,11 +585,22 @@ export function searchPrefixSuggestionMatches(
   query: string,
   limit = SEARCH_SUGGESTIONS_LIMIT,
 ): SearchResult[] {
-  const exact = searchAllMatches(query);
-  if (exact.length > 0) {
-    return exact.slice(0, limit);
+  const exactKeys = new Set(searchAllMatches(query).map((item) => item.resultKey ?? item.href));
+  const prefix = searchEntitiesPrefixSuggestions(getSearchEntities(), query, limit * 2);
+  const merged: SearchResult[] = [];
+  const seen = new Set<string>();
+  for (const item of prefix) {
+    const key = item.resultKey ?? item.href;
+    if (seen.has(key) || exactKeys.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    merged.push(item);
+    if (merged.length >= limit) {
+      break;
+    }
   }
-  return searchEntitiesPrefixSuggestions(getSearchEntities(), query, limit);
+  return merged;
 }
 
 export function searchRelatedMatches(query: string, limit = 5): SearchResult[] {
@@ -703,12 +730,19 @@ export function buildSearchDestinationHref(result: SearchResult, query: string):
   const params = new URLSearchParams();
   params.set("q", trimmed);
   const anchorId =
-    result.anchorId ?? resolveEntityAnchorId(getSearchEntities(), result, trimmed) ?? resolveBestAnchorId(result.href, trimmed);
+    result.anchorId ??
+    resolveEntityAnchorId(getSearchEntities(), result, trimmed) ??
+    resolveBestAnchorId(result.href, trimmed);
   const queryString = params.toString();
   if (anchorId) {
     return `${base}?${queryString}#${anchorId}`;
   }
-  return `${base}?${queryString}`;
+  const excerpt = result.excerpt?.trim();
+  if (excerpt) {
+    params.set("land", excerpt.length > 180 ? excerpt.slice(0, 180) : excerpt);
+  }
+  const withLand = params.toString();
+  return `${base}?${withLand}#${SEARCH_LAND_TARGET_ID}`;
 }
 
 export function textMatchesSearchQuery(

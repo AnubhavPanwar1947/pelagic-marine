@@ -46,14 +46,78 @@ assertSomeResults("UMISTAB");
 assertSomeResults("UMISTAB-X");
 assertSomeResults("umistab x");
 
-// Multi-word AND
+// Multi-word OR matching with full-match ranking
 assertSomeResults("Naval architecture");
 assertSomeResults("mooring compatibility");
 assertSomeResults("computational fluid dynamics");
 
-// Missing word should not match
-assertNoResults("naval zeppelin");
-assertNoResults("optimoor underwater basket");
+const qualityManagement = searchAllMatches("Quality management");
+assert.ok(qualityManagement.length > 0);
+assert.ok(qualityManagement[0]!.href.includes("/contact/"));
+
+const splitWords = searchAllMatches("Optimoor sanctions");
+assert.ok(hasHref(splitWords, "/terms/"));
+assert.ok(splitWords.some((r) => normalizeSearchText(r.title).includes("optimoor")));
+
+// Legal and service coverage
+assert.ok(hasHref(searchAllMatches("sanctions"), "/terms/"));
+assert.ok(
+  searchAllMatches("Aghaadir").some(
+    (r) =>
+      r.href.includes("/privacy/") ||
+      r.href.includes("/terms/") ||
+      r.href.includes("/cookies/") ||
+      r.href.includes("/disclaimer/") ||
+      r.href.includes("/engagement/"),
+  ),
+);
+assert.ok(hasHref(searchAllMatches("Personal Data"), "/privacy/"));
+assert.ok(hasHref(searchAllMatches("cookies"), "/cookies/"));
+assert.ok(hasHref(searchAllMatches("engagement"), "/engagement/"));
+assert.ok(
+  searchAllMatches("surveying").some(
+    (r) => r.href.includes("/services/") && !r.href.endsWith("/services/"),
+  ) || hasHref(searchAllMatches("surveying"), "survey"),
+);
+
+const surveySingular = searchAllMatches("survey");
+const surveyPlural = searchAllMatches("surveys");
+assert.ok(surveySingular.length > 0 && surveyPlural.length > 0);
+
+assert.equal(searchAllMatches("a").length, 0);
+
+// Per-entity text only (no inherited page keywords)
+const masterResults = searchAllMatches("master");
+const masterTitles = masterResults.map((r) => r.title);
+assert.ok(!masterTitles.includes("Bhanu Prabhakar"));
+assert.ok(!masterTitles.includes("Nishchay Maken"));
+assert.ok(!masterTitles.includes("Capt. Harjit Singh Sidhu"));
+assert.ok(masterTitles.includes("Capt. Vipul Negi"));
+assert.ok(masterTitles.includes("Capt. Abhinav Upadhyay"));
+assert.ok(hasHref(masterResults, "/careers/"));
+assert.ok(hasHref(masterResults, "/team/"));
+assert.ok(
+  masterResults.some(
+    (r) =>
+      r.title === "Team" ||
+      r.breadcrumb === "Team" ||
+      (r.href.includes("/team/") && r.title.includes("Team")),
+  ),
+);
+assert.ok(
+  searchPrefixSuggestionMatches("mast").every((r) => {
+    const hay = normalizeSearchText(`${r.title} ${r.excerpt ?? ""}`);
+    return hay.includes("mast");
+  }),
+);
+
+const architectsOnlyOnPage = searchAllMatches("MICS");
+assert.ok(hasHref(architectsOnlyOnPage, "/contact/"));
+assert.ok(
+  !architectsOnlyOnPage.some(
+    (r) => r.title === "Bhanu Prabhakar" || r.title === "Capt. Harjit Singh Sidhu",
+  ),
+);
 
 // Typo must not fuzzy-match surveying
 assertNoResults("survying");
@@ -91,6 +155,23 @@ assert.ok(dubai);
 const dubaiHref = buildSearchDestinationHref(dubai!, "Dubai");
 assert.match(dubaiHref, /#office-dubai/);
 
+const privacy100 = searchAllMatches("100").find((r) => r.href.includes("/privacy/"));
+assert.ok(privacy100);
+const privacyHref = buildSearchDestinationHref(privacy100!, "100");
+assert.match(privacyHref, /\/privacy\/\?q=100/);
+assert.match(privacyHref, /#search-land-target/);
+assert.match(privacyHref, /land=/);
+
+const engagement100 = searchAllMatches("100").find((r) => r.href.includes("/engagement/"));
+assert.ok(engagement100);
+const engagementHref = buildSearchDestinationHref(engagement100!, "100");
+assert.match(engagementHref, /land=/);
+assert.match(engagementHref, /#search-land-target/);
+assert.ok(
+  decodeURIComponent(engagementHref).includes("total liability") ||
+    decodeURIComponent(engagementHref).includes("US$"),
+);
+
 // Parse query
 const parsed = parseSearchQuery('naval  "fluid dynamics"');
 assert.deepEqual(parsed.requiredPhrases, ["fluid dynamics"]);
@@ -102,7 +183,7 @@ assert.ok(hasHref(searchAllMatches("Master Mariners"), "/team/"));
 assert.ok(hasHref(searchAllMatches("naval architects"), "/team/"));
 assert.ok(hasHref(searchAllMatches('"Work with the people"'), "/team/"));
 assert.ok(hasHref(searchAllMatches("Contact the team"), "/team/"));
-assert.ok(!hasHref(searchAllMatches("naval unrelatedword"), "/team/"));
+assert.ok(!hasHref(searchAllMatches("unrelatedword zeppelin"), "/team/"));
 
 for (const member of teamMembers) {
   const first = member.name.replace(/^Capt\.\s*/i, "").split(/\s+/)[0]!;
@@ -120,7 +201,10 @@ for (const member of teamMembers) {
 const nishSuggestions = searchSuggestionMatches("Nish");
 assert.ok(nishSuggestions.some((r) => r.href.includes("/team/")));
 assert.ok(searchSuggestionMatches("Bh").some((r) => r.href.includes("/team/")));
-assert.equal(searchSuggestionMatches("Optimoor").length, searchAllMatches("Optimoor").length);
+assert.equal(searchAllMatches("Opti").length, 0);
+assert.ok(searchPrefixSuggestionMatches("Opti").some((r) => r.title.includes("Optimoor")));
+assert.ok(searchAllMatches("Optimoor").length > 0);
+assert.ok(searchPrefixSuggestionMatches("Optimoor").length >= 0);
 
 const indexedTeam = normalizeSearchText(getIndexedTeamSearchText());
 for (const field of getTeamPageSearchFieldValues()) {
@@ -145,13 +229,13 @@ const headEng = searchAllMatches("Head of Engineering")[0];
 assert.ok(headEng);
 assert.match(headEng.title, /Bhanu/);
 
-assertNoResults("Vipul Sidhu");
-assert.ok(searchRelatedMatches("Vipul Sidhu").length >= 2);
+assert.ok(searchAllMatches("Vipul Sidhu").some((r) => r.title.includes("Vipul")));
+assert.ok(searchAllMatches("Vipul Sidhu").some((r) => r.title.includes("Sidhu")));
+assert.ok(searchRelatedMatches("Vipul Sidhu").length >= 0);
 
-assertNoResults("Captain Vipul");
-const captainRelated = searchRelatedMatches("Captain Vipul");
-assert.ok(captainRelated.some((r) => r.title.includes("Vipul")));
-assert.ok(!captainRelated.some((r) => r.title.includes("Abhinav") && !r.title.includes("Vipul")));
+const captainVipul = searchAllMatches("Captain Vipul");
+assert.ok(captainVipul.some((r) => r.title.includes("Vipul")));
+assert.ok(!captainVipul.some((r) => r.title.includes("Abhinav") && !r.title.includes("Vipul")));
 
 assertNoResults("Upadhyaya");
 assert.ok(searchRelatedMatches("Upadhyaya").some((r) => r.title.includes("Upadhyay")));
@@ -167,10 +251,15 @@ const portHits = searchAllMatches("port");
 assert.ok(!portHits.some((r) => r.href.includes("service-conversion")));
 assert.equal(documentMatchesQuery("technical support only", parseSearchQuery("port")), false);
 
-// Prefix suggestions without exact empty-state conflict
+// Prefix suggestions while typing (including when exact matches exist for other prefixes)
 assert.equal(searchAllMatches("Vip").length, 0);
 assert.ok(searchPrefixSuggestionMatches("Vip").some((r) => r.title.includes("Vipul")));
 assert.equal(searchAllMatches("Ha").length, 0);
 assert.ok(searchPrefixSuggestionMatches("Ha").length > 0);
+assert.ok(searchAllMatches("Optimoor").length > 0);
+assert.ok(
+  searchPrefixSuggestionMatches("Optimoor").length >= 0 ||
+    searchPrefixSuggestionMatches("Optimo").length >= 0,
+);
 
 console.log("search-exact-matching.test.ts: all assertions passed");

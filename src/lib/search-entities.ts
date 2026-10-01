@@ -2,6 +2,7 @@ import {
   documentMatchesPrefixAutocomplete,
   documentMatchesQuery,
   documentMatchesWithAliasVariants,
+  excerptForQueryMatch,
   findTypoVocabularyMatches,
   parseSearchQuery,
   scoreExactDocumentMatch,
@@ -59,14 +60,23 @@ function pageLevelSearchText(page: IndexedPage): string {
         teamPageHero.description,
         teamPageCta.heading,
         teamPageCta.buttonLabel,
+        page.body ?? "",
+        page.keywords ?? "",
       ].join(" "),
     );
   }
-  const hubPagesWithFullBody = new Set(["/contact/", "/capabilities/", "/services/"]);
-  if (page.anchors.length > 0 && !hubPagesWithFullBody.has(page.href)) {
-    return normalizeWhitespace([page.title, page.excerpt ?? ""].join(" "));
-  }
-  return normalizeWhitespace([page.title, page.excerpt ?? "", page.body ?? ""].join(" "));
+  return normalizeWhitespace(
+    [page.title, page.excerpt ?? "", page.body ?? "", page.keywords ?? ""].join(" "),
+  );
+}
+
+function ownEntitySearchText(parts: string[]): string {
+  return normalizeWhitespace(parts.join(" "));
+}
+
+/** Text used for matching — title plus this entity’s own indexed copy only (no parent keywords). */
+export function entityMatchCorpus(entity: Pick<SearchEntity, "title" | "searchText">): string {
+  return normalizeWhitespace(`${entity.title} ${entity.searchText}`);
 }
 
 function snippetFromText(text: string, max = 160): string {
@@ -77,12 +87,20 @@ function snippetFromText(text: string, max = 160): string {
   return `${clean.slice(0, max - 1).trimEnd()}…`;
 }
 
-function entityToResult(entity: SearchEntity, relatedReason?: string): SearchResult {
+function entityToResult(
+  entity: SearchEntity,
+  query: string,
+  relatedReason?: string,
+): SearchResult {
+  const excerpt =
+    query.trim().length >= SEARCH_MIN_QUERY_LENGTH
+      ? excerptForQueryMatch(entity.title, entity.searchText, query)
+      : entity.excerpt;
   return {
     title: entity.title,
     href: entity.href,
     category: entity.category,
-    excerpt: entity.excerpt,
+    excerpt,
     breadcrumb: entity.breadcrumb,
     group: entity.group,
     resultKey: entity.resultKey,
@@ -99,7 +117,7 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
 
     if (pageHref === "/team/") {
       for (const member of teamMembers) {
-        const searchText = normalizeWhitespace(`${member.name} ${member.role} ${member.bio}`);
+        const searchText = ownEntitySearchText([`${member.name} ${member.role} ${member.bio}`]);
         entities.push({
           resultKey: `team-member-${teamMemberAnchorId(member.name)}`,
           title: member.name,
@@ -137,7 +155,6 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
         breadcrumb: "Team",
         excerpt: page.excerpt ?? snippetFromText(teamOverviewText),
         searchText: teamOverviewText,
-        relatedKeywords: page.keywords,
         group: page.group,
       });
       continue;
@@ -151,8 +168,7 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
         category: page.category,
         breadcrumb: `${page.title} › ${anchor.label}`,
         excerpt: snippetFromText(anchor.searchText),
-        searchText: normalizeWhitespace(anchor.searchText),
-        relatedKeywords: page.keywords,
+        searchText: ownEntitySearchText([anchor.label, anchor.searchText]),
         group: page.group,
         anchorId: anchor.id,
       });
@@ -168,7 +184,6 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
       breadcrumb: page.title,
       excerpt: page.excerpt ?? snippetFromText(pageEntityText),
       searchText: pageEntityText,
-      relatedKeywords: page.keywords,
       group: page.group,
     });
   }
@@ -184,7 +199,8 @@ export function getSiteSearchVocabulary(entities: SearchEntity[]): string[] {
   }
   const words = new Set<string>();
   for (const entity of entities) {
-    for (const word of normalizeSearchText(entity.searchText).split(/[^a-z0-9]+/)) {
+    const corpus = normalizeSearchText(entityMatchCorpus(entity));
+    for (const word of corpus.split(/[^a-z0-9]+/)) {
       if (word.length >= SEARCH_MIN_QUERY_LENGTH) {
         words.add(word);
       }
@@ -215,10 +231,11 @@ function matchEntities(
 
   const scored = entities
     .map((entity) => {
+      const corpus = entityMatchCorpus(entity);
       const matches =
         mode === "exact"
-          ? documentMatchesQuery(entity.searchText, parsed)
-          : documentMatchesWithAliasVariants(entity.searchText, parsed);
+          ? documentMatchesQuery(corpus, parsed)
+          : documentMatchesWithAliasVariants(corpus, parsed);
       const score = matches ? scoreEntity(entity, parsed) : 0;
       return { entity, score, matches };
     })
@@ -238,7 +255,7 @@ function matchEntities(
       continue;
     }
     seen.add(row.entity.resultKey);
-    results.push(entityToResult(row.entity));
+    results.push(entityToResult(row.entity, trimmed));
   }
   return results;
 }
@@ -260,7 +277,8 @@ export function searchEntitiesPrefixSuggestions(
   const parsed = parseSearchQuery(trimmed);
   const scored = entities
     .map((entity) => {
-      const matchesPrefix = documentMatchesPrefixAutocomplete(entity.searchText, trimmed);
+      const corpus = entityMatchCorpus(entity);
+      const matchesPrefix = documentMatchesPrefixAutocomplete(corpus, trimmed);
       if (!matchesPrefix) {
         return null;
       }
@@ -283,7 +301,7 @@ export function searchEntitiesPrefixSuggestions(
       continue;
     }
     seen.add(row.entity.resultKey);
-    results.push(entityToResult(row.entity));
+    results.push(entityToResult(row.entity, trimmed));
     if (results.length >= limit) {
       break;
     }
@@ -320,11 +338,12 @@ export function searchEntitiesRelated(
   if (parsed.tokens.length >= 2) {
     let anyFullAlias = false;
     for (const entity of entities) {
-      if (documentMatchesQuery(entity.searchText, parsed)) {
+      const corpus = entityMatchCorpus(entity);
+      if (documentMatchesQuery(corpus, parsed)) {
         continue;
       }
       const matchedTokens = parsed.tokens.filter((token) =>
-        containsTokenWithAliasVariants(entity.searchText, token),
+        containsTokenWithAliasVariants(corpus, token),
       );
       if (matchedTokens.length === parsed.tokens.length) {
         anyFullAlias = true;
@@ -336,8 +355,9 @@ export function searchEntitiesRelated(
     }
     if (!anyFullAlias) {
       for (const entity of entities) {
+        const corpus = entityMatchCorpus(entity);
         const matchedTokens = parsed.tokens.filter((token) =>
-          containsTokenWithAliasVariants(entity.searchText, token),
+          containsTokenWithAliasVariants(corpus, token),
         );
         if (matchedTokens.length === 1) {
           const token = matchedTokens[0]!;
@@ -347,10 +367,11 @@ export function searchEntitiesRelated(
     }
   } else {
     for (const entity of entities) {
-      if (documentMatchesQuery(entity.searchText, parsed)) {
+      const corpus = entityMatchCorpus(entity);
+      if (documentMatchesQuery(corpus, parsed)) {
         continue;
       }
-      if (documentMatchesWithAliasVariants(entity.searchText, parsed)) {
+      if (documentMatchesWithAliasVariants(corpus, parsed)) {
         push(entity, "Spelling or title variant", 300);
       }
     }
@@ -364,7 +385,8 @@ export function searchEntitiesRelated(
     const typoHits = findTypoVocabularyMatches(token, vocabulary);
     for (const hit of typoHits.slice(0, 3)) {
       for (const entity of entities) {
-        if (containsExactToken(entity.searchText, hit.word)) {
+        const corpus = entityMatchCorpus(entity);
+        if (containsExactToken(corpus, hit.word)) {
           push(entity, `Did you mean “${hit.word}”?`, 80 - hit.distance);
         }
       }
@@ -378,7 +400,7 @@ export function searchEntitiesRelated(
     return a.entity.title.localeCompare(b.entity.title);
   });
   return scored.slice(0, limit).map((row) => ({
-    ...entityToResult(row.entity, row.reason),
+    ...entityToResult(row.entity, trimmed, row.reason),
     relatedReason: row.reason,
   }));
 }
@@ -401,7 +423,8 @@ export function resolveEntityAnchorId(
   );
   let best: { id: string; score: number } | null = null;
   for (const entity of pageEntities) {
-    if (!documentMatchesQuery(entity.searchText, parsed)) {
+    const corpus = entityMatchCorpus(entity);
+    if (!documentMatchesQuery(corpus, parsed)) {
       continue;
     }
     const score = scoreEntity(entity, parsed);

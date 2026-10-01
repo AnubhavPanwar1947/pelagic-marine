@@ -108,6 +108,12 @@ export function tokenMatchForms(token: string): string[] {
   }
   if (base.endsWith("s") && base.length > MIN_QUERY_LENGTH + 1) {
     forms.add(base.slice(0, -1));
+    if (base.endsWith("es") && base.length > MIN_QUERY_LENGTH + 2) {
+      forms.add(base.slice(0, -2));
+    }
+  }
+  if (!base.endsWith("s") && base.length >= 4) {
+    forms.add(`${base}s`);
   }
   return [...forms].filter((form) => form.length >= MIN_QUERY_LENGTH);
 }
@@ -176,13 +182,11 @@ export function documentMatchesQuery(
     }
   }
 
-  for (const token of parsed.tokens) {
-    if (!containsExactToken(haystack, token)) {
-      return false;
-    }
+  if (!parsed.tokens.length) {
+    return parsed.requiredPhrases.length > 0;
   }
 
-  return true;
+  return parsed.tokens.some((token) => containsExactToken(haystack, token));
 }
 
 export function countExactTokenMatches(haystack: string, tokens: string[]): number {
@@ -190,6 +194,84 @@ export function countExactTokenMatches(haystack: string, tokens: string[]): numb
     (count, token) => (containsExactToken(haystack, token) ? count + 1 : count),
     0,
   );
+}
+
+function trimSnippet(text: string, max: number): string {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) {
+    return clean;
+  }
+  return `${clean.slice(0, max - 1).trimEnd()}…`;
+}
+
+/** Pick a short excerpt from the sentence that contains the query match. */
+export function excerptForQueryMatch(
+  title: string,
+  bodyText: string,
+  query: string,
+  maxLen = 160,
+): string {
+  const trimmed = query.trim();
+  if (trimmed.length < MIN_QUERY_LENGTH) {
+    return trimSnippet(bodyText || title, maxLen);
+  }
+  const parsed = parseSearchQuery(trimmed);
+  const corpus = `${title} ${bodyText}`.replace(/\s+/g, " ").trim();
+  if (!corpus) {
+    return "";
+  }
+
+  const tokenAppearsInText = (text: string, token: string): boolean => {
+    if (containsExactToken(text, token)) {
+      return true;
+    }
+    const norm = normalizeSearchText(stripTokenEdges(token));
+    if (norm.length < MIN_QUERY_LENGTH) {
+      return false;
+    }
+    return haystackWords(text).some(
+      (word) => word.startsWith(norm) || norm.startsWith(word),
+    );
+  };
+
+  const sentenceMatches = (sentence: string): boolean => {
+    for (const phrase of parsed.requiredPhrases) {
+      if (!containsExactPhrase(sentence, phrase)) {
+        return false;
+      }
+    }
+    if (!parsed.tokens.length) {
+      return parsed.requiredPhrases.length > 0;
+    }
+    return parsed.tokens.some((token) => tokenAppearsInText(sentence, token));
+  };
+
+  const sentences = corpus.split(/(?<=[.!?])\s+/).filter((part) => part.trim().length > 0);
+  const chunks = sentences.length > 0 ? sentences : [corpus];
+
+  let best = "";
+  let bestScore = -1;
+  for (const chunk of chunks) {
+    if (!sentenceMatches(chunk)) {
+      continue;
+    }
+    let score = 0;
+    for (const phrase of parsed.requiredPhrases) {
+      if (containsExactPhrase(chunk, phrase)) {
+        score += 50;
+      }
+    }
+    score += countExactTokenMatches(chunk, parsed.tokens) * 10;
+    if (score > bestScore) {
+      bestScore = score;
+      best = chunk;
+    }
+  }
+
+  if (best) {
+    return trimSnippet(best, maxLen);
+  }
+  return trimSnippet(bodyText || title, maxLen);
 }
 
 export function highlightTermsFromQuery(query: string): string[] {
@@ -307,8 +389,17 @@ export function scoreExactDocumentMatch(
     score += 400;
   } else if (allInHeading) {
     score += 280;
-  } else if (allInBody) {
+  } else   if (allInBody) {
     score += 160;
+  }
+
+  if (uniqueTokens.length > 1) {
+    const matchedInDoc = countExactTokenMatches(fullNorm, uniqueTokens);
+    if (matchedInDoc === uniqueTokens.length) {
+      score += 520;
+    } else if (matchedInDoc > 0) {
+      score += matchedInDoc * 40;
+    }
   }
 
   return score;
@@ -464,12 +555,10 @@ export function documentMatchesWithAliasVariants(
       return false;
     }
   }
-  for (const token of parsed.tokens) {
-    if (!containsTokenWithAliasVariants(haystack, token)) {
-      return false;
-    }
+  if (!parsed.tokens.length) {
+    return parsed.requiredPhrases.length > 0;
   }
-  return true;
+  return parsed.tokens.some((token) => containsTokenWithAliasVariants(haystack, token));
 }
 
 export function levenshteinDistance(a: string, b: string): number {

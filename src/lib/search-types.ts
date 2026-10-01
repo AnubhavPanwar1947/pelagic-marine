@@ -15,6 +15,7 @@ export type SearchResult = {
 
 export const SEARCH_DEBOUNCE_MS = 150;
 export const SEARCH_MIN_QUERY_LENGTH = 2;
+export const SEARCH_LAND_TARGET_ID = "search-land-target";
 export const SEARCH_OVERLAY_PREVIEW_LIMIT = 8;
 export const SEARCH_SUGGESTIONS_LIMIT = 8;
 
