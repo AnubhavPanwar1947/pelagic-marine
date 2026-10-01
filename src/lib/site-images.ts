@@ -34,6 +34,7 @@ export const imageObjectPositions: Record<string, string> = {
   "/images/owned/team/vipul.png": "50% 18%",
   "/images/owned/team/abhinav.png": "50% 8%",
   "/images/owned/team/harjit.png": "50% 0%",
+  "/images/owned/team/vinod.png": "50% 12%",
   "/images/stock/about-paper-collaboration.jpg": "52% 42%",
   "/images/stock/hero.jpg": "50% center",
   [u("photo-1578645024771-21df5e60af96", 1200, 1500)]: "50% 30%",

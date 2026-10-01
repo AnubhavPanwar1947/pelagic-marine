@@ -895,6 +895,41 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
+  "/images/owned/team/vinod.png": {
+    "src": "/images/owned/team/vinod.png",
+    "width": 480,
+    "height": 1080,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/owned/team/vinod-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/team/vinod-480w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/owned/team/vinod-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/team/vinod-480w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/owned/team/vinod-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/team/vinod-480w.avif"
+      }
+    ]
+  },
   "/images/owned/team/vipul.png": {
     "src": "/images/owned/team/vipul.png",
     "width": 480,

@@ -23,8 +23,21 @@ export const teamPageCta = {
 
 export { teamMembers };
 
-export function teamMemberImageAlt(memberName: string): string {
-  return memberName;
+export function teamMemberImageAlt(member: {
+  name: string;
+  role: string;
+}): string {
+  return `${member.name}, ${member.role}`;
+}
+
+export function teamMemberBioParagraphs(member: {
+  bio: string;
+  bioParagraphs?: string[];
+}): string[] {
+  if (member.bioParagraphs?.length) {
+    return member.bioParagraphs;
+  }
+  return [member.bio];
 }
 
 /** Flat list of every meaningful Team page field used for search integrity checks. */
@@ -33,7 +46,8 @@ export function getTeamPageSearchFieldValues(): string[] {
     member.name,
     member.role,
     member.bio,
-    teamMemberImageAlt(member.name),
+    teamMemberImageAlt(member),
+    ...(member.bioParagraphs ?? []),
   ]);
   return [
     teamPageMetadata.title,
@@ -51,7 +65,7 @@ export function buildTeamPageSearchBody(): string {
   const memberText = teamMembers
     .map(
       (member) =>
-        `${member.name} ${member.role} ${member.bio} ${teamMemberImageAlt(member.name)}`,
+        `${member.name} ${member.role} ${member.bio} ${teamMemberImageAlt(member)}`,
     )
     .join(" ");
   return [

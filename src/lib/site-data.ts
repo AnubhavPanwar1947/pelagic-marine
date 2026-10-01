@@ -296,9 +296,7 @@ export const navLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/team", label: "Team" },
-  { href: "/decarbonization", label: "Decarbonization" },
   { href: "/news", label: "Blog" },
-  { href: "/capabilities", label: "Capabilities" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -318,45 +316,6 @@ export type NavMenuItem =
       children: NavDropdownChild[];
     };
 
-export const sectorDetails = [
-  {
-    title: "Maritime & Shipping",
-    slug: "maritime-shipping",
-    summary:
-      "Surveys, warranty work, cargo operations, and fleet technical support for owners, managers, and P&I clubs.",
-  },
-  {
-    title: "Offshore & Oil & Gas",
-    slug: "offshore-oil-gas",
-    summary:
-      "Mooring analysis, FPSO/SBM assessments, loadout, marine warranty, and operational engineering.",
-  },
-  {
-    title: "Renewables & Energy Transition",
-    slug: "renewables",
-    summary:
-      "Offshore wind support, clean fuels advisory, and decarbonisation pathway planning.",
-  },
-  {
-    title: "Ports & Infrastructure",
-    slug: "ports-infrastructure",
-    summary:
-      "Berth compatibility, dredging support, port engineering, and marine construction assurance.",
-  },
-];
-
-export const decarbonization = {
-  headline: "Supporting the voyage to cleaner seas",
-  summary:
-    "From LNG bunkering compatibility to FuelEU compliance and alternative fuels strategy — we help owners and operators navigate the energy transition with practical, regulation-ready advice.",
-  points: [
-    "LNG bunkering compatibility review & onboard supervision",
-    "Clean fuels and FuelEU advisory",
-    "Operational efficiency and emissions reduction planning",
-    "Renewable energy and offshore wind marine support",
-  ],
-};
-
 export const newsItems = [
   {
     title: "Pelagic expands marine advisory across India and UAE",
@@ -367,18 +326,6 @@ export const newsItems = [
     slug: "advisory-expansion-india-uae",
   },
 ];
-
-export const careers = {
-  headline: "Join our team — shape the future of marine consultancy",
-  summary:
-    "We hire Master Mariners, marine engineers, naval architects, and maritime professionals who want to deliver quality service across surveying, engineering, and legal advisory.",
-  perks: [
-    "Work on global projects from India and Dubai",
-    "Collaborate with experienced mariners and engineers",
-    "Grow into the Maritime Advisory Platform (coming soon)",
-  ],
-  applyEmail: "career@pelagic-marine.com",
-};
 
 export const stats = [
   { value: "500+", label: "Projects delivered" },
@@ -607,6 +554,18 @@ export const teamMembers = [
     bio: "Nishchay founded Pelagic Marine to solve, through engineering and design, the problems most firms only survey. Across more than two decades, including over a decade at sea on tankers, he has specialised in project cargo workscopes and stability — the work that inspired UMISTAB-X. His wider expertise spans regulatory compliance, audits and inspections, loss prevention and incident investigation for leading P&I clubs.",
   },
   {
+    name: "Vinod Janardanan",
+    role: "Director, Pelagic Singapore",
+    photo: "/images/owned/team/vinod.png",
+    bio:
+      "Vinod leads Pelagic's Singapore office. He is a Naval Architect with an MBA in General Management and has worked in the marine and offshore sector for over 40 years. Before joining Pelagic, Vinod was Director, South Asia Zone at Bureau Veritas Solutions Marine & Offshore, the consulting arm of Bureau Veritas. In that role he led BV’s consulting business across Southeast Asia, Australia and New Zealand. At Pelagic, Vinod leads the Group's growth across Southeast Asia and Oceania. He brings experience across the maritime spectrum having worked for a Ship owner, class society and shipyards. He brings class-society depth, ship owner agility and shipyard resilience in forging regional client relationships which would drive Pelagic's naval architecture, engineering analysis and marine assurance services.",
+    bioParagraphs: [
+      "Vinod leads Pelagic's Singapore office. He is a Naval Architect with an MBA in General Management and has worked in the marine and offshore sector for over 40 years.",
+      "Before joining Pelagic, Vinod was Director, South Asia Zone at Bureau Veritas Solutions Marine & Offshore, the consulting arm of Bureau Veritas. In that role he led BV’s consulting business across Southeast Asia, Australia and New Zealand.",
+      "At Pelagic, Vinod leads the Group's growth across Southeast Asia and Oceania. He brings experience across the maritime spectrum having worked for a Ship owner, class society and shipyards. He brings class-society depth, ship owner agility and shipyard resilience in forging regional client relationships which would drive Pelagic's naval architecture, engineering analysis and marine assurance services.",
+    ],
+  },
+  {
     name: "Bhanu Prabhakar",
     role: "Co-Founder & Head of Engineering and Design",
     photo: "/images/owned/team/bhanu.png",
@@ -632,34 +591,3 @@ export const teamMembers = [
   },
 ];
 
-export const capabilitiesSections = [
-  {
-    id: "software",
-    eyebrow: "Software we use",
-    title: "Analysis & simulation suites",
-    summary:
-      "Our work is built on a licensed toolchain spanning structures, stability, hydrodynamics and mooring. The software matters — but the judgement to set up a model correctly, and to read its output critically, matters more.",
-    tags: ["ANSYS", "NAPA", "AutoHydro", "Optimoor", "SACS", "DAMHULL"],
-  },
-  {
-    id: "mooring",
-    eyebrow: "Mooring & compatibility",
-    title: "Static and dynamic mooring analysis",
-    summary:
-      "We model both static and dynamic mooring response in Optimoor — line and fender loads, environmental cases and limiting conditions — and carry out LNG ship-shore compatibility studies for terminal and ship-to-ship operations.",
-  },
-  {
-    id: "clean-fuel",
-    eyebrow: "Clean fuel",
-    title: "LNG bunkering & compatibility",
-    summary:
-      "We support LNG ship-to-ship and terminal operations — mooring and transfer compatibility, procedures and attendance — bringing hands-on gas-carrier experience to the safe delivery of clean fuel.",
-  },
-  {
-    id: "umistab",
-    eyebrow: "Proprietary",
-    title: "UMISTAB-X",
-    summary:
-      "UMISTAB-X is our own loading and stability tool, conceived for bulk carriers and developed out of years of hands-on stability and project-cargo work. It is a class-approved loadicator — giving crews a fast, reliable way to plan and check loading conditions against the applicable criteria.",
-  },
-];

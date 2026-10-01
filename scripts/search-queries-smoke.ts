@@ -1,5 +1,13 @@
 import { searchAllMatches } from "../src/lib/search-index";
 
+const REMOVED_ROUTE_PREFIXES = [
+  "/careers/",
+  "/login/",
+  "/sectors/",
+  "/decarbonization/",
+  "/capabilities/",
+];
+
 const queries = [
   "LNG",
   "Surveying",
@@ -23,6 +31,13 @@ for (const query of queries) {
   const has404 = hrefs.some((href) => href.includes("advisory-expansion-india-uae"));
   if (has404) {
     console.error(`FAIL ${query}: contains broken advisory slug`);
+    failed = true;
+  }
+  const hitsRemoved = hrefs.some((href) =>
+    REMOVED_ROUTE_PREFIXES.some((prefix) => href.startsWith(prefix) || href.includes(prefix)),
+  );
+  if (hitsRemoved) {
+    console.error(`FAIL ${query}: result points at removed page (${hrefs.join(", ")})`);
     failed = true;
   }
   console.log(`${query}: ${results.length} results`);

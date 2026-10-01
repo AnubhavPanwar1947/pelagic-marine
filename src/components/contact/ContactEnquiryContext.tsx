@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -11,6 +12,10 @@ import {
   type ReactNode,
 } from "react";
 import { submitEnquiryForm } from "@/lib/api";
+import {
+  buildEnquiryMailtoUrl,
+  type EnquiryMailtoFields,
+} from "@/lib/contact-mailto-fallback";
 import { contactPage, serviceCategories } from "@/lib/site-data";
 
 export const urgencyOptions = [
@@ -51,6 +56,7 @@ type ContactEnquiryContextValue = {
   confirmationEmailError: string | null;
   loading: boolean;
   error: string | null;
+  mailtoNotice: boolean;
   handleSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
   resetSubmission: () => void;
   formRef: React.RefObject<HTMLFormElement | null>;
@@ -65,6 +71,8 @@ function getOfficeLabel(value: string) {
 export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
   const formRef = useRef<HTMLFormElement>(null);
   const formStartedAtRef = useRef<number>(Date.now());
+  const mailtoPendingUrlRef = useRef<string | null>(null);
+  const mailtoOpenScheduledRef = useRef(false);
   const [submitted, setSubmitted] = useState(false);
   const [reference, setReference] = useState<string | null>(null);
   const [submissionSummary, setSubmissionSummary] = useState<SubmissionSummary | null>(null);
@@ -72,6 +80,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
   const [confirmationEmailError, setConfirmationEmailError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [mailtoNotice, setMailtoNotice] = useState(false);
   const [service, setService] = useState(serviceCategories[0]?.title ?? "");
   const [subject, setSubject] = useState(contactPage.form.subjects[0] ?? "");
   const [preferredOffice, setPreferredOffice] = useState("auto");
@@ -107,13 +116,40 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
     setActiveIntake(null);
     setHighlightFields(false);
     setError(null);
+    setMailtoNotice(false);
+    mailtoPendingUrlRef.current = null;
+    mailtoOpenScheduledRef.current = false;
   }, []);
+
+  const beginMailtoFallback = useCallback((fields: EnquiryMailtoFields) => {
+    if (mailtoOpenScheduledRef.current) return;
+    mailtoOpenScheduledRef.current = true;
+    mailtoPendingUrlRef.current = buildEnquiryMailtoUrl(fields);
+    setMailtoNotice(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mailtoNotice || !mailtoPendingUrlRef.current) return;
+
+    const url = mailtoPendingUrlRef.current;
+    const timer = window.setTimeout(() => {
+      window.location.assign(url);
+      mailtoPendingUrlRef.current = null;
+    }, 500);
+
+    return () => window.clearTimeout(timer);
+  }, [mailtoNotice]);
 
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
+      if (loading) return;
+
       setLoading(true);
       setError(null);
+      setMailtoNotice(false);
+      mailtoPendingUrlRef.current = null;
+      mailtoOpenScheduledRef.current = false;
 
       const form = event.currentTarget;
       const formData = new FormData(form);
@@ -130,6 +166,10 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       formData.delete("first_name");
       formData.delete("last_name");
 
+      const visitorEmail = String(formData.get("email") ?? "").trim();
+      const messageText = String(formData.get("message") ?? "").trim();
+      const serviceValue = String(formData.get("service") ?? "").trim();
+
       const vessel = String(formData.get("vessel") ?? "").trim();
       const imo = String(formData.get("imo") ?? "").trim();
       const port = String(formData.get("port") ?? "").trim();
@@ -140,6 +180,17 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
         urgencyOptions.find((o) => o.value === urgencyValue)?.label ?? urgencyValue;
       const officeLabel = getOfficeLabel(officeValue);
       const vesselLine = [vessel, imo ? `IMO ${imo}` : null].filter(Boolean).join(" · ");
+
+      const mailtoFields: EnquiryMailtoFields = {
+        firstName,
+        lastName,
+        email: visitorEmail,
+        service: serviceValue,
+        subject: subjectValue,
+        message: messageText,
+        preferredOffice: officeLabel,
+        urgency: urgencyLabel,
+      };
 
       formData.set("form_started_at", String(formStartedAtRef.current));
       formData.set("preferredOffice", officeLabel);
@@ -152,8 +203,8 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
         if (result.success) {
           setSubmissionSummary({
             name: String(formData.get("name") ?? ""),
-            email: String(formData.get("email") ?? ""),
-            service: String(formData.get("service") ?? ""),
+            email: visitorEmail,
+            service: serviceValue,
             subject: subjectValue,
             urgency: urgencyLabel,
             office: officeLabel,
@@ -168,14 +219,14 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
           setConfirmationEmailError(result.data?.confirmationEmailError ?? null);
           setSubmitted(true);
         } else {
-          setError(result.error ?? contactPage.form.errorMessage);
+          beginMailtoFallback(mailtoFields);
         }
       } catch {
         setLoading(false);
-        setError(contactPage.form.errorMessage);
+        beginMailtoFallback(mailtoFields);
       }
     },
-    [resetDraft]
+    [beginMailtoFallback, loading, resetDraft]
   );
 
   const resetSubmission = useCallback(() => {
@@ -210,6 +261,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       confirmationEmailError,
       loading,
       error,
+      mailtoNotice,
       handleSubmit,
       resetSubmission,
       formRef,
@@ -230,6 +282,7 @@ export function ContactEnquiryProvider({ children }: { children: ReactNode }) {
       confirmationEmailError,
       loading,
       error,
+      mailtoNotice,
       handleSubmit,
       resetSubmission,
     ]

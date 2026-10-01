@@ -1,4 +1,4 @@
-import { capabilitiesSections, company, contactPage, careers, serviceCategories } from "./site-data";
+import { company, contactPage, serviceCategories } from "./site-data";
 
 /** Visible copy from the home page (hero + about band) for search indexing. */
 export function buildHomePageSearchBody(): string {
@@ -37,28 +37,14 @@ export function buildHomePageSearchBody(): string {
   ].join(" ");
 }
 
-export function buildCapabilitiesHubSearchBody(): string {
-  return [
-    "The tools and methods behind the work",
-    "Licensed analysis suites and proprietary tools applied by engineers and Master Mariners who understand both the physics and the operation.",
-    ...capabilitiesSections.flatMap((section) => [
-      section.eyebrow,
-      section.title,
-      section.summary,
-      ...(section.tags ?? []),
-      `Open ${section.title} page`,
-      "Enquire about UMISTAB-X",
-    ]),
-    "Need the right tool applied to your problem?",
-    "Tell us the vessel, structure or operation we will scope the analysis and assign the right engineer.",
-  ].join(" ");
-}
-
 /** Visible copy from the About page for search indexing. */
 export function buildAboutPageSearchBody(): string {
   return [
     "About Us",
     "Pelagic marine consultants and surveyors was formed in year 2021 by young entrepreneurs from the shipping and engineering fraternity with wide range of experience in vessel operations, ship surveying, Engineering, offshore operations, dry and wet cargo handling. The company was formed to act as a one stop shop for various shipping industry centric solution. The core team consists of experienced Master Mariners, Marine engineers, naval architects. We provide professional services to our clients from mainline shipping, oil and gas industry, offshore industry and renewable energy sector.",
+    "Maritime and shipping surveys warranty cargo fleet technical support",
+    "Offshore oil and gas mooring FPSO marine warranty",
+    "Renewables energy transition offshore wind ports infrastructure berth compatibility",
     "What guides us",
     "Our mission",
     "Our mission is to transform the shipping industry into a sustainable and progressive industry.",
@@ -107,34 +93,12 @@ export function buildContactPageSearchBody(): string {
     "Visit",
     "Mail",
     company.emails.info,
+    company.emails.career,
+    "careers jobs hiring apply career applications",
+    "client login maritime advisory platform secure access",
     contactPage.companyInfo.website,
     "website",
     "last",
     "name",
-  ].join(" ");
-}
-
-export function buildCareersPageSearchBody(): string {
-  return [
-    careers.headline,
-    careers.summary,
-    "Why join Pelagic",
-    ...careers.perks,
-    "Apply now",
-    "Send your CV and a brief cover note. We review applications on a rolling basis for surveying, engineering, and advisory roles.",
-    "Email",
-    careers.applyEmail,
-    "Offices Mumbai Dehradun Dubai Founded",
-    company.founded,
-    "Maritime professionals at work",
-  ].join(" ");
-}
-
-export function buildLoginPageSearchBody(): string {
-  return [
-    "Client login",
-    "Secure client access to the Pelagic Maritime Advisory Platform.",
-    "Coming soon",
-    "Sign in",
   ].join(" ");
 }

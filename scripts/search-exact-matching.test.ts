@@ -94,8 +94,8 @@ assert.ok(!masterTitles.includes("Nishchay Maken"));
 assert.ok(!masterTitles.includes("Capt. Harjit Singh Sidhu"));
 assert.ok(masterTitles.includes("Capt. Vipul Negi"));
 assert.ok(masterTitles.includes("Capt. Abhinav Upadhyay"));
-assert.ok(hasHref(masterResults, "/careers/"));
 assert.ok(hasHref(masterResults, "/team/"));
+assert.ok(!hasHref(masterResults, "/careers/"));
 assert.ok(
   masterResults.some(
     (r) =>

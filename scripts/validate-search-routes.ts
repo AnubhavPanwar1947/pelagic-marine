@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { getSearchIndexHrefs } from "../src/lib/search-index";
-import { getAllCapabilityTopics, getAllServiceTopics } from "../src/lib/topic-pages";
+import { getAllServiceTopics } from "../src/lib/topic-pages";
 
 const root = path.join(import.meta.dirname, "..");
 const appDir = path.join(root, "src", "app");
@@ -10,15 +10,10 @@ const staticRoutes = new Set<string>([
   "/",
   "/about/",
   "/services/",
-  "/capabilities/",
-  "/sectors/",
-  "/decarbonization/",
   "/news/",
   "/news/computational-fluid-dynamics/",
   "/team/",
-  "/careers/",
   "/contact/",
-  "/login/",
   "/privacy/",
   "/disclaimer/",
   "/cookies/",
@@ -29,10 +24,6 @@ const staticRoutes = new Set<string>([
 
 for (const topic of getAllServiceTopics()) {
   staticRoutes.add(`/services/${topic.slug}/`);
-}
-
-for (const topic of getAllCapabilityTopics()) {
-  staticRoutes.add(`/capabilities/${topic.slug}/`);
 }
 
 function normalize(href: string): string {

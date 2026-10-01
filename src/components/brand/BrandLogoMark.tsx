@@ -7,6 +7,9 @@ export const BRAND_LOGO_HORIZONTAL_SRC = "/images/icons/logo.svg";
 
 /** Full horizontal lockup on dark or transparent backgrounds. */
 export const BRAND_LOGO_WHITE_HORIZONTAL_SRC = "/images/icons/white-logo.svg";
+
+/** Compact header lockup below 280px viewport (anchor + wordmark). */
+export const BRAND_LOGO_ANCHOR_SRC = "/images/icons/anchor-logo.svg";
 export const BRAND_LOGO_HORIZONTAL_WIDTH = 150;
 export const BRAND_LOGO_HORIZONTAL_HEIGHT = 45;
 

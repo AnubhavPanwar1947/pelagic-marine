@@ -15,14 +15,23 @@ export type EnquirySubmitResult = {
 export async function submitEnquiryForm(
   formData: FormData
 ): Promise<EnquirySubmitResult> {
-  const response = await fetch("/send-mail.php", {
-    method: "POST",
-    body: formData,
-    headers: {
-      Accept: "application/json",
-      "X-Requested-With": "XMLHttpRequest",
-    },
-  });
+  let response: Response;
+  try {
+    response = await fetch("/send-mail.php", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+  } catch {
+    return {
+      success: false,
+      error:
+        "We couldn’t send your enquiry right now. Please email info@pelagic-marine.com.",
+    };
+  }
 
   const result = (await response.json().catch(() => null)) as {
     ok?: boolean;

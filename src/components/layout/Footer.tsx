@@ -21,7 +21,7 @@ const legalLinks: LegalFooterItem[] = [
 const legalLinkClassName = "min-w-0 break-words text-blue-100 hover:text-white";
 const legalTextClassName = "min-w-0 break-words text-blue-100";
 
-const footerLinkExclude = new Set(["Decarbonization", "Capabilities", "Contact"]);
+const footerLinkExclude = new Set(["Contact"]);
 
 const footerNavLinks = navLinks.filter((link) => !footerLinkExclude.has(link.label));
 

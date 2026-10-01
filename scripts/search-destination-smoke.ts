@@ -6,8 +6,8 @@ import {
 const cases: { query: string; hrefIncludes: string; hashIncludes?: string }[] = [
   { query: "Nishchay", hrefIncludes: "/team/", hashIncludes: "team-nishchay" },
   { query: "Dubai", hrefIncludes: "/contact/", hashIncludes: "office-dubai" },
-  { query: "UMISTAB", hrefIncludes: "/capabilities/", hashIncludes: "umistab" },
-  { query: "LNG", hrefIncludes: "/decarbonization/" },
+  { query: "UMISTAB", hrefIncludes: "/services/umistab-x/", hashIncludes: "umistab" },
+  { query: "LNG", hrefIncludes: "/services/mooring-compatibility/" },
   { query: "CFD", hrefIncludes: "/news/computational-fluid-dynamics/" },
   { query: "Master Mariners", hrefIncludes: "/team/" },
   { query: "Surveying", hrefIncludes: "/services/" },

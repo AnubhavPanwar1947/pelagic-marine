@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllCapabilityTopics, getAllServiceTopics } from "@/lib/topic-pages";
+import { getAllServiceTopics } from "@/lib/topic-pages";
 
 export const dynamic = "force-static";
 
@@ -10,9 +10,8 @@ const routes = [
   "/about/",
   "/services/",
   "/team/",
-  "/decarbonization/",
   "/news/",
-  "/capabilities/",
+  "/news/computational-fluid-dynamics/",
   "/contact/",
   "/privacy/",
   "/disclaimer/",
@@ -20,7 +19,6 @@ const routes = [
   "/terms/",
   "/engagement/",
   ...getAllServiceTopics().map((topic) => `/services/${topic.slug}/`),
-  ...getAllCapabilityTopics().map((topic) => `/capabilities/${topic.slug}/`),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

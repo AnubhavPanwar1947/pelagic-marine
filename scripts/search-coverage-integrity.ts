@@ -188,7 +188,7 @@ for (const file of files) {
   const coverage = words.length ? (words.length - missing.length) / words.length : 1;
   const normalizedRoute = route.endsWith("/") ? route : `${route}/`;
   const threshold =
-    ["/team/", "/contact/", "/careers/", "/about/"].includes(normalizedRoute)
+    ["/team/", "/contact/", "/about/"].includes(normalizedRoute)
       ? 0.99
       : ["/privacy/", "/cookies/", "/terms/", "/engagement/", "/disclaimer/"].includes(
             normalizedRoute,
@@ -208,7 +208,7 @@ if (failures.length) {
     );
   }
   const critical = failures.filter((failure) =>
-    ["/team/", "/contact/", "/careers/", "/about/"].includes(
+    ["/team/", "/contact/", "/about/"].includes(
       failure.route.endsWith("/") ? failure.route : `${failure.route}/`,
     ),
   );

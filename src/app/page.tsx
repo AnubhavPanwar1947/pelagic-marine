@@ -78,7 +78,13 @@ export default function HomePage() {
                     className="home-service-tile group relative flex h-full min-h-[17rem] w-full min-w-0 flex-col items-center justify-start rounded-xl p-4 motion-reduce:transition-none min-[17.5rem]:p-7 sm:p-8"
                   >
                     <span className="home-service-tile-face flex w-full min-w-0 flex-col items-center">
-                      <span className="home-service-tile-icon">
+                      <span
+                        className={
+                          service.slug === "naval-architecture-design"
+                            ? "home-service-tile-icon home-service-tile-icon--naval-hairline-fix"
+                            : "home-service-tile-icon"
+                        }
+                      >
                         <Image
                           src={
                             homeServiceIcons[
@@ -91,6 +97,12 @@ export default function HomePage() {
                           className="home-service-tile-icon__img object-contain"
                           sizes="167px"
                         />
+                        {service.slug === "naval-architecture-design" ? (
+                          <span
+                            className="home-service-icon-cover"
+                            aria-hidden="true"
+                          />
+                        ) : null}
                       </span>
                       <span className="home-service-tile-label">{service.title}</span>
                     </span>

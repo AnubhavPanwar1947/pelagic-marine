@@ -1,15 +1,11 @@
 import {
-  capabilitiesSections,
-  careers,
   company,
   contactPage,
-  decarbonization,
   newsItems,
-  sectorDetails,
   serviceCategories,
   teamMembers,
 } from "./site-data";
-import { decarbPointAnchorId, teamMemberAnchorId } from "./search-slugs";
+import { teamMemberAnchorId } from "./search-slugs";
 import {
   buildTeamPageSearchBody,
   teamPageHero,
@@ -36,11 +32,8 @@ import {
 import { SEARCH_LAND_TARGET_ID } from "./search-types";
 import {
   buildAboutPageSearchBody,
-  buildCapabilitiesHubSearchBody,
-  buildCareersPageSearchBody,
   buildContactPageSearchBody,
   buildHomePageSearchBody,
-  buildLoginPageSearchBody,
 } from "./page-search-content";
 import {
   buildCookiesPageSearchBody,
@@ -62,7 +55,7 @@ import {
   type SearchResultGroup,
 } from "./search-types";
 import { getServiceArticleContent } from "./service-topic-articles";
-import { getAllCapabilityTopics, getAllServiceTopics, getTopicBody } from "./topic-pages";
+import { getAllServiceTopics } from "./topic-pages";
 import { getServiceCategoryHref, getServiceItemHref } from "./service-slugs";
 
 export type { SearchFilterTab, SearchResult, SearchResultGroup } from "./search-types";
@@ -85,9 +78,26 @@ export type SearchPageAnchor = {
 export const SEARCH_QUICK_LINKS = [
   { label: "Services", href: "/services/" },
   { label: "Team", href: "/team/" },
-  { label: "Capabilities", href: "/capabilities/" },
+  { label: "Blog", href: "/news/" },
   { label: "Contact", href: "/contact/" },
 ] as const;
+
+const SERVICE_SEARCH_KEYWORDS: Record<string, string> = {
+  "mooring-compatibility":
+    "LNG bunkering clean fuel compatibility decarbonization FuelEU ship-to-shore ship-to-ship terminal",
+  loadicator: "UMISTAB capabilities proprietary class-approved loading stability",
+  "umistab-x": "UMISTAB capabilities loadicator bulk carrier",
+  engineering: "ANSYS NAPA AutoHydro simulation software analysis capabilities",
+  "naval-architecture-design": "NAPA design analysis capabilities licensed tools",
+  "service-fea": "ANSYS finite element analysis simulation structural",
+  optimoor: "Optimoor mooring static dynamic capabilities",
+  orcaflex: "OrcaFlex mooring dynamic marine systems simulation",
+  "service-cfd": "computational fluid dynamics CFD simulation resistance",
+};
+
+function serviceSearchKeywords(slug: string): string | undefined {
+  return SERVICE_SEARCH_KEYWORDS[slug];
+}
 
 export const SEARCH_POPULAR = [
   "LNG",
@@ -208,35 +218,13 @@ function registerStructuredAnchors(map: Map<string, IndexedSearchResult>) {
     },
   ]);
 
-  appendPageAnchors(
-    map,
-    "/capabilities/",
-    capabilitiesSections.map((section) => ({
-      id: section.id,
-      label: section.title,
-      searchText: `${section.title} ${section.summary} ${(section.tags ?? []).join(" ")}`,
-    })),
-  );
-
-  appendPageAnchors(
-    map,
-    "/sectors/",
-    sectorDetails.map((sector) => ({
-      id: sector.slug,
-      label: sector.title,
-      searchText: `${sector.title} ${sector.summary}`,
-    })),
-  );
-
-  appendPageAnchors(
-    map,
-    "/decarbonization/",
-    decarbonization.points.map((point) => ({
-      id: decarbPointAnchorId(point),
-      label: point,
-      searchText: point,
-    })),
-  );
+  appendPageAnchors(map, "/services/umistab-x/", [
+    {
+      id: "umistab",
+      label: "UMISTAB-X",
+      searchText: "UMISTAB-X loadicator capabilities class-approved bulk carrier stability",
+    },
+  ]);
 
   appendPageAnchors(map, "/contact/", [
     {
@@ -302,6 +290,7 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     excerpt:
       "Pelagic Marine is a naval architecture and marine engineering consultancy in Dubai, serving maritime, offshore, oil & gas and renewables clients worldwide.",
     group: "pages",
+    keywords: "sectors maritime shipping offshore oil gas renewables ports infrastructure",
     body: buildAboutPageSearchBody(),
   });
 
@@ -311,6 +300,8 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     category: "Page",
     excerpt: "Naval architecture, engineering, surveying, mooring, LNG, and fleet support.",
     group: "services",
+    keywords:
+      "capabilities ANSYS NAPA AutoHydro Optimoor UMISTAB LNG simulation software clean fuel",
     body: [
       "Practices built for the full vessel lifecycle",
       "Concept design structural analysis surveys audits mooring studies and loading tools the same engineering rigour whichever practice you need",
@@ -329,6 +320,7 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
       category: "Service",
       excerpt: category.summary,
       group: "services",
+      keywords: serviceSearchKeywords(category.slug),
       body: category.items.map((item) => `${item.label} ${item.teaser ?? ""}`).join(" "),
     });
     for (const item of category.items) {
@@ -338,6 +330,7 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
         category: category.title,
         excerpt: item.teaser ?? category.summary,
         group: "services",
+        keywords: serviceSearchKeywords(item.slug),
       });
     }
   }
@@ -349,50 +342,10 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
       category: topic.kind === "service-category" ? "Service" : topic.eyebrow,
       excerpt: topic.summary,
       group: "services",
+      keywords: serviceSearchKeywords(topic.slug),
       body: serviceArticlePlainText(topic),
     });
   }
-
-  addIndexEntry(map, {
-    title: "Capabilities",
-    href: "/capabilities/",
-    category: "Page",
-    excerpt:
-      "ANSYS, NAPA, AutoHydro, Optimoor and SACS; mooring and LNG compatibility analysis; and UMISTAB-X from Pelagic Marine.",
-    group: "pages",
-    body: buildCapabilitiesHubSearchBody(),
-  });
-
-  for (const topic of getAllCapabilityTopics()) {
-    addIndexEntry(map, {
-      title: topic.title,
-      href: `/capabilities/${topic.slug}/`,
-      category: "Capability",
-      excerpt: topic.summary,
-      group: "pages",
-      keywords: topic.eyebrow,
-      body: `${topic.summary} ${getTopicBody(topic)}`,
-    });
-  }
-
-  addIndexEntry(map, {
-    title: "Sectors",
-    href: "/sectors/",
-    category: "Page",
-    excerpt: "Maritime, offshore, renewables, and ports — sector expertise from Pelagic Marine.",
-    group: "pages",
-    body: sectorDetails.map((sector) => `${sector.title} ${sector.summary}`).join(" "),
-  });
-
-  addIndexEntry(map, {
-    title: "Decarbonization & clean fuels",
-    href: "/decarbonization/",
-    category: "Page",
-    excerpt: decarbonization.summary,
-    group: "pages",
-    keywords: "lng clean fuel alternative fuels fueleu bunkering",
-    body: decarbonization.points.join(" "),
-  });
 
   const newsBody = [
     ...newsItems.map((item) => `${item.title} ${item.excerpt} ${item.category}`),
@@ -431,32 +384,14 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
   });
 
   addIndexEntry(map, {
-    title: "Careers",
-    href: "/careers/",
-    category: "Page",
-    excerpt: careers.summary,
-    group: "pages",
-    body: buildCareersPageSearchBody(),
-    keywords: "jobs hiring master mariners marine engineers naval architects",
-  });
-
-  addIndexEntry(map, {
     title: "Contact",
     href: "/contact/",
     category: "Page",
     excerpt: "Mumbai, Dehradun and Dubai — get in touch with Pelagic Marine.",
     group: "pages",
-    keywords: "India UAE Dubai offices enquiry",
+    keywords:
+      "India UAE Dubai offices enquiry careers jobs hiring client login maritime advisory platform",
     body: buildContactPageSearchBody(),
-  });
-
-  addIndexEntry(map, {
-    title: "Client login",
-    href: "/login/",
-    category: "Page",
-    excerpt: "Secure client access to the Pelagic Maritime Advisory Platform.",
-    group: "pages",
-    body: buildLoginPageSearchBody(),
   });
 
   addIndexEntry(map, {

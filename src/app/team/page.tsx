@@ -9,6 +9,7 @@ import {
   SEARCH_SCROLL_MARGIN_CLASS,
 } from "@/lib/search-slugs";
 import {
+  teamMemberBioParagraphs,
   teamMemberImageAlt,
   teamMembers,
   teamPageCta,
@@ -39,6 +40,8 @@ export default function TeamPage() {
           <div className="grid gap-8 lg:grid-cols-2">
             {teamMembers.map((member) => {
               const isAbhinav = member.photo.endsWith("/abhinav.png");
+              const isVinod = member.name === "Vinod Janardanan";
+              const bioParagraphs = teamMemberBioParagraphs(member);
               return (
               <article
                 key={member.name}
@@ -51,7 +54,7 @@ export default function TeamPage() {
                   >
                     <SiteImage
                       src={member.photo}
-                      alt={teamMemberImageAlt(member.name)}
+                      alt={teamMemberImageAlt(member)}
                       fill
                       className="object-cover"
                       objectPosition={
@@ -73,9 +76,34 @@ export default function TeamPage() {
                     >
                       {member.role}
                     </p>
-                    <p className="team-member-card__bio">
-                      {member.bio}
-                    </p>
+                    {isVinod ? (
+                      <div
+                        className="team-member-card__bio-scroll min-w-0"
+                        tabIndex={0}
+                        role="region"
+                        aria-label={`Biography of ${member.name}`}
+                      >
+                        {bioParagraphs.map((paragraph, index) => (
+                          <p
+                            key={index}
+                            className="team-member-card__bio min-w-0 break-words"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="min-w-0">
+                        {bioParagraphs.map((paragraph, index) => (
+                          <p
+                            key={index}
+                            className="team-member-card__bio min-w-0 break-words"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </article>

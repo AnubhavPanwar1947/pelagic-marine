@@ -24,6 +24,12 @@ PHP sends From that address (DreamHost sender policy).
 
 ## Soft redirects (`.htaccess`)
 
-- `/sectors` → `/`
+Legacy URLs (optional — add if old links or bookmarks still exist):
+
+- `/sectors` → `/about/`
 - `/careers` → `/contact/`
 - `/login` → `/contact/`
+- `/decarbonization` → `/services/mooring-compatibility/`
+- `/capabilities` → `/services/`
+- `/capabilities/clean-fuel` → `/services/mooring-compatibility/`
+- `/capabilities/software` → `/services/engineering/`

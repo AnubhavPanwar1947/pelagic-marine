@@ -205,6 +205,35 @@
   max-height: 100%;
 }
 
+/* Desktop-only mask for raster hairline in naval-architecture.svg (homepage tile) */
+.home-page .home-service-tile-icon--naval-hairline-fix {
+  position: relative;
+}
+
+.home-page .home-service-icon-cover {
+  display: none;
+  pointer-events: none;
+}
+
+@media (min-width: 40rem) {
+  .home-page .home-service-tile-icon--naval-hairline-fix .home-service-icon-cover {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    background-color: #ffffff;
+    left: calc(
+      (100% - var(--home-service-icon-inner-w)) / 2 +
+        var(--home-service-icon-inner-w) * 0.215
+    );
+    top: calc(
+      (100% - var(--home-service-icon-inner-h)) / 2 +
+        var(--home-service-icon-inner-h) * 0.603
+    );
+    width: calc(var(--home-service-icon-inner-w) * 0.57);
+    height: 2px;
+  }
+}
+
 @media (min-width: 17.5rem) {
   .home-page .home-service-tile-icon {
     --home-service-icon-box-w: min(167px, calc(100% - 0.5rem));

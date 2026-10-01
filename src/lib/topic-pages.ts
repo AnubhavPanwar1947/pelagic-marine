@@ -8,35 +8,11 @@ export type TopicPage = {
   /** Where the “back” link goes */
   parentHref: string;
   parentLabel: string;
-  kind: "service-item" | "service-category" | "capability";
+  kind: "service-item" | "service-category";
 };
 
 const PLACEHOLDER =
-  "Detailed content for this topic is being prepared. In the meantime, contact our team to discuss scope, vessel details and delivery timelines. Enquire about capabilities.";
-
-/** Capability-only topics (not listed as service categories) */
-const capabilityTopics: TopicPage[] = [
-  {
-    slug: "clean-fuel",
-    title: "LNG bunkering & compatibility",
-    eyebrow: "Clean fuel",
-    summary:
-      "Mooring and transfer compatibility, procedures and attendance for LNG ship-to-ship and terminal operations.",
-    parentHref: "/capabilities/",
-    parentLabel: "Capabilities",
-    kind: "capability",
-  },
-  {
-    slug: "software",
-    title: "Analysis & simulation suites",
-    eyebrow: "Software we use",
-    summary:
-      "Licensed toolchains spanning structures, stability, hydrodynamics and mooring — applied with engineering judgement.",
-    parentHref: "/capabilities/",
-    parentLabel: "Capabilities",
-    kind: "capability",
-  },
-];
+  "Detailed content for this topic is being prepared. In the meantime, contact our team to discuss scope, vessel details and delivery timelines.";
 
 function categoryTopics(): TopicPage[] {
   return serviceCategories.map((category) => ({
@@ -60,7 +36,7 @@ function itemTopics(): TopicPage[] {
       parentHref: `/services/${category.slug}/`,
       parentLabel: category.title,
       kind: "service-item" as const,
-    }))
+    })),
   );
 }
 
@@ -69,30 +45,19 @@ export function getTopicBody(topic: TopicPage) {
   if (topic.kind === "service-item") {
     return PLACEHOLDER;
   }
-  if (topic.kind === "service-category") {
-    const category = serviceCategories.find((c) => c.slug === topic.slug);
-    const names = category?.items.map((i) => i.label).join(", ");
-    return names
-      ? `${PLACEHOLDER} Related offerings include: ${names}.`
-      : PLACEHOLDER;
-  }
-  return PLACEHOLDER;
+  const category = serviceCategories.find((c) => c.slug === topic.slug);
+  const names = category?.items.map((i) => i.label).join(", ");
+  return names
+    ? `${PLACEHOLDER} Related offerings include: ${names}.`
+    : PLACEHOLDER;
 }
 
 export function getAllServiceTopics(): TopicPage[] {
   return [...categoryTopics(), ...itemTopics()];
 }
 
-export function getAllCapabilityTopics(): TopicPage[] {
-  return capabilityTopics;
-}
-
 export function getServiceTopic(slug: string): TopicPage | undefined {
   return getAllServiceTopics().find((t) => t.slug === slug);
-}
-
-export function getCapabilityTopic(slug: string): TopicPage | undefined {
-  return getAllCapabilityTopics().find((t) => t.slug === slug);
 }
 
 export function getTopicHeroDescription(topic: TopicPage) {

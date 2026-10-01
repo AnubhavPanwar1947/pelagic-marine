@@ -12,9 +12,5 @@ export function teamMemberAnchorId(name: string): string {
 
 export const teamPageCtaAnchorId = "team-work-with-the-people";
 
-export function decarbPointAnchorId(point: string): string {
-  return `decarb-${toSearchAnchorId(point)}`;
-}
-
 export const SEARCH_SCROLL_MARGIN_CLASS =
   "scroll-mt-[calc(var(--site-header-height,75px)+1rem)]";

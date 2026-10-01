@@ -293,12 +293,14 @@ const articles: Record<string, ArticleInput> = {
   },
   optimoor: {
     paragraphs: [
-      "Optimoor supports static and dynamic mooring analysis for vessels, berths, terminals and ship-to-ship operations, helping operators assess line loads, fender response, environmental conditions and safe operating limits. Pelagic Marine combines model setup, scenario testing and engineering judgement to turn mooring results into clear recommendations for berth design, upgrade studies, incident review and day-to-day marine operations.",
+      "Optimoor-based analysis covering Static and Dynamic mooring assessment, vessel motions, individual line tensions, fender forces and deflections, berth/jetty loads and operational limits. The analysis can incorporate wind, current, waves and other operational effects, together with assessment of mooring arrangements and optimisation of line configurations.",
+      "Capabilities include terminal and berth mooring, STS operations, passing-ship interaction, mooring optimisation, line/hook/jetty loads, fender assessment, environmental operating envelopes and transient dynamic cases including wind gusts, changing current, line failure and other critical operational scenarios.",
     ],
   },
   orcaflex: {
     paragraphs: [
-      "OrcaFlex is used to model the time-domain behaviour of dynamic marine systems, including mooring lines, risers, towed bodies and offshore installation arrangements. Pelagic Marine applies OrcaFlex to evaluate combined wind, wave and current conditions, installation and tow dynamics, sensitivity cases and operational limits, giving project teams a clearer basis for design decisions and safe execution.",
+      "Advanced time-domain analysis of mooring and marine systems using OrcaFlex, providing detailed assessment of vessel motions, nonlinear mooring behaviour, dynamic line response and coupled environmental loading. The capability is suited to complex marine systems where transient and dynamic effects require detailed investigation.",
+      "Applications include dynamic mooring analysis, offshore and nearshore operations, STS operations, complex environmental loading, transient response and coupled vessel–mooring systems. OrcaFlex can be used for detailed investigation of governing dynamic cases and system response under combined wind, wave and current conditions.",
     ],
   },
   "umistab-x": {
@@ -322,9 +324,6 @@ const fallbackArticle = (topic: TopicPage): ServiceArticleContent =>
   });
 
 export function getServiceArticleContent(topic: TopicPage): ServiceArticleContent {
-  if (topic.kind === "capability") {
-    return fallbackArticle(topic);
-  }
   const raw = articles[topic.slug];
   return raw ? normalizeArticle(raw) : fallbackArticle(topic);
 }

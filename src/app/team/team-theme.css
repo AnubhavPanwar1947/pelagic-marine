@@ -99,6 +99,42 @@
   text-wrap: pretty;
 }
 
+.team-page .team-member-card__bio + .team-member-card__bio {
+  margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .team-page #team-vinod-janardanan .team-member-card__body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .team-page #team-vinod-janardanan .team-member-card__bio-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(14, 35, 94, 0.28) transparent;
+  }
+
+  .team-page #team-vinod-janardanan .team-member-card__bio-scroll:focus-visible {
+    outline: 2px solid var(--pelagic-accent);
+    outline-offset: 2px;
+  }
+
+  .team-page #team-vinod-janardanan .team-member-card__bio-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .team-page #team-vinod-janardanan .team-member-card__bio-scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(14, 35, 94, 0.22);
+  }
+}
+
 /* Capt. Abhinav Upadhyay — 4:9 portrait (matches 480×1080 source) */
 .team-page .team-member-card--abhinav .team-member-card__portrait {
   aspect-ratio: 4 / 9;

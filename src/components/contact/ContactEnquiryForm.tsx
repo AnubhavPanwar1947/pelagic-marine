@@ -1,6 +1,7 @@
 "use client";
 
 import { useContactEnquiry } from "@/components/contact/ContactEnquiryContext";
+import { CONTACT_MAILTO_NOTICE } from "@/lib/contact-mailto-fallback";
 import { contactPage } from "@/lib/site-data";
 
 const inputClass =
@@ -21,6 +22,7 @@ export function ContactEnquiryForm() {
     reference,
     loading,
     error,
+    mailtoNotice,
     handleSubmit,
     resetSubmission,
     formRef,
@@ -133,8 +135,20 @@ export function ContactEnquiryForm() {
           />
         </div>
 
+        {mailtoNotice ? (
+          <p
+            role="status"
+            className="rounded-lg bg-[#e8f4fc] px-4 py-3 text-center text-sm leading-relaxed text-[#0e235e] ring-1 ring-[#c5e3f5]"
+          >
+            {CONTACT_MAILTO_NOTICE}
+          </p>
+        ) : null}
+
         {error && (
-          <p className="rounded-lg bg-red-50 px-4 py-3 text-center text-sm text-[#9a3b2f] ring-1 ring-red-100">
+          <p
+            role="alert"
+            className="rounded-lg bg-red-50 px-4 py-3 text-center text-sm leading-relaxed text-[#9a3b2f] ring-1 ring-red-100"
+          >
             {error}
           </p>
         )}

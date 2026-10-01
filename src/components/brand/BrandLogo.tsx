@@ -6,6 +6,7 @@ import {
   BRAND_LOGO_HORIZONTAL_SRC,
   BRAND_LOGO_HORIZONTAL_WIDTH,
   BRAND_LOGO_WHITE_HORIZONTAL_SRC,
+  BRAND_LOGO_ANCHOR_SRC,
 } from "@/components/brand/BrandLogoMark";
 
 type BrandLogoProps = {
@@ -160,9 +161,36 @@ export function BrandLogo({
     </div>
   ) : null;
 
+  const headerNarrowLogo = isHeader ? (
+    <div className="brand-logo-narrow-svg min-h-0 min-w-0 shrink" aria-hidden>
+      <Image
+        src={BRAND_LOGO_ANCHOR_SRC}
+        alt=""
+        width={BRAND_LOGO_HORIZONTAL_WIDTH}
+        height={BRAND_LOGO_HORIZONTAL_HEIGHT}
+        className="brand-logo-narrow-svg__img"
+        sizes="200px"
+        priority={isHeader}
+      />
+    </div>
+  ) : null;
+
   const footerFullLogo = isFooter ? (
     <div className="brand-logo-full-svg min-h-0 min-w-0 shrink" aria-hidden>
       {horizontalLogoImage}
+    </div>
+  ) : null;
+
+  const footerNarrowLogo = isFooter ? (
+    <div className="brand-logo-footer-narrow-svg min-h-0 min-w-0 shrink" aria-hidden>
+      <Image
+        src={BRAND_LOGO_ANCHOR_SRC}
+        alt=""
+        width={BRAND_LOGO_HORIZONTAL_WIDTH}
+        height={BRAND_LOGO_HORIZONTAL_HEIGHT}
+        className="brand-logo-footer-narrow-svg__img"
+        sizes="200px"
+      />
     </div>
   ) : null;
 
@@ -185,8 +213,10 @@ export function BrandLogo({
       }${compact && isHeader ? " brand-logo-lockup--compact" : ""} ${lockupShine ? "brand-logo-lockup--shine" : ""}`}
     >
       {headerFullLogo}
+      {headerNarrowLogo}
       {footerFullLogo}
-      {mark}
+      {footerNarrowLogo}
+      {!isFooter && mark}
       {showWordmark && (
         <div className="brand-logo-wordmark-group inline-flex items-stretch">
           <span className="brand-logo-lockup-divider shrink-0" aria-hidden />
