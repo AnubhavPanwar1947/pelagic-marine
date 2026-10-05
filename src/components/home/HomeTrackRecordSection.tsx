@@ -94,7 +94,7 @@ export function HomeTrackRecordSection() {
     >
       <div className="mx-auto max-w-7xl min-w-0 px-4 sm:px-6 lg:px-8">
         <Reveal variant="text">
-          <div className="home-track-record__intro min-w-0 max-w-4xl">
+          <div className="home-track-record__intro pelagic-copy-container min-w-0 max-w-4xl">
             <p className="home-track-record__eyebrow">TRACK RECORD</p>
             <h2
               id="home-track-record-heading"

@@ -18,36 +18,14 @@ export function ContactEnquiryForm() {
   const {
     message,
     setMessage,
-    submitted,
-    reference,
     loading,
     error,
     mailtoNotice,
     handleSubmit,
-    resetSubmission,
     formRef,
   } = useContactEnquiry();
   const { form } = contactPage;
-
-  if (submitted) {
-    return (
-      <div className="min-w-0 px-2 text-center sm:px-4">
-        <p className="text-base leading-7 text-[#2e6b3e]">{form.successMessage}</p>
-        {reference && (
-          <p className="mt-3 text-sm text-pelagic-copy">
-            Reference: <span className="font-mono tracking-wide">{reference}</span>
-          </p>
-        )}
-        <button
-          type="button"
-          onClick={resetSubmission}
-          className="mt-6 text-sm font-semibold text-[#1e7fd0] underline-offset-4 transition-colors duration-300 ease-out hover:text-pelagic-accent-hover hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e7fd0] motion-reduce:transition-none"
-        >
-          Send another enquiry
-        </button>
-      </div>
-    );
-  }
+  const submitLabel = loading || mailtoNotice ? "Opening your email app…" : form.submit;
 
   return (
     <div className="min-w-0">
@@ -159,7 +137,7 @@ export function ContactEnquiryForm() {
             disabled={loading}
             className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-[#2fa8ee] px-10 py-3 text-sm font-semibold text-white transition-colors duration-300 ease-out hover:bg-[#1e96d6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2fa8ee] disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none"
           >
-            {loading ? "Sending..." : form.submit}
+            {submitLabel}
           </button>
         </div>
       </form>

@@ -3,24 +3,13 @@
 Configured like Beluga Educorp:
 
 1. Static HTML/CSS/JS (`npm run build` → `out/`)
-2. Contact mail via DreamHost PHP (`public/send-mail.php`)
+2. Contact enquiries open the visitor’s email app with a prepared message to `info@pelagic-marine.com` (no server-side mail handler)
 
 No Vercel / Supabase / Resend / Formspree required for go-live.
 
-## Email requirement
+## Contact form
 
-Create DreamHost mailbox: `info@pelagic-marine.com`  
-PHP sends From that address (DreamHost sender policy).
-
-## Security in send-mail.php
-
-- POST only
-- Honeypot field (`company_website`)
-- Minimum form fill time
-- Per-IP rate limit
-- Header injection cleanup
-- Length limits
-- Admin mail + visitor auto-reply with enquiry reference
+Submitting the form opens the user’s default mail client with subject and body filled in. The visitor must tap **Send** in that app for the message to reach Pelagic.
 
 ## Soft redirects (`.htaccess`)
 

@@ -6,14 +6,14 @@ Professional marketing website for **Pelagic Marine Solutions**, built for **Dre
 
 - Next.js → **static export** (`out/`)
 - TypeScript + Tailwind CSS
-- Contact form → DreamHost **`send-mail.php`** (no Vercel / Supabase / Resend)
+- Contact form → visitor’s email app (`mailto:` to `info@pelagic-marine.com`)
 
 ## What's included
 
 - **Home** — hero, services overview, offices, CTA
 - **About** — company story, leadership
 - **Services** — full service catalogue
-- **Contact** — offices, map, enquiry form (PHP mail on live)
+- **Contact** — offices, map, enquiry form (opens email app)
 - Legal pages — privacy, cookies, terms
 
 ## Local preview (design)
@@ -25,7 +25,7 @@ npm.cmd run dev
 ```
 
 Open http://localhost:3000  
-(Contact email send works after DreamHost upload — PHP is not available in `next dev`.)
+(Contact opens your local mail app when you submit the form.)
 
 ## Build for DreamHost
 
@@ -42,7 +42,7 @@ src/
   app/           # Pages
   components/    # Header, Footer, Contact, UI
   lib/           # Company content and helpers
-public/          # Logo, images, send-mail.php, .htaccess
+public/          # Logo, images, .htaccess
 ```
 
 ## Scripts

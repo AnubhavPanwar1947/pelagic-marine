@@ -17,7 +17,7 @@ npm.cmd install
 npm.cmd run build
 ```
 
-This creates the **`out/`** folder (static HTML/CSS/JS + `send-mail.php` + `.htaccess`).
+This creates the **`out/`** folder (static HTML/CSS/JS + `.htaccess`).
 
 ## Upload
 
@@ -26,16 +26,14 @@ This creates the **`out/`** folder (static HTML/CSS/JS + `send-mail.php` + `.hta
 3. Upload **everything inside `out/`** into that folder (overwrite carefully after backup).
 4. Confirm these exist in the web root:
    - `index.html`
-   - `send-mail.php`
    - `.htaccess`
    - `_next/`
 
 ## Test after upload
 
 1. Open https://pelagic-marine.com/ and check Home, About, Services, Contact.
-2. Submit a real test enquiry on Contact — you should get admin mail + visitor confirmation.
-3. If the form fails: confirm `send-mail.php` is in the web root and `info@pelagic-marine.com` exists.
-4. Check mobile layout once on your phone.
+2. Submit a test enquiry on Contact — your email app should open with a prepared message to `info@pelagic-marine.com`; send it to confirm delivery.
+3. Check mobile layout once on your phone.
 
 ## DNS note
 

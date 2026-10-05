@@ -228,14 +228,10 @@ function registerStructuredAnchors(map: Map<string, IndexedSearchResult>) {
 
   appendPageAnchors(map, "/contact/", [
     {
-      id: "office-dubai",
-      label: "Dubai office",
-      searchText: "Dubai UAE office Al Raffa Dehradun Mumbai India",
-    },
-    {
-      id: "office-india",
-      label: "India offices",
-      searchText: "India Mumbai Dehradun phone mobilisation",
+      id: "enquiry-form",
+      label: "Enquiry form",
+      searchText:
+        "Dubai UAE office Al Raffa Dehradun Mumbai India phone mobilisation enquiry contact reach out",
     },
   ]);
 
@@ -304,7 +300,7 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
       "capabilities ANSYS NAPA AutoHydro Optimoor UMISTAB LNG simulation software clean fuel",
     body: [
       "Practices built for the full vessel lifecycle",
-      "Concept design structural analysis surveys audits mooring studies and loading tools the same engineering rigour whichever practice you need",
+      "Concept design structural analysis surveys audits mooring studies and cargo planning the same engineering rigour whichever practice you need",
       ...serviceCategories.flatMap((category) => [
         category.title,
         category.summary,

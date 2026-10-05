@@ -11,7 +11,7 @@ export const teamPageHero = {
   eyebrow: "Team",
   title: "Naval architects and Master Mariners",
   description:
-    "A team that has designed structure and stood on deck — so the advice you receive is grounded in both the analysis and the operation.",
+    "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
 } as const;
 
 export const teamPageCta = {

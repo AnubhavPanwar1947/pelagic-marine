@@ -23,7 +23,7 @@ function ServiceTopicArticle({ topic }: { topic: TopicPage }) {
 
   return (
     <article className="service-topic-article bg-white py-12 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="pelagic-copy-container mx-auto max-w-3xl min-w-0 px-4 sm:px-6 lg:px-8">
         <h1
           className="font-display type-subsection-title--lg min-w-0 break-words font-semibold text-[#0e235e]"
         >
@@ -89,7 +89,7 @@ export function TopicDetailPage({ topic }: TopicDetailPageProps) {
       />
 
       <SectionMaritime variant="plain" className="section-py-md" gridOpacity={40}>
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="pelagic-copy-container mx-auto max-w-3xl min-w-0 px-4 sm:px-6 lg:px-8">
           <p className="type-copy">{getTopicBody(topic)}</p>
 
           {category && category.items.length > 0 ? (

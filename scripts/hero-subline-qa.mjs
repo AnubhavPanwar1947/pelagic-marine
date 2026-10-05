@@ -10,7 +10,7 @@ async function dismiss(page) {
 }
 
 const SUBLINE =
-  "Naval architecture, stability, structures and clean-fuel advisory for owners, operators and charterers worldwide.";
+  "Design, engineering, quality assurance and clean-fuel advisory for owners, operators and charterers worldwide.";
 
 const widths = [50, 190, 320, 375, 480, 640, 768, 960, 1024, 1280, 1440];
 const browser = await chromium.launch({ headless: true });

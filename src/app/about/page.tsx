@@ -47,17 +47,17 @@ export default function AboutPage() {
         <div className="about-theme-hero__inner mx-auto min-w-0 max-w-7xl px-1.5 page-hero-py sm:px-6 lg:px-8">
           <div className="about-theme-hero__grid grid w-full min-w-0 gap-8 sm:gap-10 lg:grid-cols-2 lg:items-center lg:gap-section">
             <Reveal variant="text" className="min-w-0">
-              <div className="min-w-0">
+              <div className="pelagic-copy-container min-w-0 max-w-[75ch]">
                 <h1 className="type-display min-w-0 break-words text-[28px] font-semibold normal-case leading-tight text-[#0e235e] sm:text-[30px] lg:text-[32px]">
                   About Us
                 </h1>
-                <p className="type-lead mt-5 max-w-[75ch] min-w-0 break-words font-normal text-pelagic-copy">
-                  Pelagic marine consultants and surveyors was formed in year 2021 by young
+                <p className="type-lead mt-5 min-w-0 break-words font-normal text-pelagic-copy">
+                  Pelagic marine was formed in year 2021 by young
                   entrepreneurs from the shipping and engineering fraternity with wide range of
                   experience in vessel operations, ship surveying, Engineering, offshore operations,
                   dry &amp; wet cargo handling. The company was formed
                   to act as a one stop shop for various shipping industry centric solution. The core
-                  team consists of experienced Master Mariners, Marine engineers, naval architects.
+                  team consists of experienced Master Mariners.
                   We provide professional services to our clients from mainline shipping, oil
                   &amp; gas industry, offshore industry and renewable energy sector.
                 </p>

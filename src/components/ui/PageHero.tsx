@@ -62,7 +62,9 @@ export function PageHero({
           {title}
         </h1>
         {description && (
-          <p className="type-lead mt-5 max-w-2xl min-w-0 break-words">{description}</p>
+          <div className="pelagic-copy-container mt-5 max-w-2xl min-w-0">
+            <p className="type-lead min-w-0 break-words">{description}</p>
+          </div>
         )}
       </div>
     </section>

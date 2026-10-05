@@ -153,7 +153,7 @@ assert.match(teamHref, /#team-nishchay/);
 const dubai = searchAllMatches("Dubai").find((r) => r.href.includes("/contact/"));
 assert.ok(dubai);
 const dubaiHref = buildSearchDestinationHref(dubai!, "Dubai");
-assert.match(dubaiHref, /#office-dubai/);
+assert.match(dubaiHref, /#enquiry-form/);
 
 const privacy100 = searchAllMatches("100").find((r) => r.href.includes("/privacy/"));
 assert.ok(privacy100);

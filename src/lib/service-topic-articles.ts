@@ -80,7 +80,7 @@ const articles: Record<string, ArticleInput> = {
   },
   loadicator: {
     intro:
-      "The Loadicator practice provides class-approved loading and stability tools for crews and fleet technical teams who need reliable, auditable results at sea and ashore.",
+      "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
     leadIn: "We focus on:",
     bullets: [
       "Deployment and support of UMISTAB-X for approved loading and stability workflows",
@@ -101,7 +101,7 @@ const articles: Record<string, ArticleInput> = {
       "Detailed Engineering",
     ],
     closing:
-      "Our design process is client-driven and powered by a team of experienced professionals using cutting-edge, industry-standard software. We ensure every project meets technical, operational, and regulatory requirements—on time and with precision. Whether you need support with new builds or modifications, we bring expertise and innovation to every stage of the design journey.",
+      "Our design process is client-driven and powered by a team of experienced professionals using cutting-edge, industry-standard software. We work on every project to meet technical, operational, and regulatory requirements—on time and with precision. Whether you need support with new builds or modifications, we bring expertise and innovation to every stage of the design journey.",
   },
   "service-enganalysis": {
     paragraphs: [
@@ -109,7 +109,7 @@ const articles: Record<string, ArticleInput> = {
     ],
     leadIn: "We support projects through:",
     bullets: [
-      "In-place Analysis – Ensuring long-term structural performance under operational and environmental loads.",
+      "In-place Analysis – for long-term structural performance under operational and environmental loads.",
       "Pre-service Analysis – Evaluating conditions during fabrication, transportation, and installation, including temporary load scenarios.",
       "Fatigue Analysis – Assessing fatigue life using industry-accepted methods to help extend asset lifespan and plan maintenance.",
       "Decommissioning Analysis – Supporting safe and efficient removal planning through structural assessments and procedural reviews.",
@@ -127,21 +127,21 @@ const articles: Record<string, ArticleInput> = {
   "service-strength": {
     paragraphs: [
       "Our team conducts Global and Local Strength Analysis (GLSA) to evaluate the structural response of marine and offshore structures under extreme environmental loading. The analysis is grounded in first-principles methodologies, ensuring a physics-based, high-fidelity representation of structural behaviour.",
-      "Extreme load assessments are performed across a range of dominant load cases, which are identified based on vessel or structure type. For each load case, an Equivalent Design Wave (EDW) is derived to represent the most critical sea state in a simplified regular wave format. This approach enables detailed yet computationally efficient structural simulations.",
-      "GLSA is carried out using advanced finite element modelling to capture both global load distribution and localized stress concentrations. Our scope includes global structural analysis of jacket platforms, floating production units (FPUs), and self-elevating platforms (SEPs), all executed in full compliance with class and industry requirements.",
-      "Our analyses have consistently met or exceeded client specifications, supporting both newbuild and in-service assessment projects.",
+      "Extreme load assessments are performed across a range of dominant load cases, which are identified based on vessel or structure type. This approach enables detailed yet computationally efficient structural simulations.",
+      "GLSA is carried out using advanced finite element modelling to capture both global load distribution and localized stress concentrations. Our scope includes global structural analysis of jacket platforms, floating production units (FPUs), and self-elevating platforms (SEPs), all executed as per applicable class rules and industry guidelines.",
+      "Our analyses have consistently met or exceeded client expectations, supporting both newbuild and in-service assessment projects.",
     ],
   },
   "service-fea": {
     paragraphs: [
       "Finite Element Analysis (FEA) is a powerful computational method used to simulate and predict the structural and thermal behaviour of components and systems under real-world physical conditions such as mechanical loading, vibration, thermal gradients, and fluid interaction. While termed “analysis,” FEA is an integral part of the design and verification process, allowing engineers to anticipate structural performance, identify critical stress areas, and optimize designs before fabrication or physical testing.",
       "In the offshore and marine industry, FEA is extensively utilized to address complex engineering problems associated with floating and fixed structures. Applications include evaluating global structural integrity, local stress concentrations, fatigue life estimation, buckling assessments, and dynamic response to environmental loads.",
-      "Our engineering team employs ANSYS, a leading FEA platform, to carry out high-fidelity simulations that support the structural design and assessment of offshore platforms, subsea equipment, riser systems, and hull structures. All analyses are performed in accordance with relevant industry codes and class society requirements, ensuring both safety and performance across the asset lifecycle.",
+      "Our engineering team employs ANSYS, a leading FEA platform, to carry out high-fidelity simulations that support the structural design and assessment of offshore platforms, subsea equipment, riser systems, and hull structures. Analyses are performed in accordance with relevant industry codes and class society requirements, for safety and performance across the asset lifecycle.",
     ],
   },
   "service-shipplans": {
     paragraphs: [
-      "Our team of experienced Naval Architects provides a full suite of plans and technical drawings essential throughout the lifecycle of a marine asset. We ensure all documentation is prepared in accordance with the requirements of the relevant flag state and tailored for approval by leading classification societies.",
+      "Our team of experienced Naval Architects provides a full suite of plans and technical drawings essential throughout the lifecycle of a marine asset. All documentation is prepared in accordance with the requirements of the relevant flag state and tailored for approval by leading classification societies.",
     ],
     leadIn: "Our deliverables include, but are not limited to:",
     bullets: [
@@ -158,7 +158,7 @@ const articles: Record<string, ArticleInput> = {
       "Wheelhouse Visibility and Escape Route Plans",
       "Mooring and Towing Plans",
       "Wheelhouse Posters",
-      "Light and Sound Signaling Plans",
+      "Others as per client requirements",
     ],
     closing:
       "Our goal is to support vessel compliance, safety, and operational efficiency from concept to completion.",
@@ -166,7 +166,7 @@ const articles: Record<string, ArticleInput> = {
   "service-conversion": {
     subheading: "Lifecycle Engineering & Asset Upgrades",
     paragraphs: [
-      "To stay ahead in today’s fast-evolving industry, upgrading assets with the latest technologies and equipment is essential. Our team of seasoned experts delivers comprehensive engineering solutions throughout the entire lifecycle of your assets. From concept to completion, we support your most ambitious conversion and upgrade projects across the offshore, marine, and renewable energy sectors—boosting performance, reliability, and efficiency every step of the way.",
+      "To stay ahead in today’s fast-evolving industry, it is essential to upgrade assets using the latest design solutions, technologies, and equipment. Our team of seasoned experts delivers comprehensive engineering solutions throughout the entire lifecycle of your assets. From concept to completion, we support your most ambitious conversion and upgrade projects across the offshore, marine, and renewable energy sectors—boosting performance, reliability, and efficiency every step of the way.",
     ],
   },
   "service-manuals": {
@@ -203,34 +203,34 @@ const articles: Record<string, ArticleInput> = {
   },
   "service-hydro": {
     paragraphs: [
-      "Marine environments are constantly changing—and so is vessel performance. Our expert team of naval architects and hydrodynamic engineers utilizes cutting-edge simulation tools and industry-leading software to accurately predict how marine assets will perform in real-world sea and weather conditions. From seakeeping and RAO calculations to resistance, motion response, multi-body dynamics, sloshing analysis, and propeller performance assessment—we provide end-to-end hydrodynamic solutions. Whether it’s during the design phase or in operational optimization, we help you enhance safety, efficiency, and reliability at sea.",
+      "Marine environments are constantly changing—and so is vessel performance. Our expert team of naval architects and hydrodynamic engineers utilizes cutting-edge simulation tools and industry-leading software to predict how marine assets will perform in real-world sea and weather conditions. From seakeeping and RAO calculations to resistance, motion response, multi-body dynamics, sloshing analysis, and propeller performance assessment—we provide end-to-end hydrodynamic solutions. Whether it’s during the design phase or in operational optimization, we help you enhance safety, efficiency, and reliability at sea.",
     ],
   },
   "service-loadout": {
     paragraphs: [
-      "When transporting cargo by sea, it is essential to secure it in a way that prevents any movement which could potentially damage the cargo or the vessel. Improperly secured cargo can shift during transit, posing serious risks to vessel stability and endangering both the crew and the cargo. This is especially critical when handling valuable assets such as machinery, equipment, fabricated structures, and marine components of varying sizes and complexities. Insurers often mandate that cargo is properly fastened to mitigate these risks. Our team of experienced engineers and naval architects ensures that loadout and sea fastening are executed to the highest standards—optimized for safety, efficiency, and in full compliance with the requirements of clients, insurers, and all relevant stakeholders.",
+      "When transporting cargo by sea, it is essential to secure it in a way that prevents any movement which could potentially damage the cargo or the vessel. Improperly secured cargo can shift during transit, posing serious risks to vessel stability and endangering both the crew and the cargo. This is especially critical when handling valuable assets such as machinery, equipment, fabricated structures, and marine components of varying sizes and complexities. Insurers often mandate that cargo is properly fastened to mitigate these risks. Our team of experienced engineers and naval architects prepares plans to facilitate loadout and sea fastening—optimized for safety, efficiency, and compliance with the requirements of clients, insurers, and all relevant stakeholders.",
     ],
   },
   "service-cfd": {
     paragraphs: [
-      "At the forefront of engineering innovation, Computational Fluid Dynamics (CFD) is a core tool we use to simulate and optimize fluid flow behavior in complex systems. Whether designing next-generation wind turbines, high-performance marine vessels, or energy-efficient HVAC systems, CFD allows us to deliver data-driven solutions with precision and reliability.",
-      "CFD involves the numerical analysis of fluid behavior based on physical parameters such as velocity, pressure, temperature, density, and viscosity. By replicating real-world fluid interactions within a virtual environment, we can accurately predict performance, identify inefficiencies, and refine designs long before any physical prototype is built.",
+      "At the forefront of engineering innovation, Computational Fluid Dynamics (CFD) is a core tool we use to simulate and optimize fluid flow behavior in complex systems. Whether designing next-generation wind turbines, optimizing hull performance, high-performance marine vessels, or energy-efficient HVAC systems, CFD allows us to deliver data-driven solutions with precision and reliability.",
+      "CFD involves the numerical analysis of fluid behavior based on physical parameters such as velocity, pressure, temperature, density, and viscosity. By replicating real-world fluid interactions within a virtual environment, we can predict performance, identify inefficiencies, and refine designs long before any physical prototype is built.",
       "As a digital fluid dynamics simulator, CFD plays a critical role in high-end design optimization, reducing development time and cost while enhancing safety and functionality. Our team leverages advanced CFD tools and deep domain expertise to deliver customized solutions tailored to your engineering challenges.",
     ],
   },
   "service-heat": {
     paragraphs: [
-      "Our engineering team delivers high-performance heat transfer analysis solutions tailored for the maritime industry. We provide precise evaluation of temperature distribution and heat flux in structural components exposed to thermal loads, supporting both steady-state and transient conditions, as well as linear and non-linear material behavior.",
-      "With proven expertise in handling high-temperature cargo scenarios, we ensure optimal thermal management and insulation design for vessels operating beyond typical ambient marine conditions. Our solutions help enhance safety, maintain cargo integrity, and improve energy efficiency—meeting the rigorous demands of modern shipping operations.",
+      "Our engineering team delivers high-performance heat transfer analysis solutions tailored for the maritime industry. We provide evaluation of temperature distribution and heat flux in structural components exposed to thermal loads, supporting both steady-state and transient conditions, as well as linear and non-linear material behavior.",
+      "With proven expertise in handling high-temperature cargo scenarios, we work on optimal thermal management and insulation design for vessels operating beyond typical ambient marine conditions. Our solutions help enhance safety, maintain cargo integrity, and improve energy efficiency—meeting the rigorous demands of modern shipping operations.",
     ],
   },
   "service-stability": {
     paragraphs: [
-      "At Pelagic Marine, we provide comprehensive stability calculations tailored to the needs of our offshore and main fleet clients. Our services encompass a wide range of stability-related tasks, ensuring the safe and efficient operation of vessels.",
+      "At Pelagic Marine, we provide comprehensive stability calculations tailored to the needs of our offshore and main fleet clients. Our services encompass a wide range of stability-related tasks for the safe and efficient operation of vessels.",
     ],
     leadIn: "Our expertise includes:",
     bullets: [
-      "Loading Calculations: Accurate calculations to ensure proper weight distribution during loading.",
+      "Loading Calculations: For weight distribution during loading.",
       "Weight Estimation: Determining the weight of cargo and vessel components to assess stability.",
       "Inclining Experiment: Performing inclining tests to verify the vessel’s stability characteristics.",
       "Hydrostatic Particulars: Providing detailed hydrostatic data, essential for operational safety.",
@@ -248,20 +248,15 @@ const articles: Record<string, ArticleInput> = {
     bullets: [
       "Condition Surveys: Comprehensive assessments on behalf of P&I clubs, H&M insurers, and individual clients to evaluate the overall condition of the vessel and identify potential risks.",
       "On-Hire/Off-Hire Condition Surveys: Detailed assessments to verify the condition of vessels at the time of charter hire, including equipment, machinery, and hull integrity.",
-      "On-Hire/Off-Hire Bunker Surveys: Verification of bunker fuel quantities at the start and end of the charter, including fuel quality analysis.",
-      "Pre-Loading Vessel Surveys: Technical inspections to ensure vessel readiness for cargo operations, focusing on structural integrity and load distribution.",
-      "Project Cargo Loading & Lashing Approvals: Certification of appropriate cargo securing methods and compliance with maritime safety standards for heavy and oversized cargoes.",
+      "Pre-Loading Vessel Surveys: Technical inspections to check vessel readiness for cargo operations, focusing on structural integrity and load distribution.",
+      "Project Cargo Loading & Lashing Plans: Preparation of cargo securing methods and plans for heavy and oversized cargoes.",
       "Non-Exclusive Surveys: Independent, non-affiliated surveys to assess the condition and functionality of specific vessel systems or components.",
       "Bollard Pull & Winch Testing: Performance testing of towing and mooring systems, including winch load testing and bollard pull capacity measurements.",
-      "Safety Attestations: Official certification for compliance with safety regulations from local authorities and flag state authorities.",
-      "Carving and Marking Note Attestations: Verification of compliance with specific maritime regulations regarding vessel markings, including classification and ownership details.",
-      "\"Fit for Purpose\" Approvals: Assessments and certifications for project-specific applications, ensuring that vessels and equipment meet operational requirements for particular tasks or cargo.",
-      "Project Cargo Loading/Unloading Attendance: On-site supervision and technical support during the loading and unloading of project cargo, ensuring compliance with safety and operational protocols.",
       "Pre-Purchase Inspections: Detailed technical evaluations of vessels, focusing on mechanical, structural, and safety systems, to support the acquisition decision-making process.",
       "Valuation Reports: Expert evaluations of vessel market value, based on condition, market trends, and technical specifications.",
     ],
     closing:
-      "With an unwavering focus on precision and adherence to international standards, Pelagic Marine ensures the highest level of technical integrity and operational safety across all maritime operations.",
+      "With an unwavering focus on precision and adherence to international standards, Pelagic Marine endeavours to ensure the highest level of technical integrity and operational safety across all maritime operations.",
   },
   "service-audits": {
     paragraphs: [
@@ -276,7 +271,7 @@ const articles: Record<string, ArticleInput> = {
       "VDR Audit: Review and analysis of Voyage Data Recorder (VDR) data for operational and incident evaluation.",
       "Operators Management Review: Systematic review of shore-based management systems and documentation.",
       "Marine Terminal Inspection: Evaluation of terminal operations, safety protocols, and compatibility with vessel systems.",
-      "Flag State Inspection (Liberia): Authorized inspections under the Liberian Registry to ensure vessel compliance.",
+      "Flag State Inspection: Authorized inspections under the Liberian Registry to ensure vessel compliance.",
       "Pre-Vetting Inspection: Preparatory inspections to ensure readiness for SIRE and other vetting programs.",
       "Pre-CDI Inspection: Comprehensive checks to meet Chemical Distribution Institute (CDI) audit standards.",
       "Pre-OVID Inspection: Offshore Vessel Inspection Database (OVID) pre-inspection for offshore support vessels.",
@@ -305,7 +300,7 @@ const articles: Record<string, ArticleInput> = {
   },
   "umistab-x": {
     paragraphs: [
-      "UMISTAB-X is an onboard system for bulk-carrier loading, stability, and longitudinal-strength assessment. It manages cargo, ballast, fuel, freshwater, stores, grain, dry bulk, deck icing, tanks, and other weights. The software calculates displacement, drafts, trim, hydrostatics, stability criteria, shear forces, and bending moments for intact and damage conditions. Users review GZ curves, validation results, visibility, draft surveys, load-line settings, and PDF reports. It supports amendments to the Grain Code in accordance with MSC.552(101) and also includes an optional module for deck-loading calculations.",
+      "UMISTAB-X is a loading software for bulk-carrier loading, stability, and longitudinal-strength assessment. It manages cargo, ballast, fuel, freshwater, stores, grain, dry bulk, deck icing, tanks, and other weights. The software calculates displacement, drafts, trim, hydrostatics, stability criteria, shear forces, and bending moments for intact and damage conditions. Users review GZ curves, validation results, visibility, draft surveys, load-line settings, and PDF reports. It supports amendments to the Grain Code in accordance with MSC.552(101) and also includes an optional module for deck-loading calculations.",
     ],
   },
 };

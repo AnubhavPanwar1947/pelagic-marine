@@ -111,7 +111,7 @@ export function PracticeSection({
         <div className="services-practice-layout grid min-w-0 gap-8">
           <Reveal
             variant="text"
-            className="services-practice-layout__header min-w-0"
+            className="services-practice-layout__header pelagic-copy-container min-w-0"
           >
             <h2
               id={headingId}

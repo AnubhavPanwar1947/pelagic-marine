@@ -7,7 +7,7 @@
 | Host | **DreamHost shared** (same account as belugaeducorp.com) |
 | Domain / DNS | Already on DreamHost — `pelagic-marine.com` |
 | Backend APIs | **None** — no Vercel, no Supabase |
-| Contact form | DreamHost **PHP `mail()`** via `send-mail.php` |
+| Contact form | **`mailto:`** — visitor sends from their email app |
 | Build output | Static `out/` folder uploaded by SFTP/FileZilla |
 
 ---

@@ -16,7 +16,7 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div
-      className={`max-w-4xl min-w-0 ${align === "center" ? "mx-auto text-center" : ""}`}
+      className={`pelagic-copy-container max-w-4xl min-w-0 ${align === "center" ? "mx-auto text-center" : ""}`}
     >
       {eyebrow && <p className="type-eyebrow">{eyebrow}</p>}
       {title ? (

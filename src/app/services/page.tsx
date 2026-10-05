@@ -17,7 +17,7 @@ export default function ServicesPage() {
         eyebrow="Services"
         eyebrowClassName="min-w-0 break-words !text-[#0e235e]"
         title="Practices built for the full vessel lifecycle"
-        description="Concept design, structural analysis, surveys, audits, mooring studies and loading tools — the same engineering rigour, whichever practice you need."
+        description="Concept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need."
       />
 
       <div className="services-practice-stack">

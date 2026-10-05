@@ -77,7 +77,7 @@ export default function NewsPage() {
                       sizes={imageSizes.newsCard}
                     />
                   </div>
-                  <div className="min-w-0 p-4 sm:p-6 md:p-8">
+                  <div className="pelagic-copy-container min-w-0 p-4 sm:p-6 md:p-8">
                 {isAdvisoryExpansion ? (
                   <>
                     <h2 className="font-display min-w-0 break-words text-xl font-semibold text-pelagic-ink">

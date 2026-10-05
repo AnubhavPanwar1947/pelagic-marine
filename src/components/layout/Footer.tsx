@@ -31,6 +31,9 @@ export function Footer() {
       <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-4 py-14 pb-[max(3.5rem,env(safe-area-inset-bottom))] sm:px-6 md:grid-cols-2 lg:grid-cols-12 lg:px-8">
         <div className="site-footer-brand min-w-0 lg:col-span-4">
           <BrandLogo variant="footer" />
+          <p className="site-footer-copyright mt-4 min-w-0 max-w-full break-words text-xs leading-relaxed text-blue-100/85 sm:text-sm">
+            © 2026 Pelagic Marine Solutions. All rights reserved.
+          </p>
         </div>
 
         <div className="min-w-0 lg:col-span-2">

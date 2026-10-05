@@ -97,6 +97,10 @@
   color: var(--pelagic-copy);
   text-align: left;
   text-wrap: pretty;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
 }
 
 .team-page .team-member-card__bio + .team-member-card__bio {

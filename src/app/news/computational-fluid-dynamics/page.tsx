@@ -182,7 +182,7 @@ export default function ComputationalFluidDynamicsPage() {
         </header>
 
         <div className="overflow-visible pt-4 sm:pt-5 md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,14rem)] md:items-start md:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,16rem)] lg:gap-10">
-          <div className="min-w-0 md:col-start-1">
+          <div className="pelagic-copy-container min-w-0 md:col-start-1">
             <h2 className="font-display min-w-0 break-words text-2xl font-semibold text-pelagic-ink sm:text-3xl">
               3% Resistance Reduction = 6-Figure Annual Savings
             </h2>

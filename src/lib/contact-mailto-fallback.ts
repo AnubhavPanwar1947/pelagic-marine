@@ -1,7 +1,7 @@
 import { company } from "@/lib/site-data";
 
 export const CONTACT_MAILTO_NOTICE =
-  "Your email app will open with this enquiry prepared. Please review it and tap Send.";
+  "Opening your email app with this enquiry prepared. Please review the message and tap Send.";
 
 export type EnquiryMailtoFields = {
   firstName: string;

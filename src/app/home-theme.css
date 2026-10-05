@@ -362,6 +362,11 @@
   font-size: 19.2px;
   line-height: 1.75;
   color: var(--pelagic-copy);
+  text-align: left;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
 }
 
 .home-page .home-track-record__panel {

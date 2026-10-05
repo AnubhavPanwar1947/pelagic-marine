@@ -20,7 +20,7 @@ const homeAboutHeroImageAlt =
   "Marine office desk with a ship model, technical blueprint, and harbor view.";
 
 const homeAboutWhoWeAre =
-  "Pelagic Marine brings naval architects and Master Mariners together to deliver design, engineering, naval architecture, and quality assurance in real marine operations. Across maritime, offshore, oil and gas, and renewables, we combine licensed analysis tools with decades of sea-going and project experience.";
+  "Pelagic Marine brings naval architects and Master Mariners together to deliver design, engineering, and quality assurance in real marine operations. Across maritime, offshore, oil and gas, and renewables, we combine licensed analysis tools with decades of sea-going and project experience.";
 
 export default function HomePage() {
   return (
@@ -62,8 +62,8 @@ export default function HomePage() {
             <Reveal variant="text">
               <SectionHeading
                 eyebrow="Services"
-                title="Four practices, one"
-                titleAccent="engineering standard"
+                title="Four practices,"
+                titleAccent="one standard"
                 align="center"
               />
             </Reveal>

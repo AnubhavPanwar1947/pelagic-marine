@@ -29,7 +29,7 @@ export const company = {
   tagline: "Delivering marine and engineering consultancy worldwide.",
   heroHeadline: "Serving the shipping industry, round the clock.",
   heroSubline:
-    "Naval architecture, stability, structures and clean-fuel advisory for owners, operators and charterers worldwide.",
+    "Design, engineering, quality assurance and clean-fuel advisory for owners, operators and charterers worldwide.",
   sectors: ["Maritime", "Offshore", "Oil & Gas", "Renewables"],
   phones: {
     india: "+91 7895039068",
@@ -50,7 +50,7 @@ export const company = {
 
 export const contactPage = {
   hero: {
-    eyebrow: "Contact",
+    eyebrow: "Our Presence",
     fitStatement:
       "Strong fit: pre-purchase surveys, warranty attendance, LNG bunkering supervision, remote compass adjustment, casualty response, and fleet technical advisory.",
     imageSrc: "/images/stock/hero-port.jpg",
@@ -139,13 +139,11 @@ export const contactPage = {
     },
     submit: "Submit",
     successMessage:
-      "Thank you — your enquiry has been sent. We will be in touch shortly.",
-    errorMessage:
-      "Sorry — the message could not be sent. Please email info@pelagic-marine.com directly.",
+      "After you send the prepared email from your mail app, we will be in touch shortly.",
     defaultService: "General enquiry",
     defaultSubject: "General enquiry",
     privacyNotice:
-      "Your enquiry is stored securely and used only to respond to your request. We do not sell contact details. Protected by rate limits, bot checks and encryption in transit.",
+      "Your enquiry is used only to respond to your request. We do not sell contact details. Messages are sent from your own email app using a secure connection to your mail provider.",
     privacyConsent:
       "I agree that Pelagic Marine may contact me about this enquiry and related marine consultancy services. I have read the Privacy policy.",
     offices: [
@@ -354,7 +352,7 @@ export const serviceCategories = [
     title: "Engineering",
     slug: "engineering",
     summary:
-      "The applied engineering that keeps assets designed, converted and operating safely.",
+      "The applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.",
     items: [
       { label: "Conversion & Upgradation", slug: "service-conversion", teaser: "Scope, class and yard-ready engineering." },
       { label: "Manuals & Procedures", slug: "service-manuals", teaser: "Operational and technical documentation." },
@@ -369,7 +367,7 @@ export const serviceCategories = [
     title: "Inspection, Audits & Surveying",
     slug: "inspection-audits-surveying",
     summary:
-      "Surveys, audits and risk work carried out by people who have sailed.",
+      "Surveys, audits and risk assessments performed by experienced and qualified hands.",
     items: [
       { label: "Marine Surveys", slug: "service-survey", teaser: "Condition, pre-purchase and valuation." },
       { label: "Audits & Inspections", slug: "service-audits", teaser: "ISM, ISPS, MLC and operational audits." },
@@ -391,7 +389,7 @@ export const serviceCategories = [
     title: "Loadicator",
     slug: "loadicator",
     summary:
-      "Class-approved loading and stability tools for crews and fleet technical teams.",
+      "Class-approved loading and stability tools for vessels.",
     items: [
       { label: "UMISTAB-X", slug: "umistab-x", teaser: "Proprietary class-approved loadicator." },
     ],
@@ -549,9 +547,15 @@ export const navMenu: NavMenuItem[] = [
 export const teamMembers = [
   {
     name: "Nishchay Maken",
-    role: "Founder & Director",
+    role: "Co-Founder & Director",
     photo: "/images/owned/team/nishchay.png",
-    bio: "Nishchay founded Pelagic Marine to solve, through engineering and design, the problems most firms only survey. Across more than two decades, including over a decade at sea on tankers, he has specialised in project cargo workscopes and stability — the work that inspired UMISTAB-X. His wider expertise spans regulatory compliance, audits and inspections, loss prevention and incident investigation for leading P&I clubs.",
+    bio: "Nishchay co-founded Pelagic Marine to tackle operational challenges that most firms cannot, using engineering and design. With more than two decades of experience, including over a decade at sea on tankers, he specialises in project cargo carriage and stability. That work inspired UMISTAB-X, a specialised loadicator that performs stability calculations for deck loading on conventional bulk carriers. His wider expertise spans clean fuels, regulatory compliance, audits and inspections, loss prevention, and incident investigation for leading P&I Clubs.",
+  },
+  {
+    name: "Bhanu Prabhakar",
+    role: "Co-Founder & Head of Engineering and Design",
+    photo: "/images/owned/team/bhanu.png",
+    bio: "A Naval Architect with fifteen years across offshore structures and seagoing vessels, Bhanu leads Pelagic Marine's design and engineering practice. A graduate of IIT Kharagpur in Ocean Engineering and Naval Architecture, his core strengths lie in structural and finite-element analysis, intact and damage stability, hydrodynamics, mooring analysis and CFD.",
   },
   {
     name: "Vinod Janardanan",
@@ -564,12 +568,6 @@ export const teamMembers = [
       "Before joining Pelagic, Vinod was Director, South Asia Zone at Bureau Veritas Solutions Marine & Offshore, the consulting arm of Bureau Veritas. In that role he led BV’s consulting business across Southeast Asia, Australia and New Zealand.",
       "At Pelagic, Vinod leads the Group's growth across Southeast Asia and Oceania. He brings experience across the maritime spectrum having worked for a Ship owner, class society and shipyards. He brings class-society depth, ship owner agility and shipyard resilience in forging regional client relationships which would drive Pelagic's naval architecture, engineering analysis and marine assurance services.",
     ],
-  },
-  {
-    name: "Bhanu Prabhakar",
-    role: "Co-Founder & Head of Engineering and Design",
-    photo: "/images/owned/team/bhanu.png",
-    bio: "A Naval Architect with fifteen years across offshore structures and seagoing vessels, Bhanu leads Pelagic Marine's design and engineering practice. A graduate of IIT Kharagpur in Ocean Engineering and Naval Architecture, his core strengths lie in structural and finite-element analysis, intact and damage stability, hydrodynamics, mooring analysis and CFD.",
   },
   {
     name: "Capt. Vipul Negi",

@@ -1694,8 +1694,14 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   line-height: var(--pelagic-copy-leading);
   font-weight: 400;
   letter-spacing: var(--pelagic-copy-tracking);
-  text-wrap: pretty;
   max-width: var(--pelagic-copy-measure);
+}
+
+.legal-prose p {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
 }
 
 .legal-prose h2 {
@@ -2142,6 +2148,7 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   min-width: 0;
   overflow-wrap: break-word;
   word-break: normal;
+  hyphens: manual;
 }
 
 .type-body {
@@ -2153,6 +2160,10 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   text-align: left;
   text-wrap: pretty;
   max-width: var(--pelagic-copy-measure);
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
 }
 
 /* Standard dark-on-light paragraph copy (use instead of ad-hoc text-sm/leading-*) */
@@ -2164,6 +2175,10 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   color: var(--pelagic-copy);
   text-align: left;
   text-wrap: pretty;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
 }
 
 .type-copy:is(ul, ol, dl, address) {
@@ -2173,6 +2188,15 @@ header[data-overlay="true"] .site-header-menu-toggle:not([aria-expanded="true"])
   letter-spacing: var(--pelagic-copy-tracking);
   color: var(--pelagic-copy);
   text-wrap: pretty;
+}
+
+main p.text-pelagic-copy {
+  text-align: left;
+  text-wrap: pretty;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
 }
 
 main :is(p.type-copy, p.type-body, p.text-pelagic-copy) + :is(p.type-copy, p.type-body, p.text-pelagic-copy),
@@ -2195,6 +2219,62 @@ main :is(p.type-copy, p.type-body, p.text-pelagic-copy) + :is(p.type-copy, p.typ
   color: var(--pelagic-copy-muted);
   text-align: left;
   text-wrap: pretty;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
+}
+
+/* Body copy: justify only when the text column is wide enough (avoids word-spacing rivers). */
+:root {
+  --pelagic-body-justify-container-min: 40rem; /* 640px inline size of copy container */
+}
+
+.pelagic-copy-container,
+.legal-prose,
+.home-page .home-track-record__intro,
+.team-page .team-member-card__body,
+.services-practice-layout__header {
+  container-type: inline-size;
+  container-name: pelagic-copy;
+}
+
+@container pelagic-copy (min-width: 40rem) {
+  :is(
+    p.type-lead,
+    p.type-body,
+    p.type-copy,
+    p.type-copy-muted,
+    .legal-prose p,
+    main p.text-pelagic-copy,
+    .home-page .home-track-record__description,
+    .team-page .team-member-card__bio,
+    .service-topic-article p.type-copy
+  ) {
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-word;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  @media (min-width: 48rem) {
+    :is(
+      p.type-lead,
+      p.type-body,
+      p.type-copy,
+      p.type-copy-muted,
+      .legal-prose p,
+      main p.text-pelagic-copy,
+      .home-page .home-track-record__description,
+      .team-page .team-member-card__bio,
+      .service-topic-article p.type-copy
+    ) {
+      text-align: justify;
+      text-align-last: left;
+      text-justify: inter-word;
+    }
+  }
 }
 
 .type-muted {
