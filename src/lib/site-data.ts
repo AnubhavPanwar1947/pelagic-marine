@@ -555,7 +555,7 @@ export const teamMembers = [
     name: "Bhanu Prabhakar",
     role: "Co-Founder & Head of Engineering and Design",
     photo: "/images/owned/team/bhanu.png",
-    bio: "A Naval Architect with fifteen years across offshore structures and seagoing vessels, Bhanu leads Pelagic Marine's design and engineering practice. A graduate of IIT Kharagpur in Ocean Engineering and Naval Architecture, his core strengths lie in structural and finite-element analysis, intact and damage stability, hydrodynamics, mooring analysis and CFD.",
+    bio: "A Naval Architect with 20 years across offshore structures and seagoing vessels, Bhanu leads Pelagic Marine's design and engineering practice. A graduate of IIT Kharagpur in Ocean Engineering and Naval Architecture, his core strengths lie in structural and finite-element analysis, intact and damage stability, hydrodynamics, mooring analysis and CFD.",
   },
   {
     name: "Vinod Janardanan",
@@ -573,11 +573,11 @@ export const teamMembers = [
     name: "Capt. Vipul Negi",
     role: "General Manager",
     photo: "/images/owned/team/vipul.png",
-    bio: "A Master Mariner and an expert in chemical cargo handling, Capt. Negi brings more than two decades across the marine and petrochemical industries. He leads the firm's inspection and survey work — including CDI inspections, condition and pre-purchase surveys, and damage and P&I claim surveys — together with ISM, ISPS and MLC audits.",
+    bio: "A Master Mariner and an expert in chemical cargo handling, Capt. Negi brings more than two decades across the marine and petrochemical industries. He leads the firm's inspection and survey work — including pre-CDI inspections, condition and pre-purchase surveys, and damage and P&I claim surveys — together with ISM, ISPS and MLC audits.",
   },
   {
     name: "Capt. Abhinav Upadhyay",
-    role: "Senior Marine Consultant | Clean Fuels",
+    role: "Principal Consultant | Clean Fuels & Gas Carriers",
     photo: "/images/owned/team/abhinav.png",
     bio: "A Master Mariner with over twenty years in gas-carrier operations, Capt. Upadhyay is Pelagic Marine's specialist in clean and future fuels. He brings hands-on cargo experience across LNG, LPG, ethane, ethylene and ammonia, and advises on emerging fuels including methanol.",
   },

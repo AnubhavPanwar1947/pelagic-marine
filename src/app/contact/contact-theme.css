@@ -1,5 +1,18 @@
 /* Contact page — three-color surface palette (scoped to /contact only) */
 
+.contact-page {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.contact-page .contact-presence-heading .type-eyebrow {
+  font-size: 25px;
+  color: #0e235e;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
 .contact-page .contact-hero-eyebrow.type-eyebrow {
   font-size: 18px;
   font-weight: 700;
@@ -140,5 +153,60 @@
   .contact-office-card-accent,
   .contact-office-card:hover .contact-office-card-accent {
     transition: none;
+  }
+}
+
+/* Our presence — world map (viewBox 1600×800, 2:1) */
+.contact-page .contact-presence-map-wrap {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #d7e6f0;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.contact-page .contact-presence-map-scroller {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.contact-page .contact-presence-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  max-width: 100%;
+}
+
+@media (max-width: 47.9375rem) {
+  .contact-page .contact-presence-map-scroller {
+    min-height: 10rem;
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .contact-page .contact-presence-map {
+    width: 20rem;
+    max-width: none;
+    min-width: 100%;
+    height: auto;
+  }
+}
+
+.contact-page .contact-office-card a {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 47.9375rem) {
+  .contact-page .contact-enquiry-shell button[type="submit"] {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 1.25rem;
+    white-space: normal;
+    text-wrap: balance;
   }
 }

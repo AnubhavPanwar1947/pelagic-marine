@@ -64,7 +64,8 @@ export const offices: Office[] = [
   {
     id: "dehradun",
     label: "Dehradun",
-    address: "3/11 D, 2nd Floor Gyan Tower, Garhi Cantonment, Dehradun 248001",
+    address:
+      "3/11 D, 2nd Floor, Gyan Tower, Garhi Cantonment, Dehradun 248001",
     region: "India",
     hubId: "india",
     phone: "+91 7895039068",

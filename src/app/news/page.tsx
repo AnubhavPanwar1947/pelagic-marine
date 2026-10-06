@@ -20,7 +20,7 @@ function getNewsCardImageSrc(slug: string, index: number) {
 export const metadata: Metadata = {
   title: "Marine Insights",
   description:
-    "Articles on marine engineering, inspections, surveying, offshore operations, and maritime advisory topics.",
+    "Articles on marine advisory.",
 };
 
 function formatDate(iso: string) {
@@ -39,7 +39,7 @@ export default function NewsPage() {
         eyebrow="Blog"
         eyebrowClassName="min-w-0 break-words !text-[#0e235e]"
         title="Marine Insights"
-        description="Articles on marine engineering, inspections, surveying, offshore operations, and maritime advisory topics."
+        description="Articles on marine advisory."
       />
       <SectionMaritime variant="mist" className="pb-20 pt-8 sm:pt-10" gridOpacity={48}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

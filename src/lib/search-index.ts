@@ -352,8 +352,7 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     title: "Marine Insights",
     href: "/news/",
     category: "Blog",
-    excerpt:
-      "Articles on marine engineering, inspections, surveying, offshore operations, and maritime advisory topics.",
+    excerpt: "Articles on marine advisory.",
     group: "articles",
     body: newsBody,
     keywords: "India UAE Dubai advisory expansion",

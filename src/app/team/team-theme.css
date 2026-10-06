@@ -151,9 +151,13 @@
 }
 
 @media (min-width: 640px) {
-  .team-page .team-member-card--abhinav .team-member-card__heading-name,
-  .team-page .team-member-card--abhinav .team-member-card__heading-role {
+  .team-page .team-member-card--abhinav .team-member-card__heading-name {
     white-space: nowrap;
+  }
+
+  .team-page .team-member-card--abhinav .team-member-card__heading-role {
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   /* Card height follows portrait (228×4:9); bio scrolls inside text column when taller */
