@@ -1,8 +1,8 @@
 /** Footer and legal-page cross-links — keep labels in sync with the site footer Legal list. */
 export const legalCrossLinks = [
-  { href: "/privacy", label: "Privacy policy" },
+  { href: "/privacy-policy", label: "Privacy policy" },
   { href: "/disclaimer", label: "Disclaimer" },
-  { href: "/cookies", label: "Cookies policy" },
-  { href: "/terms", label: "Terms & conditions" },
-  { href: "/engagement", label: "Standard T&C of engagement" },
+  { href: "/cookies-policy", label: "Cookies policy" },
+  { href: "/terms-and-conditions", label: "Terms & conditions" },
+  { href: "/standard-terms-and-conditions-of-engagement", label: "Standard T&C of engagement" },
 ] as const;

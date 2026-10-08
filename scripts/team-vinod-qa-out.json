@@ -1,0 +1,281 @@
+{
+  "pass": false,
+  "failures": [
+    {
+      "width": 50,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": true,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": false
+    },
+    {
+      "width": 80,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": true,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": false
+    },
+    {
+      "width": "1280@200%zoom",
+      "cardFound": true,
+      "overflowX": false
+    }
+  ],
+  "results": [
+    {
+      "width": 50,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": true,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": false
+    },
+    {
+      "width": 80,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": true,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": false
+    },
+    {
+      "width": 120,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 160,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 200,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 240,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 280,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 320,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 360,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 390,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 430,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 480,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 600,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": false,
+      "bodyOverflowY": "visible",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 640,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": true,
+      "bodyOverflowY": "hidden",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 768,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": true,
+      "bodyOverflowY": "hidden",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 820,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": true,
+      "bodyOverflowY": "hidden",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 1024,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": true,
+      "bodyOverflowY": "hidden",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 1280,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": true,
+      "bodyOverflowY": "hidden",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 1440,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": true,
+      "bodyOverflowY": "hidden",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 1920,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": true,
+      "bodyOverflowY": "hidden",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 2560,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": true,
+      "bodyOverflowY": "hidden",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": 3258,
+      "cardFound": true,
+      "paragraphCount": 3,
+      "hasBv": true,
+      "overflowX": false,
+      "bodyScrollable": true,
+      "bodyOverflowY": "hidden",
+      "imgAlt": "Vinod Janardanan, Director, Pelagic Singapore",
+      "imgOk": true
+    },
+    {
+      "width": "1280@200%zoom",
+      "cardFound": true,
+      "overflowX": false
+    }
+  ]
+}

@@ -353,169 +353,143 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
-  "/images/owned/decarb-home.jpg": {
-    "src": "/images/owned/decarb-home.jpg",
-    "width": 2400,
-    "height": 1800,
+  "/images/icons/home/engineering.png": {
+    "src": "/images/icons/home/engineering.png",
+    "width": 600,
+    "height": 600,
     "fallback": [
       {
         "width": 320,
-        "path": "/images/owned/decarb-home-320w.jpg"
+        "path": "/images/icons/home/engineering-320w.jpg"
       },
       {
         "width": 480,
-        "path": "/images/owned/decarb-home-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/decarb-home-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/decarb-home-960w.jpg"
-      },
-      {
-        "width": 1280,
-        "path": "/images/owned/decarb-home-1280w.jpg"
-      },
-      {
-        "width": 1920,
-        "path": "/images/owned/decarb-home-1920w.jpg"
+        "path": "/images/icons/home/engineering-480w.jpg"
       }
     ],
     "webp": [
       {
         "width": 320,
-        "path": "/images/owned/decarb-home-320w.webp"
+        "path": "/images/icons/home/engineering-320w.webp"
       },
       {
         "width": 480,
-        "path": "/images/owned/decarb-home-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/decarb-home-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/decarb-home-960w.webp"
-      },
-      {
-        "width": 1280,
-        "path": "/images/owned/decarb-home-1280w.webp"
-      },
-      {
-        "width": 1920,
-        "path": "/images/owned/decarb-home-1920w.webp"
+        "path": "/images/icons/home/engineering-480w.webp"
       }
     ],
     "avif": [
       {
         "width": 320,
-        "path": "/images/owned/decarb-home-320w.avif"
+        "path": "/images/icons/home/engineering-320w.avif"
       },
       {
         "width": 480,
-        "path": "/images/owned/decarb-home-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/decarb-home-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/decarb-home-960w.avif"
-      },
-      {
-        "width": 1280,
-        "path": "/images/owned/decarb-home-1280w.avif"
-      },
-      {
-        "width": 1920,
-        "path": "/images/owned/decarb-home-1920w.avif"
+        "path": "/images/icons/home/engineering-480w.avif"
       }
     ]
   },
-  "/images/owned/decarb.jpg": {
-    "src": "/images/owned/decarb.jpg",
-    "width": 4000,
-    "height": 3000,
+  "/images/icons/home/inspection-audits-surveying.png": {
+    "src": "/images/icons/home/inspection-audits-surveying.png",
+    "width": 600,
+    "height": 600,
     "fallback": [
       {
         "width": 320,
-        "path": "/images/owned/decarb-320w.jpg"
+        "path": "/images/icons/home/inspection-audits-surveying-320w.jpg"
       },
       {
         "width": 480,
-        "path": "/images/owned/decarb-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/decarb-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/decarb-960w.jpg"
-      },
-      {
-        "width": 1280,
-        "path": "/images/owned/decarb-1280w.jpg"
-      },
-      {
-        "width": 1920,
-        "path": "/images/owned/decarb-1920w.jpg"
+        "path": "/images/icons/home/inspection-audits-surveying-480w.jpg"
       }
     ],
     "webp": [
       {
         "width": 320,
-        "path": "/images/owned/decarb-320w.webp"
+        "path": "/images/icons/home/inspection-audits-surveying-320w.webp"
       },
       {
         "width": 480,
-        "path": "/images/owned/decarb-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/owned/decarb-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/owned/decarb-960w.webp"
-      },
-      {
-        "width": 1280,
-        "path": "/images/owned/decarb-1280w.webp"
-      },
-      {
-        "width": 1920,
-        "path": "/images/owned/decarb-1920w.webp"
+        "path": "/images/icons/home/inspection-audits-surveying-480w.webp"
       }
     ],
     "avif": [
       {
         "width": 320,
-        "path": "/images/owned/decarb-320w.avif"
+        "path": "/images/icons/home/inspection-audits-surveying-320w.avif"
       },
       {
         "width": 480,
-        "path": "/images/owned/decarb-480w.avif"
+        "path": "/images/icons/home/inspection-audits-surveying-480w.avif"
+      }
+    ]
+  },
+  "/images/icons/home/loadicator.png": {
+    "src": "/images/icons/home/loadicator.png",
+    "width": 600,
+    "height": 600,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/icons/home/loadicator-320w.jpg"
       },
       {
-        "width": 640,
-        "path": "/images/owned/decarb-640w.avif"
+        "width": 480,
+        "path": "/images/icons/home/loadicator-480w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/icons/home/loadicator-320w.webp"
       },
       {
-        "width": 960,
-        "path": "/images/owned/decarb-960w.avif"
+        "width": 480,
+        "path": "/images/icons/home/loadicator-480w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/icons/home/loadicator-320w.avif"
       },
       {
-        "width": 1280,
-        "path": "/images/owned/decarb-1280w.avif"
+        "width": 480,
+        "path": "/images/icons/home/loadicator-480w.avif"
+      }
+    ]
+  },
+  "/images/icons/home/naval-architecture.png": {
+    "src": "/images/icons/home/naval-architecture.png",
+    "width": 600,
+    "height": 600,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/icons/home/naval-architecture-320w.jpg"
       },
       {
-        "width": 1920,
-        "path": "/images/owned/decarb-1920w.avif"
+        "width": 480,
+        "path": "/images/icons/home/naval-architecture-480w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/icons/home/naval-architecture-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/icons/home/naval-architecture-480w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/icons/home/naval-architecture-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/icons/home/naval-architecture-480w.avif"
       }
     ]
   },
@@ -790,6 +764,41 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
+  "/images/owned/team/anu.png": {
+    "src": "/images/owned/team/anu.png",
+    "width": 480,
+    "height": 1080,
+    "fallback": [
+      {
+        "width": 320,
+        "path": "/images/owned/team/anu-320w.jpg"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/team/anu-480w.jpg"
+      }
+    ],
+    "webp": [
+      {
+        "width": 320,
+        "path": "/images/owned/team/anu-320w.webp"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/team/anu-480w.webp"
+      }
+    ],
+    "avif": [
+      {
+        "width": 320,
+        "path": "/images/owned/team/anu-320w.avif"
+      },
+      {
+        "width": 480,
+        "path": "/images/owned/team/anu-480w.avif"
+      }
+    ]
+  },
   "/images/owned/team/bhanu.png": {
     "src": "/images/owned/team/bhanu.png",
     "width": 480,
@@ -897,36 +906,24 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
   },
   "/images/owned/team/vinod.png": {
     "src": "/images/owned/team/vinod.png",
-    "width": 480,
-    "height": 1080,
+    "width": 240,
+    "height": 540,
     "fallback": [
       {
-        "width": 320,
-        "path": "/images/owned/team/vinod-320w.jpg"
-      },
-      {
-        "width": 480,
-        "path": "/images/owned/team/vinod-480w.jpg"
+        "width": 240,
+        "path": "/images/owned/team/vinod-240w.jpg"
       }
     ],
     "webp": [
       {
-        "width": 320,
-        "path": "/images/owned/team/vinod-320w.webp"
-      },
-      {
-        "width": 480,
-        "path": "/images/owned/team/vinod-480w.webp"
+        "width": 240,
+        "path": "/images/owned/team/vinod-240w.webp"
       }
     ],
     "avif": [
       {
-        "width": 320,
-        "path": "/images/owned/team/vinod-320w.avif"
-      },
-      {
-        "width": 480,
-        "path": "/images/owned/team/vinod-480w.avif"
+        "width": 240,
+        "path": "/images/owned/team/vinod-240w.avif"
       }
     ]
   },
@@ -1368,89 +1365,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
-  "/images/stock/hero.jpg": {
-    "src": "/images/stock/hero.jpg",
-    "width": 2560,
-    "height": 1440,
-    "fallback": [
-      {
-        "width": 320,
-        "path": "/images/stock/hero-320w.jpg"
-      },
-      {
-        "width": 480,
-        "path": "/images/stock/hero-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/stock/hero-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/stock/hero-960w.jpg"
-      },
-      {
-        "width": 1280,
-        "path": "/images/stock/hero-1280w.jpg"
-      },
-      {
-        "width": 1920,
-        "path": "/images/stock/hero-1920w.jpg"
-      }
-    ],
-    "webp": [
-      {
-        "width": 320,
-        "path": "/images/stock/hero-320w.webp"
-      },
-      {
-        "width": 480,
-        "path": "/images/stock/hero-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/stock/hero-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/stock/hero-960w.webp"
-      },
-      {
-        "width": 1280,
-        "path": "/images/stock/hero-1280w.webp"
-      },
-      {
-        "width": 1920,
-        "path": "/images/stock/hero-1920w.webp"
-      }
-    ],
-    "avif": [
-      {
-        "width": 320,
-        "path": "/images/stock/hero-320w.avif"
-      },
-      {
-        "width": 480,
-        "path": "/images/stock/hero-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/stock/hero-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/stock/hero-960w.avif"
-      },
-      {
-        "width": 1280,
-        "path": "/images/stock/hero-1280w.avif"
-      },
-      {
-        "width": 1920,
-        "path": "/images/stock/hero-1920w.avif"
-      }
-    ]
-  },
   "/images/stock/inspection.jpeg": {
     "src": "/images/stock/inspection.jpeg",
     "width": 6000,
@@ -1534,65 +1448,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       }
     ]
   },
-  "/images/stock/lng-carrier-two-ships-centered.jpg": {
-    "src": "/images/stock/lng-carrier-two-ships-centered.jpg",
-    "width": 1024,
-    "height": 553,
-    "fallback": [
-      {
-        "width": 320,
-        "path": "/images/stock/lng-carrier-two-ships-centered-320w.jpg"
-      },
-      {
-        "width": 480,
-        "path": "/images/stock/lng-carrier-two-ships-centered-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/stock/lng-carrier-two-ships-centered-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/stock/lng-carrier-two-ships-centered-960w.jpg"
-      }
-    ],
-    "webp": [
-      {
-        "width": 320,
-        "path": "/images/stock/lng-carrier-two-ships-centered-320w.webp"
-      },
-      {
-        "width": 480,
-        "path": "/images/stock/lng-carrier-two-ships-centered-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/stock/lng-carrier-two-ships-centered-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/stock/lng-carrier-two-ships-centered-960w.webp"
-      }
-    ],
-    "avif": [
-      {
-        "width": 320,
-        "path": "/images/stock/lng-carrier-two-ships-centered-320w.avif"
-      },
-      {
-        "width": 480,
-        "path": "/images/stock/lng-carrier-two-ships-centered-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/stock/lng-carrier-two-ships-centered-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/stock/lng-carrier-two-ships-centered-960w.avif"
-      }
-    ]
-  },
   "/images/stock/mooring.jpeg": {
     "src": "/images/stock/mooring.jpeg",
     "width": 5888,
@@ -1673,89 +1528,6 @@ export const imageManifest: Record<string, ImageManifestEntry> = {
       {
         "width": 1920,
         "path": "/images/stock/mooring-1920w.avif"
-      }
-    ]
-  },
-  "/images/stock/port-test.jpg": {
-    "src": "/images/stock/port-test.jpg",
-    "width": 2400,
-    "height": 1400,
-    "fallback": [
-      {
-        "width": 320,
-        "path": "/images/stock/port-test-320w.jpg"
-      },
-      {
-        "width": 480,
-        "path": "/images/stock/port-test-480w.jpg"
-      },
-      {
-        "width": 640,
-        "path": "/images/stock/port-test-640w.jpg"
-      },
-      {
-        "width": 960,
-        "path": "/images/stock/port-test-960w.jpg"
-      },
-      {
-        "width": 1280,
-        "path": "/images/stock/port-test-1280w.jpg"
-      },
-      {
-        "width": 1920,
-        "path": "/images/stock/port-test-1920w.jpg"
-      }
-    ],
-    "webp": [
-      {
-        "width": 320,
-        "path": "/images/stock/port-test-320w.webp"
-      },
-      {
-        "width": 480,
-        "path": "/images/stock/port-test-480w.webp"
-      },
-      {
-        "width": 640,
-        "path": "/images/stock/port-test-640w.webp"
-      },
-      {
-        "width": 960,
-        "path": "/images/stock/port-test-960w.webp"
-      },
-      {
-        "width": 1280,
-        "path": "/images/stock/port-test-1280w.webp"
-      },
-      {
-        "width": 1920,
-        "path": "/images/stock/port-test-1920w.webp"
-      }
-    ],
-    "avif": [
-      {
-        "width": 320,
-        "path": "/images/stock/port-test-320w.avif"
-      },
-      {
-        "width": 480,
-        "path": "/images/stock/port-test-480w.avif"
-      },
-      {
-        "width": 640,
-        "path": "/images/stock/port-test-640w.avif"
-      },
-      {
-        "width": 960,
-        "path": "/images/stock/port-test-960w.avif"
-      },
-      {
-        "width": 1280,
-        "path": "/images/stock/port-test-1280w.avif"
-      },
-      {
-        "width": 1920,
-        "path": "/images/stock/port-test-1920w.avif"
       }
     ]
   }

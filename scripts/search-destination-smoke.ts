@@ -7,11 +7,11 @@ const cases: { query: string; hrefIncludes: string; hashIncludes?: string }[] = 
   { query: "Nishchay", hrefIncludes: "/team/", hashIncludes: "team-nishchay" },
   { query: "Dubai", hrefIncludes: "/contact/", hashIncludes: "enquiry-form" },
   { query: "UMISTAB", hrefIncludes: "/services/umistab-x/", hashIncludes: "umistab" },
-  { query: "LNG", hrefIncludes: "/services/mooring-compatibility/" },
-  { query: "CFD", hrefIncludes: "/news/computational-fluid-dynamics/" },
+  { query: "LNG", hrefIncludes: "/services/" },
+  { query: "CFD", hrefIncludes: "/marine-insights/computational-fluid-dynamics/" },
   { query: "Master Mariners", hrefIncludes: "/team/" },
   { query: "Surveying", hrefIncludes: "/services/" },
-  { query: "privacy", hrefIncludes: "/privacy/" },
+  { query: "privacy", hrefIncludes: "/privacy-policy/" },
 ];
 
 let failed = false;

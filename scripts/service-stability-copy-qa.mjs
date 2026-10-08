@@ -38,7 +38,7 @@ const results = [];
 
 for (const w of WIDTHS) {
   await page.setViewportSize({ width: w, height: 900 });
-  await page.goto(`${BASE}/services/service-stability/`, { waitUntil: "networkidle" });
+  await page.goto(`${BASE}/services/stability-calculation/`, { waitUntil: "networkidle" });
   await dismiss(page);
 
   const data = await page.evaluate((justifyMinPx) => {
@@ -90,7 +90,7 @@ for (const w of WIDTHS) {
 }
 
 await page.setViewportSize({ width: 640, height: 900 });
-await page.goto(`${BASE}/services/service-stability/`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/services/stability-calculation/`, { waitUntil: "networkidle" });
 await dismiss(page);
 const zoom = await page.evaluate(() => {
   const intro = document.querySelector(".service-topic-article p.type-copy");

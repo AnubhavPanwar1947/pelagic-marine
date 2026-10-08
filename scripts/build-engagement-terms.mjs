@@ -2,8 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = path.join(import.meta.dirname, "..");
-const rawPath = path.join(root, "src/app/engagement/engagement-terms.raw.txt");
-const outPath = path.join(root, "src/app/engagement/EngagementTermsBody.tsx");
+const rawPath = path.join(
+  root,
+  "src/app/standard-terms-and-conditions-of-engagement/engagement-terms.raw.txt",
+);
+const outPath = path.join(
+  root,
+  "src/app/standard-terms-and-conditions-of-engagement/EngagementTermsBody.tsx",
+);
 
 const H2_SECTIONS = new Set([
   "INTERPRETATION",

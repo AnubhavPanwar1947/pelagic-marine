@@ -103,9 +103,8 @@ export function HomeTrackRecordSection() {
               Proven across the fleet, port to port.
             </h2>
             <p className="home-track-record__description mt-5 min-w-0 max-w-3xl break-words">
-              A register of representative assignments — the breadth of vessels, tools and fuels
-              Pelagic Marine has engineered, analysed and surveyed for owners, operators and
-              charterers.
+              The breadth of vessels, tools and fuels Pelagic Marine has engineered, analysed and
+              surveyed for owners, operators and charterers.
             </p>
           </div>
         </Reveal>

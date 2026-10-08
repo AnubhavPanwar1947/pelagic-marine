@@ -10,6 +10,13 @@ export const metadata: Metadata = {
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <link
+        rel="preload"
+        href="/map.png"
+        as="image"
+        type="image/png"
+        fetchPriority="high"
+      />
       <ContactLocalBusinessSchema />
       {children}
     </>

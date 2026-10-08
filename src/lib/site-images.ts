@@ -35,6 +35,7 @@ export const imageObjectPositions: Record<string, string> = {
   "/images/owned/team/abhinav.png": "50% 8%",
   "/images/owned/team/harjit.png": "50% 0%",
   "/images/owned/team/vinod.png": "50% 12%",
+  "/images/owned/team/anu.png": "50% 10%",
   "/images/stock/about-paper-collaboration.jpg": "52% 42%",
   "/images/stock/hero.jpg": "50% center",
   [u("photo-1578645024771-21df5e60af96", 1200, 1500)]: "50% 30%",
@@ -108,7 +109,7 @@ export const siteImages = {
 export const STABILITY_SOFTWARE_SCREENSHOT_ALT =
   "UMISTAB stability software screenshot showing validation plots and vessel arrangement";
 
-/** Homepage service card icons (SVG) keyed by service slug. */
+/** Homepage service card icons (PNG) keyed by service slug. */
 export const homeServiceIcons: Record<
   | "naval-architecture-design"
   | "engineering"
@@ -116,10 +117,10 @@ export const homeServiceIcons: Record<
   | "loadicator",
   string
 > = {
-  "naval-architecture-design": "/images/icons/naval-architecture.svg",
-  engineering: "/images/icons/engineering.svg",
-  "inspection-audits-surveying": "/images/icons/inspection-audits-surveying.svg",
-  loadicator: "/images/icons/loadicator.svg",
+  "naval-architecture-design": "/images/icons/home/naval-architecture.png",
+  engineering: "/images/icons/home/engineering.png",
+  "inspection-audits-surveying": "/images/icons/home/inspection-audits-surveying.png",
+  loadicator: "/images/icons/home/loadicator.png",
 };
 
 /** Optional hero background video — add public/videos/hero.mp4 (keep under ~8 MB) */

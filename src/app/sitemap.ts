@@ -1,25 +1,11 @@
 import type { MetadataRoute } from "next";
-import { getAllServiceTopics } from "@/lib/topic-pages";
+import { getSiteRouteHrefs } from "@/lib/site-routes";
 
 export const dynamic = "force-static";
 
 const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pelagic-marine.com";
 
-const routes = [
-  "/",
-  "/about/",
-  "/services/",
-  "/team/",
-  "/news/",
-  "/news/computational-fluid-dynamics/",
-  "/contact/",
-  "/privacy/",
-  "/disclaimer/",
-  "/cookies/",
-  "/terms/",
-  "/engagement/",
-  ...getAllServiceTopics().map((topic) => `/services/${topic.slug}/`),
-];
+const routes = getSiteRouteHrefs().filter((path) => path !== "/search/");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

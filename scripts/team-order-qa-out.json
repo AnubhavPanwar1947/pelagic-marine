@@ -1,0 +1,446 @@
+{
+  "expected": [
+    "Nishchay Maken",
+    "Bhanu Prabhakar",
+    "Vinod Janardanan",
+    "Capt. Vipul Negi",
+    "Capt. Abhinav Upadhyay",
+    "Capt. Harjit Singh Sidhu",
+    "Anubhav Panwar"
+  ],
+  "issues": [],
+  "results": [
+    {
+      "width": 50,
+      "vw": 50,
+      "sw": 114,
+      "overflow": true,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 320,
+      "vw": 320,
+      "sw": 320,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 767,
+      "vw": 767,
+      "sw": 767,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 768,
+      "vw": 768,
+      "sw": 768,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 1023,
+      "vw": 1023,
+      "sw": 1023,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 1024,
+      "vw": 1024,
+      "sw": 1024,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 1100,
+      "vw": 1100,
+      "sw": 1100,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 1200,
+      "vw": 1200,
+      "sw": 1200,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 1279,
+      "vw": 1279,
+      "sw": 1279,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 1280,
+      "vw": 1280,
+      "sw": 1280,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 1440,
+      "vw": 1440,
+      "sw": 1440,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": 1920,
+      "vw": 1920,
+      "sw": 1920,
+      "overflow": false,
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ],
+      "imgs": [
+        "/images/owned/team/nishchay-480w.jpg",
+        "/images/owned/team/bhanu-480w.jpg",
+        "/images/owned/team/vinod-480w.jpg",
+        "/images/owned/team/vipul-480w.jpg",
+        "/images/owned/team/abhinav-480w.jpg",
+        "/images/owned/team/harjit-480w.jpg",
+        "/images/owned/team/anu.png"
+      ],
+      "vinodScroll": true,
+      "bhanuScroll": false,
+      "portraitClip": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "width": "1280@200%zoom",
+      "names": [
+        "Nishchay Maken",
+        "Bhanu Prabhakar",
+        "Vinod Janardanan",
+        "Capt. Vipul Negi",
+        "Capt. Abhinav Upadhyay",
+        "Capt. Harjit Singh Sidhu",
+        "Anubhav Panwar"
+      ]
+    }
+  ]
+}

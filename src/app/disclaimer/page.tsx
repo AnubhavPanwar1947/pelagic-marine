@@ -93,7 +93,7 @@ export default function DisclaimerPage() {
         <p className={wrap}>
           Any professional services are provided only under, and subject to, a separate written
           engagement and the Company’s{" "}
-          <Link href="/engagement" className="break-words">
+          <Link href="/standard-terms-and-conditions-of-engagement" className="break-words">
             Standard Terms and Conditions of Engagement
           </Link>
           . Any reports, assessments, calculations, analyses, recommendations or other professional

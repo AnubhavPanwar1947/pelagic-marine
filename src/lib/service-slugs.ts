@@ -19,6 +19,12 @@ export function getServiceItemHref(item: ServiceItem | string, serviceSlug?: str
   return `/services/${item.slug}/`;
 }
 
+/** Section anchor on the main Services page (category landing URLs are not published). */
+export function getServiceCategorySectionHref(slug: string) {
+  return `/services/#${slug}`;
+}
+
+/** @deprecated Use getServiceCategorySectionHref — category paths redirect to /services/ */
 export function getServiceCategoryHref(slug: string) {
   return `/services/${slug}/`;
 }

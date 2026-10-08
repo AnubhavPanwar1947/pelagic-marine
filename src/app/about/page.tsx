@@ -57,7 +57,7 @@ export default function AboutPage() {
                   experience in vessel operations, ship surveying, Engineering, offshore operations,
                   dry &amp; wet cargo handling. The company was formed
                   to act as a one stop shop for various shipping industry centric solution. The core
-                  team consists of experienced Master Mariners.
+                  team consists of experienced master mariners, naval architects, and engineers.
                   We provide professional services to our clients from mainline shipping, oil
                   &amp; gas industry, offshore industry and renewable energy sector.
                 </p>

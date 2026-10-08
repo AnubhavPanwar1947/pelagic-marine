@@ -1,5 +1,5 @@
 import { offices } from "./offices";
-import { getServiceCategoryHref, getServiceItemHref } from "./service-slugs";
+import { getServiceCategorySectionHref, getServiceItemHref } from "./service-slugs";
 
 export type {
   MapHub,
@@ -294,7 +294,7 @@ export const navLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/team", label: "Team" },
-  { href: "/news", label: "Blog" },
+  { href: "/marine-insights", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -340,12 +340,12 @@ export const serviceCategories = [
     summary:
       "Hull form, structure and the analysis behind every design decision.",
     items: [
-      { label: "Design & Analysis", slug: "service-design", teaser: "Concept to detailed design." },
-      { label: "Engineering Analysis", slug: "service-enganalysis", teaser: "Load cases, response, verification." },
-      { label: "FEED — Front-End Engineering Design", slug: "service-feed", teaser: "De-risk before commitment." },
-      { label: "Global & Local Strength", slug: "service-strength", teaser: "Where structure governs." },
-      { label: "Finite Element Analysis (FEA)", slug: "service-fea", teaser: "Stress, buckling, fatigue, ultimate strength." },
-      { label: "Ship Plans & Drawings", slug: "service-shipplans", teaser: "Class- and statutory-standard drawings." },
+      { label: "Design & Analysis", slug: "design-analysis", teaser: "Concept to detailed design." },
+      { label: "Engineering Analysis", slug: "engineering-analysis", teaser: "Load cases, response, verification." },
+      { label: "FEED — Front-End Engineering Design", slug: "front-end-engineering-design", teaser: "De-risk before commitment." },
+      { label: "Global & Local Strength", slug: "global-local-strength", teaser: "Where structure governs." },
+      { label: "Finite Element Analysis (FEA)", slug: "finite-element-analysis", teaser: "Stress, buckling, fatigue, ultimate strength." },
+      { label: "Ship Plans & Drawings", slug: "ship-plans-drawings", teaser: "Class- and statutory-standard drawings." },
     ],
   },
   {
@@ -354,13 +354,13 @@ export const serviceCategories = [
     summary:
       "The applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.",
     items: [
-      { label: "Conversion & Upgradation", slug: "service-conversion", teaser: "Scope, class and yard-ready engineering." },
-      { label: "Manuals & Procedures", slug: "service-manuals", teaser: "Operational and technical documentation." },
-      { label: "Hydrodynamic Calculations", slug: "service-hydro", teaser: "Resistance, powering and seakeeping." },
-      { label: "Loadout & Sea Fastening", slug: "service-loadout", teaser: "Heavy-lift and transport engineering." },
-      { label: "Computational Fluid Dynamics (CFD)", slug: "service-cfd", teaser: "Flow, loads and performance modelling." },
-      { label: "Heat Transfer Analysis", slug: "service-heat", teaser: "Thermal behaviour in marine systems." },
-      { label: "Stability Calculation", slug: "service-stability", teaser: "Intact and damage stability solutions." },
+      { label: "Conversion & Upgradation", slug: "conversion-upgradation", teaser: "Scope, class and yard-ready engineering." },
+      { label: "Manuals & Procedures", slug: "manuals-procedures", teaser: "Operational and technical documentation." },
+      { label: "Hydrodynamic Calculations", slug: "hydrodynamic-calculations", teaser: "Resistance, powering and seakeeping." },
+      { label: "Loadout & Sea Fastening", slug: "loadout-sea-fastening", teaser: "Heavy-lift and transport engineering." },
+      { label: "Computational Fluid Dynamics (CFD)", slug: "computational-fluid-dynamics", teaser: "Flow, loads and performance modelling." },
+      { label: "Heat Transfer Analysis", slug: "heat-transfer-analysis", teaser: "Thermal behaviour in marine systems." },
+      { label: "Stability Calculation", slug: "stability-calculation", teaser: "Intact and damage stability solutions." },
     ],
   },
   {
@@ -369,9 +369,9 @@ export const serviceCategories = [
     summary:
       "Surveys, audits and risk assessments performed by experienced and qualified hands.",
     items: [
-      { label: "Marine Surveys", slug: "service-survey", teaser: "Condition, pre-purchase and valuation." },
-      { label: "Audits & Inspections", slug: "service-audits", teaser: "ISM, ISPS, MLC and operational audits." },
-      { label: "Marine Warranty Surveys", slug: "service-mws", teaser: "Loadout, tow and offshore operations." },
+      { label: "Marine Surveys", slug: "marine-surveys", teaser: "Condition, pre-purchase and valuation." },
+      { label: "Audits & Inspections", slug: "audits-inspections", teaser: "ISM, ISPS, MLC and operational audits." },
+      { label: "Marine Warranty Surveys", slug: "marine-warranty-surveys", teaser: "Loadout, tow and offshore operations." },
     ],
   },
   {
@@ -495,7 +495,7 @@ export const navMenu: NavMenuItem[] = [
     href: "/services",
     children: [
       {
-        href: getServiceCategoryHref("naval-architecture-design"),
+        href: getServiceCategorySectionHref("naval-architecture-design"),
         label: "Naval Architecture",
         description: "Design, analysis, FEA and ship plans.",
         children: serviceCategories[0].items.map((item) => ({
@@ -504,7 +504,7 @@ export const navMenu: NavMenuItem[] = [
         })),
       },
       {
-        href: getServiceCategoryHref("engineering"),
+        href: getServiceCategorySectionHref("engineering"),
         label: "Engineering",
         description: "Conversion, hydrodynamics, CFD and stability.",
         children: serviceCategories[1].items.map((item) => ({
@@ -513,7 +513,7 @@ export const navMenu: NavMenuItem[] = [
         })),
       },
       {
-        href: getServiceCategoryHref("inspection-audits-surveying"),
+        href: getServiceCategorySectionHref("inspection-audits-surveying"),
         label: "Inspection",
         description: "Surveys, audits, warranty and loss prevention.",
         children: serviceCategories[2].items.map((item) => ({
@@ -522,7 +522,7 @@ export const navMenu: NavMenuItem[] = [
         })),
       },
       {
-        href: getServiceCategoryHref("mooring-compatibility"),
+        href: getServiceCategorySectionHref("mooring-compatibility"),
         label: "Mooring & compatibility",
         description: "Static and dynamic mooring analysis and ship-shore studies.",
         children: [
@@ -531,7 +531,7 @@ export const navMenu: NavMenuItem[] = [
         ],
       },
       {
-        href: getServiceCategoryHref("loadicator"),
+        href: getServiceCategorySectionHref("loadicator"),
         label: "Loadicator",
         description: "Class-approved loading and stability tools.",
         children: [
@@ -541,7 +541,7 @@ export const navMenu: NavMenuItem[] = [
     ],
   },
   { type: "link", href: "/team", label: "Team" },
-  { type: "link", href: "/news", label: "Blog" },
+  { type: "link", href: "/marine-insights", label: "Blog" },
 ];
 
 export const teamMembers = [
@@ -586,6 +586,17 @@ export const teamMembers = [
     role: "Operations Manager",
     photo: "/images/owned/team/harjit.png",
     bio: "Capt. Sidhu brings a container-shipping background and sea time with Maersk to his role managing Pelagic Marine's operations and day-to-day delivery. He advises on container-ship stability, cargo planning and load optimisation, and is a certified practitioner of remote magnetic compass adjustment.",
+  },
+  {
+    name: "Anubhav Panwar",
+    role: "Digital Solutions & Applications Developer",
+    photo: "/images/owned/team/anu.png",
+    bio:
+      "Anubhav Panwar is a technology professional with a Master of Computer Applications and experience in mobile application development, web technologies and digital solutions. He specialises in Flutter and Dart development, API and database integration, website management and digital platforms.",
+    bioParagraphs: [
+      "Anubhav Panwar is a technology professional with a Master of Computer Applications and experience in mobile application development, web technologies and digital solutions. He specialises in Flutter and Dart development, API and database integration, website management and digital platforms.",
+      "At Pelagic Marine, Anubhav supports the development and management of digital products, web platforms and technology-enabled solutions, contributing to the company’s ongoing digital transformation and development of innovative solutions for the maritime industry.",
+    ],
   },
 ];
 

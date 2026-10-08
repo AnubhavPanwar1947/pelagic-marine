@@ -33,7 +33,7 @@ function itemTopics(): TopicPage[] {
       title: item.label,
       eyebrow: category.title,
       summary: item.teaser ?? `Overview of ${item.label}.`,
-      parentHref: `/services/${category.slug}/`,
+      parentHref: `/services/#${category.slug}`,
       parentLabel: category.title,
       kind: "service-item" as const,
     })),
@@ -56,8 +56,13 @@ export function getAllServiceTopics(): TopicPage[] {
   return [...categoryTopics(), ...itemTopics()];
 }
 
+/** Service item pages only — excludes removed category landing URLs. */
+export function getPublishedServiceItemTopics(): TopicPage[] {
+  return itemTopics();
+}
+
 export function getServiceTopic(slug: string): TopicPage | undefined {
-  return getAllServiceTopics().find((t) => t.slug === slug);
+  return getPublishedServiceItemTopics().find((t) => t.slug === slug);
 }
 
 export function getTopicHeroDescription(topic: TopicPage) {

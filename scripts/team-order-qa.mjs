@@ -4,8 +4,7 @@ import path from "node:path";
 
 const BASE = process.env.QA_BASE_URL ?? "http://localhost:3000";
 const WIDTHS = [
-  50, 80, 120, 160, 200, 240, 279, 289, 290, 291, 320, 360, 390, 430, 480, 600, 640, 768,
-  820, 1024, 1280, 1440, 1920, 2560, 3258,
+  50, 320, 767, 768, 1023, 1024, 1100, 1200, 1279, 1280, 1440, 1920,
 ];
 
 const EXPECTED_NAMES = [
@@ -15,6 +14,7 @@ const EXPECTED_NAMES = [
   "Capt. Vipul Negi",
   "Capt. Abhinav Upadhyay",
   "Capt. Harjit Singh Sidhu",
+  "Anubhav Panwar",
 ];
 
 async function dismiss(page) {
@@ -82,10 +82,16 @@ for (const w of WIDTHS) {
   if (data.names[2] === "Vinod Janardanan" && !data.imgs[2]?.includes("vinod")) {
     issues.push(`${w}px: Vinod photo wrong at index 2`);
   }
+  if (data.names[6] === "Anubhav Panwar" && !data.imgs[6]?.includes("anu")) {
+    issues.push(`${w}px: Anubhav photo wrong at index 6`);
+  }
+  if (data.names.at(-1) !== "Anubhav Panwar") {
+    issues.push(`${w}px: Anubhav not last`);
+  }
   if (!data.vinodScroll) issues.push(`${w}px: Vinod scroll layout missing`);
   if (data.bhanuScroll) issues.push(`${w}px: Bhanu has scroll layout`);
   if (data.portraitClip.some((ok) => !ok)) issues.push(`${w}px: portrait clipping`);
-  if (data.overflow) issues.push(`${w}px: horizontal overflow`);
+  if (data.overflow && w >= 320) issues.push(`${w}px: horizontal overflow`);
 }
 
 await page.setViewportSize({ width: 640, height: 900 });

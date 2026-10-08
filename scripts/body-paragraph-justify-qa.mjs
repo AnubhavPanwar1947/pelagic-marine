@@ -22,8 +22,8 @@ const PAGES = [
   { path: "/about/", label: "about" },
   { path: "/services/naval-architecture-design/", label: "services" },
   { path: "/team/", label: "team" },
-  { path: "/news/", label: "blog" },
-  { path: "/privacy/", label: "legal" },
+  { path: "/marine-insights/", label: "blog" },
+  { path: "/privacy-policy/", label: "legal" },
 ];
 
 const BODY_SELECTOR = [
@@ -90,7 +90,10 @@ async function measure(page, pagePath, hint, width) {
         hint === "home-about" ? text === homeAboutExact.replace(/\s+/g, " ").trim() : true;
 
       const paragraphWidth = el ? el.getBoundingClientRect().width : 0;
-      const expectJustify = paragraphWidth >= justifyMinPx - 1;
+      const expectJustify =
+        pagePath === "/" && hint === "home-about"
+          ? vw >= 320
+          : paragraphWidth >= justifyMinPx - 1;
       const align = pStyle?.textAlign ?? null;
       const alignLast = pStyle?.textAlignLast ?? null;
 
@@ -116,6 +119,7 @@ async function measure(page, pagePath, hint, width) {
         doubleSpace,
         sampleText: text.slice(0, 80),
         paragraphWidthPx: Math.round(paragraphWidth),
+        expectJustify,
       };
     },
     {
@@ -147,7 +151,7 @@ for (const w of WIDTHS) {
     if (data.overflow) issues.push(`${w}px ${label}: horizontal overflow`);
     if (!data.alignOk) {
       issues.push(
-        `${w}px ${label}: align expected ${w >= 320 ? "justify/last-left" : "left"}, got ${data.textAlign}/${data.textAlignLast}`,
+        `${w}px ${label}: align expected ${data.expectJustify ? "justify/last-left" : "left"}, got ${data.textAlign}/${data.textAlignLast}`,
       );
     }
     if (!data.headingNotJustified) issues.push(`${w}px ${label}: heading is justified`);

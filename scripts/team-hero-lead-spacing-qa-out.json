@@ -1,0 +1,924 @@
+{
+  "issues": [],
+  "refContainerMt": "20px",
+  "results": [
+    {
+      "width": 50,
+      "vw": 50,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "17.28px",
+        "lineHeight": "31.104px",
+        "marginTop": "0px",
+        "lineCount": 19,
+        "lines": [
+          "A",
+          "team",
+          "that",
+          "has",
+          "a",
+          "unique",
+          "blend",
+          "of",
+          "engineering",
+          "application",
+          "and",
+          "operational",
+          "excellence,",
+          "built",
+          "on",
+          "years",
+          "of",
+          "varied",
+          "experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          }
+        ],
+        "splitWords": [
+          "team",
+          "that",
+          "has",
+          "unique",
+          "blend",
+          "engineering",
+          "application",
+          "and",
+          "operational",
+          "excellence,",
+          "built",
+          "on",
+          "years",
+          "varied",
+          "experience."
+        ],
+        "leadOverflow": false,
+        "width": 18
+      }
+    },
+    {
+      "width": 80,
+      "vw": 80,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "17.28px",
+        "lineHeight": "31.104px",
+        "marginTop": "0px",
+        "lineCount": 18,
+        "lines": [
+          "A",
+          "team",
+          "that",
+          "has a",
+          "unique",
+          "blend",
+          "of",
+          "engineering",
+          "application",
+          "and",
+          "operational",
+          "excellence,",
+          "built",
+          "on",
+          "years",
+          "of",
+          "varied",
+          "experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          }
+        ],
+        "splitWords": [
+          "unique",
+          "engineering",
+          "application",
+          "operational",
+          "excellence,",
+          "varied",
+          "experience."
+        ],
+        "leadOverflow": false,
+        "width": 48
+      }
+    },
+    {
+      "width": 120,
+      "vw": 120,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "17.28px",
+        "lineHeight": "31.104px",
+        "marginTop": "0px",
+        "lineCount": 13,
+        "lines": [
+          "A team",
+          "that has a",
+          "unique",
+          "blend of",
+          "engineering",
+          "application",
+          "and",
+          "operational",
+          "excellence,",
+          "built on",
+          "years of",
+          "varied",
+          "experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          }
+        ],
+        "splitWords": [
+          "engineering",
+          "application",
+          "operational",
+          "excellence,",
+          "experience."
+        ],
+        "leadOverflow": false,
+        "width": 88
+      }
+    },
+    {
+      "width": 160,
+      "vw": 160,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "17.28px",
+        "lineHeight": "31.104px",
+        "marginTop": "0px",
+        "lineCount": 10,
+        "lines": [
+          "A team that",
+          "has a unique",
+          "blend of",
+          "engineering",
+          "application and",
+          "operational",
+          "excellence,",
+          "built on years",
+          "of varied",
+          "experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 128
+      }
+    },
+    {
+      "width": 200,
+      "vw": 200,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "17.28px",
+        "lineHeight": "31.104px",
+        "marginTop": "0px",
+        "lineCount": 8,
+        "lines": [
+          "A team that has a",
+          "unique blend of",
+          "engineering",
+          "application and",
+          "operational",
+          "excellence, built on",
+          "years of varied",
+          "experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 168
+      }
+    },
+    {
+      "width": 240,
+      "vw": 240,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "17.28px",
+        "lineHeight": "31.104px",
+        "marginTop": "0px",
+        "lineCount": 6,
+        "lines": [
+          "A team that has a unique",
+          "blend of engineering",
+          "application and",
+          "operational excellence,",
+          "built on years of varied",
+          "experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": 5.015625,
+            "max": 5.015625
+          },
+          {
+            "avg": null,
+            "max": null
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 208
+      }
+    },
+    {
+      "width": 320,
+      "vw": 320,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "17.6px",
+        "lineHeight": "31.68px",
+        "marginTop": "0px",
+        "lineCount": 4,
+        "lines": [
+          "A team that has a unique blend of",
+          "engineering application and",
+          "operational excellence, built on",
+          "years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.109375,
+            "max": 5.109375
+          },
+          {
+            "avg": 5.109375,
+            "max": 5.109375
+          },
+          {
+            "avg": 5.109375,
+            "max": 5.109375
+          },
+          {
+            "avg": 5.114583333333333,
+            "max": 5.125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 288
+      }
+    },
+    {
+      "width": 390,
+      "vw": 390,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "17.95px",
+        "lineHeight": "32.31px",
+        "marginTop": "0px",
+        "lineCount": 4,
+        "lines": [
+          "A team that has a unique blend",
+          "of engineering application and",
+          "operational excellence, built on years of",
+          "varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.208333333333333,
+            "max": 5.21875
+          },
+          {
+            "avg": 5.213541666666667,
+            "max": 5.21875
+          },
+          {
+            "avg": 5.209375,
+            "max": 5.21875
+          },
+          {
+            "avg": 5.203125,
+            "max": 5.203125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 358
+      }
+    },
+    {
+      "width": 480,
+      "vw": 480,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "18.4px",
+        "lineHeight": "33.12px",
+        "marginTop": "0px",
+        "lineCount": 3,
+        "lines": [
+          "A team that has a unique blend of engineering",
+          "application and operational excellence, built on",
+          "years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.34375,
+            "max": 5.34375
+          },
+          {
+            "avg": 5.34375,
+            "max": 5.34375
+          },
+          {
+            "avg": 5.34375,
+            "max": 5.34375
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 448
+      }
+    },
+    {
+      "width": 640,
+      "vw": 640,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "19.2px",
+        "lineHeight": "34.56px",
+        "marginTop": "0px",
+        "lineCount": 2,
+        "lines": [
+          "A team that has a unique blend of engineering application and",
+          "operational excellence, built on years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.5734375,
+            "max": 5.578125
+          },
+          {
+            "avg": 5.575892857142857,
+            "max": 5.578125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 592
+      }
+    },
+    {
+      "width": 688,
+      "vw": 688,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "19.2px",
+        "lineHeight": "34.56px",
+        "marginTop": "0px",
+        "lineCount": 2,
+        "lines": [
+          "A team that has a unique blend of engineering application and",
+          "operational excellence, built on years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.5734375,
+            "max": 5.578125
+          },
+          {
+            "avg": 5.575892857142857,
+            "max": 5.578125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 640
+      }
+    },
+    {
+      "width": 768,
+      "vw": 768,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "19.2px",
+        "lineHeight": "34.56px",
+        "marginTop": "0px",
+        "lineCount": 2,
+        "lines": [
+          "A team that has a unique blend of engineering application and",
+          "operational excellence, built on years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.5734375,
+            "max": 5.578125
+          },
+          {
+            "avg": 5.575892857142857,
+            "max": 5.578125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 672
+      }
+    },
+    {
+      "width": 1024,
+      "vw": 1024,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "19.2px",
+        "lineHeight": "34.56px",
+        "marginTop": "0px",
+        "lineCount": 2,
+        "lines": [
+          "A team that has a unique blend of engineering application and",
+          "operational excellence, built on years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.5734375,
+            "max": 5.578125
+          },
+          {
+            "avg": 5.575892857142857,
+            "max": 5.578125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 672
+      }
+    },
+    {
+      "width": 1280,
+      "vw": 1280,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "19.2px",
+        "lineHeight": "34.56px",
+        "marginTop": "0px",
+        "lineCount": 2,
+        "lines": [
+          "A team that has a unique blend of engineering application and",
+          "operational excellence, built on years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.5734375,
+            "max": 5.578125
+          },
+          {
+            "avg": 5.575892857142857,
+            "max": 5.578125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 672
+      }
+    },
+    {
+      "width": 1440,
+      "vw": 1440,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "19.2px",
+        "lineHeight": "34.56px",
+        "marginTop": "0px",
+        "lineCount": 2,
+        "lines": [
+          "A team that has a unique blend of engineering application and",
+          "operational excellence, built on years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.5734375,
+            "max": 5.578125
+          },
+          {
+            "avg": 5.575892857142857,
+            "max": 5.578125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 672
+      }
+    },
+    {
+      "width": 1920,
+      "vw": 1920,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "19.2px",
+        "lineHeight": "34.56px",
+        "marginTop": "0px",
+        "lineCount": 2,
+        "lines": [
+          "A team that has a unique blend of engineering application and",
+          "operational excellence, built on years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.5734375,
+            "max": 5.578125
+          },
+          {
+            "avg": 5.575892857142857,
+            "max": 5.578125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 672
+      }
+    },
+    {
+      "width": 2560,
+      "vw": 2560,
+      "h1": "Naval architects and Master Mariners",
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.",
+      "titleGap": 20,
+      "containerMt": "20px",
+      "lead": {
+        "textAlign": "left",
+        "fontSize": "19.2px",
+        "lineHeight": "34.56px",
+        "marginTop": "0px",
+        "lineCount": 2,
+        "lines": [
+          "A team that has a unique blend of engineering application and",
+          "operational excellence, built on years of varied experience."
+        ],
+        "lineGaps": [
+          {
+            "avg": 5.5734375,
+            "max": 5.578125
+          },
+          {
+            "avg": 5.575892857142857,
+            "max": 5.578125
+          }
+        ],
+        "splitWords": [],
+        "leadOverflow": false,
+        "width": 672
+      }
+    },
+    {
+      "width": "1280@200%zoom",
+      "vw": 640,
+      "textAlign": "left",
+      "lineCount": 2,
+      "gapRatio": 0.9995596477181746,
+      "leadOverflow": false,
+      "heroText": "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience."
+    }
+  ]
+}

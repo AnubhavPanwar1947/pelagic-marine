@@ -36,7 +36,10 @@ export function extractVisibleTextFromTsx(source) {
 }
 
 function readEngagementRaw() {
-  const rawPath = path.join(root, "src/app/engagement/engagement-terms.raw.txt");
+  const rawPath = path.join(
+    root,
+    "src/app/standard-terms-and-conditions-of-engagement/engagement-terms.raw.txt",
+  );
   return fs.readFileSync(rawPath, "utf8").replace(/\s+/g, " ").trim();
 }
 
@@ -46,10 +49,10 @@ function readTsxPage(relPath) {
 }
 
 const bodies = {
-  privacy: readTsxPage("src/app/privacy/page.tsx"),
-  cookies: readTsxPage("src/app/cookies/page.tsx"),
+  privacy: readTsxPage("src/app/privacy-policy/page.tsx"),
+  cookies: readTsxPage("src/app/cookies-policy/page.tsx"),
   disclaimer: readTsxPage("src/app/disclaimer/page.tsx"),
-  terms: readTsxPage("src/app/terms/page.tsx"),
+  terms: readTsxPage("src/app/terms-and-conditions/page.tsx"),
   engagement: readEngagementRaw(),
 };
 

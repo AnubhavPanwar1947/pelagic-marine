@@ -1,0 +1,769 @@
+{
+  "ok": false,
+  "issues": [
+    "50px: horizontal scroll 115>50",
+    "80px: horizontal scroll 115>80"
+  ],
+  "results": [
+    {
+      "width": 50,
+      "vw": 50,
+      "scrollW": 115,
+      "docOverflow": true,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 50,
+          "width": 50
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 50,
+          "width": 50
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 50,
+          "width": 50
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 50,
+          "width": 50
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 50,
+          "width": 50
+        }
+      }
+    },
+    {
+      "width": 80,
+      "vw": 80,
+      "scrollW": 115,
+      "docOverflow": true,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 80,
+          "width": 80
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 80,
+          "width": 80
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 80,
+          "width": 80
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 80,
+          "width": 80
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 80,
+          "width": 80
+        }
+      }
+    },
+    {
+      "width": 120,
+      "vw": 120,
+      "scrollW": 120,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 120,
+          "width": 120
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 120,
+          "width": 120
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 120,
+          "width": 120
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 120,
+          "width": 120
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 120,
+          "width": 120
+        }
+      }
+    },
+    {
+      "width": 160,
+      "vw": 160,
+      "scrollW": 160,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 160,
+          "width": 160
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 160,
+          "width": 160
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 160,
+          "width": 160
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 160,
+          "width": 160
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 160,
+          "width": 160
+        }
+      }
+    },
+    {
+      "width": 200,
+      "vw": 200,
+      "scrollW": 200,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 200,
+          "width": 200
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 200,
+          "width": 200
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 200,
+          "width": 200
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 200,
+          "width": 200
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 200,
+          "width": 200
+        }
+      }
+    },
+    {
+      "width": 240,
+      "vw": 240,
+      "scrollW": 240,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 240,
+          "width": 240
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 240,
+          "width": 240
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 240,
+          "width": 240
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 240,
+          "width": 240
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 240,
+          "width": 240
+        }
+      }
+    },
+    {
+      "width": 280,
+      "vw": 280,
+      "scrollW": 280,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 280,
+          "width": 280
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 280,
+          "width": 280
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 280,
+          "width": 280
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 280,
+          "width": 280
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 280,
+          "width": 280
+        }
+      }
+    },
+    {
+      "width": 320,
+      "vw": 320,
+      "scrollW": 320,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 320,
+          "width": 320
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 320,
+          "width": 320
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 320,
+          "width": 320
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 320,
+          "width": 320
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 320,
+          "width": 320
+        }
+      }
+    },
+    {
+      "width": 360,
+      "vw": 360,
+      "scrollW": 360,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 360,
+          "width": 360
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 360,
+          "width": 360
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 360,
+          "width": 360
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 360,
+          "width": 360
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 360,
+          "width": 360
+        }
+      }
+    },
+    {
+      "width": 390,
+      "vw": 390,
+      "scrollW": 390,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 390,
+          "width": 390
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 390,
+          "width": 390
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 390,
+          "width": 390
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 390,
+          "width": 390
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 390,
+          "width": 390
+        }
+      }
+    },
+    {
+      "width": 430,
+      "vw": 430,
+      "scrollW": 430,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 430,
+          "width": 430
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 430,
+          "width": 430
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 430,
+          "width": 430
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 430,
+          "width": 430
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 430,
+          "width": 430
+        }
+      }
+    },
+    {
+      "width": 600,
+      "vw": 600,
+      "scrollW": 600,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 600,
+          "width": 600
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 600,
+          "width": 600
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 600,
+          "width": 600
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 600,
+          "width": 600
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 600,
+          "width": 600
+        }
+      }
+    },
+    {
+      "width": 768,
+      "vw": 768,
+      "scrollW": 768,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 768,
+          "width": 768
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 768,
+          "width": 768
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 768,
+          "width": 768
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 768,
+          "width": 768
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 768,
+          "width": 768
+        }
+      }
+    },
+    {
+      "width": 820,
+      "vw": 820,
+      "scrollW": 820,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 820,
+          "width": 820
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 820,
+          "width": 820
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 820,
+          "width": 820
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 820,
+          "width": 820
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 820,
+          "width": 820
+        }
+      }
+    },
+    {
+      "width": 1024,
+      "vw": 1024,
+      "scrollW": 1024,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1024,
+          "width": 1024
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 1024,
+          "width": 1024
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1024,
+          "width": 1024
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 1024,
+          "width": 1024
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1024,
+          "width": 1024
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "vw": 1280,
+      "scrollW": 1280,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1280,
+          "width": 1280
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 1280,
+          "width": 1280
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1280,
+          "width": 1280
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 1280,
+          "width": 1280
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1280,
+          "width": 1280
+        }
+      }
+    },
+    {
+      "width": 1440,
+      "vw": 1440,
+      "scrollW": 1440,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1440,
+          "width": 1440
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 1440,
+          "width": 1440
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1440,
+          "width": 1440
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 1440,
+          "width": 1440
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1440,
+          "width": 1440
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "vw": 1920,
+      "scrollW": 1920,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1920,
+          "width": 1920
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 1920,
+          "width": 1920
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1920,
+          "width": 1920
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 1920,
+          "width": 1920
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 1920,
+          "width": 1920
+        }
+      }
+    },
+    {
+      "width": 2560,
+      "vw": 2560,
+      "scrollW": 2560,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 2560,
+          "width": 2560
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 2560,
+          "width": 2560
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 2560,
+          "width": 2560
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 2560,
+          "width": 2560
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 2560,
+          "width": 2560
+        }
+      }
+    },
+    {
+      "width": 3258,
+      "vw": 3258,
+      "scrollW": 3258,
+      "docOverflow": false,
+      "colors": {
+        "naval-architecture-design": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 3258,
+          "width": 3258
+        },
+        "engineering": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 3258,
+          "width": 3258
+        },
+        "inspection-audits-surveying": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 3258,
+          "width": 3258
+        },
+        "mooring-compatibility": {
+          "bg": "rgb(230, 244, 252)",
+          "left": 0,
+          "right": 3258,
+          "width": 3258
+        },
+        "loadicator": {
+          "bg": "rgb(255, 255, 255)",
+          "left": 0,
+          "right": 3258,
+          "width": 3258
+        }
+      }
+    }
+  ]
+}

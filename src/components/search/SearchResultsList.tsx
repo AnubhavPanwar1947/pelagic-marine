@@ -99,6 +99,9 @@ export function SearchResultsList({
                   <span className="site-search-result-row__title">
                     <HighlightedText text={item.title} query={query} />
                   </span>
+                  {item.relatedReason ? (
+                    <span className="site-search-result-row__excerpt">{item.relatedReason}</span>
+                  ) : null}
                   {item.excerpt ? (
                     <span className="site-search-result-row__excerpt">
                       <HighlightedText text={item.excerpt} query={query} />
@@ -157,6 +160,9 @@ export function SearchResultsList({
                       <span className="site-search-result-row__title">
                         <HighlightedText text={item.title} query={query} />
                       </span>
+                      {item.relatedReason ? (
+                        <span className="site-search-result-row__excerpt">{item.relatedReason}</span>
+                      ) : null}
                       {item.excerpt ? (
                         <span className="site-search-result-row__excerpt">
                           <HighlightedText text={item.excerpt} query={query} />

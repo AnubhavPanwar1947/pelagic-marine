@@ -1,4 +1,5 @@
-import { company, contactPage, serviceCategories } from "./site-data";
+import { buildContactRenderedBody } from "./search-rendered-corpus";
+import { company, serviceCategories } from "./site-data";
 
 /** Visible copy from the home page (hero + about band) for search indexing. */
 export function buildHomePageSearchBody(): string {
@@ -24,7 +25,7 @@ export function buildHomePageSearchBody(): string {
     company.sectors.join(" "),
     "TRACK RECORD",
     "Proven across the fleet port to port",
-    "A register of representative assignments the breadth of vessels tools and fuels Pelagic Marine has engineered analysed and surveyed for owners operators and charterers",
+    "The breadth of vessels tools and fuels Pelagic Marine has engineered analysed and surveyed for owners operators and charterers",
     "Total projects delivered",
     "Project cargo carriages",
     "Detailed engineering studies",
@@ -41,7 +42,7 @@ export function buildHomePageSearchBody(): string {
 export function buildAboutPageSearchBody(): string {
   return [
     "About Us",
-    "Pelagic marine was formed in year 2021 by young entrepreneurs from the shipping and engineering fraternity with wide range of experience in vessel operations, ship surveying, Engineering, offshore operations, dry and wet cargo handling. The company was formed to act as a one stop shop for various shipping industry centric solution. The core team consists of experienced Master Mariners. We provide professional services to our clients from mainline shipping, oil and gas industry, offshore industry and renewable energy sector.",
+    "Pelagic marine was formed in year 2021 by young entrepreneurs from the shipping and engineering fraternity with wide range of experience in vessel operations, ship surveying, Engineering, offshore operations, dry and wet cargo handling. The company was formed to act as a one stop shop for various shipping industry centric solution. The core team consists of experienced master mariners, naval architects, and engineers. We provide professional services to our clients from mainline shipping, oil and gas industry, offshore industry and renewable energy sector.",
     "Maritime and shipping surveys warranty cargo fleet technical support",
     "Offshore oil and gas mooring FPSO marine warranty",
     "Renewables energy transition offshore wind ports infrastructure berth compatibility",
@@ -59,45 +60,18 @@ export function buildAboutPageSearchBody(): string {
 }
 
 export function buildContactPageSearchBody(): string {
+  return buildContactRenderedBody();
+}
+
+/** Visible copy from the Marine Insights (/news/) page for search indexing. */
+export function buildNewsPageSearchBody(): string {
   return [
-    contactPage.hero.eyebrow,
-    contactPage.hero.fitStatement,
-    contactPage.hero.imageAlt,
-    ...contactPage.hero.stats.map((s) => `${s.value} ${s.label}`),
-    ...contactPage.hero.credentials,
-    contactPage.companyInfo.eyebrow,
-    ...contactPage.companyInfo.officeLines,
-    contactPage.emergency.label,
-    contactPage.emergency.detail,
-    ...contactPage.intentPaths.map((p) => `${p.title} ${p.description} ${p.cta}`),
-    ...contactPage.expectations,
-    contactPage.sla.standard,
-    contactPage.sla.urgent,
-    contactPage.sla.avgLabel,
-    contactPage.sla.avgValue,
-    ...contactPage.accreditations.map((a) => `${a.label} ${a.detail}`),
-    contactPage.form.privacyNotice,
-    contactPage.form.submit,
-    contactPage.form.successMessage,
-    contactPage.form.eyebrow,
-    ...Object.values(contactPage.form.labels),
-    ...contactPage.form.subjects,
-    ...contactPage.form.offices.map((o) => o.label),
-    ...contactPage.quickIntake.map((q) => `${q.label} ${q.messageHint}`),
-    ...contactPage.faq.map((f) => `${f.question} ${f.answer}`),
-    company.phones.india,
-    company.phones.uae.replace(/\s/g, ""),
-    "789 503 9068 971 50 394 1049",
-    "Reach out",
-    "Visit",
-    "Mail",
-    company.emails.info,
-    company.emails.career,
-    "careers jobs hiring apply career applications",
-    "client login maritime advisory platform secure access",
-    contactPage.companyInfo.website,
-    "website",
-    "last",
-    "name",
+    "Blog",
+    "Marine Insights",
+    "Articles on marine advisory.",
+    "Computational Fluid Dynamics",
+    "That's not theory. That's operational mathematics.",
+    "CFD reveals how vessel-flow analysis can guide resistance reduction, fuel-efficiency improvements, and retrofit decisions before capital is committed.",
+    "Read article",
   ].join(" ");
 }

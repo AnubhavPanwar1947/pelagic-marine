@@ -13,7 +13,7 @@
     "generate:legal-search-text": "node scripts/generate-legal-search-text.mjs",
     "prepare-logo": "node scripts/prepare-logo.mjs",
     "prepare-logo-pdf": "node scripts/prepare-logo-from-pdf.mjs",
-    "validate-search": "npx --yes tsx scripts/validate-search-routes.ts && npx --yes tsx scripts/search-coverage-integrity.ts"
+    "validate-search": "npx --yes tsx scripts/validate-search-routes.ts && npx --yes tsx scripts/search-index-drift.js && npx --yes tsx scripts/search-coverage-integrity.ts"
   },
   "dependencies": {
     "next": "16.2.10",

@@ -1,0 +1,193 @@
+{
+  "baseUrl": "http://localhost:3002/contact/",
+  "pass": false,
+  "failures": [
+    {
+      "width": 50,
+      "overflowX": true,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 80,
+      "overflowX": true,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 120,
+      "overflowX": true,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": "1280@200%zoom",
+      "submitVisible": true,
+      "overflowX": false
+    }
+  ],
+  "results": [
+    {
+      "width": 50,
+      "overflowX": true,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 80,
+      "overflowX": true,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 120,
+      "overflowX": true,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 160,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 200,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 240,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 280,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 320,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 360,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 390,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 430,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 480,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 600,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 640,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 768,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 820,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 1024,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 1280,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 1440,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 1920,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 2560,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": 3258,
+      "overflowX": false,
+      "submitVisible": true,
+      "submitDisabled": false,
+      "formOk": true
+    },
+    {
+      "width": "1280@200%zoom",
+      "submitVisible": true,
+      "overflowX": false
+    }
+  ]
+}

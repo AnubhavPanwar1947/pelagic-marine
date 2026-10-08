@@ -1,0 +1,513 @@
+{
+  "issues": [
+    "50px loadicator-page: horizontal overflow",
+    "50px services-index: horizontal overflow"
+  ],
+  "results": [
+    {
+      "width": 50,
+      "route": "loadicator-page",
+      "vw": 50,
+      "sw": 74,
+      "overflow": true,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 50,
+      "route": "services-index",
+      "vw": 50,
+      "sw": 52,
+      "overflow": true,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 80,
+      "route": "loadicator-page",
+      "vw": 80,
+      "sw": 80,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 80,
+      "route": "services-index",
+      "vw": 80,
+      "sw": 80,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 120,
+      "route": "loadicator-page",
+      "vw": 120,
+      "sw": 120,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 120,
+      "route": "services-index",
+      "vw": 120,
+      "sw": 120,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 160,
+      "route": "loadicator-page",
+      "vw": 160,
+      "sw": 160,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 160,
+      "route": "services-index",
+      "vw": 160,
+      "sw": 160,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 200,
+      "route": "loadicator-page",
+      "vw": 200,
+      "sw": 200,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 200,
+      "route": "services-index",
+      "vw": 200,
+      "sw": 200,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 240,
+      "route": "loadicator-page",
+      "vw": 240,
+      "sw": 240,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 240,
+      "route": "services-index",
+      "vw": 240,
+      "sw": 240,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 279,
+      "route": "loadicator-page",
+      "vw": 279,
+      "sw": 279,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 279,
+      "route": "services-index",
+      "vw": 279,
+      "sw": 279,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 289,
+      "route": "loadicator-page",
+      "vw": 289,
+      "sw": 289,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 289,
+      "route": "services-index",
+      "vw": 289,
+      "sw": 289,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 290,
+      "route": "loadicator-page",
+      "vw": 290,
+      "sw": 290,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 290,
+      "route": "services-index",
+      "vw": 290,
+      "sw": 290,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 291,
+      "route": "loadicator-page",
+      "vw": 291,
+      "sw": 291,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 291,
+      "route": "services-index",
+      "vw": 291,
+      "sw": 291,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 320,
+      "route": "loadicator-page",
+      "vw": 320,
+      "sw": 320,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 320,
+      "route": "services-index",
+      "vw": 320,
+      "sw": 320,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 360,
+      "route": "loadicator-page",
+      "vw": 360,
+      "sw": 360,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 360,
+      "route": "services-index",
+      "vw": 360,
+      "sw": 360,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 390,
+      "route": "loadicator-page",
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 390,
+      "route": "services-index",
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 430,
+      "route": "loadicator-page",
+      "vw": 430,
+      "sw": 430,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 430,
+      "route": "services-index",
+      "vw": 430,
+      "sw": 430,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 480,
+      "route": "loadicator-page",
+      "vw": 480,
+      "sw": 480,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 480,
+      "route": "services-index",
+      "vw": 480,
+      "sw": 480,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 600,
+      "route": "loadicator-page",
+      "vw": 600,
+      "sw": 600,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 600,
+      "route": "services-index",
+      "vw": 600,
+      "sw": 600,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 640,
+      "route": "loadicator-page",
+      "vw": 640,
+      "sw": 640,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 640,
+      "route": "services-index",
+      "vw": 640,
+      "sw": 640,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 768,
+      "route": "loadicator-page",
+      "vw": 768,
+      "sw": 768,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 768,
+      "route": "services-index",
+      "vw": 768,
+      "sw": 768,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 820,
+      "route": "loadicator-page",
+      "vw": 820,
+      "sw": 820,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 820,
+      "route": "services-index",
+      "vw": 820,
+      "sw": 820,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 1024,
+      "route": "loadicator-page",
+      "vw": 1024,
+      "sw": 1024,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 1024,
+      "route": "services-index",
+      "vw": 1024,
+      "sw": 1024,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 1280,
+      "route": "loadicator-page",
+      "vw": 1280,
+      "sw": 1280,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 1280,
+      "route": "services-index",
+      "vw": 1280,
+      "sw": 1280,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 1440,
+      "route": "loadicator-page",
+      "vw": 1440,
+      "sw": 1440,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 1440,
+      "route": "services-index",
+      "vw": 1440,
+      "sw": 1440,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 1920,
+      "route": "loadicator-page",
+      "vw": 1920,
+      "sw": 1920,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 1920,
+      "route": "services-index",
+      "vw": 1920,
+      "sw": 1920,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 2560,
+      "route": "loadicator-page",
+      "vw": 2560,
+      "sw": 2560,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 2560,
+      "route": "services-index",
+      "vw": 2560,
+      "sw": 2560,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "width": 3258,
+      "route": "loadicator-page",
+      "vw": 3258,
+      "sw": 3258,
+      "overflow": false,
+      "introText": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.",
+      "closingText": "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
+      "alignOk": true,
+      "main": "Loadicator\n\nThe Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore.\n\nWe focus on:\n\nDeployment and support of UMISTAB-X for approved loading and stability workflows\nAlignment with class rules and company procedures\nTraining and handover so teams can run cases confidently\n\nFrom initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.\n\nBack to Services"
+    },
+    {
+      "width": 3258,
+      "route": "services-index",
+      "vw": 3258,
+      "sw": 3258,
+      "overflow": false,
+      "summaryText": "Class-approved loading and stability tools for vessels.",
+      "main": "SERVICES\n\nPractices built for the full vessel lifecycle\n\nConcept design, structural analysis, surveys, audits, mooring studies and cargo planning — the same engineering rigour, whichever practice you need.\n\nNaval Architecture & Design\n\nHull form, structure and the analysis behind every design decision.\n\nDesign & Analysis\nEngineering Analysis\nFEED — Front-End Engineering Design\nGlobal & Local Strength\nFinite Element Analysis (FEA)\nShip Plans & Drawings\nEngineering\n\nThe applied engineering knowledge that keeps assets competitive in ever-evolving market conditions.\n\nConversion & Upgradation\nManuals & Procedures\nHydrodynamic Calculations\nLoadout & Sea Fastening\nComputational Fluid Dynamics (CFD)\nHeat Transfer Analysis\nStability Calculation\nInspection, Audits & Surveying\n\nSurveys, audits and risk assessments performed by experienced and qualified hands.\n\nMarine Surveys\nAudits & Inspections\nMarine Warranty Surveys\nMooring & Compatibility\n\nStatic and dynamic mooring analysis and ship-shore compatibility studies for terminals and STS operations.\n\nOptimoor\nOrcaFlex\nLoadicator\n\nClass-approved loading and stability tools for vessels.\n\nUMISTAB-X"
+    },
+    {
+      "route": "loadicator-page",
+      "width": "1280@200%zoom",
+      "intro": "The Loadicator practice provides class-approved loading and stability tools for vessels that need reliable, auditable results at sea and ashore."
+    }
+  ]
+}

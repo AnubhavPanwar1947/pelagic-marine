@@ -27,6 +27,13 @@
   background-image: none;
 }
 
+/* Hero lead — left-align (global .pelagic-copy-container justifies p.type-lead ≥40rem) */
+.team-page .team-hero-shell .pelagic-copy-container p.type-lead {
+  text-align: left;
+  text-align-last: left;
+  text-justify: auto;
+}
+
 /* Team member cards */
 .team-page .team-member-card {
   background-color: #ffffff;

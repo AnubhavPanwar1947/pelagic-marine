@@ -31,7 +31,7 @@ const results = [];
 
 for (const w of WIDTHS) {
   await page.setViewportSize({ width: w, height: 900 });
-  await page.goto(`${BASE}/services/service-enganalysis/`, { waitUntil: "networkidle" });
+  await page.goto(`${BASE}/services/engineering-analysis/`, { waitUntil: "networkidle" });
   await dismiss(page);
 
   const data = await page.evaluate(() => {
@@ -71,7 +71,7 @@ for (const w of WIDTHS) {
 }
 
 await page.setViewportSize({ width: 640, height: 900 });
-await page.goto(`${BASE}/services/service-enganalysis/`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/services/engineering-analysis/`, { waitUntil: "networkidle" });
 await dismiss(page);
 const zoom = await page.evaluate(() => {
   const ul = document.querySelector(".service-topic-article ul.type-copy");

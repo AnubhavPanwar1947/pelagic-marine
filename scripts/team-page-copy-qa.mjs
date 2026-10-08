@@ -7,7 +7,6 @@ const WIDTHS = [
   50, 80, 120, 160, 200, 240, 279, 289, 290, 291, 320, 360, 390, 430, 480, 600, 640, 768,
   820, 1024, 1280, 1440, 1920, 2560, 3258,
 ];
-const JUSTIFY_MIN_PX = 640;
 
 const HERO =
   "A team that has a unique blend of engineering application and operational excellence, built on years of varied experience.";
@@ -36,19 +35,17 @@ for (const w of WIDTHS) {
   await page.goto(`${BASE}/team/`, { waitUntil: "networkidle" });
   await dismiss(page);
 
-  const data = await page.evaluate((justifyMinPx) => {
+  const data = await page.evaluate(() => {
     const vw = document.documentElement.clientWidth;
     const sw = document.documentElement.scrollWidth;
     const h1 = document.querySelector(".team-page h1, main h1");
-    const heroLead = document.querySelector(".team-page .type-lead, main .type-lead");
+    const heroLead = document.querySelector(
+      ".team-page .team-hero-shell .type-lead",
+    );
     const heroText = heroLead?.textContent?.replace(/\s+/g, " ").trim() ?? "";
     const heroStyle = heroLead ? getComputedStyle(heroLead) : null;
-    const heroW = heroLead ? heroLead.getBoundingClientRect().width : 0;
-    const expectJustify = heroW >= justifyMinPx - 1;
     const heroAlignOk = heroLead
-      ? expectJustify
-        ? heroStyle.textAlign === "justify"
-        : heroStyle.textAlign === "left" || heroStyle.textAlign === "start"
+      ? heroStyle.textAlign === "left" || heroStyle.textAlign === "start"
       : false;
     const cards = [...document.querySelectorAll(".team-member-card")];
     const nishchay = cards.find((c) => c.textContent?.includes("Nishchay Maken"));
@@ -80,7 +77,7 @@ for (const w of WIDTHS) {
       h1Justified,
       roleJustified,
     };
-  }, JUSTIFY_MIN_PX);
+  });
 
   results.push({ width: w, ...data });
 
@@ -101,14 +98,20 @@ for (const w of WIDTHS) {
 await page.setViewportSize({ width: 640, height: 900 });
 await page.goto(`${BASE}/team/`, { waitUntil: "networkidle" });
 await dismiss(page);
-const zoom = await page.evaluate(() => ({
-  width: "1280@200%zoom",
-  hero:
-    document.querySelector(".team-page .type-lead, main .type-lead")?.textContent?.replace(/\s+/g, " ").trim() ??
-    "",
-}));
+const zoom = await page.evaluate(() => {
+  const heroLead = document.querySelector(".team-page .team-hero-shell .type-lead");
+  const style = heroLead ? getComputedStyle(heroLead) : null;
+  return {
+    width: "1280@200%zoom",
+    hero: heroLead?.textContent?.replace(/\s+/g, " ").trim() ?? "",
+    textAlign: style?.textAlign ?? null,
+    alignOk:
+      style?.textAlign === "left" || style?.textAlign === "start",
+  };
+});
 results.push(zoom);
 if (zoom.hero !== HERO) issues.push("1280@200%: hero mismatch");
+if (!zoom.alignOk) issues.push("1280@200%: hero not left-aligned");
 
 await browser.close();
 

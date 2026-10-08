@@ -1,10 +1,4 @@
-import {
-  company,
-  contactPage,
-  newsItems,
-  serviceCategories,
-  teamMembers,
-} from "./site-data";
+import { company, serviceCategories, teamMembers } from "./site-data";
 import { teamMemberAnchorId } from "./search-slugs";
 import {
   buildTeamPageSearchBody,
@@ -14,6 +8,8 @@ import {
 } from "./team-page-content";
 import {
   buildSearchEntitiesFromPages,
+  collectFieldVocabulary,
+  entityMatchCorpus,
   resolveEntityAnchorId,
   searchEntitiesExact,
   searchEntitiesPrefixSuggestions,
@@ -24,8 +20,10 @@ import {
   containsExactPhrase,
   containsExactToken,
   countExactTokenMatches,
+  documentMatchesPrefixAutocomplete,
   documentMatchesQuery,
   highlightTermsFromQuery,
+  meaningfulTokensFromParsed,
   parseSearchQuery,
   splitTextByHighlights,
 } from "./search-matching";
@@ -34,7 +32,10 @@ import {
   buildAboutPageSearchBody,
   buildContactPageSearchBody,
   buildHomePageSearchBody,
+  buildNewsPageSearchBody,
 } from "./page-search-content";
+import { buildContactEnquiryAnchorBody } from "./search-rendered-corpus";
+import { getSiteRouteHrefs, normalizeSiteHref } from "./site-routes";
 import {
   buildCookiesPageSearchBody,
   buildDisclaimerPageSearchBody,
@@ -55,8 +56,7 @@ import {
   type SearchResultGroup,
 } from "./search-types";
 import { getServiceArticleContent } from "./service-topic-articles";
-import { getAllServiceTopics } from "./topic-pages";
-import { getServiceCategoryHref, getServiceItemHref } from "./service-slugs";
+import { getPublishedServiceItemTopics } from "./topic-pages";
 
 export type { SearchFilterTab, SearchResult, SearchResultGroup } from "./search-types";
 export {
@@ -78,7 +78,7 @@ export type SearchPageAnchor = {
 export const SEARCH_QUICK_LINKS = [
   { label: "Services", href: "/services/" },
   { label: "Team", href: "/team/" },
-  { label: "Blog", href: "/news/" },
+  { label: "Blog", href: "/marine-insights/" },
   { label: "Contact", href: "/contact/" },
 ] as const;
 
@@ -89,10 +89,11 @@ const SERVICE_SEARCH_KEYWORDS: Record<string, string> = {
   "umistab-x": "UMISTAB capabilities loadicator bulk carrier",
   engineering: "ANSYS NAPA AutoHydro simulation software analysis capabilities",
   "naval-architecture-design": "NAPA design analysis capabilities licensed tools",
-  "service-fea": "ANSYS finite element analysis simulation structural",
+  "finite-element-analysis": "ANSYS finite element analysis simulation structural",
   optimoor: "Optimoor mooring static dynamic capabilities",
   orcaflex: "OrcaFlex mooring dynamic marine systems simulation",
-  "service-cfd": "computational fluid dynamics CFD simulation resistance",
+  "computational-fluid-dynamics":
+    "computational fluid dynamics CFD simulation resistance",
 };
 
 function serviceSearchKeywords(slug: string): string | undefined {
@@ -113,11 +114,16 @@ type IndexedSearchResult = SearchResult & {
 };
 
 function normalizeHref(href: string): string {
-  if (href === "/" || href === "") {
-    return "/";
+  return normalizeSiteHref(href);
+}
+
+function pruneIndexToSiteRoutes(map: Map<string, IndexedSearchResult>): void {
+  const allowed = new Set(getSiteRouteHrefs().map(normalizeHref));
+  for (const href of [...map.keys()]) {
+    if (!allowed.has(href)) {
+      map.delete(href);
+    }
   }
-  const path = href.split("#")[0].split("?")[0];
-  return path.endsWith("/") ? path : `${path}/`;
 }
 
 function normalizeWhitespace(text: string): string {
@@ -126,8 +132,9 @@ function normalizeWhitespace(text: string): string {
 
 function matchTokensForQuery(query: string): string[] {
   const parsed = parseSearchQuery(query);
-  if (parsed.tokens.length) {
-    return parsed.tokens;
+  const meaningful = meaningfulTokensFromParsed(parsed);
+  if (meaningful.length) {
+    return meaningful;
   }
   return parsed.requiredPhrases.flatMap((phrase) =>
     phrase.split(/\s+/).filter((part) => part.length >= SEARCH_MIN_QUERY_LENGTH),
@@ -150,7 +157,7 @@ export function isQueryTooShort(query: string): boolean {
   return trimmed.length < SEARCH_MIN_QUERY_LENGTH;
 }
 
-function serviceArticlePlainText(topic: ReturnType<typeof getAllServiceTopics>[number]): string {
+function serviceArticlePlainText(topic: ReturnType<typeof getPublishedServiceItemTopics>[number]): string {
   const content = getServiceArticleContent(topic);
   return normalizeWhitespace(
     [
@@ -209,7 +216,9 @@ function registerStructuredAnchors(map: Map<string, IndexedSearchResult>) {
     ...teamMembers.map((member) => ({
       id: teamMemberAnchorId(member.name),
       label: member.name,
-      searchText: `${member.name} ${member.role} ${member.bio}`,
+      searchText: [member.name, member.role, member.bio, ...(member.bioParagraphs ?? [])].join(
+        " ",
+      ),
     })),
     {
       id: teamPageCta.anchorId,
@@ -230,8 +239,7 @@ function registerStructuredAnchors(map: Map<string, IndexedSearchResult>) {
     {
       id: "enquiry-form",
       label: "Enquiry form",
-      searchText:
-        "Dubai UAE office Al Raffa Dehradun Mumbai India phone mobilisation enquiry contact reach out",
+      searchText: buildContactEnquiryAnchorBody(),
     },
   ]);
 
@@ -252,7 +260,7 @@ function registerStructuredAnchors(map: Map<string, IndexedSearchResult>) {
     ]),
   );
 
-  appendPageAnchors(map, "/news/computational-fluid-dynamics/", [
+  appendPageAnchors(map, "/marine-insights/computational-fluid-dynamics/", [
     {
       id: "cfd-measurable-impact",
       label: "Where CFD Creates Measurable Impact",
@@ -309,33 +317,11 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     ].join(" "),
   });
 
-  for (const category of serviceCategories) {
-    addIndexEntry(map, {
-      title: category.title,
-      href: getServiceCategoryHref(category.slug),
-      category: "Service",
-      excerpt: category.summary,
-      group: "services",
-      keywords: serviceSearchKeywords(category.slug),
-      body: category.items.map((item) => `${item.label} ${item.teaser ?? ""}`).join(" "),
-    });
-    for (const item of category.items) {
-      addIndexEntry(map, {
-        title: item.label,
-        href: getServiceItemHref(item),
-        category: category.title,
-        excerpt: item.teaser ?? category.summary,
-        group: "services",
-        keywords: serviceSearchKeywords(item.slug),
-      });
-    }
-  }
-
-  for (const topic of getAllServiceTopics()) {
+  for (const topic of getPublishedServiceItemTopics()) {
     addIndexEntry(map, {
       title: topic.title,
       href: `/services/${topic.slug}/`,
-      category: topic.kind === "service-category" ? "Service" : topic.eyebrow,
+      category: topic.eyebrow,
       excerpt: topic.summary,
       group: "services",
       keywords: serviceSearchKeywords(topic.slug),
@@ -343,24 +329,18 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     });
   }
 
-  const newsBody = [
-    ...newsItems.map((item) => `${item.title} ${item.excerpt} ${item.category}`),
-    "Computational Fluid Dynamics CFD resistance fuel efficiency retrofit",
-  ].join(" ");
-
   addIndexEntry(map, {
     title: "Marine Insights",
-    href: "/news/",
+    href: "/marine-insights/",
     category: "Blog",
     excerpt: "Articles on marine advisory.",
     group: "articles",
-    body: newsBody,
-    keywords: "India UAE Dubai advisory expansion",
+    body: buildNewsPageSearchBody(),
   });
 
   addIndexEntry(map, {
     title: "Computational Fluid Dynamics",
-    href: "/news/computational-fluid-dynamics/",
+    href: "/marine-insights/computational-fluid-dynamics/",
     category: "Blog",
     excerpt:
       "3% resistance reduction and structured CFD for total resistance, energy-saving devices, and multiphase simulation.",
@@ -382,16 +362,15 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
     title: "Contact",
     href: "/contact/",
     category: "Page",
-    excerpt: "Mumbai, Dehradun and Dubai — get in touch with Pelagic Marine.",
+    excerpt: "Our presence and enquiry form — Dubai, India, Singapore, and Japan.",
     group: "pages",
-    keywords:
-      "India UAE Dubai offices enquiry careers jobs hiring client login maritime advisory platform",
+    keywords: "India UAE Dubai offices enquiry careers jobs hiring",
     body: buildContactPageSearchBody(),
   });
 
   addIndexEntry(map, {
     title: "Privacy policy",
-    href: "/privacy/",
+    href: "/privacy-policy/",
     category: "Legal",
     excerpt: "How Pelagic Marine collects, uses, and protects your information.",
     group: "pages",
@@ -401,7 +380,7 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
 
   addIndexEntry(map, {
     title: "Cookies policy",
-    href: "/cookies/",
+    href: "/cookies-policy/",
     category: "Legal",
     excerpt: "How we use cookies on this website.",
     group: "pages",
@@ -411,7 +390,7 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
 
   addIndexEntry(map, {
     title: "Terms & conditions",
-    href: "/terms/",
+    href: "/terms-and-conditions/",
     category: "Legal",
     excerpt: "Terms governing use of our website and services.",
     group: "pages",
@@ -432,7 +411,7 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
 
   addIndexEntry(map, {
     title: "Standard Terms and Conditions of Engagement",
-    href: "/engagement/",
+    href: "/standard-terms-and-conditions-of-engagement/",
     category: "Legal",
     excerpt: "Standard terms of engagement for Pelagic Marine consultancy services.",
     group: "pages",
@@ -451,7 +430,28 @@ function buildIndexedSearchMap(): Map<string, IndexedSearchResult> {
 
   registerStructuredAnchors(map);
 
+  pruneIndexToSiteRoutes(map);
+
   return map;
+}
+
+/** Compare search index URLs to published site routes (Boss Content Round 1). */
+export function getSearchIndexRouteAudit(): {
+  indexed: string[];
+  siteRoutes: string[];
+  orphanedIndex: string[];
+  missingFromIndex: string[];
+} {
+  const siteRoutes = getSiteRouteHrefs().map(normalizeHref).sort();
+  const indexed = getSearchIndexHrefs().map(normalizeHref).sort();
+  const siteSet = new Set(siteRoutes);
+  const indexSet = new Set(indexed);
+  return {
+    indexed,
+    siteRoutes,
+    orphanedIndex: indexed.filter((href) => !siteSet.has(href)),
+    missingFromIndex: siteRoutes.filter((href) => !indexSet.has(href)),
+  };
 }
 
 let cachedPages: IndexedSearchResult[] | null = null;
@@ -509,6 +509,12 @@ export function getIndexedTeamSearchText(): string {
 
 export function searchSuggestionMatches(query: string, limit = SEARCH_SUGGESTIONS_LIMIT): SearchResult[] {
   return searchPrefixSuggestionMatches(query, limit);
+}
+
+export function corpusForSearchResult(result: SearchResult): string {
+  const key = result.resultKey ?? result.href;
+  const entity = getSearchEntities().find((item) => item.resultKey === key);
+  return entity ? entityMatchCorpus(entity) : `${result.title} ${result.excerpt ?? ""}`;
 }
 
 export function searchPrefixSuggestionMatches(
@@ -693,4 +699,10 @@ export function textMatchesSearchQuery(
     return true;
   }
   return tokens.some((token) => containsExactToken(text, token));
+}
+
+export { collectFieldVocabulary };
+
+export function getSearchEntitiesSnapshot(): SearchEntity[] {
+  return getSearchEntities();
 }

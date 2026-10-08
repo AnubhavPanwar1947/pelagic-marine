@@ -52,7 +52,7 @@ const results = [];
 
 for (const w of WIDTHS) {
   await page.setViewportSize({ width: w, height: 900 });
-  await page.goto(`${BASE}/services/service-survey/`, { waitUntil: "networkidle" });
+  await page.goto(`${BASE}/services/marine-surveys/`, { waitUntil: "networkidle" });
   await dismiss(page);
 
   const data = await page.evaluate((justifyMinPx) => {
@@ -125,7 +125,7 @@ for (const w of WIDTHS) {
 }
 
 await page.setViewportSize({ width: 640, height: 900 });
-await page.goto(`${BASE}/services/service-survey/`, { waitUntil: "networkidle" });
+await page.goto(`${BASE}/services/marine-surveys/`, { waitUntil: "networkidle" });
 await dismiss(page);
 const zoom = await page.evaluate(() => {
   const bullets = [...document.querySelectorAll(".service-topic-article ul.type-copy li")].map(

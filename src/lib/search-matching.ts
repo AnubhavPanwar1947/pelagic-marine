@@ -1,4 +1,18 @@
+import { excerptForQueryMatch, highlightTermsForExcerpt } from "./search-excerpt";
+
 const MIN_QUERY_LENGTH = 2;
+
+/** Filler words — not required for multi-word match; query of only these returns no results. */
+const SEARCH_STOP_WORDS = new Set(["a", "and", "of", "the", "to"]);
+
+export function isSearchStopWord(token: string): boolean {
+  return SEARCH_STOP_WORDS.has(normalizeSearchText(stripTokenEdges(token)));
+}
+
+/** Tokens that must all appear on a page for a match (excludes stop words). */
+export function meaningfulTokensFromParsed(parsed: ParsedSearchQuery): string[] {
+  return parsed.tokens.filter((token) => !isSearchStopWord(token));
+}
 
 export type ParsedSearchQuery = {
   /** Quoted phrases in order */
@@ -21,8 +35,27 @@ export function normalizeSearchText(text: string): string {
     .toLowerCase();
 }
 
-function stripTokenEdges(token: string): string {
+export function stripTokenEdges(token: string): string {
   return token.replace(/^[^a-z0-9]+|[^a-z0-9]+$/gi, "");
+}
+
+const EXPLICIT_PLURAL_PAIRS: [string, string][] = [
+  ["survey", "surveys"],
+  ["audit", "audits"],
+  ["drawing", "drawings"],
+  ["inspection", "inspections"],
+];
+
+const EXPLICIT_PLURAL_VARIANTS = new Map<string, Set<string>>();
+for (const [a, b] of EXPLICIT_PLURAL_PAIRS) {
+  if (!EXPLICIT_PLURAL_VARIANTS.has(a)) {
+    EXPLICIT_PLURAL_VARIANTS.set(a, new Set());
+  }
+  if (!EXPLICIT_PLURAL_VARIANTS.has(b)) {
+    EXPLICIT_PLURAL_VARIANTS.set(b, new Set());
+  }
+  EXPLICIT_PLURAL_VARIANTS.get(a)!.add(b);
+  EXPLICIT_PLURAL_VARIANTS.get(b)!.add(a);
 }
 
 export function parseSearchQuery(query: string): ParsedSearchQuery {
@@ -41,7 +74,7 @@ export function parseSearchQuery(query: string): ParsedSearchQuery {
   const tokenParts = normalizeSearchText(withoutQuotes)
     .split(/\s+/)
     .map(stripTokenEdges)
-    .filter((token) => token.length >= MIN_QUERY_LENGTH);
+    .filter((token) => token.length >= MIN_QUERY_LENGTH && !SEARCH_STOP_WORDS.has(token));
 
   const seen = new Set<string>();
   const tokens: string[] = [];
@@ -106,14 +139,8 @@ export function tokenMatchForms(token: string): string[] {
   if (base.endsWith("'s") && base.length > MIN_QUERY_LENGTH + 2) {
     forms.add(base.slice(0, -2));
   }
-  if (base.endsWith("s") && base.length > MIN_QUERY_LENGTH + 1) {
-    forms.add(base.slice(0, -1));
-    if (base.endsWith("es") && base.length > MIN_QUERY_LENGTH + 2) {
-      forms.add(base.slice(0, -2));
-    }
-  }
-  if (!base.endsWith("s") && base.length >= 4) {
-    forms.add(`${base}s`);
+  for (const variant of EXPLICIT_PLURAL_VARIANTS.get(base) ?? []) {
+    forms.add(variant);
   }
   return [...forms].filter((form) => form.length >= MIN_QUERY_LENGTH);
 }
@@ -172,7 +199,8 @@ export function documentMatchesQuery(
   haystack: string,
   parsed: ParsedSearchQuery,
 ): boolean {
-  if (!parsed.requiredPhrases.length && !parsed.tokens.length) {
+  const tokens = meaningfulTokensFromParsed(parsed);
+  if (!parsed.requiredPhrases.length && !tokens.length) {
     return false;
   }
 
@@ -182,11 +210,11 @@ export function documentMatchesQuery(
     }
   }
 
-  if (!parsed.tokens.length) {
+  if (!tokens.length) {
     return parsed.requiredPhrases.length > 0;
   }
 
-  return parsed.tokens.some((token) => containsExactToken(haystack, token));
+  return tokens.every((token) => containsTokenWithAliasVariants(haystack, token));
 }
 
 export function countExactTokenMatches(haystack: string, tokens: string[]): number {
@@ -196,111 +224,10 @@ export function countExactTokenMatches(haystack: string, tokens: string[]): numb
   );
 }
 
-function trimSnippet(text: string, max: number): string {
-  const clean = text.replace(/\s+/g, " ").trim();
-  if (clean.length <= max) {
-    return clean;
-  }
-  return `${clean.slice(0, max - 1).trimEnd()}…`;
-}
-
-/** Pick a short excerpt from the sentence that contains the query match. */
-export function excerptForQueryMatch(
-  title: string,
-  bodyText: string,
-  query: string,
-  maxLen = 160,
-): string {
-  const trimmed = query.trim();
-  if (trimmed.length < MIN_QUERY_LENGTH) {
-    return trimSnippet(bodyText || title, maxLen);
-  }
-  const parsed = parseSearchQuery(trimmed);
-  const corpus = `${title} ${bodyText}`.replace(/\s+/g, " ").trim();
-  if (!corpus) {
-    return "";
-  }
-
-  const tokenAppearsInText = (text: string, token: string): boolean => {
-    if (containsExactToken(text, token)) {
-      return true;
-    }
-    const norm = normalizeSearchText(stripTokenEdges(token));
-    if (norm.length < MIN_QUERY_LENGTH) {
-      return false;
-    }
-    return haystackWords(text).some(
-      (word) => word.startsWith(norm) || norm.startsWith(word),
-    );
-  };
-
-  const sentenceMatches = (sentence: string): boolean => {
-    for (const phrase of parsed.requiredPhrases) {
-      if (!containsExactPhrase(sentence, phrase)) {
-        return false;
-      }
-    }
-    if (!parsed.tokens.length) {
-      return parsed.requiredPhrases.length > 0;
-    }
-    return parsed.tokens.some((token) => tokenAppearsInText(sentence, token));
-  };
-
-  const sentences = corpus.split(/(?<=[.!?])\s+/).filter((part) => part.trim().length > 0);
-  const chunks = sentences.length > 0 ? sentences : [corpus];
-
-  let best = "";
-  let bestScore = -1;
-  for (const chunk of chunks) {
-    if (!sentenceMatches(chunk)) {
-      continue;
-    }
-    let score = 0;
-    for (const phrase of parsed.requiredPhrases) {
-      if (containsExactPhrase(chunk, phrase)) {
-        score += 50;
-      }
-    }
-    score += countExactTokenMatches(chunk, parsed.tokens) * 10;
-    if (score > bestScore) {
-      bestScore = score;
-      best = chunk;
-    }
-  }
-
-  if (best) {
-    return trimSnippet(best, maxLen);
-  }
-  return trimSnippet(bodyText || title, maxLen);
-}
+export { excerptForQueryMatch };
 
 export function highlightTermsFromQuery(query: string): string[] {
-  const parsed = parseSearchQuery(query);
-  const terms = new Set<string>();
-
-  for (const phrase of parsed.requiredPhrases) {
-    terms.add(phrase);
-    for (const part of phrase.split(/\s+/)) {
-      if (part.length >= MIN_QUERY_LENGTH) {
-        terms.add(part);
-      }
-    }
-  }
-
-  for (const token of parsed.tokens) {
-    terms.add(token);
-    for (const form of tokenMatchForms(token)) {
-      terms.add(form);
-    }
-  }
-
-  const raw = query.trim();
-  const quoted = raw.match(/"([^"]+)"/);
-  if (quoted?.[1]) {
-    terms.add(quoted[1].trim());
-  }
-
-  return [...terms].filter((term) => term.length >= MIN_QUERY_LENGTH);
+  return highlightTermsForExcerpt(query);
 }
 
 export function scoreExactDocumentMatch(
@@ -349,8 +276,12 @@ export function scoreExactDocumentMatch(
   }
 
   const allTokens = [
-    ...parsed.tokens,
-    ...parsed.requiredPhrases.flatMap((p) => p.split(/\s+/).filter((t) => t.length >= MIN_QUERY_LENGTH)),
+    ...meaningfulTokensFromParsed(parsed),
+    ...parsed.requiredPhrases.flatMap((p) =>
+      p
+        .split(/\s+/)
+        .filter((t) => t.length >= MIN_QUERY_LENGTH && !SEARCH_STOP_WORDS.has(t)),
+    ),
   ];
 
   const uniqueTokens = [...new Set(allTokens)];
@@ -431,6 +362,9 @@ export function documentMatchesPrefixAutocomplete(
   const partialSegment = trailingSpace ? "" : segments[segments.length - 1] ?? "";
 
   for (const segment of completeSegments) {
+    if (isSearchStopWord(segment)) {
+      continue;
+    }
     if (!containsExactToken(haystack, segment)) {
       return false;
     }
@@ -505,7 +439,7 @@ export function splitTextByHighlights(text: string, query: string): HighlightPar
   return parts.length ? parts : [{ text: source, highlight: false }];
 }
 
-/** Related-search aliases (not used for exact document match). */
+/** Legacy alias map — prefer SEARCH_TOKEN_WORD_ALIASES in search-field-index for matching. */
 export const SEARCH_TOKEN_ALIASES: Record<string, string[]> = {
   captain: ["capt"],
   capt: ["captain"],
@@ -517,6 +451,17 @@ export const SEARCH_TOKEN_ALIASES: Record<string, string[]> = {
   upadhyay: ["upadhyaya"],
   harjeet: ["harjit"],
   harjit: ["harjeet"],
+  fea: ["finite", "element", "analysis"],
+  cfd: ["computational", "fluid", "dynamics"],
+  mws: ["marine", "warranty", "survey"],
+  na: ["naval", "architecture"],
+};
+
+export const SEARCH_TOKEN_PHRASE_ALIASES: Record<string, string[]> = {
+  fea: ["finite element analysis"],
+  cfd: ["computational fluid dynamics"],
+  mws: ["marine warranty survey", "marine warranty surveys"],
+  na: ["naval architecture"],
 };
 
 export function expandTokensWithAliases(tokens: string[]): string[][] {
@@ -539,6 +484,11 @@ export function containsTokenWithAliasVariants(haystack: string, token: string):
     return true;
   }
   const norm = normalizeSearchText(stripTokenEdges(token));
+  for (const phrase of SEARCH_TOKEN_PHRASE_ALIASES[norm] ?? []) {
+    if (containsExactPhrase(haystack, phrase)) {
+      return true;
+    }
+  }
   const aliases = SEARCH_TOKEN_ALIASES[norm] ?? [];
   return aliases.some((alias) => containsExactToken(haystack, alias));
 }
@@ -547,7 +497,8 @@ export function documentMatchesWithAliasVariants(
   haystack: string,
   parsed: ParsedSearchQuery,
 ): boolean {
-  if (!parsed.tokens.length && !parsed.requiredPhrases.length) {
+  const tokens = meaningfulTokensFromParsed(parsed);
+  if (!tokens.length && !parsed.requiredPhrases.length) {
     return false;
   }
   for (const phrase of parsed.requiredPhrases) {
@@ -555,10 +506,10 @@ export function documentMatchesWithAliasVariants(
       return false;
     }
   }
-  if (!parsed.tokens.length) {
+  if (!tokens.length) {
     return parsed.requiredPhrases.length > 0;
   }
-  return parsed.tokens.some((token) => containsTokenWithAliasVariants(haystack, token));
+  return tokens.every((token) => containsTokenWithAliasVariants(haystack, token));
 }
 
 export function levenshteinDistance(a: string, b: string): number {

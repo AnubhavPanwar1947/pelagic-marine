@@ -63,10 +63,10 @@ export function getTeamPageSearchFieldValues(): string[] {
 
 export function buildTeamPageSearchBody(): string {
   const memberText = teamMembers
-    .map(
-      (member) =>
-        `${member.name} ${member.role} ${member.bio} ${teamMemberImageAlt(member)}`,
-    )
+    .map((member) => {
+      const bios = [member.bio, ...(member.bioParagraphs ?? [])].join(" ");
+      return `${member.name} ${member.role} ${bios} ${teamMemberImageAlt(member)}`;
+    })
     .join(" ");
   return [
     teamPageHero.eyebrow,

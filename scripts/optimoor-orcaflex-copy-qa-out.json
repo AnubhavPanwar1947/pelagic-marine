@@ -1,0 +1,464 @@
+{
+  "baseUrl": "http://localhost:3001/",
+  "pass": false,
+  "failures": [
+    {
+      "href": "/services/optimoor/",
+      "width": 50,
+      "paragraphCount": 2,
+      "overflowX": true,
+      "clippedCount": 21,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 80,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 11,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 50,
+      "paragraphCount": 2,
+      "overflowX": true,
+      "clippedCount": 21,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 80,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 11,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": "1280@200%zoom",
+      "paragraphCount": 2,
+      "overflowX": false
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": "1280@200%zoom",
+      "paragraphCount": 2,
+      "overflowX": false
+    }
+  ],
+  "results": [
+    {
+      "href": "/services/optimoor/",
+      "width": 50,
+      "paragraphCount": 2,
+      "overflowX": true,
+      "clippedCount": 21,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 80,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 11,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 120,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 160,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 200,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 240,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 280,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 320,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 360,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 390,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 430,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 480,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 600,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 640,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 768,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 820,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 1024,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 1280,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 1440,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 1920,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 2560,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": 3258,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "Optimoor"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 50,
+      "paragraphCount": 2,
+      "overflowX": true,
+      "clippedCount": 21,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 80,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 11,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 120,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 160,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 200,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 240,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 280,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 320,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 360,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 390,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 430,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 480,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 600,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 640,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 768,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 820,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 1024,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 1280,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 1440,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 1920,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 2560,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": 3258,
+      "paragraphCount": 2,
+      "overflowX": false,
+      "clippedCount": 0,
+      "backLink": true,
+      "h1": "OrcaFlex"
+    },
+    {
+      "href": "/services/optimoor/",
+      "width": "1280@200%zoom",
+      "paragraphCount": 2,
+      "overflowX": false
+    },
+    {
+      "href": "/services/orcaflex/",
+      "width": "1280@200%zoom",
+      "paragraphCount": 2,
+      "overflowX": false
+    }
+  ]
+}

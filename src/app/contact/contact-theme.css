@@ -92,14 +92,33 @@
   }
 }
 
-/* Office cards */
-.contact-office-card {
+/* Office cards — Our presence (Track Record panel gradient) */
+.contact-page .contact-presence-cards .contact-office-card {
+  background: linear-gradient(180deg, rgb(7, 26, 51) 0%, rgb(20, 56, 104) 100%);
   box-shadow: 0 4px 24px rgba(7, 26, 51, 0.05);
   transition:
     border-color 300ms ease-out,
-    background-color 300ms ease-out,
     transform 300ms ease-out,
     box-shadow 300ms ease-out;
+}
+
+.contact-page .contact-presence-cards .contact-office-card-title {
+  color: #2fa8ee;
+}
+
+.contact-page .contact-presence-cards .contact-office-card-body {
+  color: #ffffff;
+}
+
+.contact-page .contact-presence-cards .contact-office-card-bullet-list {
+  margin: 0;
+  padding-left: 1.125em;
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.contact-page .contact-presence-cards .contact-office-card-bullet-list > li::marker {
+  color: #ffffff;
 }
 
 .contact-office-card-top-accent {
@@ -111,9 +130,13 @@
   background-color: #e6f4fc;
 }
 
-.contact-office-card:hover {
+.contact-page .contact-presence-cards .contact-office-card-top-accent {
+  display: none;
+}
+
+.contact-page .contact-presence-cards .contact-office-card:hover {
   border-color: #e6f4fc;
-  background-color: #f4fafd;
+  background: linear-gradient(180deg, rgb(7, 26, 51) 0%, rgb(20, 56, 104) 100%);
   box-shadow: 0 10px 32px rgba(7, 26, 51, 0.07);
   transform: translateY(-2px);
 }
@@ -128,11 +151,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .contact-office-card {
+  .contact-page .contact-presence-cards .contact-office-card {
     transition: none;
   }
 
-  .contact-office-card:hover {
+  .contact-page .contact-presence-cards .contact-office-card:hover {
     transform: none;
   }
 }
@@ -156,44 +179,231 @@
   }
 }
 
-/* Our presence — world map (viewBox 1600×800, 2:1) */
-.contact-page .contact-presence-map-wrap {
-  width: 100%;
+/* Our presence — side-by-side ≥48rem; stacked map square below 48rem */
+.contact-page .contact-presence-body {
   min-width: 0;
   max-width: 100%;
+  margin-top: 2rem;
+}
+
+.contact-page .contact-presence-body > .reveal-on-scroll {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (min-width: 48rem) {
+  .contact-page .contact-presence-body {
+    margin-top: clamp(2.5rem, 3vw, 3rem);
+  }
+}
+
+.contact-page .contact-presence-cards {
+  justify-items: center;
+}
+
+.contact-page .contact-presence-cards .contact-office-card {
+  box-sizing: border-box;
+  width: min(300px, 100%);
+  max-width: 300px;
+  min-height: 150px;
+  height: auto;
+  overflow: visible;
+}
+
+@media (max-width: 47.9375rem) {
+  .contact-page .contact-presence-cards {
+    width: min(500px, 100%);
+    max-width: min(500px, 100%);
+    margin-inline: auto;
+    justify-items: stretch;
+  }
+
+  .contact-page .contact-presence-cards > li {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .contact-page .contact-presence-cards .contact-office-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 150px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    padding: 1.25rem;
+  }
+
+  .contact-page .contact-presence-card-singapore .contact-office-card,
+  .contact-page .contact-presence-card-japan .contact-office-card {
+    height: auto;
+    min-height: 150px;
+    max-height: none;
+  }
+}
+
+@media (max-width: 17.4375rem) {
+  .contact-page .contact-presence-cards .contact-office-card {
+    padding: 0.75rem;
+  }
+}
+
+.contact-page .contact-presence-map-wrap {
+  width: min(500px, 100%);
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  margin-inline: auto;
+  min-width: 0;
   border-radius: 0.75rem;
-  border: 1px solid #d7e6f0;
-  background-color: #ffffff;
+  background-color: transparent;
   overflow: hidden;
 }
 
 .contact-page .contact-presence-map-scroller {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  height: 100%;
   min-width: 0;
-  max-width: 100%;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .contact-page .contact-presence-map {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 1;
+  height: 100%;
   max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
 }
 
-@media (max-width: 47.9375rem) {
-  .contact-page .contact-presence-map-scroller {
-    min-height: 10rem;
-    overflow: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
+/* 768–1279px: map on top (4:3), 2×2 cards below */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .contact-page .contact-presence-body {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
   }
 
-  .contact-page .contact-presence-map {
-    width: 20rem;
-    max-width: none;
-    min-width: 100%;
+  .contact-page .contact-presence-map-wrap {
+    position: static;
+    width: min(640px, 100%);
+    max-width: min(640px, 100%);
+    margin-inline: auto;
+    aspect-ratio: 4 / 3;
     height: auto;
+    max-height: none;
+  }
+
+  .contact-page .contact-presence-cards {
+    width: min(640px, 100%);
+    max-width: min(640px, 100%);
+    margin-inline: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    justify-content: stretch;
+    justify-items: stretch;
+  }
+
+  .contact-page .contact-presence-cards > li {
+    display: flex;
+    min-width: 0;
+  }
+
+  .contact-page .contact-presence-cards .contact-office-card {
+    width: 100%;
+    max-width: 100%;
+    min-height: 120px;
+    height: auto;
+    flex: 1 1 auto;
+  }
+
+  .contact-page .contact-presence-card-singapore .contact-office-card,
+  .contact-page .contact-presence-card-japan .contact-office-card {
+    height: auto;
+    min-height: 120px;
+    max-height: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .contact-page .contact-presence-body {
+    position: relative;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    --contact-presence-map-gap: clamp(2.5rem, 3vw, 3rem);
+    --contact-presence-map-w: 560px;
+    --contact-presence-map-h: 420px;
+    --contact-presence-card-w: 300px;
+    --contact-presence-card-min-h: 150px;
+    --contact-presence-sg-h: 150px;
+    min-height: var(--contact-presence-map-h);
+  }
+
+  .contact-page .contact-presence-cards {
+    width: max-content;
+    max-width: 100%;
+    margin-left: calc(var(--contact-presence-map-w) + var(--contact-presence-map-gap));
+    grid-template-columns: repeat(2, var(--contact-presence-card-w));
+    gap: 0.75rem;
+    justify-content: start;
+    justify-items: start;
+  }
+
+  .contact-page .contact-presence-cards > li {
+    display: block;
+  }
+
+  .contact-page .contact-presence-cards .contact-office-card {
+    width: var(--contact-presence-card-w);
+    max-width: var(--contact-presence-card-w);
+    min-height: var(--contact-presence-card-min-h);
+    padding-block: 12px;
+    padding-inline: 16px;
+  }
+
+  .contact-page .contact-presence-card-singapore .contact-office-card,
+  .contact-page .contact-presence-card-japan .contact-office-card {
+    height: auto;
+    min-height: var(--contact-presence-sg-h);
+    max-height: none;
+  }
+}
+
+@media (min-width: 90rem) {
+  .contact-page .contact-presence-body {
+    --contact-presence-map-w: 660px;
+    --contact-presence-map-h: 495px;
+  }
+}
+
+@media (min-width: 120rem) {
+  .contact-page .contact-presence-body {
+    --contact-presence-map-w: 800px;
+    --contact-presence-map-h: 600px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .contact-page .contact-presence-map-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-inline: 0;
+    aspect-ratio: auto;
+    width: var(--contact-presence-map-w, 560px);
+    max-width: var(--contact-presence-map-w, 560px);
+    height: var(--contact-presence-map-h, 420px);
+    max-height: var(--contact-presence-map-h, 420px);
   }
 }
 

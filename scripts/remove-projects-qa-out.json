@@ -1,0 +1,11 @@
+{
+  "ok": false,
+  "issues": [
+    "/about/@50: horizontal scroll 170>50",
+    "/about/@80: horizontal scroll 170>80",
+    "/about/@120: horizontal scroll 170>120",
+    "/about/@160: horizontal scroll 170>160",
+    "/services/@50: horizontal scroll 115>50",
+    "/services/@80: horizontal scroll 115>80"
+  ]
+}

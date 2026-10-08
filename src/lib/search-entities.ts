@@ -1,11 +1,21 @@
 import {
+  buildDocumentFields,
+  countMatchedQueryTokens,
+  documentFieldsMatchQuery,
+  partialMatchScore,
+  scoreDocumentFields,
+  tokenHitField,
+  type SearchDocumentFields,
+} from "./search-field-index";
+import {
   documentMatchesPrefixAutocomplete,
   documentMatchesQuery,
   documentMatchesWithAliasVariants,
+  meaningfulTokensFromParsed,
+  isSearchStopWord,
   excerptForQueryMatch,
   findTypoVocabularyMatches,
   parseSearchQuery,
-  scoreExactDocumentMatch,
   containsExactToken,
   containsTokenWithAliasVariants,
   normalizeSearchText,
@@ -13,6 +23,8 @@ import {
 } from "./search-matching";
 import type { SearchResult, SearchResultGroup } from "./search-types";
 import { SEARCH_MIN_QUERY_LENGTH, SEARCH_SUGGESTIONS_LIMIT } from "./search-types";
+import { CONTACT_PRESENCE_EYEBROW } from "./search-rendered-corpus";
+import { company } from "./site-data";
 import {
   teamMembers,
   teamPageCta,
@@ -29,6 +41,11 @@ export type SearchEntity = {
   breadcrumb?: string;
   excerpt: string;
   searchText: string;
+  /** Body copy for snippet generation (excludes keyword stuffing). */
+  excerptSource: string;
+  searchFields: SearchDocumentFields;
+  /** Extra index keywords included in snippet corpus (not shown as card excerpt). */
+  snippetKeywords?: string;
   relatedKeywords?: string;
   group: SearchResultGroup;
   anchorId?: string;
@@ -79,6 +96,57 @@ export function entityMatchCorpus(entity: Pick<SearchEntity, "title" | "searchTe
   return normalizeWhitespace(`${entity.title} ${entity.searchText}`);
 }
 
+function pageHeadingLabel(page: IndexedPage): string {
+  if (page.href === "/") {
+    return company.heroHeadline;
+  }
+  if (page.href === "/about/") {
+    return "About Us";
+  }
+  if (page.href === "/contact/") {
+    return CONTACT_PRESENCE_EYEBROW;
+  }
+  if (page.href === "/search/") {
+    return "Search";
+  }
+  if (page.href === "/services/") {
+    return "Practices built for the full vessel lifecycle";
+  }
+  if (/^\/services\/[^/]+\/$/.test(page.href)) {
+    return page.title;
+  }
+  if (page.category === "Legal" || page.category === "Blog") {
+    return page.title;
+  }
+  return page.category;
+}
+
+function pageIndexedBody(page: IndexedPage): string {
+  if (page.href === "/services/" || /^\/services\/[^/]+\/$/.test(page.href)) {
+    return normalizeWhitespace(page.body ?? "");
+  }
+  if (
+    page.href === "/contact/" ||
+    page.href === "/about/" ||
+    page.href === "/" ||
+    page.category === "Legal"
+  ) {
+    return normalizeWhitespace(page.body ?? "");
+  }
+  return normalizeWhitespace([page.excerpt ?? "", page.body ?? ""].join(" "));
+}
+
+function anchorHeadingLabel(pageHref: string, pageTitle: string, anchorLabel: string): string {
+  if (
+    pageHref === "/services/" ||
+    pageHref === "/contact/" ||
+    (pageHref.startsWith("/marine-insights/") && pageHref !== "/marine-insights/")
+  ) {
+    return anchorLabel;
+  }
+  return pageTitle;
+}
+
 function snippetFromText(text: string, max = 160): string {
   const clean = normalizeWhitespace(text);
   if (clean.length <= max) {
@@ -87,14 +155,59 @@ function snippetFromText(text: string, max = 160): string {
   return `${clean.slice(0, max - 1).trimEnd()}…`;
 }
 
+function visibleEntityCopy(entity: SearchEntity): string {
+  return normalizeWhitespace(
+    `${entity.title} ${entity.breadcrumb ?? entity.category} ${entity.excerptSource}`,
+  );
+}
+
+function exactMatchRelatedReason(
+  entity: SearchEntity,
+  parsed: ParsedSearchQuery,
+): string | undefined {
+  const tokens = meaningfulTokensFromParsed(parsed);
+  if (!tokens.length) {
+    return undefined;
+  }
+  const corpus = entityMatchCorpus(entity);
+  const visible = visibleEntityCopy(entity);
+  if (tokens.every((token) => containsExactToken(visible, token))) {
+    return undefined;
+  }
+  if (
+    tokens.every(
+      (token) =>
+        containsExactToken(visible, token) || containsTokenWithAliasVariants(visible, token),
+    )
+  ) {
+    return undefined;
+  }
+
+  const keywordHits = tokens.filter(
+    (token) => tokenHitField(entity.searchFields, corpus, token) === "keywords",
+  );
+  if (keywordHits.length === tokens.length) {
+    return "Keyword match";
+  }
+
+  if (tokens.every((token) => containsTokenWithAliasVariants(corpus, token))) {
+    return "Related term match";
+  }
+
+  return undefined;
+}
+
 function entityToResult(
   entity: SearchEntity,
   query: string,
   relatedReason?: string,
 ): SearchResult {
+  const excerptHeading = normalizeWhitespace(
+    [entity.title, entity.category, entity.breadcrumb].filter(Boolean).join(". "),
+  );
   const excerpt =
     query.trim().length >= SEARCH_MIN_QUERY_LENGTH
-      ? excerptForQueryMatch(entity.title, entity.searchText, query)
+      ? excerptForQueryMatch(excerptHeading, entity.searchText, query)
       : entity.excerpt;
   return {
     title: entity.title,
@@ -117,7 +230,16 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
 
     if (pageHref === "/team/") {
       for (const member of teamMembers) {
-        const searchText = ownEntitySearchText([`${member.name} ${member.role} ${member.bio}`]);
+        const searchText = ownEntitySearchText([
+          member.name,
+          member.role,
+          member.bio,
+          ...(member.bioParagraphs ?? []),
+        ]);
+        const memberBody = ownEntitySearchText([
+          member.bio,
+          ...(member.bioParagraphs ?? []),
+        ]);
         entities.push({
           resultKey: `team-member-${teamMemberAnchorId(member.name)}`,
           title: member.name,
@@ -126,6 +248,12 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
           breadcrumb: `Team › ${member.name}`,
           excerpt: snippetFromText(`${member.role}. ${member.bio}`),
           searchText,
+          excerptSource: normalizeWhitespace(`${member.role}. ${memberBody}`),
+          searchFields: buildDocumentFields({
+            title: member.name,
+            heading: member.role,
+            body: memberBody,
+          }),
           group: "pages",
           anchorId: teamMemberAnchorId(member.name),
         });
@@ -134,6 +262,7 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
         if (teamMembers.some((m) => teamMemberAnchorId(m.name) === anchor.id)) {
           continue;
         }
+        const anchorText = normalizeWhitespace(anchor.searchText);
         entities.push({
           resultKey: `${pageHref}#${anchor.id}`,
           title: anchor.label,
@@ -141,12 +270,28 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
           category: "Team",
           breadcrumb: `Team › ${anchor.label}`,
           excerpt: snippetFromText(anchor.searchText),
-          searchText: normalizeWhitespace(anchor.searchText),
+          searchText: anchorText,
+          excerptSource: anchorText,
+          searchFields: buildDocumentFields({
+            title: anchor.label,
+            heading: "Team",
+            body: anchorText,
+          }),
           group: page.group,
           anchorId: anchor.id,
         });
       }
       const teamOverviewText = pageLevelSearchText(page);
+      const teamBody = normalizeWhitespace(
+        [
+          teamPageMetadata.description,
+          teamPageHero.eyebrow,
+          teamPageHero.title,
+          teamPageHero.description,
+          teamPageCta.heading,
+          teamPageCta.buttonLabel,
+        ].join(" "),
+      );
       entities.push({
         resultKey: "/team/page",
         title: page.title,
@@ -155,12 +300,20 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
         breadcrumb: "Team",
         excerpt: page.excerpt ?? snippetFromText(teamOverviewText),
         searchText: teamOverviewText,
+        excerptSource: normalizeWhitespace(`${page.title} ${teamBody}`),
+        searchFields: buildDocumentFields({
+          title: page.title,
+          heading: teamPageHero.title,
+          body: teamBody,
+          keywords: page.keywords,
+        }),
         group: page.group,
       });
       continue;
     }
 
     for (const anchor of page.anchors) {
+      const anchorBody = ownEntitySearchText([anchor.searchText]);
       entities.push({
         resultKey: `${pageHref}#${anchor.id}`,
         title: anchor.label,
@@ -169,12 +322,19 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
         breadcrumb: `${page.title} › ${anchor.label}`,
         excerpt: snippetFromText(anchor.searchText),
         searchText: ownEntitySearchText([anchor.label, anchor.searchText]),
+        excerptSource: normalizeWhitespace(`${anchor.label} ${anchorBody}`),
+        searchFields: buildDocumentFields({
+          title: anchor.label,
+          heading: anchorHeadingLabel(pageHref, page.title, anchor.label),
+          body: anchorBody,
+        }),
         group: page.group,
         anchorId: anchor.id,
       });
     }
 
     const pageEntityText = pageLevelSearchText(page);
+    const pageBody = pageIndexedBody(page);
 
     entities.push({
       resultKey: pageHref,
@@ -184,11 +344,39 @@ export function buildSearchEntitiesFromPages(pages: IndexedPage[]): SearchEntity
       breadcrumb: page.title,
       excerpt: page.excerpt ?? snippetFromText(pageEntityText),
       searchText: pageEntityText,
+      excerptSource: normalizeWhitespace(`${page.title} ${pageBody}`),
+      searchFields: buildDocumentFields({
+        title: page.title,
+        heading: pageHeadingLabel(page),
+        body: pageBody,
+        keywords: page.keywords,
+      }),
+      snippetKeywords: page.keywords,
       group: page.group,
     });
   }
 
   return entities;
+}
+
+/** Distinct non-stop words from all indexed field word sets (for excerpt QA). */
+export function collectFieldVocabulary(entities: SearchEntity[]): string[] {
+  const words = new Set<string>();
+  for (const entity of entities) {
+    for (const set of [
+      entity.searchFields.titleWords,
+      entity.searchFields.headingWords,
+      entity.searchFields.bodyWords,
+      entity.searchFields.keywordWords,
+    ]) {
+      for (const word of set) {
+        if (word.length >= SEARCH_MIN_QUERY_LENGTH && !isSearchStopWord(word)) {
+          words.add(word);
+        }
+      }
+    }
+  }
+  return [...words].sort();
 }
 
 let vocabularyCache: string[] | null = null;
@@ -212,7 +400,14 @@ export function getSiteSearchVocabulary(entities: SearchEntity[]): string[] {
 
 function scoreEntity(entity: SearchEntity, parsed: ParsedSearchQuery): number {
   const heading = entity.breadcrumb ?? entity.category;
-  return scoreExactDocumentMatch(entity.title, heading, entity.searchText, parsed);
+  const corpus = entityMatchCorpus(entity);
+  return scoreDocumentFields(
+    entity.title,
+    heading,
+    entity.searchFields,
+    corpus,
+    parsed,
+  );
 }
 
 function matchEntities(
@@ -234,7 +429,7 @@ function matchEntities(
       const corpus = entityMatchCorpus(entity);
       const matches =
         mode === "exact"
-          ? documentMatchesQuery(corpus, parsed)
+          ? documentFieldsMatchQuery(entity.searchFields, corpus, parsed)
           : documentMatchesWithAliasVariants(corpus, parsed);
       const score = matches ? scoreEntity(entity, parsed) : 0;
       return { entity, score, matches };
@@ -255,13 +450,87 @@ function matchEntities(
       continue;
     }
     seen.add(row.entity.resultKey);
-    results.push(entityToResult(row.entity, trimmed));
+    const parsedForReason = parseSearchQuery(trimmed);
+    results.push(
+      entityToResult(
+        row.entity,
+        trimmed,
+        exactMatchRelatedReason(row.entity, parsedForReason),
+      ),
+    );
   }
   return results;
 }
 
 export function searchEntitiesExact(entities: SearchEntity[], query: string): SearchResult[] {
-  return matchEntities(entities, query, "exact");
+  const trimmed = query.trim();
+  if (trimmed.length < SEARCH_MIN_QUERY_LENGTH) {
+    return [];
+  }
+  const parsed = parseSearchQuery(trimmed);
+  if (!parsed.requiredPhrases.length && !parsed.tokens.length) {
+    return [];
+  }
+
+  const exact = matchEntities(entities, query, "exact");
+  if (exact.length > 0) {
+    return exact;
+  }
+
+  const tokens = meaningfulTokensFromParsed(parsed);
+  if (!tokens.length) {
+    return [];
+  }
+
+  const partialScored = entities
+    .map((entity) => {
+      const corpus = entityMatchCorpus(entity);
+      const { matched, total } = countMatchedQueryTokens(entity.searchFields, corpus, parsed);
+      if (matched === 0 || matched === total) {
+        return null;
+      }
+      if (entity.category === "Team member" && tokens.length > 1) {
+        return null;
+      }
+      const heading = entity.breadcrumb ?? entity.category;
+      const score = partialMatchScore(
+        entity.title,
+        heading,
+        entity.searchFields,
+        corpus,
+        parsed,
+        matched,
+      );
+      return { entity, score, matched, total };
+    })
+    .filter((row): row is NonNullable<typeof row> => row !== null);
+
+  partialScored.sort((a, b) => {
+    if (b.matched !== a.matched) {
+      return b.matched - a.matched;
+    }
+    if (b.score !== a.score) {
+      return b.score - a.score;
+    }
+    return a.entity.title.localeCompare(b.entity.title);
+  });
+
+  const seen = new Set<string>();
+  const results: SearchResult[] = [];
+  for (const row of partialScored) {
+    if (seen.has(row.entity.resultKey)) {
+      continue;
+    }
+    seen.add(row.entity.resultKey);
+    results.push(
+      entityToResult(
+        row.entity,
+        trimmed,
+        `Partial match (${row.matched} of ${row.total} terms)`,
+      ),
+    );
+  }
+  return results;
 }
 
 export function searchEntitiesPrefixSuggestions(
@@ -319,7 +588,8 @@ export function searchEntitiesRelated(
     return [];
   }
   const parsed = parseSearchQuery(trimmed);
-  if (!parsed.tokens.length && !parsed.requiredPhrases.length) {
+  const meaningful = meaningfulTokensFromParsed(parsed);
+  if (!meaningful.length && !parsed.requiredPhrases.length) {
     return [];
   }
 
@@ -335,34 +605,17 @@ export function searchEntitiesRelated(
     scored.push({ entity, reason, score });
   };
 
-  if (parsed.tokens.length >= 2) {
-    let anyFullAlias = false;
+  if (meaningful.length >= 2) {
     for (const entity of entities) {
       const corpus = entityMatchCorpus(entity);
       if (documentMatchesQuery(corpus, parsed)) {
         continue;
       }
-      const matchedTokens = parsed.tokens.filter((token) =>
+      const allAlias = meaningful.every((token) =>
         containsTokenWithAliasVariants(corpus, token),
       );
-      if (matchedTokens.length === parsed.tokens.length) {
-        anyFullAlias = true;
+      if (allAlias) {
         push(entity, "Spelling or title variant", 500);
-      } else if (matchedTokens.length >= 2) {
-        anyFullAlias = true;
-        push(entity, `Matches ${matchedTokens.join(" and ")}`, 320);
-      }
-    }
-    if (!anyFullAlias) {
-      for (const entity of entities) {
-        const corpus = entityMatchCorpus(entity);
-        const matchedTokens = parsed.tokens.filter((token) =>
-          containsTokenWithAliasVariants(corpus, token),
-        );
-        if (matchedTokens.length === 1) {
-          const token = matchedTokens[0]!;
-          push(entity, `Matches “${token}”`, 120);
-        }
       }
     }
   } else {
@@ -377,7 +630,7 @@ export function searchEntitiesRelated(
     }
   }
 
-  for (const token of parsed.tokens) {
+  for (const token of meaningful) {
     const norm = normalizeSearchText(token);
     if (vocabulary.includes(norm)) {
       continue;

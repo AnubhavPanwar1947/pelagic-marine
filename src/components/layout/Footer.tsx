@@ -11,11 +11,15 @@ type LegalFooterItem = {
 };
 
 const legalLinks: LegalFooterItem[] = [
-  { id: "privacy", label: "Privacy policy", href: "/privacy" },
+  { id: "privacy", label: "Privacy policy", href: "/privacy-policy" },
   { id: "disclaimer", label: "Disclaimer", href: "/disclaimer" },
-  { id: "cookies", label: "Cookies policy", href: "/cookies" },
-  { id: "terms", label: "Terms & conditions", href: "/terms" },
-  { id: "engagement", label: "Standard T&C of engagement", href: "/engagement" },
+  { id: "cookies", label: "Cookies policy", href: "/cookies-policy" },
+  { id: "terms", label: "Terms & conditions", href: "/terms-and-conditions" },
+  {
+    id: "engagement",
+    label: "Standard T&C of engagement",
+    href: "/standard-terms-and-conditions-of-engagement",
+  },
 ];
 
 const legalLinkClassName = "min-w-0 break-words text-blue-100 hover:text-white";

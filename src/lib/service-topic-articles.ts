@@ -90,7 +90,7 @@ const articles: Record<string, ArticleInput> = {
     closing:
       "From initial setup through ongoing use, we keep loadicator workflows practical for the people who depend on them every voyage.",
   },
-  "service-design": {
+  "design-analysis": {
     paragraphs: [
       "At the core of our services is a passion for innovation in marine and offshore engineering. We design a wide variety of vessels and offshore structures—fixed, floating, or mobile—catering to the Oil & Gas, Marine, and Renewable Energy industries.",
     ],
@@ -103,13 +103,13 @@ const articles: Record<string, ArticleInput> = {
     closing:
       "Our design process is client-driven and powered by a team of experienced professionals using cutting-edge, industry-standard software. We work on every project to meet technical, operational, and regulatory requirements—on time and with precision. Whether you need support with new builds or modifications, we bring expertise and innovation to every stage of the design journey.",
   },
-  "service-enganalysis": {
+  "engineering-analysis": {
     paragraphs: [
       "Our experienced engineering and design team provides reliable analysis services across all key phases of an asset’s lifecycle.",
     ],
     leadIn: "We support projects through:",
     bullets: [
-      "In-place Analysis – for long-term structural performance under operational and environmental loads.",
+      "In-place Analysis – For long-term structural performance under operational and environmental loads.",
       "Pre-service Analysis – Evaluating conditions during fabrication, transportation, and installation, including temporary load scenarios.",
       "Fatigue Analysis – Assessing fatigue life using industry-accepted methods to help extend asset lifespan and plan maintenance.",
       "Decommissioning Analysis – Supporting safe and efficient removal planning through structural assessments and procedural reviews.",
@@ -117,14 +117,14 @@ const articles: Record<string, ArticleInput> = {
     closing:
       "We apply a combination of trusted engineering tools and proven methodologies to deliver accurate, code-compliant results that help clients make informed decisions at every stage.",
   },
-  "service-feed": {
+  "front-end-engineering-design": {
     paragraphs: [
       "Front-End Engineering Design (FEED) is the essential bridge between conceptual design and full-scale project execution. Conducted after the feasibility phase and before Engineering, Procurement, and Construction (EPC) begins, FEED lays the groundwork for a successful project.",
       "At this stage, our experienced team of naval architects and engineers carries out in-depth technical studies to identify potential design and operational challenges. We also provide preliminary cost estimates to give clients a clearer picture of project viability and investment requirements.",
       "Our FEED studies help clients make confident, informed decisions—reducing risk, refining project scope, and setting the foundation for cost-effective execution.",
     ],
   },
-  "service-strength": {
+  "global-local-strength": {
     paragraphs: [
       "Our team conducts Global and Local Strength Analysis (GLSA) to evaluate the structural response of marine and offshore structures under extreme environmental loading. The analysis is grounded in first-principles methodologies, ensuring a physics-based, high-fidelity representation of structural behaviour.",
       "Extreme load assessments are performed across a range of dominant load cases, which are identified based on vessel or structure type. This approach enables detailed yet computationally efficient structural simulations.",
@@ -132,14 +132,14 @@ const articles: Record<string, ArticleInput> = {
       "Our analyses have consistently met or exceeded client expectations, supporting both newbuild and in-service assessment projects.",
     ],
   },
-  "service-fea": {
+  "finite-element-analysis": {
     paragraphs: [
       "Finite Element Analysis (FEA) is a powerful computational method used to simulate and predict the structural and thermal behaviour of components and systems under real-world physical conditions such as mechanical loading, vibration, thermal gradients, and fluid interaction. While termed “analysis,” FEA is an integral part of the design and verification process, allowing engineers to anticipate structural performance, identify critical stress areas, and optimize designs before fabrication or physical testing.",
       "In the offshore and marine industry, FEA is extensively utilized to address complex engineering problems associated with floating and fixed structures. Applications include evaluating global structural integrity, local stress concentrations, fatigue life estimation, buckling assessments, and dynamic response to environmental loads.",
       "Our engineering team employs ANSYS, a leading FEA platform, to carry out high-fidelity simulations that support the structural design and assessment of offshore platforms, subsea equipment, riser systems, and hull structures. Analyses are performed in accordance with relevant industry codes and class society requirements, for safety and performance across the asset lifecycle.",
     ],
   },
-  "service-shipplans": {
+  "ship-plans-drawings": {
     paragraphs: [
       "Our team of experienced Naval Architects provides a full suite of plans and technical drawings essential throughout the lifecycle of a marine asset. All documentation is prepared in accordance with the requirements of the relevant flag state and tailored for approval by leading classification societies.",
     ],
@@ -163,13 +163,13 @@ const articles: Record<string, ArticleInput> = {
     closing:
       "Our goal is to support vessel compliance, safety, and operational efficiency from concept to completion.",
   },
-  "service-conversion": {
+  "conversion-upgradation": {
     subheading: "Lifecycle Engineering & Asset Upgrades",
     paragraphs: [
       "To stay ahead in today’s fast-evolving industry, it is essential to upgrade assets using the latest design solutions, technologies, and equipment. Our team of seasoned experts delivers comprehensive engineering solutions throughout the entire lifecycle of your assets. From concept to completion, we support your most ambitious conversion and upgrade projects across the offshore, marine, and renewable energy sectors—boosting performance, reliability, and efficiency every step of the way.",
     ],
   },
-  "service-manuals": {
+  "manuals-procedures": {
     paragraphs: [
       "Equipped with the right knowledge, skills, and hands-on experience, our team has successfully prepared and delivered a wide range of procedural and operational manuals tailored to the specific needs of our clients across the maritime and offshore sectors.",
     ],
@@ -201,30 +201,30 @@ const articles: Record<string, ArticleInput> = {
     closing:
       "Each document is developed in compliance with the latest IMO guidelines, flag state requirements, class standards, and best industry practices, ensuring safety, efficiency, and regulatory alignment for your operations.",
   },
-  "service-hydro": {
+  "hydrodynamic-calculations": {
     paragraphs: [
       "Marine environments are constantly changing—and so is vessel performance. Our expert team of naval architects and hydrodynamic engineers utilizes cutting-edge simulation tools and industry-leading software to predict how marine assets will perform in real-world sea and weather conditions. From seakeeping and RAO calculations to resistance, motion response, multi-body dynamics, sloshing analysis, and propeller performance assessment—we provide end-to-end hydrodynamic solutions. Whether it’s during the design phase or in operational optimization, we help you enhance safety, efficiency, and reliability at sea.",
     ],
   },
-  "service-loadout": {
+  "loadout-sea-fastening": {
     paragraphs: [
       "When transporting cargo by sea, it is essential to secure it in a way that prevents any movement which could potentially damage the cargo or the vessel. Improperly secured cargo can shift during transit, posing serious risks to vessel stability and endangering both the crew and the cargo. This is especially critical when handling valuable assets such as machinery, equipment, fabricated structures, and marine components of varying sizes and complexities. Insurers often mandate that cargo is properly fastened to mitigate these risks. Our team of experienced engineers and naval architects prepares plans to facilitate loadout and sea fastening—optimized for safety, efficiency, and compliance with the requirements of clients, insurers, and all relevant stakeholders.",
     ],
   },
-  "service-cfd": {
+  "computational-fluid-dynamics": {
     paragraphs: [
       "At the forefront of engineering innovation, Computational Fluid Dynamics (CFD) is a core tool we use to simulate and optimize fluid flow behavior in complex systems. Whether designing next-generation wind turbines, optimizing hull performance, high-performance marine vessels, or energy-efficient HVAC systems, CFD allows us to deliver data-driven solutions with precision and reliability.",
       "CFD involves the numerical analysis of fluid behavior based on physical parameters such as velocity, pressure, temperature, density, and viscosity. By replicating real-world fluid interactions within a virtual environment, we can predict performance, identify inefficiencies, and refine designs long before any physical prototype is built.",
       "As a digital fluid dynamics simulator, CFD plays a critical role in high-end design optimization, reducing development time and cost while enhancing safety and functionality. Our team leverages advanced CFD tools and deep domain expertise to deliver customized solutions tailored to your engineering challenges.",
     ],
   },
-  "service-heat": {
+  "heat-transfer-analysis": {
     paragraphs: [
       "Our engineering team delivers high-performance heat transfer analysis solutions tailored for the maritime industry. We provide evaluation of temperature distribution and heat flux in structural components exposed to thermal loads, supporting both steady-state and transient conditions, as well as linear and non-linear material behavior.",
       "With proven expertise in handling high-temperature cargo scenarios, we work on optimal thermal management and insulation design for vessels operating beyond typical ambient marine conditions. Our solutions help enhance safety, maintain cargo integrity, and improve energy efficiency—meeting the rigorous demands of modern shipping operations.",
     ],
   },
-  "service-stability": {
+  "stability-calculation": {
     paragraphs: [
       "At Pelagic Marine, we provide comprehensive stability calculations tailored to the needs of our offshore and main fleet clients. Our services encompass a wide range of stability-related tasks for the safe and efficient operation of vessels.",
     ],
@@ -240,7 +240,7 @@ const articles: Record<string, ArticleInput> = {
     closing:
       "We are committed to delivering precise, reliable, and efficient stability solutions, supporting vessel safety and operational performance.",
   },
-  "service-survey": {
+  "marine-surveys": {
     paragraphs: [
       "At Pelagic Marine, we leverage the expertise of our team, comprising Master Mariners and Marine Engineers, to deliver precise and comprehensive marine and technical surveys. Our services cater to a wide range of vessel types, providing in-depth assessments to ensure operational efficiency, safety, and compliance with industry standards.",
       "Our clientele spans ship owners, operators, charterers, P&I clubs, insurers, financial institutions, flag states, and classification societies.",
@@ -258,7 +258,7 @@ const articles: Record<string, ArticleInput> = {
     closing:
       "With an unwavering focus on precision and adherence to international standards, Pelagic Marine endeavours to ensure the highest level of technical integrity and operational safety across all maritime operations.",
   },
-  "service-audits": {
+  "audits-inspections": {
     paragraphs: [
       "At Pelagic Marine, we understand the critical importance of compliance, operational integrity, and continuous improvement in the maritime industry. We perform systematic evaluations of vessel operations, shipboard practices, safety management frameworks, and navigational protocols. Our services are aligned with the latest IMO conventions, flag state requirements, OCIMF standards, and classification society guidelines.",
       "We conduct systematic examinations of vessel systems, onboard procedures, and management practices to verify that your Safety Management System (SMS) is properly implemented and adhered to by the crew. Each audit is meticulously carried out to support safety, efficiency, and compliance across all levels of maritime operations.",
@@ -279,7 +279,7 @@ const articles: Record<string, ArticleInput> = {
       "Bulk Carrier Inspection & Hold Preparation: Thorough inspection and preparation of cargo holds for dry bulk operations.",
     ],
   },
-  "service-mws": {
+  "marine-warranty-surveys": {
     paragraphs: [
       "We deliver independent third-party Marine Warranty Survey (MWS) services to support the safe, efficient, and compliant execution of high-value, high-risk marine projects.",
       "Our expert surveyors provide comprehensive technical review and approval for the handling, sea transportation, and offshore installation of critical marine assets—including fixed platforms, offshore wind turbines, subsea facilities, pipelines, power cables, and mooring systems.",

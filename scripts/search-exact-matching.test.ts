@@ -3,10 +3,12 @@ import {
   buildSearchDestinationHref,
   getIndexedTeamSearchText,
   searchAllMatches,
+  corpusForSearchResult,
   searchPrefixSuggestionMatches,
   searchRelatedMatches,
   searchSuggestionMatches,
 } from "../src/lib/search-index";
+import { documentMatchesPrefixAutocomplete } from "../src/lib/search-matching";
 import { getTeamPageSearchFieldValues, teamMembers } from "../src/lib/team-page-content";
 import { teamMemberAnchorId } from "../src/lib/search-slugs";
 import { normalizeSearchText } from "../src/lib/search-matching";
@@ -46,39 +48,52 @@ assertSomeResults("UMISTAB");
 assertSomeResults("UMISTAB-X");
 assertSomeResults("umistab x");
 
-// Multi-word OR matching with full-match ranking
+// Multi-word AND matching — every meaningful token must appear on the page
 assertSomeResults("Naval architecture");
 assertSomeResults("mooring compatibility");
 assertSomeResults("computational fluid dynamics");
 
-const qualityManagement = searchAllMatches("Quality management");
-assert.ok(qualityManagement.length > 0);
-assert.ok(qualityManagement[0]!.href.includes("/contact/"));
+const reachOut = searchAllMatches("Reach out");
+assert.ok(reachOut.length > 0);
+assert.ok(hasHref(reachOut, "/contact/"));
 
-const splitWords = searchAllMatches("Optimoor sanctions");
-assert.ok(hasHref(splitWords, "/terms/"));
-assert.ok(splitWords.some((r) => normalizeSearchText(r.title).includes("optimoor")));
+const bothOnTerms = searchAllMatches("export sanctions");
+assert.ok(hasHref(bothOnTerms, "/terms-and-conditions/"));
+assert.ok(
+  !searchAllMatches("Optimoor sanctions").some((r) => r.href === "/"),
+  "Optimoor sanctions must not match home page",
+);
+assert.ok(
+  !searchAllMatches("register of representative assignments").some((r) => r.href === "/"),
+);
+
+assertNoResults("of");
+assert.ok(hasHref(searchAllMatches("Yokohama"), "/contact/"));
+assert.ok(
+  searchAllMatches("Yokohama").every((r) => r.href.includes("/contact/")),
+  "Yokohama must only match pages that contain it",
+);
+assert.ok(hasHref(searchAllMatches("Woodlands"), "/contact/"));
+assert.ok(hasHref(searchAllMatches("Anubhav"), "/team/"));
 
 // Legal and service coverage
-assert.ok(hasHref(searchAllMatches("sanctions"), "/terms/"));
+assert.ok(hasHref(searchAllMatches("sanctions"), "/terms-and-conditions/"));
 assert.ok(
   searchAllMatches("Aghaadir").some(
     (r) =>
-      r.href.includes("/privacy/") ||
-      r.href.includes("/terms/") ||
-      r.href.includes("/cookies/") ||
+      r.href.includes("/privacy-policy/") ||
+      r.href.includes("/terms-and-conditions/") ||
+      r.href.includes("/cookies-policy/") ||
       r.href.includes("/disclaimer/") ||
-      r.href.includes("/engagement/"),
+      r.href.includes("/standard-terms-and-conditions-of-engagement/"),
   ),
 );
-assert.ok(hasHref(searchAllMatches("Personal Data"), "/privacy/"));
-assert.ok(hasHref(searchAllMatches("cookies"), "/cookies/"));
-assert.ok(hasHref(searchAllMatches("engagement"), "/engagement/"));
+assert.ok(hasHref(searchAllMatches("Personal Data"), "/privacy-policy/"));
+assert.ok(hasHref(searchAllMatches("cookies"), "/cookies-policy/"));
 assert.ok(
-  searchAllMatches("surveying").some(
-    (r) => r.href.includes("/services/") && !r.href.endsWith("/services/"),
-  ) || hasHref(searchAllMatches("surveying"), "survey"),
+  hasHref(searchAllMatches("engagement"), "/standard-terms-and-conditions-of-engagement/"),
 );
+assert.ok(searchAllMatches("surveying").length > 0);
 
 const surveySingular = searchAllMatches("survey");
 const surveyPlural = searchAllMatches("surveys");
@@ -105,18 +120,16 @@ assert.ok(
   ),
 );
 assert.ok(
-  searchPrefixSuggestionMatches("mast").every((r) => {
-    const hay = normalizeSearchText(`${r.title} ${r.excerpt ?? ""}`);
-    return hay.includes("mast");
-  }),
+  searchPrefixSuggestionMatches("mast").every((r) =>
+    documentMatchesPrefixAutocomplete(corpusForSearchResult(r), "mast"),
+  ),
 );
 
-const architectsOnlyOnPage = searchAllMatches("MICS");
-assert.ok(hasHref(architectsOnlyOnPage, "/contact/"));
+const singaporeOffice = searchAllMatches("Woodlands Square");
+assert.ok(hasHref(singaporeOffice, "/contact/"));
 assert.ok(
-  !architectsOnlyOnPage.some(
-    (r) => r.title === "Bhanu Prabhakar" || r.title === "Capt. Harjit Singh Sidhu",
-  ),
+  singaporeOffice.every((r) => r.href.includes("/contact/")),
+  "Woodlands Square should only match contact presence copy",
 );
 
 // Typo must not fuzzy-match surveying
@@ -141,8 +154,8 @@ assert.ok(quotedResults.some((r) => r.title.toLowerCase().includes("naval")));
 // Punctuation / ampersand in index content
 assertSomeResults("Mooring & compatibility");
 
-// Quality management on contact accreditations
-assert.ok(hasHref(searchAllMatches("Quality management"), "/contact/"));
+// Contact presence copy (rendered on page, indexed in search body)
+assert.ok(hasHref(searchAllMatches("Associate Office"), "/contact/"));
 
 // Destination anchors
 const team = searchAllMatches("Nishchay").find((r) => r.href.includes("/team/"));
@@ -153,24 +166,24 @@ assert.match(teamHref, /#team-nishchay/);
 const dubai = searchAllMatches("Dubai").find((r) => r.href.includes("/contact/"));
 assert.ok(dubai);
 const dubaiHref = buildSearchDestinationHref(dubai!, "Dubai");
-assert.match(dubaiHref, /#enquiry-form/);
+assert.match(dubaiHref, /\/contact\/\?q=Dubai/);
+assert.match(dubaiHref, /#search-land-target/);
 
-const privacy100 = searchAllMatches("100").find((r) => r.href.includes("/privacy/"));
+const privacy100 = searchAllMatches("100").find((r) => r.href.includes("/privacy-policy/"));
 assert.ok(privacy100);
 const privacyHref = buildSearchDestinationHref(privacy100!, "100");
-assert.match(privacyHref, /\/privacy\/\?q=100/);
+assert.match(privacyHref, /\/privacy-policy\/\?q=100/);
 assert.match(privacyHref, /#search-land-target/);
 assert.match(privacyHref, /land=/);
 
-const engagement100 = searchAllMatches("100").find((r) => r.href.includes("/engagement/"));
-assert.ok(engagement100);
-const engagementHref = buildSearchDestinationHref(engagement100!, "100");
+const engagementAgreement = searchAllMatches("Agreement").find((r) =>
+  r.href.includes("/standard-terms-and-conditions-of-engagement/"),
+);
+assert.ok(engagementAgreement);
+const engagementHref = buildSearchDestinationHref(engagementAgreement!, "Agreement");
 assert.match(engagementHref, /land=/);
 assert.match(engagementHref, /#search-land-target/);
-assert.ok(
-  decodeURIComponent(engagementHref).includes("total liability") ||
-    decodeURIComponent(engagementHref).includes("US$"),
-);
+assert.match(engagementHref, /Agreement/);
 
 // Parse query
 const parsed = parseSearchQuery('naval  "fluid dynamics"');
@@ -229,26 +242,25 @@ const headEng = searchAllMatches("Head of Engineering")[0];
 assert.ok(headEng);
 assert.match(headEng.title, /Bhanu/);
 
-assert.ok(searchAllMatches("Vipul Sidhu").some((r) => r.title.includes("Vipul")));
-assert.ok(searchAllMatches("Vipul Sidhu").some((r) => r.title.includes("Sidhu")));
+const vipulSidhu = searchAllMatches("Vipul Sidhu");
+assert.equal(vipulSidhu.length, 0, "no exact or partial team split for two-name queries");
 assert.ok(searchRelatedMatches("Vipul Sidhu").length >= 0);
 
-const captainVipul = searchAllMatches("Captain Vipul");
-assert.ok(captainVipul.some((r) => r.title.includes("Vipul")));
-assert.ok(!captainVipul.some((r) => r.title.includes("Abhinav") && !r.title.includes("Vipul")));
+const captVipul = searchAllMatches("Capt Vipul");
+assert.ok(captVipul.some((r) => r.title.includes("Vipul")));
+assert.ok(!captVipul.some((r) => r.title.includes("Abhinav") && !r.title.includes("Vipul")));
+assert.ok(
+  searchAllMatches("Captain Vipul").some((r) => r.title.includes("Vipul")),
+  "capt/captain alias should match Vipul",
+);
 
-assertNoResults("Upadhyaya");
-assert.ok(searchRelatedMatches("Upadhyaya").some((r) => r.title.includes("Upadhyay")));
-
-assertNoResults("Harjeet");
-assert.ok(searchRelatedMatches("Harjeet").some((r) => r.title.includes("Harjit")));
-
-assertNoResults("specialized");
-assert.ok(searchRelatedMatches("specialized").length > 0);
+assert.ok(searchAllMatches("Upadhyaya").some((r) => r.title.includes("Upadhyay")));
+assert.ok(searchAllMatches("Harjeet").some((r) => r.title.includes("Harjit")));
+assert.ok(searchAllMatches("specialized").length > 0);
 
 // Substring false positives removed
 const portHits = searchAllMatches("port");
-assert.ok(!portHits.some((r) => r.href.includes("service-conversion")));
+assert.ok(!portHits.some((r) => r.href.includes("conversion-upgradation")));
 assert.equal(documentMatchesQuery("technical support only", parseSearchQuery("port")), false);
 
 // Prefix suggestions while typing (including when exact matches exist for other prefixes)

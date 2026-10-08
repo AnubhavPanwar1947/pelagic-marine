@@ -190,9 +190,13 @@ for (const file of files) {
   const threshold =
     ["/team/", "/contact/", "/about/"].includes(normalizedRoute)
       ? 0.99
-      : ["/privacy/", "/cookies/", "/terms/", "/engagement/", "/disclaimer/"].includes(
-            normalizedRoute,
-          ) || normalizedRoute.startsWith("/news/")
+      : [
+            "/privacy-policy/",
+            "/cookies-policy/",
+            "/terms-and-conditions/",
+            "/standard-terms-and-conditions-of-engagement/",
+            "/disclaimer/",
+          ].includes(normalizedRoute) || normalizedRoute.startsWith("/marine-insights/")
         ? 0.85
         : 0.9;
   if (coverage < threshold) {

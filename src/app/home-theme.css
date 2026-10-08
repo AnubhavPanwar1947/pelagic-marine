@@ -41,6 +41,24 @@
 .home-page .home-theme-why {
   background-color: #f4fafd;
   background-image: none;
+  overflow-x: clip;
+}
+
+/* About us lead — FEED-style justified lines (scoped; global justify needs 40rem container) */
+@media (max-width: 19.9375rem) {
+  .home-page .home-theme-why .pelagic-copy-container p.type-lead {
+    text-align: left;
+    text-align-last: left;
+    text-justify: auto;
+  }
+}
+
+@media (min-width: 20rem) {
+  .home-page .home-theme-why .pelagic-copy-container p.type-lead {
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-word;
+  }
 }
 
 .home-page .home-theme-decarb {
